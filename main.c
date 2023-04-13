@@ -1,26 +1,16 @@
-#include "mlx.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <math.h>
-#include <unistd.h>
-#include <fcntl.h>
-#include <string.h>
-#include <limits.h>
+#include "all.h"
 
-#define WIN_WIDTH 500
-#define WIN_HEIGHT 500
 
 int	main(int argc, char *argv[])
 {
 	(void)argc;
 	(void)argv;
+	t_mlx	mlx;
 
-	void *mlx;
-	void *win;
-	int x = 0;
-	int y = 0;
-	
-	mlx = mlx_init();
-	win = mlx_new_window(mlx, WIN_WIDTH, WIN_HEIGHT, "Hello world!");
-
+	mlx.mlx = mlx_init();
+	mlx.win = mlx_new_window(mlx.mlx, WIN_WIDTH, WIN_HEIGHT, "Hello world!");
+	mlx.img.img = mlx_new_image(mlx.mlx, WIN_WIDTH, WIN_HEIGHT);
+	make_img(&mlx.img);
+	mlx_put_image_to_window(mlx.mlx, mlx.win, mlx.img.img, 0, 0);
+	mlx_loop(mlx.mlx);
 }
