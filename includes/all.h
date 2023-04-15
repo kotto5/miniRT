@@ -9,6 +9,7 @@
 #include <fcntl.h>
 #include <string.h>
 #include <limits.h>
+#include "libft.h"
 
 typedef struct	s_img {
 	void	*img;

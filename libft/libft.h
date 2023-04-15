@@ -6,7 +6,7 @@
 /*   By: kakiba <kotto555555@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/18 10:04:29 by kakiba            #+#    #+#             */
-/*   Updated: 2023/01/24 13:49:53 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/04/15 11:11:29 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@
 
 typedef struct s_list
 {
-	double			r;
-	double			i;
 	void			*content;
 	struct s_list	*next;
 }	t_list;
@@ -72,8 +70,9 @@ char			*ft_strnstr(const char *haystack, \
 int				ft_atoi(const char *str);
 double			ft_atof(char *str);
 void			*ft_calloc(size_t count, size_t size);
-char			*ft_strdup(const char *s1);
+void			*ft_galloc(size_t size, t_list **alloc_list);
 
+char			*ft_strdup(const char *s1);
 char			*ft_substr(char const *s, unsigned int start, size_t len);
 char			*ft_strjoin(char const *s1, char const *s2);
 char			*ft_strtrim(char const *s1, char const *set);
@@ -86,7 +85,7 @@ void			ft_putstr_fd(char *s, int fd);
 void			ft_putendl_fd(char *s, int fd);
 void			ft_putnbr_fd(int n, int fd);
 
-t_list			*ft_lstnew(double r, double i, void *content);
+t_list			*ft_lstnew(void *content);
 void			ft_lstadd_front(t_list **lst, t_list *new);
 int				ft_lstsize(t_list *lst);
 t_list			*ft_lstlast(t_list *lst);

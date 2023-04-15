@@ -1,28 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   ft_galloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kakiba <kotto555555@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/12 00:03:34 by kakiba            #+#    #+#             */
-/*   Updated: 2023/04/15 11:08:12 by kakiba           ###   ########.fr       */
+/*   Created: 2023/04/15 10:38:44 by kakiba            #+#    #+#             */
+/*   Updated: 2023/04/15 11:05:04 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*ft_lstnew(void *content)
+void	*ft_galloc(size_t size, t_list **alloc_list)
 {
-	t_list	*ndptr;
+	void	*ptr;
 
-	ndptr = malloc(sizeof(t_list));
-	if (ndptr == NULL)
+	ptr = calloc(size, 1);
+	if (ptr == NULL)
 		return (NULL);
-	else
-	{
-		ndptr->content = content;
-		ndptr -> next = NULL;
-		return (ndptr);
-	}
+	ft_lstadd_back(alloc_list, ft_lstnew(ptr));
+	return (ptr);
 }

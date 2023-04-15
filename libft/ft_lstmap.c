@@ -6,7 +6,7 @@
 /*   By: kakiba <kotto555555@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 00:03:20 by kakiba            #+#    #+#             */
-/*   Updated: 2022/12/22 21:35:56 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/04/15 11:08:37 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	new_lst = NULL;
 	while (lst)
 	{	
-		buf = ft_lstnew(lst -> i, lst ->r, (f(lst -> content)));
+		buf = ft_lstnew(f(lst -> content));
 		if (buf == NULL)
 		{
 			ft_lstclear(&new_lst, del);

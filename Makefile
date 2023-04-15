@@ -3,7 +3,7 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 SRCS = $(wildcard *.c)
 OBJ = $(SRCS:.c=.o)
-INCLUDES = -I./includes
+INCLUDES = -I./includes -Ilibft/
 LIBFT = ./libft/libft.a
 LIBMLX = ./minilibx/libmlx.a
 LIBMLXFLAGS = -framework OpenGL -framework AppKit
