@@ -50,6 +50,8 @@ ft_dlstadd_back.c\
 ft_dlstadd_front.c\
 ft_dlstclear.c\
 ft_dlstdelone.c\
+ft_dlstsearch.c\
+ft_dlstdelete.c\
 ft_lstnew.c\
 ft_lstadd_front.c\
 ft_lstsize.c\
@@ -60,8 +62,7 @@ ft_lstclear.c\
 ft_lstiter.c\
 ft_lstmap.c\
 ft_strtol.c\
-ft_galloc.c
-
+ft_galloc.c\
 
 M_OBJS = $(M_SRCS:%.c=%.o)
 B_OBJS = $(B_SRCS:%.c=%.o)

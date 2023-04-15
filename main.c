@@ -6,7 +6,7 @@
 /*   By: kakiba <kotto555555@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 11:07:28 by kakiba            #+#    #+#             */
-/*   Updated: 2023/04/15 11:17:06 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/04/15 12:32:17 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,36 +17,28 @@ void	do_nothing(void *ptr){
 	return ;
 }
 
+void	ft_exit(int status, t_dlist **gc)
+{
+	ft_dlstclear(gc, free);
+	exit(status);
+}
+
 int	main(int argc, char *argv[])
 {
 	(void)argc;
 	(void)argv;
 	char	*ptr;
-	t_list	*alloc_list;
+	char	*ptr2;
+	char	*ptr3;
+	t_dlist	*gc;
+	ptr = ft_galloc(10, &gc);
+	ptr2 = ft_galloc(10, &gc);
+	ptr3 = ft_galloc(10, &gc);
+	ft_dlstdelete(&gc, ptr, free);
+	ft_dlstdelete(&gc, ptr2, free);
+	ft_dlstdelete(&gc, ptr3, free);
 
-	alloc_list = NULL;
-	if (alloc_list)
-	{
-		printf("JJJJ\n");
-	}
-	else
-		printf("HHHH\n");
-
-	ptr = ft_galloc(10, &alloc_list);
-	ptr = ft_galloc(13, &alloc_list);
-	ptr = ft_galloc(13, &alloc_list);
-	ptr[0] = 'A';
-	ptr[1] = '\0';
-	if (ptr == NULL)
-		printf("HEY!!!\n");
-	else
-		printf("ptr pointer %p\n", ptr);
-	// free (ptr);
-	if (alloc_list)
-		printf("%p \n", alloc_list->content);
-	else
-		printf("YEAHHHH!!!!!!\n");
-	ft_lstclear(&alloc_list, free);
+	// ft_exit(0, &gc);
 	return (0);
 	// t_mlx	mlx;
 

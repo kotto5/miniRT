@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_dlstnew.c                                       :+:      :+:    :+:   */
+/*   ft_dlstsearch.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kakiba <kotto555555@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/10 11:33:11 by kakiba            #+#    #+#             */
-/*   Updated: 2023/04/15 12:23:26 by kakiba           ###   ########.fr       */
+/*   Created: 2023/04/15 12:08:29 by kakiba            #+#    #+#             */
+/*   Updated: 2023/04/15 12:08:30 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-//if content is NULL OK
-
-t_dlist	*ft_dlstnew(void *content)
+t_dlist	*ft_dlstsearch(t_dlist *node, void *target)
 {
-	t_dlist	*ndptr;
-
-	ndptr = malloc(sizeof(t_dlist));
-	if (!ndptr)
+	if (node == NULL || target == NULL)
 		return (NULL);
-	ndptr -> content = content;
-	ndptr -> prev = NULL;
-	ndptr -> next = NULL;
-	return (ndptr);
+	while (node->next)
+	{
+		if (node->content == target)
+			return (node);
+		node = node->next;
+	}
+	return (NULL);
 }

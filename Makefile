@@ -16,8 +16,9 @@ all: $(NAME)
 $(NAME): $(LIBFT) $(LIBMLX) $(OBJ)
 	$(CC) $(CFLAGS) $(INCLUDES) $(LIBMLXFLAGS) $^ -o $@
 
-$(LIBFT):
+$(LIBFT): FORCE
 	make -C ./libft
+FORCE:
 
 $(LIBMLX):
 	make -C ./minilibx
@@ -33,4 +34,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re FORCE

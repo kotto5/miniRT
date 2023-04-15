@@ -6,7 +6,7 @@
 /*   By: kakiba <kotto555555@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 15:18:43 by kakiba            #+#    #+#             */
-/*   Updated: 2022/12/13 14:04:41 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/04/15 12:04:36 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,11 @@ void	ft_dlstdelone(t_dlist *lst, void (*del)(void *))
 {
 	if (lst == NULL)
 		return ;
-	if (del != NULL)
-		del(&lst -> content);
-	free(lst);
+	if (lst->content)
+	{
+		del(lst->content);
+		lst->content = NULL;
+	}
+	del(lst);
 }
+

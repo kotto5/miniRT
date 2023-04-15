@@ -6,7 +6,7 @@
 /*   By: kakiba <kotto555555@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/18 10:04:29 by kakiba            #+#    #+#             */
-/*   Updated: 2023/04/15 11:11:29 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/04/15 12:24:53 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,7 @@ typedef struct s_clist{
 
 typedef struct s_dlist{
 	struct s_dlist	*prev;
-	int				content;
-	int				times;
-	int				i_done;
+	void			*content;
 	struct s_dlist	*next;
 }			t_dlist;
 
@@ -70,7 +68,7 @@ char			*ft_strnstr(const char *haystack, \
 int				ft_atoi(const char *str);
 double			ft_atof(char *str);
 void			*ft_calloc(size_t count, size_t size);
-void			*ft_galloc(size_t size, t_list **alloc_list);
+void			*ft_galloc(size_t size, t_dlist **alloc_list);
 
 char			*ft_strdup(const char *s1);
 char			*ft_substr(char const *s, unsigned int start, size_t len);
@@ -96,13 +94,15 @@ void			ft_lstiter(t_list *lst, void (*f)(void *));
 t_list			*ft_lstmap(t_list *lst, \
 					void *(*f)(void *), void (*del)(void *));
 
-t_dlist			*ft_dlstnew(int content);
+t_dlist			*ft_dlstnew(void *content);
 t_dlist			*ft_dlsthead(t_dlist *lst);
 t_dlist			*ft_dlstlast(t_dlist *lst);
 void			ft_dlstadd_back(t_dlist **lst, t_dlist *new);
 void			ft_dlstadd_front(t_dlist **lst, t_dlist *new);
 void			ft_dlstclear(t_dlist **lst, void (*del)(void*));
 void			ft_dlstdelone(t_dlist *lst, void (*del)(void *));
+t_dlist			*ft_dlstsearch(t_dlist *node, void *target);
+bool			ft_dlstdelete(t_dlist **lst, void *target, void (*del)(void *));
 
 long int		ft_strtol(const char *nptr, char **endptr, int base);
 
