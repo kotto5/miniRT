@@ -33,6 +33,19 @@ typedef struct	s_vec3
 	double	z;
 }				t_vec3;
 
+typedef struct	s_ray
+{
+	t_vec3	pos;
+	t_vec3	dir;
+}				t_ray;
+
+typedef struct	s_circle
+{
+	t_vec3	pos;
+	double	r;
+}				t_circle;
+
+
 // typedef struct	
 
 
@@ -56,8 +69,8 @@ int	*make_img(t_img *img);
 
 // #define WIN_WIDTH 1000
 // #define WIN_HEIGHT 500
-#define WIN_WIDTH 0xff
-#define WIN_HEIGHT 0xff
+#define WIN_WIDTH 512
+#define WIN_HEIGHT 512
 #define ERROR 1
 #define SUCCESS 0
 
