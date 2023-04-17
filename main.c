@@ -6,7 +6,7 @@
 /*   By: kakiba <kotto555555@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 11:07:28 by kakiba            #+#    #+#             */
-/*   Updated: 2023/04/17 17:03:20 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/04/17 21:11:22 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,18 +23,41 @@ void	ft_exit(int status, t_dlist **gc)
 	exit(status);
 }
 
+int	key_event(int key, void *data)
+{
+	t_env	*env = data;
+
+	if (key == ALLOW_DOWN)
+		env->eye.pos.y += 0.1;
+	else if (key == ALLOW_UP)
+		env->eye.pos.y -= 0.1;
+	else if (key == ALLOW_LEFT)
+		env->eye.pos.x += 0.1;
+	else if (key == ALLOW_RIGHT)
+		env->eye.pos.x -= 0.1;
+	printf("key is :%d\n", key);
+	make_img2(&env->img, env->eye);
+	mlx_put_image_to_window(env->mlx, env->win, env->img.img, 0, 0);
+	mlx_loop(env->mlx);
+	return (0);
+}
+
 int	main(int argc, char *argv[])
 {
 	(void)argc;
 	(void)argv;
-	t_mlx	mlx;
+	t_env	env;
+	set_vec3(&env.eye.pos, 0, 0, -5);
 
-	mlx.mlx = mlx_init();
-	mlx.win = mlx_new_window(mlx.mlx, WIN_WIDTH, WIN_HEIGHT, "Hello world!");
-	mlx.img.img = mlx_new_image(mlx.mlx, WIN_WIDTH, WIN_HEIGHT);
-	make_img(&mlx.img);
-	mlx_put_image_to_window(mlx.mlx, mlx.win, mlx.img.img, 0, 0);
-	mlx_loop(mlx.mlx);
+	env.mlx = mlx_init();
+	env.win = mlx_new_window(env.mlx, WIN_WIDTH, WIN_HEIGHT, "Hello world!");
+	// set_event();
+	mlx_key_hook(env.win, key_event, &env);
+	env.img.img = mlx_new_image(env.mlx, WIN_WIDTH, WIN_HEIGHT);
+	make_img2(&env.img, env.eye);
+	// make_img(&env.img);
+	mlx_put_image_to_window(env.mlx, env.win, env.img.img, 0, 0);
+	mlx_loop(env.mlx);
 }
 
 __attribute__((destructor)) static void destructor()

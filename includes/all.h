@@ -98,7 +98,16 @@ typedef struct	s_mlx {
 	t_img	img;
 }				t_mlx;
 
+typedef struct	s_env
+{
+	void	*mlx;
+	void	*win;
+	t_img	img;
+	t_ray	eye;
+}				t_env;
+
 int	*make_img(t_img *img);
+int	*make_img2(t_img *img, t_ray eye);
 
 // #define WIN_WIDTH 1000
 // #define WIN_HEIGHT 500
@@ -106,6 +115,13 @@ int	*make_img(t_img *img);
 #define WIN_HEIGHT 512
 #define ERROR 1
 #define SUCCESS 0
+
+enum{
+	ALLOW_LEFT = 123,
+	ALLOW_RIGHT = 124,
+	ALLOW_DOWN = 125,
+	ALLOW_UP = 126,
+};
 
 t_vec3	vec_add(t_vec3 va, t_vec3 vb);
 t_vec3	vec_sub(t_vec3 va, t_vec3 vb);
@@ -121,6 +137,8 @@ t_vec3	get_incident_point_light(t_point_light light, t_vec3 p);
 t_vec3	get_incident_parallel_light(t_parallel_light light);
 // double	get_deffsuse_ref(double power, t_vec3 light_p, t_vec3 p, t_vec3 n, double di);
 double	get_deffsuse_ref(t_point_light light, t_circle cir, t_vec3 point);
+// double	get_ref(t_point_light light, t_circle cir, t_vec3 point);
+double	get_ref(t_point_light light, t_circle cir, t_ray eye, double t);
 
 // cir.c
 double	get_ray_t_to_cir(t_ray ray, t_circle cir);
@@ -129,7 +147,8 @@ t_vec3	get_normal_cir(t_circle cir, t_vec3 surface_p);
 
 // utils.c
 void	mlx_put_to_img(t_img *data, int x, int y, int color);
-t_vec3	convert_vecter_to_window_from_imgvec(int x, int y);
+// t_vec3	convert_vecter_to_window_from_imgvec(int x, int y);
+t_vec3	convert_vecter_to_window_from_imgvec(int x, int y, t_ray eye);
 
 
 // sq.c
