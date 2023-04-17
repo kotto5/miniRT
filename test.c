@@ -28,7 +28,7 @@
 // 			t = get_ray_t_to_cir(eye, c1);
 // 			if (t >= 0)
 // 			{
-// 				my_mlx_pixel_put(img, x, y, 0xcca0fff0);
+// 				mlx_put_to_img(img, x, y, 0xcca0fff0);
 // 			}
 // 			x++;
 // 		}
@@ -81,7 +81,7 @@
 // 		{
 // 			color.trgb.r = 255 - (unsigned char)x;
 // 			color.trgb.b = (unsigned char)(x * y / 255);
-// 			my_mlx_pixel_put(img, x, y, color.color);
+// 			mlx_put_to_img(img, x, y, color.color);
 // 			x++;
 // 		}
 // 		y++;

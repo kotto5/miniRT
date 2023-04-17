@@ -6,7 +6,7 @@
 /*   By: kakiba <kotto555555@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 06:42:05 by kakiba            #+#    #+#             */
-/*   Updated: 2023/04/17 06:43:37 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/04/17 17:08:23 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 // ret = |vec1| * |vec1|
 double	vec_mag_sq(t_vec3 va)
 {
-	return (va.x * va.x + va.y * va.y + va.z * va.z);
+	return ((va.x * va.x) + (va.y * va.y) + (va.z * va.z));
 }
 
 // ret = |vec1|

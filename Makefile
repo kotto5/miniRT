@@ -32,6 +32,20 @@ fclean: clean
 	rm -f $(NAME)
 	make fclean -C ./libft
 
+NAME_DEBUG = debugfile
+CFLAGS_DEBUG = -g
+
+$(NAME_DEBUG): $(LIBFT) $(LIBMLX) $(OBJ)
+	@printf "$(GREEN)"
+	$(CC) $(CFLAGS) $(INCLUDES) $(LIBMLXFLAGS) $^ -o $@
+	@printf "$(RESET)"
+
+debug: CFLAGS += $(CFLAGS_DEBUG)
+debug: $(NAME_DEBUG)
+
+
+FORCE:
+
 re: fclean all
 
 .PHONY: all clean fclean re FORCE
