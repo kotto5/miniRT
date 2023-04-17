@@ -12,6 +12,7 @@
 #include "libft.h"
 #include <math.h>
 
+
 typedef struct	s_trgb
 {
 	unsigned char	b;
@@ -71,6 +72,7 @@ typedef struct	s_square
 typedef struct	s_point_light
 {
 	t_vec3		pos;
+	double		power;
 }				t_point_light;
 
 typedef struct	s_parallel_light
@@ -114,8 +116,24 @@ double	vec_mag_sq(t_vec3 va);
 double	vec_mag(t_vec3 va);
 void	set_vec3(t_vec3 *vec, double x, double y, double z);
 
+// light.h
 t_vec3	get_incident_point_light(t_point_light light, t_vec3 p);
 t_vec3	get_incident_parallel_light(t_parallel_light light);
+// double	get_deffsuse_ref(double power, t_vec3 light_p, t_vec3 p, t_vec3 n, double di);
+double	get_deffsuse_ref(t_point_light light, t_circle cir, t_vec3 point);
+
+// cir.c
+double	get_ray_t_to_cir(t_ray ray, t_circle cir);
+t_vec3	get_intersect_point_ray_cir(t_ray ray, double t);
+t_vec3	get_normal_cir(t_circle cir, t_vec3 surface_p);
+
+// utils.c
+void	mlx_put_to_img(t_img *data, int x, int y, int color);
+t_vec3	convert_vecter_to_window_from_imgvec(int x, int y);
+
+
+// sq.c
+bool	do_intersect_ray_and_square(t_ray ray, t_square sq);
 
 // 関数ポインタ使って、クラスっぽいこと実現しよう
 // square.n() 的な
