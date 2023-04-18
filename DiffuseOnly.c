@@ -26,14 +26,14 @@
 // 		x = 0;
 // 		while (x < WIN_WIDTH)
 // 		{
-// 			vec_win = convert_vecter_to_window_from_imgvec(x, y);
+// 			vec_win = get_screen_vec(x, y);
 // 			eye.dir = vec_sub(vec_win, eye.pos);
 // 			eye.dir = vec_mult(eye.dir, 1.0 / vec_mag(eye.dir));
 
 // 			t = get_ray_t_to_cir(eye, c1);
 // 			if (t >= 0)
 // 			{
-// 				inter_p = get_intersect_point_ray_cir(eye, t);
+// 				inter_p = get_ray_intersect_vec(eye, t);
 // 				double	ref = get_deffsuse_ref(p_light, c1, inter_p);
 // 				printf("ref: %f\n", ref);
 // 				int	color_val = ref * 255;
@@ -93,14 +93,14 @@
 // 		x = 0;
 // 		while (x < WIN_WIDTH)
 // 		{
-// 			vec_win = convert_vecter_to_window_from_imgvec(x, y);
+// 			vec_win = get_screen_vec(x, y);
 // 			eye.dir = vec_sub(vec_win, eye.pos);
 // 			eye.dir = vec_mult(eye.dir, 1.0 / vec_mag(eye.dir));
 
 // 			t = get_ray_t_to_cir(eye, c1);
 // 			if (t >= 0)
 // 			{
-// 				inter_p = get_intersect_point_ray_cir(eye, t);
+// 				inter_p = get_ray_intersect_vec(eye, t);
 // 				double	ref = get_deffsuse_ref(p_light, c1, inter_p);
 // 				ref *= 255.0;
 // 				mlx_put_to_img(img, x, y, ref * 0x000000ff);
@@ -112,7 +112,7 @@
 // 			t = get_ray_t_to_cir(eye, c2);
 // 			if (t >= 0)
 // 			{
-// 				inter_p = get_intersect_point_ray_cir(eye, t);
+// 				inter_p = get_ray_intersect_vec(eye, t);
 // 				double	ref = get_deffsuse_ref(p_light, c2, inter_p);
 // 				ref *= 255.0;
 // 				mlx_put_to_img(img, x, y, ref * 0x000000ff);

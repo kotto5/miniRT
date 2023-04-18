@@ -6,37 +6,59 @@
 /*   By: kakiba <kotto555555@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 18:08:26 by kakiba            #+#    #+#             */
-/*   Updated: 2023/04/17 22:41:32 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/04/18 18:06:55 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "all.h"
 
-void	make_white_color(t_color *color, double bright)
+int	make_white_color(double bright)
 {
-	color->trgb.t = 0;
-	color->trgb.r = bright;
-	color->trgb.g = bright;
-	color->trgb.b = bright;
+	t_color	color;
+
+	color.trgb.t = 0;
+	color.trgb.r = bright;
+	color.trgb.g = bright;
+	color.trgb.b = bright;
+	return (color.color);
+}
+
+t_circle	init_circle(t_vec3 origin, double r)
+{
+	t_circle	cir;
+
+	cir.pos = origin;
+	cir.r = r;
+	cir.ref.am = 0.01;
+	cir.ref.di = 0.69;
+	cir.ref.sp = 0.3;
+	cir.ref.sp_shininess = 8;
+	cir.vertical = get_cir_vertical_dir;
+	return (cir);
+}
+
+t_vec3	get_vec(double x, double y, double z)
+{
+	t_vec3	vec;
+
+	vec.x = x;
+	vec.y = y;
+	vec.z = z;
+	return (vec);
 }
 
 int	*make_img2(t_img *img, t_ray eye)
 {
 	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel,
 			&img->line_length, &img->endian);
-	t_circle	c1;
+	t_circle	c1 = init_circle(get_vec(0, 0, 5) , 1);
 	double		t;
 	t_vec3		vec_win;
 	t_point_light	p_light;
-	t_color		color;
 	p_light.power = 1;
 	set_vec3(&p_light.pos, -5, 5, -5);
 	// set_vec3(&p_light.pos, 5, -5, -4.9);
 	// set_vec3(&eye.pos, 0, 0, 1);
-	set_vec3(&c1.pos, 0, 0, 5);
-	c1.r = 1.0;
-	c1.ref.di = 0.69;
-
 	int	x;
 	int	y = 0;
 	while (y < WIN_HEIGHT)
@@ -44,18 +66,16 @@ int	*make_img2(t_img *img, t_ray eye)
 		x = 0;
 		while (x < WIN_WIDTH)
 		{
-			vec_win = convert_vecter_to_window_from_imgvec(x, y, eye);
-			eye.dir = vec_sub(vec_win, eye.pos);
-			eye.dir = vec_mult(eye.dir, 1.0 / vec_mag(eye.dir));
+			vec_win = get_screen_vec(x, y, eye);
+			eye.dir = vec_normilize(vec_sub(vec_win, eye.pos));
 			t = get_ray_t_to_cir(eye, c1);
 			if (t >= 0)
 			{
-				// inter_p = get_intersect_point_ray_cir(eye, t);
+				// inter_p = get_ray_intersect_vec(eye, t);
 				// double	ref = get_deffsuse_ref(p_light, c1, inter_p);
 				double	ref = get_ref(p_light, c1, eye, t);
 				printf("ref: %f\n", ref);
-				make_white_color(&color, ref * 255);
-				mlx_put_to_img(img, x, y, color.color);
+				mlx_put_to_img(img, x, y, make_white_color(ref * 255));
 			}
 			else
 				mlx_put_to_img(img, x, y, 100 * 0x10000 + 149 * 0x100 + 237);

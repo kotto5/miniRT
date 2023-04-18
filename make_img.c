@@ -24,14 +24,14 @@
 // 		x = 0;
 // 		while (x < WIN_WIDTH)
 // 		{
-// 			vec_win = convert_vecter_to_window_from_imgvec(x, y);
+// 			vec_win = get_screen_vec(x, y);
 // 			// printf("%f, %f, %f\n", vec_win.x, vec_win.y, vec_win.z);
 // 			eye.dir = vec_sub(vec_win, eye.pos);
 // 			t = get_ray_t_to_cir(eye, c1);
 // 			if (t >= 0)
 // 			{
-// 				inter_p = get_intersect_point_ray_cir(eye, t);
-// 				n = get_normal_cir(c1, inter_p);
+// 				inter_p = get_ray_intersect_vec(eye, t);
+// 				n = get_cir_vertical_dir(c1, inter_p);
 // 				mlx_put_to_img(img, x, y, 0xcca0fff0);
 // 			}
 // 			x++;

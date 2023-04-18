@@ -6,7 +6,7 @@
 /*   By: kakiba <kotto555555@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 07:50:29 by kakiba            #+#    #+#             */
-/*   Updated: 2023/04/17 20:46:24 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/04/18 17:58:42 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	mlx_put_to_img(t_img *data, int x, int y, int color)
 	*(unsigned int*)dst = color;
 }
 
-// t_vec3	convert_vecter_to_window_from_imgvec(int x, int y)
+// t_vec3	get_screen_vec(int x, int y)
 // {
 // 	t_vec3	vec_win;
 
@@ -37,7 +37,7 @@ void	mlx_put_to_img(t_img *data, int x, int y, int color)
 // 	return (vec_win);
 // }
 
-t_vec3	convert_vecter_to_window_from_imgvec(int x, int y, t_ray eye)
+t_vec3	get_screen_vec(int x, int y, t_ray eye)
 {
 	t_vec3	vec_win;
 
