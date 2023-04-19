@@ -160,6 +160,8 @@ t_vec3	vec_cross(t_vec3 va, t_vec3 vb);
 double	vec_mag_sq(t_vec3 va);
 double	vec_mag(t_vec3 va);
 t_vec3	vec_normilize(t_vec3 vec);
+void	print_vec(t_vec3 vec, char *str);
+
 
 // light.h
 t_vec3	get_light_incident_dir(t_point_light light, t_vec3 p);

@@ -6,7 +6,7 @@
 /*   By: kakiba <kotto555555@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 18:08:26 by kakiba            #+#    #+#             */
-/*   Updated: 2023/04/18 18:06:55 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/04/19 21:05:37 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ t_circle	init_circle(t_vec3 origin, double r)
 	cir.r = r;
 	cir.ref.am = 0.01;
 	cir.ref.di = 0.69;
+	// cir.ref.di = 1.00;
 	cir.ref.sp = 0.3;
 	cir.ref.sp_shininess = 8;
 	cir.vertical = get_cir_vertical_dir;
@@ -74,7 +75,7 @@ int	*make_img2(t_img *img, t_ray eye)
 				// inter_p = get_ray_intersect_vec(eye, t);
 				// double	ref = get_deffsuse_ref(p_light, c1, inter_p);
 				double	ref = get_ref(p_light, c1, eye, t);
-				printf("ref: %f\n", ref);
+				// printf("ref: %f\n", ref);
 				mlx_put_to_img(img, x, y, make_white_color(ref * 255));
 			}
 			else
