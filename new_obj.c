@@ -49,7 +49,7 @@ t_intersection	get_circle_intersection(const t_ray ray, const t_obj *obj)
 	t_intersection		intersection;
 	double				t;
 
-	intersection.does_intersect = false;
+	intersection.does_intersect = false; 
 	t = _get_ray_t_to_cir(ray, (t_circle *)obj->instance);
 	if (t < 0)
 		return (intersection);

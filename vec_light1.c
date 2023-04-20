@@ -48,11 +48,6 @@ double	get_deffsuse_ref(t_point_light light, t_circle cir, t_vec3 point)
 	n = get_cir_vertical_dir(cir, point);
 	l = get_light_incident_dir(light, point);
 	cos = vec_dot(n, l);
-
-	// printf("=====================\nNormal vector: (%f, %f, %f)\n", n.x, n.y, n.z);
-	// printf("Incident vector: (%f, %f, %f)\n", l.x, l.y, l.z);
-	// printf("Dot product: %f\n", cos);
-
 	if (cos < 0)
 		return (0);
 	return (cir.ref.di * light.power * cos);

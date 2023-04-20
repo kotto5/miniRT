@@ -12,6 +12,7 @@
 #include "libft.h"
 #include <math.h>
 
+// little endian
 typedef struct	s_trgb
 {
 	unsigned char	b;
@@ -79,19 +80,6 @@ typedef struct	s_square
 	t_vec3		n_dir;
 }				t_square;
 
-typedef struct	s_point_light
-{
-	t_vec3		pos;
-	double		power;
-}				t_point_light;
-
-typedef struct	s_parallel_light
-{
-	t_vec3		pos;
-	t_vec3		dir;
-}				t_parallel_light;
-
-
 typedef struct	s_img {
 	void	*img;
 	char	*addr;
@@ -134,6 +122,11 @@ typedef enum e_objtype{
 	O_CIRCLE,
 } t_objtype;
 
+typedef enum e_lighttype{
+	O_AMBIRNT_LIGHT,
+	O_LIGHT,
+} t_lighttype;
+
 typedef struct	s_circle_info
 {
 	t_reflect	ref;
@@ -148,6 +141,33 @@ struct	s_obj
 	void		*instance;
 	t_intersection		(*get_intersection)(const t_ray, const t_obj *);
 };
+
+typedef struct	s_lighting
+{
+	double	distance;
+	t_color	intensity;
+	t_vec3	vecter;
+}				t_lighting;
+
+typedef	struct s_light t_light;
+struct	s_light
+{
+	t_lighttype	type;
+	void		*instance;
+	t_lighting	(*lighting_at)(t_vec3, t_light);
+};
+
+typedef struct	s_point_light
+{
+	t_vec3		pos;
+	t_color		intensity;
+}				t_point_light;
+
+typedef struct	s_parallel_light
+{
+	t_vec3		dir;
+	t_color		intensity;
+}				t_parallel_light;
 
 int	*make_img(t_img *img);
 int	*make_img2(t_img *img, t_ray eye);

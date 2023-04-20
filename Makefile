@@ -1,7 +1,8 @@
 NAME = miniRT
 CC = gcc
 # CFLAGS = -Wall -Wextra -Werror
-CFLAGS = -Wall -Wextra -Werror -fsanitize=address
+# CFLAGS = -Wall -Wextra -Werror -fsanitize=address
+CFLAGS = -Wall -fsanitize=address
 SRCS = $(wildcard *.c)
 OBJ = $(SRCS:.c=.o)
 INCLUDES = -I./includes -Ilibft/
