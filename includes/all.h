@@ -63,7 +63,6 @@ struct	s_circle
 	t_vec3		(*vertical)(t_circle, t_vec3);
 };
 
-
 // typedef struct	s_circle
 // {
 // 	t_reflect	ref;
@@ -117,25 +116,42 @@ typedef struct	s_env
 	t_ray	eye;
 }				t_env;
 
+typedef struct	s_intersection
+{
+	bool	does_intersect;
+	double	distance;
+	t_vec3	position;
+	t_vec3	vertical_dir;
+}				t_intersection;
+
 typedef enum e_objtype{
-	AMBIRNT_LIGHT = 1,
-	LIGHT,
-	CAMERA,
-	SPHERE,
-	PLANE,
-	CYLINDER,
-	CIRCLE,
+	O_AMBIRNT_LIGHT = 1,
+	O_LIGHT,
+	O_CAMERA,
+	O_SPHERE,
+	O_PLANE,
+	O_CYLINDER,
+	O_CIRCLE,
 } t_objtype;
 
-typedef struct	s_obj
+typedef struct	s_circle_info
+{
+	t_reflect	ref;
+	t_vec3		pos;
+	t_vec3		n_dir;
+}				t_circle_info;
+
+typedef	struct s_obj t_obj;
+struct	s_obj
 {
 	t_objtype	type;
 	void		*instance;
-}				t_obj;
-
+	t_intersection		(*get_intersection)(const t_ray, const t_obj *);
+};
 
 int	*make_img(t_img *img);
 int	*make_img2(t_img *img, t_ray eye);
+int	*make_img3(t_img *img, t_ray eye, t_dlist **gb_list);
 
 // #define WIN_WIDTH 1000
 // #define WIN_HEIGHT 500
@@ -143,6 +159,7 @@ int	*make_img2(t_img *img, t_ray eye);
 #define WIN_HEIGHT 512
 #define ERROR 1
 #define SUCCESS 0
+#define BACK_COLOR 0x0
 
 enum{
 	ALLOW_LEFT = 123,
@@ -161,6 +178,10 @@ double	vec_mag_sq(t_vec3 va);
 double	vec_mag(t_vec3 va);
 t_vec3	vec_normilize(t_vec3 vec);
 void	print_vec(t_vec3 vec, char *str);
+t_vec3	get_vec(double x, double y, double z);
+
+t_obj	*new_obj(t_objtype type, void *obj_info, t_dlist **alloc_list);
+
 
 
 // light.h
@@ -176,6 +197,10 @@ double	get_ray_t_to_cir(t_ray ray, t_circle cir);
 t_vec3	get_ray_intersect_vec(t_ray ray, double t);
 t_vec3	get_ray_intersect_vec_dir(t_ray ray, t_vec3 point);
 t_vec3	get_cir_vertical_dir(t_circle cir, t_vec3 surface_p);
+// t_intersection	get_circle_intersection(const t_ray ray, const t_obj *obj, t_dlist **alloc_list);
+// t_intersection	get_circle_intersection(const t_ray ray, const t_obj *obj, t_dlist **alloc_list);
+t_intersection	get_circle_intersection(const t_ray ray, const t_obj *obj);
+
 
 // utils.c
 void	mlx_put_to_img(t_img *data, int x, int y, int color);

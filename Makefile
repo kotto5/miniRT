@@ -1,6 +1,7 @@
 NAME = miniRT
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+# CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -fsanitize=address
 SRCS = $(wildcard *.c)
 OBJ = $(SRCS:.c=.o)
 INCLUDES = -I./includes -Ilibft/
@@ -18,6 +19,7 @@ $(NAME): $(LIBFT) $(LIBMLX) $(OBJ)
 
 $(LIBFT): FORCE
 	make -C ./libft
+
 FORCE:
 
 $(LIBMLX):
@@ -42,9 +44,6 @@ $(NAME_DEBUG): $(LIBFT) $(LIBMLX) $(OBJ)
 
 debug: CFLAGS += $(CFLAGS_DEBUG)
 debug: $(NAME_DEBUG)
-
-
-FORCE:
 
 re: fclean all
 

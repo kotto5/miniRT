@@ -104,3 +104,8 @@ double	get_specular_ref(t_point_light light, t_circle cir, t_vec3 intersection, 
 	ref = Ks * Ii * pow(inner_product, alpha);
 	return (ref);
 }
+
+// 半直線との交差判定の方法は　対象の形状ごとに異なる。
+// しかし、どの方法であっても、交差判定に結果として交点の位置や交点における法線方向がわかれば
+// 陰影の計算が可能である。
+

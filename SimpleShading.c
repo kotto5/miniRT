@@ -6,7 +6,7 @@
 /*   By: kakiba <kotto555555@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 18:08:26 by kakiba            #+#    #+#             */
-/*   Updated: 2023/04/19 21:05:37 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/04/20 14:30:33 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,6 @@ t_circle	init_circle(t_vec3 origin, double r)
 	return (cir);
 }
 
-t_vec3	get_vec(double x, double y, double z)
-{
-	t_vec3	vec;
-
-	vec.x = x;
-	vec.y = y;
-	vec.z = z;
-	return (vec);
-}
 
 int	*make_img2(t_img *img, t_ray eye)
 {
@@ -59,7 +50,11 @@ int	*make_img2(t_img *img, t_ray eye)
 	p_light.power = 1;
 	set_vec3(&p_light.pos, -5, 5, -5);
 	// set_vec3(&p_light.pos, 5, -5, -4.9);
-	// set_vec3(&eye.pos, 0, 0, 1);
+	set_vec3(&eye.pos, 0, 0, -5);
+	set_vec3(&eye.dir, 0, 0, 1);
+	t = get_ray_t_to_cir(eye, c1);
+	printf("t %f \n", t);
+
 	int	x;
 	int	y = 0;
 	while (y < WIN_HEIGHT)
