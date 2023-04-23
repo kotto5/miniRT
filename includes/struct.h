@@ -1,3 +1,5 @@
+#ifndef STRUCT_H
+#define STRUCT_H
 
 typedef struct	s_vec3
 {
@@ -20,3 +22,4 @@ typedef union	u_color
 	unsigned int	color;
 }				t_color;
 
+#endif

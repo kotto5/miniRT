@@ -6,7 +6,7 @@
 /*   By: kakiba <kotto555555@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 11:07:28 by kakiba            #+#    #+#             */
-/*   Updated: 2023/04/20 17:13:53 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/04/23 21:22:49 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,28 +42,55 @@ int	key_event(int key, void *data)
 	return (0);
 }
 
+// int	main(int argc, char *argv[])
+// {
+// 	(void)argc;
+// 	(void)argv;
+// 	t_env	env;
+// 	t_dlist	*gb_list;
+// 	gb_list = NULL;
+// 	set_vec3(&env.eye.pos, 0, 0, -5);
+
+// 	env.mlx = mlx_init();
+// 	env.win = mlx_new_window(env.mlx, WIN_WIDTH, WIN_HEIGHT, "Hello world!");
+// 	// set_event();
+// 	mlx_key_hook(env.win, key_event, &env);
+// 	env.img.img = mlx_new_image(env.mlx, WIN_WIDTH, WIN_HEIGHT);
+// 	make_img3(&env.img, env.eye, &gb_list);
+// 	printf("IMG MADE\n");
+// 	// make_img2(&env.img, env.eye);
+// 	// make_img(&env.img);
+// 	mlx_put_image_to_window(env.mlx, env.win, env.img.img, 0, 0);
+// 	printf("PUT IMAGE TO WINDOW\n");
+// 	mlx_loop(env.mlx);
+// }
+
 int	main(int argc, char *argv[])
 {
 	(void)argc;
 	(void)argv;
 	t_env	env;
 	t_dlist	*gb_list;
+	void	*ptr;
 	gb_list = NULL;
-	set_vec3(&env.eye.pos, 0, 0, -5);
 
+	set_vec3(&env.eye.pos, 0, 0, -5);
 	env.mlx = mlx_init();
 	env.win = mlx_new_window(env.mlx, WIN_WIDTH, WIN_HEIGHT, "Hello world!");
 	// set_event();
 	mlx_key_hook(env.win, key_event, &env);
 	env.img.img = mlx_new_image(env.mlx, WIN_WIDTH, WIN_HEIGHT);
 	make_img3(&env.img, env.eye, &gb_list);
-	printf("IMG MADE\n");
+	// ft_dlstclear(&gb_list, free);
+	// return (0);
+	// printf("IMG MADE\n");
 	// make_img2(&env.img, env.eye);
 	// make_img(&env.img);
 	mlx_put_image_to_window(env.mlx, env.win, env.img.img, 0, 0);
-	printf("PUT IMAGE TO WINDOW\n");
+	// printf("PUT IMAGE TO WINDOW\n");
 	mlx_loop(env.mlx);
 }
+
 
 // int	main()
 // {
@@ -93,7 +120,7 @@ int	main(int argc, char *argv[])
 // 	printf("%p\n", str + 1);
 // }
 
-// __attribute__((destructor)) static void destructor()
-// {
-// 	system("leaks -q miniRT");
-// }
+__attribute__((destructor)) static void destructor()
+{
+	system("leaks -q miniRT");
+}
