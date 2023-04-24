@@ -6,7 +6,7 @@
 /*   By: kakiba <kotto555555@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 06:42:05 by kakiba            #+#    #+#             */
-/*   Updated: 2023/04/23 20:37:43 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/04/24 11:34:08 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,3 +94,12 @@ t_color	color_add(t_color color1, t_color color2)
 	ans.trgb.b = color1.trgb.b + color2.trgb.b;
 	return (ans);
 }
+
+/*
+color	t  r  b  g
+		ff 41 42 a5
+
+color	t r g b
+		
+
+*/

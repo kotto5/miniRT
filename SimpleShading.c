@@ -6,7 +6,7 @@
 // /*   By: kakiba <kotto555555@gmail.com>             +#+  +:+       +#+        */
 // /*                                                +#+#+#+#+#+   +#+           */
 // /*   Created: 2023/04/17 18:08:26 by kakiba            #+#    #+#             */
-// /*   Updated: 2023/04/23 19:39:13 by kakiba           ###   ########.fr       */
+// /*   Updated: 2023/04/24 11:21:02 by kakiba           ###   ########.fr       */
 // /*                                                                            */
 // /* ************************************************************************** */
 
@@ -29,11 +29,11 @@
 
 // 	cir.pos = origin;
 // 	cir.r = r;
-// 	cir.ref.am = 0.01;
-// 	cir.ref.di = 0.69;
-// 	// cir.ref.di = 1.00;
-// 	cir.ref.sp = 0.3;
-// 	cir.ref.sp_shininess = 8;
+// 	cir.ref.d_am = 0.01;
+// 	cir.ref.d_di = 0.69;
+// 	// cir.ref.d_di = 1.00;
+// 	cir.ref.d_sp = 0.3;
+// 	cir.ref.d_sp_shininess = 8;
 // 	cir.vertical = get_cir_vertical_dir;
 // 	return (cir);
 // }

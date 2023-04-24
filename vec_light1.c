@@ -21,20 +21,19 @@
 
 // double	get_ref(t_point_light light, t_circle cir, t_ray eye, double t)
 // {
-// 	return (1);
-// }
-
-// {
 // 	double	ref;
 // 	t_vec3	intersection;
 
 // 	intersection = get_ray_intersect_vec(eye, t);
 // 	ref = 0.0;
-// 	ref += get_ambient_ref(cir.ref.am, light.power);
+// 	ref += get_ambient_ref(cir.ref.d_am, light.power);
 // 	ref += get_deffsuse_ref(light, cir, intersection);
 // 	ref += get_specular_ref(light, cir, intersection, eye);
 // 	return (ref);
 // }
+
+// // {
+// // }
 
 // double	get_ambient_ref(double ref_am, double intensity)
 // {
@@ -54,7 +53,7 @@
 // 	cos = vec_dot(n, l);
 // 	if (cos < 0)
 // 		return (0);
-// 	return (cir.ref.di * light.power * cos);
+// 	return (cir.ref.d_di * light.power * cos);
 // }
 
 // // 鏡面反射光の放射強度Rs
@@ -79,9 +78,9 @@
 // {
 
 // 	double	ref = 0;
-// 	double	Ks = cir.ref.sp;
+// 	double	Ks = cir.ref.d_sp;
 // 	double	Ii = light.power;
-// 	double	alpha = cir.ref.sp_shininess;
+// 	double	alpha = cir.ref.d_sp_shininess;
 
 // 	t_vec3	vecV = vec_mult(eye.dir, -1);
 // 	vecV = vec_normilize(vecV);

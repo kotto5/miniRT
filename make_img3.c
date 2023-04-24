@@ -71,10 +71,10 @@ t_color	get_ambient_ref2(t_reflect ref, t_point_light light)
 {
 	t_color	color;
 
-	color.trgb.t = ref.am.trgb.t * light.intensity.trgb.t;
-	color.trgb.r = ref.am.trgb.r * light.intensity.trgb.r;
-	color.trgb.g = ref.am.trgb.g * light.intensity.trgb.g;
-	color.trgb.b = ref.am.trgb.b * light.intensity.trgb.b;
+	color.trgb.t = ref.am.trgb.t * light.intensity.trgb.t * 100;
+	color.trgb.r = ref.am.trgb.r * light.intensity.trgb.r * 100;
+	color.trgb.g = ref.am.trgb.g * light.intensity.trgb.g * 100;
+	color.trgb.b = ref.am.trgb.b * light.intensity.trgb.b * 100;
 	return (color);
 }
 
@@ -91,10 +91,10 @@ t_color	get_deffsuse_ref2(t_intersection intersection, t_reflect ref, t_point_li
 	cos = vec_dot(n, l);
 	if (cos < 0)
 		return (color);
-	color.trgb.t = light.intensity.trgb.t * ref.di.trgb.t * cos;
-	color.trgb.r = light.intensity.trgb.r * ref.di.trgb.r * cos;
-	color.trgb.g = light.intensity.trgb.g * ref.di.trgb.g * cos;
-	color.trgb.b = light.intensity.trgb.b * ref.di.trgb.b * cos;
+	color.trgb.t = light.intensity.trgb.t * ref.di.trgb.t * cos * 100;
+	color.trgb.r = light.intensity.trgb.r * ref.di.trgb.r * cos * 100;
+	color.trgb.g = light.intensity.trgb.g * ref.di.trgb.g * cos * 100;
+	color.trgb.b = light.intensity.trgb.b * ref.di.trgb.b * cos * 100;
 	return (color);
 }
 
@@ -116,9 +116,9 @@ t_color	get_specular_ref2(t_point_light light, t_intersection intersection, t_ra
 		inner_product = 0;
 	if (inner_product > 1)
 		inner_product = 1;
-	ref.trgb.t = light.intensity.trgb.t * pow(inner_product, ref_info.sp_shininess.trgb.t) * ref_info.sp.trgb.t;
-	ref.trgb.r = light.intensity.trgb.r * pow(inner_product, ref_info.sp_shininess.trgb.r) * ref_info.sp.trgb.r;
-	ref.trgb.g = light.intensity.trgb.g * pow(inner_product, ref_info.sp_shininess.trgb.g) * ref_info.sp.trgb.g;
+	ref.trgb.t = light.intensity.trgb.t * pow(inner_product, ref_info.sp_shininess.trgb.t) * ref_info.sp.trgb.t * 100;
+	ref.trgb.r = light.intensity.trgb.r * pow(inner_product, ref_info.sp_shininess.trgb.r) * ref_info.sp.trgb.r * 100;
+	ref.trgb.g = light.intensity.trgb.g * pow(inner_product, ref_info.sp_shininess.trgb.g) * ref_info.sp.trgb.g * 100;
 	ref.trgb.b = light.intensity.trgb.b * pow(inner_product, ref_info.sp_shininess.trgb.b) * ref_info.sp.trgb.b;
 	return (ref);
 }
@@ -145,7 +145,7 @@ int	*make_img3(t_img *img, t_ray eye, t_dlist **gb_list)
 	t_intersection intersection;
 	t_vec3		vec_win;
 	t_color		color;
-	t_reflect	ref;
+	t_circle	*instance;
 
 	t_lightsource	*light;
 	light = new_light(L_POINT, make_point_light_info(get_vec(-5, -5, -5), \
@@ -178,7 +178,8 @@ int	*make_img3(t_img *img, t_ray eye, t_dlist **gb_list)
 			intersection = circle->get_intersection(eye, circle);
 			if (intersection.does_intersect == true)
 			{
-				color = get_ref2(intersection, )
+				instance = circle->instance;
+				color = get_ref2(intersection, instance->ref, light);
 				mlx_put_to_img(img, x, y, 0xffffff);
 			}
 			else
