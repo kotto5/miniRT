@@ -50,3 +50,6 @@ debug: $(NAME_DEBUG)
 re: fclean all
 
 .PHONY: all clean fclean re FORCE
+
+norm:
+	norminette
