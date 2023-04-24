@@ -3,3 +3,5 @@ a.out
 miniRT
 dbg
 debugfile
+.vscode
+.DS_STORE
