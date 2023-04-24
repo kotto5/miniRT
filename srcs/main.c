@@ -6,7 +6,7 @@
 /*   By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 16:22:52 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/04/25 01:08:26 by shtanemu         ###   ########.fr       */
+/*   Updated: 2023/04/25 01:17:27 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	init_window(void **mlx, void **win, t_data *img)
 static void	window_management(void)
 {
 	t_env	env;
-	
+
 	init_window(&env.mlx, &env.win, &env.img);
 	mlx_put_image_to_window(env.mlx, env.win, env.img.img, 0, 0);
 	mlx_loop(env.mlx);
