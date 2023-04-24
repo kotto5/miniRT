@@ -36,7 +36,7 @@ jobs:
       # アクションの終了コードの設定 - GitHub Docs => 終了ステータス0以外ならfailureが出ます。
       # https://docs.github.com/ja/actions/creating-actions/setting-exit-codes-for-actions
       - name: Run Norminette.
-        run: make norm
+        run: norminette
 
       # - name: Run Test.
         # run: bash ./all-test.sh tests
