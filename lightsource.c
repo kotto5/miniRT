@@ -1,11 +1,13 @@
 #include "all.h"
 
-t_point_light	*make_point_light_info(t_vec3 position, t_color intensity, t_dlist **gb_list)
+// t_point_light	*make_point_light_info(t_vec3 position, t_color intensity, t_dlist **gb_list)
+t_point_light	*make_point_light_info(t_vec3 position, double intensity, t_dlist **gb_list)
 {
-	t_point_light	*light;
 
+	t_point_light	*light;
 	light = ft_galloc(sizeof(t_point_light), gb_list);
-	light->intensity = intensity;
+	// light->intensity = intensity;
+	light->d_intensity = intensity;
 	light->pos = position;
 	return (light);
 }
@@ -20,16 +22,18 @@ t_lighting	lightingat_point(t_lightsource *light, t_vec3 position)
 	vec = vec_sub(info->pos, position);
 	lighting.distance = vec_mag(vec);
 	lighting.vecter = vec_normilize(vec);
-	lighting.intensity = color_mult(info->intensity, 1.0 / (1.0 + lighting.distance));
+	// lighting.intensity = color_mult(info->d_intensity, 1.0 / (1.0 + lighting.distance));
+	lighting.d_intensity = info->d_intensity * (1.0 / (1.0 + lighting.distance));
 	return (lighting);
 }
 
-t_parallel_light	*make_parallel_light_info(t_vec3 dir, t_color intensity, t_dlist **gb_list)
+// t_parallel_light	*make_parallel_light_info(t_vec3 dir, t_color intensity, t_dlist **gb_list)
+t_parallel_light	*make_parallel_light_info(t_vec3 dir, double intensity, t_dlist **gb_list)
 {
 	t_parallel_light	*light;
 
 	light = ft_galloc(sizeof(t_parallel_light), gb_list);
-	light->intensity = intensity;
+	light->d_intensity = intensity;
 	light->dir = dir;
 	return (light);
 }

@@ -6,7 +6,7 @@
 /*   By: kakiba <kotto555555@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 11:07:28 by kakiba            #+#    #+#             */
-/*   Updated: 2023/04/24 11:31:13 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/04/24 15:11:37 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ int	main(int argc, char *argv[])
 	(void)argv;
 	t_env	env;
 	t_dlist	*gb_list;
-	void	*ptr;
 	gb_list = NULL;
 
 	set_vec3(&env.eye.pos, 0, 0, -5);

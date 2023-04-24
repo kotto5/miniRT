@@ -93,6 +93,9 @@ double	vec_mag(t_vec3 va);
 t_vec3	vec_normilize(t_vec3 vec);
 void	print_vec(t_vec3 vec, char *str);
 t_vec3	get_vec(double x, double y, double z);
+double	constrain(double v, double vmin, double vmax);
+double	map(double v, double vmin, double vmax, double tmin, double tmax); // 値のマッピング
+
 t_color	get_color(double t, double r, double g, double b);
 t_color	color_mult(t_color color, double k);
 t_color	color_add(t_color color1, t_color color2);

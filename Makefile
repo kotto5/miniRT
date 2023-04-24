@@ -8,7 +8,9 @@ SRCS = $(wildcard *.c)
 OBJ = $(SRCS:.c=.o)
 INCLUDES = -I./includes -Ilibft/
 LIBFT = ./libft/libft.a
+# LIBMLX = ./minilibx/libmlx.dylib
 LIBMLX = ./minilibx/libmlx.a
+# LIBMLXFLAGS = -lmlx -Lmlx -framework OpenGL -framework AppKit
 LIBMLXFLAGS = -framework OpenGL -framework AppKit
 
 all: $(NAME)

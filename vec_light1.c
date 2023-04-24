@@ -56,18 +56,18 @@
 // 	return (cir.ref.d_di * light.power * cos);
 // }
 
-// // 鏡面反射光の放射強度Rs
-// // Rs = Ks * Ii * cos^αθ
-// // 	  = Ks * Ii * (VecV ・　VecR)^α
+// 鏡面反射光の放射強度Rs
+// Rs = Ks * Ii * cos^αθ
+// 	  = Ks * Ii * (VecV ・　VecR)^α
 
-// // Ks: 鏡面反射係数（obj 依存）
-// // Ii: 入射光の強度 (light 依存)
-// // VecV は視野ベクトルの逆ベクトル	(ray と point)		方向ベクトル(正規化)
-// // VecR は入射光の正反射ベクトル	(light と point)	方向ベクトル(正規化)
-// // θ はVecV と VecR のなす角 (どうやって計算するんや？)
-// // α は光沢度（obj 依存） 1 <= α
-// // |VecV| = |VecR| = 1 (VecV と VecR は正規化する) Rs についてのでは、あくまで方向ベクトル
-// // 
+// Ks: 鏡面反射係数（obj 依存）
+// Ii: 入射光の強度 (light 依存)
+// VecV は視野ベクトルの逆ベクトル	(ray と point)		方向ベクトル(正規化)
+// VecR は入射光の正反射ベクトル	(light と point)	方向ベクトル(正規化)
+// θ はVecV と VecR のなす角 (どうやって計算するんや？)
+// α は光沢度（obj 依存） 1 <= α
+// |VecV| = |VecR| = 1 (VecV と VecR は正規化する) Rs についてのでは、あくまで方向ベクトル
+// 
 
 // // 二つの位置ベクトルにおいて、一点から一点に対するベクトルを取得する方法
 // // BA = OA - OB
