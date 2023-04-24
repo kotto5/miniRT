@@ -6,7 +6,7 @@
 #    By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/24 16:22:45 by shtanemu          #+#    #+#              #
-#    Updated: 2023/04/24 17:42:39 by shtanemu         ###   ########.fr        #
+#    Updated: 2023/04/24 17:50:19 by shtanemu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,10 +27,7 @@ OBJS := $(patsubst %.c, $(OBJDIR)/%.o, $(SRCS))
 DEPENDS := $(patsubst $(SRCDIR)%, $(OBJDIR)%, $(SRCS:%.c=%.d))
 -include $(DEPENDS)
 
-MINILIBXDIR := minilibxmms20200219/
-
 INCDIR := include/
-# INCLUDE := -I$(INCDIR) -I$(MINILIBXDIR)
 INCLUDE := -I$(INCDIR)
 
 all: $(NAME)
