@@ -6,7 +6,7 @@
 #    By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/24 16:22:45 by shtanemu          #+#    #+#              #
-#    Updated: 2023/04/24 17:50:19 by shtanemu         ###   ########.fr        #
+#    Updated: 2023/04/26 15:52:03 by shtanemu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,13 +16,10 @@ RM := rm -f
 CFLAGS := -Wall -Wextra -Werror -MMD
 
 SRCDIR := srcs
-SRCS := main.c
+SRCS := main.c \
+		window.c
 
 OBJDIR := objs
-ifeq "$(strip $(OBJDIR))" ""
-  OBJDIR    = .
-endif
-# OBJS := $(patsubst $(SRCDIR)%, $(OBJDIR)%, $(SRCDIR)/$(SRCS:%.c=%.o))
 OBJS := $(patsubst %.c, $(OBJDIR)/%.o, $(SRCS))
 DEPENDS := $(patsubst $(SRCDIR)%, $(OBJDIR)%, $(SRCS:%.c=%.d))
 -include $(DEPENDS)
