@@ -69,11 +69,12 @@ int	*make_img3(t_img *img, t_ray eye, t_dlist **gb_list);
 
 // #define WIN_WIDTH 1000
 // #define WIN_HEIGHT 500
-# define WIN_WIDTH 512
+# define WIN_WIDTH 712
 # define WIN_HEIGHT 512
 # define ERROR 1
 # define SUCCESS 0
-# define BACK_COLOR 0x0
+// # define BACK_COLOR 100*256*256+149*256+237
+# define BACK_COLOR 0x00faa9fe
 
 enum{
 	ALLOW_LEFT = 123,

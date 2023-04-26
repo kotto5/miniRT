@@ -6,7 +6,7 @@
 /*   By: kakiba <kotto555555@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 11:07:28 by kakiba            #+#    #+#             */
-/*   Updated: 2023/04/24 15:11:37 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/04/26 19:21:03 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,14 @@ int	key_event(int key, void *data)
 	else if (key == ALLOW_RIGHT)
 		env->eye.pos.x -= 0.1;
 	printf("key is :%d\n", key);
+	// printf("")
 	// make_img2(&env->img, env->eye);
 	// mlx_put_image_to_window(env->mlx, env->win, env->img.img, 0, 0);
 	mlx_loop(env->mlx);
 	return (0);
 }
+
+
 
 // int	main(int argc, char *argv[])
 // {

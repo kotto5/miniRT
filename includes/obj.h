@@ -81,7 +81,7 @@ bool	do_intersect_ray_and_square(t_ray ray, t_square sq);
 
 
 // cir.c
-double	get_ray_t_to_cir(t_ray ray, t_circle cir);
+// double	get_ray_t_to_cir(t_ray ray, t_circle cir);
 t_vec3	get_ray_intersect_vec(t_ray ray, double t);
 t_vec3	get_ray_intersect_vec_dir(t_ray ray, t_vec3 point);
 t_vec3	get_cir_vertical_dir(t_circle cir, t_vec3 surface_p);

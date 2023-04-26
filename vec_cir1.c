@@ -6,7 +6,7 @@
 /*   By: kakiba <kotto555555@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 07:50:36 by kakiba            #+#    #+#             */
-/*   Updated: 2023/04/18 15:04:02 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/04/26 14:19:05 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,28 +17,28 @@
 // C = (VecRayP - VecCirP)^2 - r^2
 // 交差している座標 p = VecRayP + t*VecRayDir
 
-double	get_ray_t_to_cir(t_ray ray, t_circle cir)
-{
-	double	A = vec_mag_sq(ray.dir);
-	double	B = 2.0 * vec_dot(ray.dir, (vec_sub(ray.pos, cir.pos)));
-	double	C = vec_mag_sq(vec_sub(ray.pos, cir.pos)) - (cir.r * cir.r);
-	double	root = B * B - (4.0 * A * C);
+// double	get_ray_t_to_cir(t_ray ray, t_circle cir)
+// {
+// 	double	A = vec_mag_sq(ray.dir);
+// 	double	B = 2.0 * vec_dot(ray.dir, (vec_sub(ray.pos, cir.pos)));
+// 	double	C = vec_mag_sq(vec_sub(ray.pos, cir.pos)) - (cir.r * cir.r);
+// 	double	root = B * B - (4.0 * A * C);
 
-	if (root < 0)
-		return (-1);
-	else
-	{
-		root = sqrt(root);
-		double	t1 = (-B + root) / (2.0 * A);
-		double	t2 = (-B - root) / (2.0 * A);
-		// printf("t1:%f, t2:%f\n", t1, t2);
-		if ((t1 >= 0 && (t1 <= t2) )|| t2 < 0)
-			return (t1);
-		else if (t2 >= 0)
-			return (t2);
-		return (-1);
-	}
-}
+// 	if (root < 0)
+// 		return (-1);
+// 	else
+// 	{
+// 		root = sqrt(root);
+// 		double	t1 = (-B + root) / (2.0 * A);
+// 		double	t2 = (-B - root) / (2.0 * A);
+// 		// printf("t1:%f, t2:%f\n", t1, t2);
+// 		if ((t1 >= 0 && (t1 <= t2) )|| t2 < 0)
+// 			return (t1);
+// 		else if (t2 >= 0)
+// 			return (t2);
+// 		return (-1);
+// 	}
+// }
 
 // double	get_ray_t_to_cir(t_ray ray, t_circle cir)
 // {
