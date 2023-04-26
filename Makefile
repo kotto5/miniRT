@@ -6,7 +6,7 @@
 #    By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/24 16:22:45 by shtanemu          #+#    #+#              #
-#    Updated: 2023/04/26 15:52:03 by shtanemu         ###   ########.fr        #
+#    Updated: 2023/04/26 21:51:26 by shtanemu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,11 @@ CFLAGS := -Wall -Wextra -Werror -MMD
 
 SRCDIR := srcs
 SRCS := main.c \
-		window.c
+		window.c \
+		vector_basic.c \
+		vector_adv.c \
+		vector_mag.c \
+		ball.c
 
 OBJDIR := objs
 OBJS := $(patsubst %.c, $(OBJDIR)/%.o, $(SRCS))
