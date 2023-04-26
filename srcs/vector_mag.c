@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   vector_mag.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/24 16:22:52 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/04/26 21:32:09 by shtanemu         ###   ########.fr       */
+/*   Created: 2023/04/26 21:50:46 by shtanemu          #+#    #+#             */
+/*   Updated: 2023/04/26 21:53:43 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <mlx.h>
-#include "minirt.h"
+#include <math.h>
+#include "vector.h"
 
-int	main_minirt(void)
+// ret = |vec1| * |vec1|
+double	vec_mag_sq(t_vec3 va)
 {
-	manage_window();
-	return (0);
+	return ((va.x * va.x) + (va.y * va.y) + (va.z * va.z));
 }
 
-int	main(void)
+// ret = |vec1|
+double	vec_mag(t_vec3 va)
 {
-	main_minirt();
-	return (0);
+	return (sqrt(vec_mag_sq(va)));
 }
