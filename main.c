@@ -6,7 +6,7 @@
 /*   By: kakiba <kotto555555@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 11:07:28 by kakiba            #+#    #+#             */
-/*   Updated: 2023/04/27 12:49:45 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/04/27 17:49:35 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,8 @@ int	main(int argc, char *argv[])
 	mlx_key_hook(env.win, key_event, &env);
 	env.img.img = mlx_new_image(env.mlx, WIN_WIDTH, WIN_HEIGHT);
 	// make_img3(&env.img, env.eye, &gb_list);
-	make_img5(&env.img, env.eye, &gb_list);
+	// make_img5(&env.img, env.eye, &gb_list);
+	make_img6(&env.img, env.eye, &gb_list);
 	// ft_dlstclear(&gb_list, free);
 	// return (0);
 	// printf("IMG MADE\n");
@@ -99,7 +100,7 @@ int	main(int argc, char *argv[])
 
 // int	main()
 // {
-// 	t_color	color;
+// 	t_img_color	color;
 // 	char	*str;
 
 // 	str = "31tokyo";

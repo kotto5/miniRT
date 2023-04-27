@@ -1,6 +1,6 @@
 #include "all.h"
 
-// t_point_light	*make_point_light_info(t_vec3 position, t_color intensity, t_dlist **gb_list)
+// t_point_light	*make_point_light_info(t_vec3 position, t_img_color intensity, t_dlist **gb_list)
 t_point_light	*make_point_light_info(t_vec3 position, double intensity, t_dlist **gb_list)
 {
 
@@ -8,6 +8,10 @@ t_point_light	*make_point_light_info(t_vec3 position, double intensity, t_dlist 
 	light = ft_galloc(sizeof(t_point_light), gb_list);
 	// light->intensity = intensity;
 	light->d_intensity = intensity;
+	light->intensity.t = 0;
+	light->intensity.r = 1;
+	light->intensity.g = 1;
+	light->intensity.b = 1;
 	light->pos = position;
 	return (light);
 }
@@ -30,21 +34,26 @@ t_lighting	lighting_at_point(t_vec3 position, t_lightsource *light)
 
 	// lighting.intensity = color_mult(info->d_intensity, 1.0 / (1.0 + lighting.distance));
 	// lighting.d_intensity = info->d_intensity * (1.0 / (1.0 + lighting.distance));
-	lighting.d_intensity = 20 - lighting.distance;
+	lighting.d_intensity = info->d_intensity * (20 - lighting.distance);
 	if (lighting.d_intensity > 1)
 		lighting.d_intensity = 1;
 	if (lighting.d_intensity < 0)
 		lighting.d_intensity = 0;
+
+	lighting.intensity.t = info->intensity.t * (20 - lighting.distance);
+	lighting.intensity.r = info->intensity.r * (20 - lighting.distance);
+	lighting.intensity.g = info->intensity.g * (20 - lighting.distance);
+	lighting.intensity.b = info->intensity.b * (20 - lighting.distance);
 	// 距離の二乗に反比例 暗すぎるかも
 	// printf("LIGHT 4\n");
 	// lighting.d_intensity = info->d_intensity * 1.0 / pow(lighting.distance, 2);
 	// printf("LIGHT 5\n");
-	print_vec(lighting.incident_to_light, "incindent");
-	printf("intenns:%f  distnace:%f", lighting.d_intensity, lighting.distance);
+	// print_vec(lighting.incident_to_light, "incindent");
+	// printf("intenns:%f  distnace:%f", lighting.d_intensity, lighting.distance);
 	return (lighting);
 }
 
-// t_parallel_light	*make_parallel_light_info(t_vec3 dir, t_color intensity, t_dlist **gb_list)
+// t_parallel_light	*make_parallel_light_info(t_vec3 dir, t_img_color intensity, t_dlist **gb_list)
 t_parallel_light	*make_parallel_light_info(t_vec3 dir, double intensity, t_dlist **gb_list)
 {
 	t_parallel_light	*light;

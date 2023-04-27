@@ -6,7 +6,7 @@
 /*   By: kakiba <kotto555555@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 06:42:05 by kakiba            #+#    #+#             */
-/*   Updated: 2023/04/27 13:50:02 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/04/27 15:07:38 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ double	map(double v, double vmin, double vmax, double tmin, double tmax) // å€¤ã
 }
 
 // t_reflect	get_t_refrect(double am, double di, double sp, double sp_shininess)
-// t_reflect	get_t_refrect(t_color am, t_color di, t_color sp, t_color sp_shininess)
+// t_reflect	get_t_refrect(t_img_color am, t_img_color di, t_img_color sp, t_img_color sp_shininess)
 // {
 // 	t_reflect	ref;
 
@@ -89,53 +89,6 @@ t_reflect	get_t_refrect(double am, double di, double sp, double sp_shininess)
 }
 
 
-t_color	get_color(double t, double r, double g, double b)
-{
-	t_color	color;
-
-	color.trgb.t = t;
-	color.trgb.r = r;
-	color.trgb.g = g;
-	color.trgb.b = b;
-	return (color);
-}
-
-t_color	color_mult(t_color color, double k)
-{
-	t_color	ans;
-
-	ans.color = color.color * k;
-	ans.color = color.color * k;
-	ans.color = color.color * k;
-	return (ans);
-}
-
-t_color	color_add(t_color color1, t_color color2)
-{
-	t_color	ans;
-
-	ans.trgb.t = color1.trgb.t + color2.trgb.t;
-	ans.trgb.r = color1.trgb.r + color2.trgb.r;
-	ans.trgb.g = color1.trgb.g + color2.trgb.g;
-	ans.trgb.b = color1.trgb.b + color2.trgb.b;
-	return (ans);
-}
-
-unsigned int	color_mult_ref_incident_constant(t_color ref, t_color incident, double constant)
-{
-	t_color	color;
-	double	buf;
-
-	buf = (double)ref.trgb.t * (double)incident.trgb.t * constant;
-	color.trgb.t = buf / 1.0;
-	buf = (double)ref.trgb.r * (double)incident.trgb.r * constant;
-	color.trgb.r = buf / 1.0;
-	buf = (double)ref.trgb.g * (double)incident.trgb.g * constant;
-	color.trgb.g = buf / 1.0;
-	buf = (double)ref.trgb.b * (double)incident.trgb.b * constant;
-	color.trgb.b = buf / 1.0;
-	return (color.color);
-}
 
 /*
 color	t  r  b  g

@@ -20,6 +20,6 @@ typedef union	u_color
 {
 	t_trgb			trgb;
 	unsigned int	color;
-}				t_color;
+}				t_img_color;
 
 #endif

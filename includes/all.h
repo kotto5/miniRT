@@ -20,11 +20,19 @@ typedef struct	s_trgb
 	unsigned char	t;
 }				t_trgb;
 
-typedef union	u_color
+typedef union	u_img_color
 {
 	t_trgb			trgb;
 	unsigned int	color;
-}				t_color;
+}				t_img_color;
+
+typedef struct	s_bright_color
+{
+	double	t;
+	double	r;
+	double	g;
+	double	b;
+}				t_bright_color;
 
 typedef struct	s_vec3
 {
@@ -97,9 +105,9 @@ t_vec3	get_vec(double x, double y, double z);
 double	constrain(double v, double vmin, double vmax);
 double	map(double v, double vmin, double vmax, double tmin, double tmax); // 値のマッピング
 
-t_color	get_color(double t, double r, double g, double b);
-t_color	color_mult(t_color color, double k);
-t_color	color_add(t_color color1, t_color color2);
+// t_img_color	get_img_color(double t, double r, double g, double b);
+// t_img_color	color_mult(t_img_color color, double k);
+// t_img_color	color_add(t_img_color color1, t_img_color color2);
 
 
 // utils.c

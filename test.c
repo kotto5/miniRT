@@ -66,7 +66,7 @@
 // gradation!!
 // int	*make_img(t_img *img)
 // {
-// 	t_color	color;
+// 	t_img_color	color;
 // 	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel, &img->line_length, &img->endian);
 // 	printf("%x \n", color.color);
 // 	int	x;

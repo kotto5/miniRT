@@ -2,7 +2,7 @@
 
 int	make_white_color(double bright)
 {
-	t_color	color;
+	t_img_color	color;
 
 	color.trgb.t = 0;
 	color.trgb.r = bright;
@@ -118,7 +118,7 @@ int	*make_img3(t_img *img, t_ray eye, t_dlist **gb_list)
 
 	t_intersection intersection;
 	t_vec3		vec_win;
-	t_color		color;
+	t_img_color		color;
 	double		ref;
 	t_circle	*instance;
 	t_lightsource	*light = new_light(L_POINT, make_point_light_info(get_vec(-5, 5, -5), 1, gb_list), gb_list);

@@ -1,4 +1,4 @@
-#include "all.h"
+// #include "all.h"
 
 // int	*make_img(t_img *img)
 // {
@@ -10,7 +10,7 @@
 // 	t_vec3		vec_win;
 // 	t_vec3		inter_p;
 // 	t_point_light	p_light;
-// 	t_color		color;
+// 	t_img_color		color;
 // 	p_light.power = 1;
 // 	set_vec3(&p_light.pos, -5, 5, -5);
 // 	set_vec3(&eye.pos, 0, 0, -5);
@@ -68,7 +68,7 @@
 // 	t_vec3		vec_win;
 // 	t_vec3		inter_p;
 // 	t_point_light	p_light;
-// 	t_color		color;
+// 	t_img_color		color;
 
 // 	color.trgb.r = 10;
 // 	color.trgb.g = 0;

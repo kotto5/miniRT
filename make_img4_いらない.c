@@ -2,7 +2,7 @@
 
 // int	make_white_color(double bright)
 // {
-// 	t_color	color;
+// 	t_img_color	color;
 
 // 	color.trgb.t = 0;
 // 	color.trgb.r = bright;
@@ -79,9 +79,9 @@
 // // }
 
 
-// // t_color	get_ambient_ref2(t_reflect ref, t_point_light light)
+// // t_img_color	get_ambient_ref2(t_reflect ref, t_point_light light)
 // // {
-// // 	t_color	color;
+// // 	t_img_color	color;
 
 // // 	color.trgb.t = ref.am.trgb.t * light.intensity.trgb.t * 100;
 // // 	color.trgb.r = ref.am.trgb.r * light.intensity.trgb.r * 100;
@@ -95,12 +95,12 @@
 // 	return (ref.d_am * light.d_intensity);
 // }
 
-// // t_color	get_deffsuse_ref2(t_intersection intersection, t_reflect ref, t_point_light light)
+// // t_img_color	get_deffsuse_ref2(t_intersection intersection, t_reflect ref, t_point_light light)
 // // {
 // // 	double	cos;
 // // 	t_vec3	n;
 // // 	t_vec3	l;
-// // 	t_color	color;
+// // 	t_img_color	color;
 
 // // 	color.color = 0;
 // // 	n = intersection.vertical_dir;
@@ -115,10 +115,10 @@
 // // 	return (color);
 // // }
 
-// // t_color	get_specular_ref2(t_point_light light, t_circle cir, t_vec3 intersection, t_ray eye)
-// // t_color	get_specular_ref2(t_point_light light, t_intersection intersection, t_ray eye, t_reflect ref_info)
+// // t_img_color	get_specular_ref2(t_point_light light, t_circle cir, t_vec3 intersection, t_ray eye)
+// // t_img_color	get_specular_ref2(t_point_light light, t_intersection intersection, t_ray eye, t_reflect ref_info)
 // // {
-// // 	t_color	ref;
+// // 	t_img_color	ref;
 
 // // // 入射ベクトル ray と交点
 // // 	t_vec3	vecV = vec_normilize(vec_mult(eye.dir, -1));
@@ -224,7 +224,7 @@
 // double	get_ref2(t_intersection intersection, t_reflect ref_info, t_lightsource *light, t_ray eye)
 // {
 // 	double			ref;
-// 	// t_color			ref;
+// 	// t_img_color			ref;
 // 	t_point_light	*point_light;
 // 	// t_vec3	intersection;
 
@@ -256,7 +256,7 @@
 
 // 	t_intersection intersection;
 // 	t_vec3		vec_win;
-// 	t_color		color;
+// 	t_img_color		color;
 // 	double		ref;
 // 	t_circle	*instance;
 // 	t_lightsource	*light = new_light(L_POINT, make_point_light_info(get_vec(-5, 5, -5), 1, gb_list), gb_list);
@@ -298,13 +298,13 @@
 // // {
 // // 	t_intersection intersection;
 // // 	t_vec3		vec_win;
-// // 	t_color		color;
+// // 	t_img_color		color;
 // // 	double		ref;
 // // 	t_circle	*instance;
 
 // // 	t_lightsource	*light;
 // // 	light = new_light(L_POINT, make_point_light_info(get_vec(-5, 5, -5), \
-// // 		get_color(0, 255, 255, 255), gb_list), gb_list);
+// // 		get_img_color(0, 255, 255, 255), gb_list), gb_list);
 
 // // 	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel,
 // // 		&img->line_length, &img->endian);
@@ -313,10 +313,10 @@
 // // 	circle = new_obj(O_CIRCLE, \
 // // 				make_circle_instance( \
 // // 					get_vec(0, 0, 5), 1, \
-// // 					get_t_refrect(	get_color(0.1, 0.1, 0.1, 0.1), \
-// // 									get_color(0.69, 0.69, 0.69, 0.69), \
-// // 									get_color(0.3, 0.3, 0.3, 0.3), 
-// // 									get_color(0.0, 0.0, 0.0, 0.0)), 
+// // 					get_t_refrect(	get_img_color(0.1, 0.1, 0.1, 0.1), \
+// // 									get_img_color(0.69, 0.69, 0.69, 0.69), \
+// // 									get_img_color(0.3, 0.3, 0.3, 0.3), 
+// // 									get_img_color(0.0, 0.0, 0.0, 0.0)), 
 // // 									gb_list), \
 // // 					gb_list);
 

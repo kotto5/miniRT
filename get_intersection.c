@@ -57,7 +57,7 @@ t_intersection	get_circle_intersection(const t_ray ray, const t_obj *obj)
 	// print_vec(intersection.vertical_dir, "test virtical dir");
 
 	double	r_test = vec_mag(vec_sub(intersection.position, info->pos));
-	printf("return intersect position:[%f,%f,%f], [obj r = %f, test r = %f]\n", intersection.position.x, intersection.position.y, intersection.position.z, info->r, r_test);
+	// printf("return intersect position:[%f,%f,%f], [obj r = %f, test r = %f]\n", intersection.position.x, intersection.position.y, intersection.position.z, info->r, r_test);
 
 	return (intersection);
 }

@@ -14,7 +14,7 @@
 
 // int	make_white_color(double bright)
 // {
-// 	t_color	color;
+// 	t_img_color	color;
 
 // 	color.trgb.t = 0;
 // 	color.trgb.r = bright;
