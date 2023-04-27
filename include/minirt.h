@@ -6,7 +6,7 @@
 /*   By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 18:10:42 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/04/26 21:46:32 by shtanemu         ###   ########.fr       */
+/*   Updated: 2023/04/28 02:48:17 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 
 # include <math.h>
 # include <stdlib.h>
+# include "vector.h"
 
 typedef struct s_data {
 	void	*img;
@@ -37,5 +38,6 @@ typedef struct s_env {
 
 void	manage_window(void);
 int		put_ball(t_env *env);
+int		put_plane(t_env *env);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/24 16:22:45 by shtanemu          #+#    #+#              #
-#    Updated: 2023/04/26 21:51:26 by shtanemu         ###   ########.fr        #
+#    Updated: 2023/04/27 19:20:55 by shtanemu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,8 @@ SRCS := main.c \
 		vector_basic.c \
 		vector_adv.c \
 		vector_mag.c \
-		ball.c
+		ball.c \
+		plane.c
 
 OBJDIR := objs
 OBJS := $(patsubst %.c, $(OBJDIR)/%.o, $(SRCS))

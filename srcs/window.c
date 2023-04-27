@@ -6,7 +6,7 @@
 /*   By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 15:49:04 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/04/26 21:53:51 by shtanemu         ###   ########.fr       */
+/*   Updated: 2023/04/28 02:48:47 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,13 @@ static int	exit_with_esc(int keycode, t_env *env)
 	return (0);
 }
 
+// put_ball(&env);
 void	manage_window(void)
 {
 	t_env	env;
 
 	init_window(&env.mlx, &env.win, &env.img);
-	put_ball(&env);
+	put_plane(&env);
 	mlx_put_image_to_window(env.mlx, env.win, env.img.img, 0, 0);
 	mlx_key_hook(env.win, exit_with_esc, &env);
 	mlx_hook(env.win, 17, 0L, exit_proc, &env);

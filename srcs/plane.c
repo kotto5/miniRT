@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ball.c                                             :+:      :+:    :+:   */
+/*   plane.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/26 21:40:16 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/04/27 19:22:44 by shtanemu         ###   ########.fr       */
+/*   Created: 2023/04/27 19:05:31 by shtanemu          #+#    #+#             */
+/*   Updated: 2023/04/28 02:37:46 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,61 +23,47 @@ static void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-static bool	is_crossed(t_vec3 d, t_vec3 s, double r)
+static bool	is_crossed(t_vec3 d, t_vec3 s, t_vec3 n)
 {
-	double	a;
-	double	b;
-	double	root;
-	double	t_1;
-	double	t_2;
+	double	denom;
 
-	a = vec_mag_sq(d);
-	b = 2.0 * vec_dot(d, s);
-	root = pow(b, 2.0) - (4.0 * a * (vec_mag_sq(s) - pow(r, 2)));
-	if (a == 0)
+	denom = vec_dot(d, n);
+	if (denom == 0.00)
 		return (false);
-	if (root < 0)
-		return (false);
-	t_1 = ((-1.0 * b) + sqrt(root)) / (2.0 * a);
-	t_2 = ((-1.0 * b) - sqrt(root)) / (2.0 * a);
-	if (t_1 > 0.0 || t_2 > 0.0)
+	if (-1.0 * (vec_dot(s, n) / denom) > 0)
 		return (true);
-	return (false);
+	else
+		return (false);
 }
 
 static t_vec3	convert_to_vec(int x, int y, double eye_pos_z)
 {
-	double	win_x;
-	double	win_y;
-	double	width;
-	double	height;
-	double	ord;
+	double	xw;
+	double	yw;
 
-	width = (double)WIN_WIDTH;
-	height = (double)WIN_HEIGHT;
-	ord = (double)WIN_ORD;
-	win_x = (double)x / (ord / 2.0) - width / ord;
-	win_y = height / ord - (double)y / (ord / 2.0);
-	return (get_vec(win_x, win_y, eye_pos_z + 5.0));
+	xw = (2.0f * x) / ((double)WIN_WIDTH - 1.0f) - 1.0f;
+	yw = (-2.0f * y) / ((double)WIN_HEIGHT - 1.0f) + 1.0f;
+	return (get_vec(xw, yw, eye_pos_z));
 }
 
-int	put_ball(t_env *env)
+int	put_plane(t_env *env)
 {
 	t_vec3	s;
+	t_vec3	n;
+	t_vec3	d;
 	int		x;
 	int		y;
 
-	s = get_vec(0.0, 0.0, -5.0);
+	s = get_vec(0.0, 0.5, 0.0);
+	n = get_vec(0.0, 1.5, 0.0);
 	y = 0;
 	while (y < WIN_HEIGHT)
 	{
 		x = 0;
 		while (x < WIN_WIDTH)
 		{
-			if (is_crossed(\
-					vec_normilize(\
-						vec_sub(\
-							convert_to_vec(x, y, s.z), s)), s, 0.5))
+			d = vec_normilize(vec_sub(convert_to_vec(x, y, 0.0), s));
+			if (is_crossed(d, s, n))
 				my_mlx_pixel_put(&env->img, x, y, 0x0000FF00);
 			else
 				my_mlx_pixel_put(&env->img, x, y, 0x000000FF);
