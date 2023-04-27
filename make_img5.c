@@ -20,6 +20,7 @@ double	get_ambient_ref_double(t_reflect ref, t_point_light light)
 // double	get_deffsuse_ref(t_point_light light, t_circle cir, t_vec3 point)
 // 入射ベクトル incident は、計算の都合上、入射する方向の逆を取る。
 // 光源をp 交点をa とすると、 p - a が入射ベクトル。
+
 double	get_deffsuse_ref(t_intersection intersection, t_reflect ref, t_point_light light)
 {
 	double	cos_incident_and_vertical;

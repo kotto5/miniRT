@@ -13,9 +13,8 @@ typedef enum e_lighttype{
 typedef struct	s_lighting
 {
 	double	distance;
-	// t_color	intensity;
 	double	d_intensity;
-	t_vec3	vecter;
+	t_vec3	dir;
 }				t_lighting;
 
 typedef	struct s_light t_lightsource;
@@ -53,6 +52,6 @@ t_point_light	*make_point_light_info(t_vec3 position, double intensity, t_dlist 
 // t_point_light	*make_point_light_info(t_vec3 position, t_color intensity, t_dlist **gb_list);
 t_parallel_light	*make_parallel_light_info(t_vec3 dir, double intensity, t_dlist **gb_list);
 // t_parallel_light	*make_parallel_light_info(t_vec3 dir, t_color intensity, t_dlist **gb_list);
-t_lighting	lightningat_point(t_lightsource *light, t_vec3 position);
+t_lighting	lighting_at_point(t_vec3 position, t_lightsource *light)
 
 #endif

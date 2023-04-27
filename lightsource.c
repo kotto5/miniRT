@@ -12,18 +12,23 @@ t_point_light	*make_point_light_info(t_vec3 position, double intensity, t_dlist 
 	return (light);
 }
 
-t_lighting	lightingat_point(t_lightsource *light, t_vec3 position)
+t_lighting	lighting_at_point(t_vec3 position, t_lightsource *light)
 {
 	t_lighting	lighting;
 	t_point_light	*info;
 	t_vec3		vec;
 
 	info = light->instance;
-	vec = vec_sub(info->pos, position);
-	lighting.distance = vec_mag(vec);
+	vec = vec_sub(position, info->pos);
+	// vec = vec_sub(info->pos, position);
+
 	lighting.vecter = vec_normilize(vec);
+	lighting.distance = vec_mag(vec);
+
 	// lighting.intensity = color_mult(info->d_intensity, 1.0 / (1.0 + lighting.distance));
-	lighting.d_intensity = info->d_intensity * (1.0 / (1.0 + lighting.distance));
+	// lighting.d_intensity = info->d_intensity * (1.0 / (1.0 + lighting.distance));
+	// 距離の二乗に反比例 暗すぎるかも
+	lighting.d_intensity = info->d_intensity * 1.0 / pow(lighting.distance, 2);
 	return (lighting);
 }
 
