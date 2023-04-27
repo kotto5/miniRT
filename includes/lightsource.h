@@ -14,7 +14,7 @@ typedef struct	s_lighting
 {
 	double	distance;
 	double	d_intensity;
-	t_vec3	dir;
+	t_vec3	incident_to_light;
 }				t_lighting;
 
 typedef	struct s_light t_lightsource;
@@ -22,7 +22,7 @@ struct	s_light
 {
 	t_lighttype	type;
 	void		*instance;
-	t_lighting	(*lighting_at)(t_vec3, t_lightsource);
+	t_lighting	(*lighting_at)(t_vec3, t_lightsource *);
 };
 
 typedef struct	s_point_light
@@ -52,6 +52,6 @@ t_point_light	*make_point_light_info(t_vec3 position, double intensity, t_dlist 
 // t_point_light	*make_point_light_info(t_vec3 position, t_color intensity, t_dlist **gb_list);
 t_parallel_light	*make_parallel_light_info(t_vec3 dir, double intensity, t_dlist **gb_list);
 // t_parallel_light	*make_parallel_light_info(t_vec3 dir, t_color intensity, t_dlist **gb_list);
-t_lighting	lighting_at_point(t_vec3 position, t_lightsource *light)
+t_lighting	lighting_at_point(t_vec3 position, t_lightsource *light);
 
 #endif

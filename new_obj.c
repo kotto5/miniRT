@@ -31,7 +31,7 @@ t_obj	*new_obj(t_objtype type, void *obj_info, t_dlist **alloc_list)
 
 	if (obj_info == NULL)
 		return (NULL);
-	obj = ft_galloc(sizeof(obj), alloc_list);
+	obj = ft_galloc(sizeof(t_obj), alloc_list);
 	if (obj == NULL)
 		return (NULL);
 	obj->type = type;

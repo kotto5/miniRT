@@ -19,16 +19,28 @@ t_lighting	lighting_at_point(t_vec3 position, t_lightsource *light)
 	t_vec3		vec;
 
 	info = light->instance;
-	vec = vec_sub(position, info->pos);
-	// vec = vec_sub(info->pos, position);
+	// vec = vec_sub(position, info->pos);
+	vec = vec_sub(info->pos, position);
+	// printf("LIGHT 7\n");
 
-	lighting.vecter = vec_normilize(vec);
+	lighting.incident_to_light = vec_normilize(vec);
+	// printf("LIGHT 8\n");
 	lighting.distance = vec_mag(vec);
+	// printf("LIGHT 9\n");
 
 	// lighting.intensity = color_mult(info->d_intensity, 1.0 / (1.0 + lighting.distance));
 	// lighting.d_intensity = info->d_intensity * (1.0 / (1.0 + lighting.distance));
+	lighting.d_intensity = 20 - lighting.distance;
+	if (lighting.d_intensity > 1)
+		lighting.d_intensity = 1;
+	if (lighting.d_intensity < 0)
+		lighting.d_intensity = 0;
 	// 距離の二乗に反比例 暗すぎるかも
-	lighting.d_intensity = info->d_intensity * 1.0 / pow(lighting.distance, 2);
+	// printf("LIGHT 4\n");
+	// lighting.d_intensity = info->d_intensity * 1.0 / pow(lighting.distance, 2);
+	// printf("LIGHT 5\n");
+	print_vec(lighting.incident_to_light, "incindent");
+	printf("intenns:%f  distnace:%f", lighting.d_intensity, lighting.distance);
 	return (lighting);
 }
 
@@ -55,7 +67,7 @@ t_lightsource	*new_light(t_lighttype type, void *light_info, t_dlist **gb_list)
 	light->type = type;
 	light->instance = light_info;
 	if (type == L_POINT)
-		light->lighting_at = lightingat_point;
+		light->lighting_at = lighting_at_point;
 	else
 		light->lighting_at = NULL;
 	return (light);

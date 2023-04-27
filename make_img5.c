@@ -1,6 +1,6 @@
 #include "all.h"
 
-int	make_white_color(double bright)
+static int	make_white_color5(double bright)
 {
 	t_color	color;
 
@@ -10,9 +10,10 @@ int	make_white_color(double bright)
 	color.trgb.b = bright;
 	return (color.color);
 }
-double	get_ambient_ref_double(t_reflect ref, t_point_light light)
+
+static double	get_ambient_ref_double5(t_reflect ref, t_lighting lighting)
 {
-	return (ref.d_am * light.d_intensity);
+	return (ref.d_am * lighting.d_intensity);
 }
 
 // deffuse refrection ... 乱反射。光がランダムな方向に分散して反射する
@@ -21,28 +22,23 @@ double	get_ambient_ref_double(t_reflect ref, t_point_light light)
 // 入射ベクトル incident は、計算の都合上、入射する方向の逆を取る。
 // 光源をp 交点をa とすると、 p - a が入射ベクトル。
 
-double	get_deffsuse_ref(t_intersection intersection, t_reflect ref, t_point_light light)
-{
-	double	cos_incident_and_vertical;
-
-	t_vec3	incident;
-	incident = vec_normilize(vec_sub(light.pos, intersection.position));
-	// if (do_through_other_obj_by_light(objs, incident))
-	// 	return (0);
-	cos_incident_and_vertical = vec_dot(intersection.vertical_dir, incident);
-	if (cos_incident_and_vertical < 0)
-		return (0);
-	// print_vec(l, "deff");
-	// printf("ans [%f] \n", ref.d_di * light.d_intensity * cos_incident_and_vertical);
 	/*
 	0 <= cos <= 1
 	intensity ..? この流れだと 0 <= intensity <= 1
 	0 <= di <= 1 だし、 di = 1 - am - sp;
 	return の因数が、全て 0 <= x <= 1 なら、 di = 1 - am - sp; だから、和が1 を超えることはない。
 	*/
-	// if (ref.d_di * light.d_intensity * cos_incident_and_vertical > 1)
-	// 	return (1);
-	return (ref.d_di * light.d_intensity * cos_incident_and_vertical);
+
+static double	get_deffsuse_ref5(t_intersection intersection, t_reflect ref, t_lighting lighting)
+{
+	double	cos_incident_and_vertical;
+
+	// if (do_through_other_obj_by_light(objs, incident))
+	// 	return (0);
+	cos_incident_and_vertical = vec_dot(intersection.vertical_dir, lighting.incident_to_light);
+	if (cos_incident_and_vertical < 0)
+		return (0);
+	return (ref.d_di * lighting.d_intensity * cos_incident_and_vertical);
 }
 
 // 鏡面反射光の放射強度Rs
@@ -64,18 +60,19 @@ double	get_deffsuse_ref(t_intersection intersection, t_reflect ref, t_point_ligh
 
 
 // double	get_specular_ref(t_point_light light, t_circle cir, t_vec3 intersection, t_ray eye)
-double	get_specular_ref(t_point_light light, t_intersection intersection, t_ray eye, t_reflect ref_info)
+static double	get_specular_ref5(t_lighting lighting, t_intersection intersection, t_ray eye, t_reflect ref_info)
 {
 	double	ref = 0;
 	double	Ks = ref_info.d_sp;
-	double	Ii = light.d_intensity;
+	double	Ii = lighting.d_intensity;
 	double	alpha = ref_info.d_sp_shininess;
 
 	t_vec3	inverse_eyedir = vec_mult(eye.dir, -1);
 
 	t_vec3	vertical = intersection.vertical_dir;
 	// t_vec3	vecL = get_light_incident_dir(light, intersection);
-	t_vec3	incident = vec_normilize(vec_sub(light.pos, intersection.position));
+	// t_vec3	incident = vec_normilize(vec_sub(light.pos, intersection.position));
+	t_vec3	incident = lighting.incident_to_light;
 	t_vec3	regular_ref_incident = vec_sub( vec_mult(vertical, 2.0 * vec_dot(vertical, incident)), incident);
 	if (vec_dot(vertical, incident) < 0)
 	{
@@ -94,16 +91,17 @@ double	get_specular_ref(t_point_light light, t_intersection intersection, t_ray 
 // 半直線との交差判定の方法は　対象の形状ごとに異なる。
 // しかし、どの方法であっても、交差判定に結果として交点の位置や交点における法線方向がわかれば
 // 陰影の計算が可能である。
-double	get_ref2(t_intersection intersection, t_reflect ref_info, t_lightsource *light, t_ray eye)
+static double	get_ref5(t_intersection intersection, t_reflect ref_info, t_lightsource *light, t_ray eye)
 {
 	double			ref;
-	t_point_light	*point_light;
+	// t_point_light	*point_light;
 
-	point_light = light->instance;
+	// point_light = light->instance;
+	t_lighting		lighting = light->lighting_at(intersection.position, light);
 	ref = 0.0;
-	ref += get_ambient_ref_double(ref_info, *point_light);
-	ref += get_deffsuse_ref(intersection, ref_info, *point_light);
-	ref += get_specular_ref(*point_light, intersection, eye, ref_info);
+	ref += get_ambient_ref_double5(ref_info, lighting);
+	ref += get_deffsuse_ref5(intersection, ref_info, lighting);
+	ref += get_specular_ref5(lighting, intersection, eye, ref_info);
 	if (ref > 1.0)
 	{
 		printf("ref is over 1   ref:%f", ref);
@@ -113,7 +111,7 @@ double	get_ref2(t_intersection intersection, t_reflect ref_info, t_lightsource *
 	return (ref);
 }
 
-int	*make_img3(t_img *img, t_ray eye, t_dlist **gb_list)
+int	*make_img5(t_img *img, t_ray eye, t_dlist **gb_list)
 {
 	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel, &img->line_length, &img->endian);
 
@@ -142,11 +140,14 @@ int	*make_img3(t_img *img, t_ray eye, t_dlist **gb_list)
 			if (intersection.does_intersect == true)
 			{
 				instance = circle->instance;
-				ref = get_ref2(intersection, instance->ref, light, eye);
-				mlx_put_to_img(img, x, y, make_white_color(ref * 255));
+				ref = get_ref5(intersection, instance->ref, light, eye);
+				mlx_put_to_img(img, x, y, make_white_color5(ref * 255));
 			}
 			else
+			{
+				// printf("FALSE\n");
 				mlx_put_to_img(img, x, y, BACK_COLOR);
+			}
 			x++;
 		}
 		y++;

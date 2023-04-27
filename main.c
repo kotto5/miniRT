@@ -6,7 +6,7 @@
 /*   By: kakiba <kotto555555@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 11:07:28 by kakiba            #+#    #+#             */
-/*   Updated: 2023/04/26 19:21:03 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/04/27 12:49:45 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ int	key_event(int key, void *data)
 // 	mlx_loop(env.mlx);
 // }
 
+int	*make_img5(t_img *img, t_ray eye, t_dlist **gb_list);
+
 int	main(int argc, char *argv[])
 {
 	(void)argc;
@@ -82,7 +84,8 @@ int	main(int argc, char *argv[])
 	// set_event();
 	mlx_key_hook(env.win, key_event, &env);
 	env.img.img = mlx_new_image(env.mlx, WIN_WIDTH, WIN_HEIGHT);
-	make_img3(&env.img, env.eye, &gb_list);
+	// make_img3(&env.img, env.eye, &gb_list);
+	make_img5(&env.img, env.eye, &gb_list);
 	// ft_dlstclear(&gb_list, free);
 	// return (0);
 	// printf("IMG MADE\n");

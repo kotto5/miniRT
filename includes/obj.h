@@ -89,5 +89,4 @@ t_vec3	get_cir_vertical_dir(t_circle cir, t_vec3 surface_p);
 // t_intersection	get_circle_intersection(const t_ray ray, const t_obj *obj, t_dlist **alloc_list);
 t_intersection	get_circle_intersection(const t_ray ray, const t_obj *obj);
 
-
 #endif
