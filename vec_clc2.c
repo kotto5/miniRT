@@ -6,7 +6,7 @@
 /*   By: kakiba <kotto555555@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 06:42:05 by kakiba            #+#    #+#             */
-/*   Updated: 2023/04/24 20:01:14 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/04/27 13:50:02 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,22 @@ t_color	color_add(t_color color1, t_color color2)
 	ans.trgb.g = color1.trgb.g + color2.trgb.g;
 	ans.trgb.b = color1.trgb.b + color2.trgb.b;
 	return (ans);
+}
+
+unsigned int	color_mult_ref_incident_constant(t_color ref, t_color incident, double constant)
+{
+	t_color	color;
+	double	buf;
+
+	buf = (double)ref.trgb.t * (double)incident.trgb.t * constant;
+	color.trgb.t = buf / 1.0;
+	buf = (double)ref.trgb.r * (double)incident.trgb.r * constant;
+	color.trgb.r = buf / 1.0;
+	buf = (double)ref.trgb.g * (double)incident.trgb.g * constant;
+	color.trgb.g = buf / 1.0;
+	buf = (double)ref.trgb.b * (double)incident.trgb.b * constant;
+	color.trgb.b = buf / 1.0;
+	return (color.color);
 }
 
 /*

@@ -8,13 +8,13 @@ typedef struct	s_reflect
 {
 	// 環境光反射係数 ambient
 	double	d_am;
-	// t_color	am;
+	t_color	am;
 	// 拡散反射係数 diffuse
 	double	d_di;
-	// t_color	di;
+	t_color	di;
 	// 鏡面反射係数 spqcular
 	double	d_sp;
-	// t_color	sp;
+	t_color	sp;
 	// 1 <= shininess ハイライトの鋭さ
 	double	d_sp_shininess;
 	// t_color	sp_shininess;
