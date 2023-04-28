@@ -27,6 +27,20 @@ t_dlist	*get_obj_list(t_dlist **gb_list)
 	return (obj_list);
 }
 
+t_dlist	*get_light_list(t_dlist **gb_list)
+{
+	t_dlist	*light_list;
+
+	light_list = NULL;
+	ft_dlstadd_back(&light_list, ft_dlstnew(
+		new_light(L_POINT, make_point_light_info(get_vec(-5, 5, -5), b_color_get(0, 0.5, 0.5, 0.5), gb_list), gb_list)));
+	ft_dlstadd_back(&light_list, ft_dlstnew(
+		new_light(L_POINT, make_point_light_info(get_vec(-5, 0, -5), b_color_get(0, 0.5, 0.5, 0.5), gb_list), gb_list)));
+	ft_dlstadd_back(&light_list, ft_dlstnew( 
+		new_light(L_POINT, make_point_light_info(get_vec(-5, 20, -5), b_color_get(0, 0.5, 0.5, 0.5), gb_list), gb_list)));
+	return (light_list);
+}
+
 static t_bright_color	get_ambient_ref_double6(t_reflect ref, t_lighting lighting)
 {
 	return (b_color_mult(ref.am, lighting.intensity));
@@ -127,7 +141,7 @@ static t_bright_color	get_ref6(t_intersection intersection, t_reflect ref_info, 
 	return (ref);
 }
 
-unsigned int	get_color_with_at(t_ray eye, t_intersection intersection, t_lightsource *light, t_obj *obj)
+t_img_color	get_color_with_at(t_ray eye, t_intersection intersection, t_lightsource *light, t_obj *obj)
 {
 	t_bright_color	ref;
 	t_img_color		color;
@@ -137,12 +151,14 @@ unsigned int	get_color_with_at(t_ray eye, t_intersection intersection, t_lightso
 		ref = get_ref6(intersection, obj->ref, light, eye);
 		color =  to_img_color_from_b_color(ref);
 		// printf("%x %x %x %x\n", color.trgb.t, color.trgb.r, color.trgb.g, color.trgb.b);
-		return (color.color);
+		// return (color.color);
+		return (color);
 	}
 	else
 	{
 		// printf("FALSE\n");
-		return (BACK_COLOR);
+		color.color = BACK_COLOR;
+		return (color);
 	}
 }
 
@@ -152,12 +168,16 @@ int	*make_img6(t_img *img, t_ray eye, t_dlist **gb_list)
 
 	t_obj			*obj_content;
 	t_dlist			*obj_list;
+	t_dlist			*light_list;
+	t_dlist			*light_node;
 	obj_list = NULL;
 	t_intersection 	intersection;
 	t_vec3			vec_win;
-	t_lightsource	*light = new_light(L_POINT, make_point_light_info(get_vec(-5, 5, -5), b_color_get(0, 1.0, 1.0, 1.0), gb_list), gb_list);
+	// t_lightsource	*light = new_light(L_POINT, make_point_light_info(get_vec(-5, 5, -5), b_color_get(0, 1.0, 1.0, 1.0), gb_list), gb_list);
+	t_img_color		color;
 
 	obj_list = get_obj_list(gb_list);
+	light_list = get_light_list(gb_list);
 
 	int	x;
 	int	y = 0;
@@ -176,7 +196,14 @@ int	*make_img6(t_img *img, t_ray eye, t_dlist **gb_list)
 				intersection = obj_content->get_intersection(eye, obj_content);
 				if (intersection.does_intersect)
 				{
-					mlx_put_to_img(img, x, y, get_color_with_at(eye, intersection, light, obj_content));
+					color.color = 0;
+					light_node = light_list;
+					while (light_node)
+					{
+						color = img_color_add(color, get_color_with_at(eye, intersection, light_node->content, obj_content));
+						light_node = light_node->next;
+					}
+					mlx_put_to_img(img, x, y, color.color);
 					break ;
 				}
 				node = node->next;

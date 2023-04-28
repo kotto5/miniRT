@@ -7,12 +7,7 @@ t_point_light	*make_point_light_info(t_vec3 position, t_bright_color intensity, 
 
 	t_point_light	*light;
 	light = ft_galloc(sizeof(t_point_light), gb_list);
-	// light->intensity = intensity;
 	light->intensity = intensity;
-	// light->intensity.t = intensity.t;
-	// light->intensity.r = 0.1;
-	// light->intensity.g = 0.0;
-	// light->intensity.b = 0.0;
 	light->pos = position;
 	return (light);
 }
@@ -48,6 +43,7 @@ t_lighting	lighting_at_point(t_vec3 position, t_lightsource *light)
 	// lighting.intensity.r = info->intensity.r * (20 - lighting.distance);
 	// lighting.intensity.g = info->intensity.g * (20 - lighting.distance);
 	// lighting.intensity.b = info->intensity.b * (20 - lighting.distance);
+
 	// lighting.intensity.t = info->intensity.t / lighting.distance * 10;
 	// lighting.intensity.r = info->intensity.r / lighting.distance * 10;
 	// lighting.intensity.g = info->intensity.g / lighting.distance * 10;

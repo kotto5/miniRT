@@ -99,11 +99,11 @@ t_intersection	get_intersection_plane(const t_ray ray, const t_obj *obj)
 		intersection.position = vec_add(ray.pos, dt);
 		intersection.distance = vec_mag(dt);
 		intersection.vertical_dir = plane->vertical;
-		if (t >= 2120.0)
-		{
-			printf("t is %f, distance %f, ", t, intersection.distance);
-			print_vec(intersection.position, "position");
-		}
+		// if (t >= 2120.0)
+		// {
+		// 	printf("t is %f, distance %f, ", t, intersection.distance);
+		// 	print_vec(intersection.position, "position");
+		// }
 	}
 	else
 		intersection.does_intersect = false;
