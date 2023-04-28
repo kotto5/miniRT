@@ -56,7 +56,7 @@ static t_bright_color	get_specular_ref6(t_lighting lighting, t_intersection inte
 	// double	ref = 0;
 	// double	Ks = ref_info.d_sp;
 	// double	Ii = lighting.d_intensity;
-	double	alpha = ref_info.d_sp_shininess;
+	double	alpha = ref_info.sp_shininess;
 
 	t_vec3	inverse_eyedir = vec_mult(eye.dir, -1);
 
@@ -87,9 +87,9 @@ static t_bright_color	get_ref6(t_intersection intersection, t_reflect ref_info, 
 	// double			ref;
 	t_bright_color		ref;
 
-	ref_info.am = b_color_get(0.00, 0.01, 0.01, 0.01);
-	ref_info.di = b_color_get(0.00, 0.69, 0.10, 0.05);
-	ref_info.sp = b_color_get(0.00, 0.30, 0.05, 0.05);
+	// ref_info.am = b_color_get(0.00, 0.01, 0.01, 0.01);
+	// ref_info.di = b_color_get(0.00, 0.69, 0.10, 0.05);
+	// ref_info.sp = b_color_get(0.00, 0.30, 0.05, 0.05);
 	// ref_info.sp = b_color_get(0.00, 0.30, 0.30, 0.30);
 
 	t_lighting		lighting = light->lighting_at(intersection.position, light);
@@ -149,23 +149,41 @@ int	*make_img6(t_img *img, t_ray eye, t_dlist **gb_list)
 	t_vec3			vec_win;
 	// t_img_color		color;
 	// t_lightsource	*light = new_light(L_POINT, make_point_light_info(get_vec(-5, 5, -5), 1, gb_list), gb_list);
-	t_lightsource	*light = new_light(L_POINT, make_point_light_info(get_vec(-5, 5, -5), b_color_get(0, 0.2, 0, 0), gb_list), gb_list);
+	// t_lightsource	*light = new_light(L_POINT, make_point_light_info(get_vec(-5, 5, -5), b_color_get(0, 0.2, 0, 0), gb_list), gb_list);
+	// t_lightsource	*light = new_light(L_POINT, make_point_light_info(get_vec(-5, 5, -5), b_color_get(0, 1, 1, 1), gb_list), gb_list);
+	// t_lightsource	*light = new_light(L_POINT, make_point_light_info(get_vec(-5, 5, -5), b_color_get(0, 0.1, 0.2, 0.1), gb_list), gb_list);
+	t_lightsource	*light = new_light(L_POINT, make_point_light_info(get_vec(-5, 5, -5), b_color_get(0, 0.3, 0.3, 0.3), gb_list), gb_list);
 
 	t_obj	*circle;
-	circle = new_obj(O_CIRCLE, make_circle_instance(get_vec(0, 0, 5), 1, get_t_refrect(0.01, 0.69, 0.3, 2), gb_list), gb_list);
+	circle = new_obj(O_CIRCLE, make_circle_instance(get_vec(0, 0, 5), 1, \
+		get_t_refrect(b_color_get(0, 0.2, 0.2, 0.2), b_color_get(0, 0.5, 0.1, 0.3), b_color_get(0, 0.5, 0.1, 0.3), 1)
+		// get_t_refrect(b_color_get(0, 0.2, 0.2, 0.2), b_color_get(0, 0.5, 0.0, 0.0), b_color_get(0, 0.5, 0.0, 0.0), 1)
+		, gb_list), gb_list);
 
 	t_obj	*circle2;
-	circle2 = new_obj(O_CIRCLE, make_circle_instance(get_vec(1, 0, 8), 1, get_t_refrect(0.01, 0.69, 0.3, 2), gb_list), gb_list);
+	circle2 = new_obj(O_CIRCLE, make_circle_instance(get_vec(1, 0, 8), 1, \
+		get_t_refrect(b_color_get(0, 0.2, 0.2, 0.2), b_color_get(0, 0.0, 0.5, 0.5), b_color_get(0, 0.0, 0.5, 0.5), 1)\
+		, gb_list), gb_list);
+
+	t_obj	*circle3;
+	circle3 = new_obj(O_CIRCLE, make_circle_instance(get_vec(2, 0, 13), 3, \
+		get_t_refrect(b_color_get(0, 0.2, 0.2, 0.2), b_color_get(0, 1.0, 1.0, 0.0), b_color_get(0, 1.0, 1.0, 0.0), 0)
+		, gb_list), gb_list);
+		// get_t_refrect(b_color_get(0, 0.2, 0.2, 0.2), b_color_get(0, 0.5, 0.5, 0.0), b_color_get(0, 0.5, 0.5, 0.0), 1)
+
 // circle = new_obj(O_CIRCLE, make_circle_instance(get_vec(0, 0, 5), 1, get_t_refrect(0, 1, 0, 0.0), gb_list), gb_list);
 	// circle = new_obj(O_CIRCLE, make_circle_instance(get_vec(0, 0, 5), 1, get_t_refrect(0, 1, 0, 0.0), gb_list), gb_list);
 	t_obj	*plane1;
-	plane1 = new_obj(O_PLANE, make_plane_instance(vec_normilize(get_vec(0, 1, 0)), get_t_refrect(0.00, 0.0, 0.0, 2), gb_list), gb_list);
+	plane1 = new_obj(O_PLANE, make_plane_instance(vec_normilize(get_vec(0, 1, 0)), \
+		get_t_refrect(b_color_get(0, 0.2, 0.2, 0.2), b_color_get(0, 0.2, 0.2, 0.2), b_color_get(0, 0.2, 0.2, 0.2), 1)
+		, gb_list), gb_list);
 	// plane1 = new_obj(O_PLANE, make_plane_instance(vec_normilize(get_vec(0, 1, 0)), get_t_refrect(0.01, 0.69, 0.3, 2), gb_list), gb_list);
 	// plane1 = new_obj(O_PLANE, make_plane_instance(get_vec(1, 1, 0), get_t_refrect(0.01, 0.69, 0.3, 2), gb_list), gb_list);
 	// plane1 = new_obj(O_PLANE, make_plane_instance(get_vec(0, 0, 1), get_t_refrect(0.01, 0.69, 0.3, 2), gb_list), gb_list);
 
 	ft_dlstadd_back(&obj_list, ft_dlstnew(circle));
 	ft_dlstadd_back(&obj_list, ft_dlstnew(circle2));
+	ft_dlstadd_back(&obj_list, ft_dlstnew(circle3));
 	ft_dlstadd_back(&obj_list, ft_dlstnew(plane1));
 
 	int	x;

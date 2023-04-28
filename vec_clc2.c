@@ -6,7 +6,7 @@
 /*   By: kakiba <kotto555555@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 06:42:05 by kakiba            #+#    #+#             */
-/*   Updated: 2023/04/27 15:07:38 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/04/28 17:04:17 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,26 +67,28 @@ double	map(double v, double vmin, double vmax, double tmin, double tmax) // å€¤ã
 }
 
 // t_reflect	get_t_refrect(double am, double di, double sp, double sp_shininess)
-// t_reflect	get_t_refrect(t_img_color am, t_img_color di, t_img_color sp, t_img_color sp_shininess)
-// {
-// 	t_reflect	ref;
 
-// 	ref.am.color = am.color;
-// 	ref.di.color = di.color;
-// 	ref.sp.color = sp.color;
-// 	ref.sp_shininess.color = sp_shininess.color;
-// }
-
-t_reflect	get_t_refrect(double am, double di, double sp, double sp_shininess)
+t_reflect	get_t_refrect(t_bright_color am, t_bright_color di, t_bright_color sp, double sp_shininess)
 {
 	t_reflect	ref;
 
-	ref.d_am = am;
-	ref.d_di = di;
-	ref.d_sp = sp;
-	ref.d_sp_shininess = sp_shininess;
+	ref.am = am;
+	ref.di = di;
+	ref.sp = sp;
+	ref.sp_shininess = sp_shininess;
 	return (ref);
 }
+
+// t_reflect	get_t_refrect(double am, double di, double sp, double sp_shininess)
+// {
+// 	t_reflect	ref;
+
+// 	ref.d_am = am;
+// 	ref.d_di = di;
+// 	ref.d_sp = sp;
+// 	ref.sp_shininess = sp_shininess;
+// 	return (ref);
+// }
 
 
 

@@ -194,7 +194,7 @@
 // 	double	ref = 0;
 // 	double	Ks = ref_info.d_sp;
 // 	double	Ii = light.d_intensity;
-// 	double	alpha = ref_info.d_sp_shininess;
+// 	double	alpha = ref_info.sp_shininess;
 
 // 	// t_vec3	inverse_eyedir = vec_normilize(vec_mult(eye.dir, -1));
 // 	t_vec3	inverse_eyedir = vec_mult(eye.dir, -1);

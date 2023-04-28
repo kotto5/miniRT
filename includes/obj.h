@@ -16,7 +16,7 @@ typedef struct	s_reflect
 	double	d_sp;
 	t_bright_color	sp;
 	// 1 <= shininess ハイライトの鋭さ
-	double	d_sp_shininess;
+	double	sp_shininess;
 }				t_reflect;
 
 typedef	struct s_circle t_circle;
@@ -78,8 +78,8 @@ struct	s_obj
 t_obj		*new_obj(t_objtype type, void *obj_info, t_dlist **alloc_list);
 t_circle	*make_circle_instance(t_vec3 origin, double r, t_reflect ref, t_dlist **gb_list);
 t_plane	*make_plane_instance(t_vec3 vertical, t_reflect ref, t_dlist **gb_list);
-t_reflect	get_t_refrect(double am, double di, double sp, double sp_shininess);
-// t_reflect	get_t_refrect(t_img_color am, t_img_color di, t_img_color sp, t_img_color sp_shininess);
+// t_reflect	get_t_refrect(double am, double di, double sp, double sp_shininess);
+t_reflect	get_t_refrect(t_bright_color am, t_bright_color di, t_bright_color sp, double sp_shininess);
 
 // sq.c
 bool	do_intersect_ray_and_square(t_ray ray, t_square sq);

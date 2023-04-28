@@ -33,7 +33,7 @@
 // 	cir.ref.d_di = 0.69;
 // 	// cir.ref.d_di = 1.00;
 // 	cir.ref.d_sp = 0.3;
-// 	cir.ref.d_sp_shininess = 8;
+// 	cir.ref.sp_shininess = 8;
 // 	cir.vertical = get_cir_vertical_dir;
 // 	return (cir);
 // }

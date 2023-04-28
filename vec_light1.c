@@ -80,7 +80,7 @@
 // 	double	ref = 0;
 // 	double	Ks = cir.ref.d_sp;
 // 	double	Ii = light.power;
-// 	double	alpha = cir.ref.d_sp_shininess;
+// 	double	alpha = cir.ref.sp_shininess;
 
 // 	t_vec3	vecV = vec_mult(eye.dir, -1);
 // 	vecV = vec_normilize(vecV);
