@@ -3,44 +3,6 @@
 
 #include "all.h"
 
-typedef enum e_lighttype{
-	// O_AMBIRNT_LIGHT,
-	// O_LIGHT,
-	L_POINT,
-	L_PARALLEL,
-} t_lighttype;
-
-typedef struct	s_lighting
-{
-	double	distance;
-	// double	d_intensity;
-	t_bright_color	intensity;
-	t_vec3	incident_to_light;
-}				t_lighting;
-
-typedef	struct s_light t_lightsource;
-struct	s_light
-{
-	t_lighttype	type;
-	void		*instance;
-	t_lighting	(*lighting_at)(t_vec3, t_lightsource *);
-};
-
-typedef struct	s_point_light
-{
-	t_vec3		pos;
-	// t_img_color		intensity;
-	t_bright_color	intensity;
-	// double		d_intensity;
-}				t_point_light;
-
-typedef struct	s_parallel_light
-{
-	t_vec3		dir;
-	// t_img_color		intensity;
-	// double		d_intensity;
-}				t_parallel_light;
-
 // light.h
 t_vec3	get_light_incident_dir(t_point_light light, t_vec3 p);
 t_vec3	get_incident_parallel_light(t_parallel_light light);

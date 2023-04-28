@@ -10,67 +10,8 @@
 # include <limits.h>
 # include <math.h>
 # include "libft.h"
+#include "struct.h"
 
-// little endian
-typedef struct	s_trgb
-{
-	unsigned char	b;
-	unsigned char	g;
-	unsigned char	r;
-	unsigned char	t;
-}				t_trgb;
-
-typedef union	u_img_color
-{
-	t_trgb			trgb;
-	unsigned int	color;
-}				t_img_color;
-
-typedef struct	s_bright_color
-{
-	double	t;
-	double	r;
-	double	g;
-	double	b;
-}				t_bright_color;
-
-typedef struct	s_vec3
-{
-	double	x;
-	double	y;
-	double	z;
-}				t_vec3;
-
-typedef struct	s_ray
-{
-	t_vec3	pos;
-	t_vec3	dir;
-}				t_ray;
-
-typedef struct	s_img {
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-	int		width;
-	int		height;
-}				t_img;
-
-typedef struct	s_mlx {
-	void	*mlx;
-	void	*win;
-	t_img	img;
-}				t_mlx;
-
-typedef struct	s_env
-{
-	void	*mlx;
-	void	*win;
-	t_img	img;
-	t_ray	eye;
-	t_dlist	*gb_list;
-}				t_env;
 
 int	*make_img(t_img *img);
 int	*make_img2(t_img *img, t_ray eye);

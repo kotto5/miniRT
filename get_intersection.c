@@ -46,11 +46,11 @@ t_intersection	get_intersection_circle(const t_ray ray, const t_obj *obj)
 
 // distance に関してはどちらでも結果は変わらない。距離だから、そうだよね
 	// intersection.distance = vec_mag(vec_sub(ray.pos, info->pos));
-	intersection.distance = vec_mag(vec_sub(info->pos, ray.pos));
+	// intersection.distance = vec_mag(vec_sub(info->pos, ray.pos));
 // ↑おかしくない？　交点と視点の距離じゃないの？　これだと物体と視点の距離（しかも、球の場合は中心点だし。。）
 // ↓こうじゃないかなあ
-	// intersection.distance = vec_mag(vec_mult(ray.dir, t));
-
+	intersection.distance = vec_mag(vec_mult(ray.dir, t));
+// やっぱあってた！
 
 // この二つで結果が変わる。法線ベクトルのdir って正負関係なくない？
 	intersection.vertical_dir = vec_normilize(vec_sub(intersection.position, info->pos)); 
@@ -90,10 +90,6 @@ t_intersection	get_intersection_plane(const t_ray ray, const t_obj *obj)
 	t = get_t_ray_plane(ray, plane);
 	if (t >= 0)
 	{
-		if (t >= 20 && t <= 30)
-		{
-			usleep(1);
-		}
 		intersection.does_intersect = true;
 		dt = vec_mult(ray.dir, t);
 		intersection.position = vec_add(ray.pos, dt);
