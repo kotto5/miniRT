@@ -6,7 +6,7 @@
 /*   By: kakiba <kotto555555@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 10:38:44 by kakiba            #+#    #+#             */
-/*   Updated: 2023/04/20 16:12:31 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/04/28 16:22:10 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	*ft_galloc(size_t size, t_dlist **alloc_list)
 	void	*content;
 	t_dlist	*new;
 
-	printf("SIZE = %ld\n", size);
+	// printf("SIZE = %ld\n", size);
 	content = ft_calloc(size, 1);
 	if (content == NULL)
 		return (NULL);

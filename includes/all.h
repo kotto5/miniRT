@@ -69,6 +69,7 @@ typedef struct	s_env
 	void	*win;
 	t_img	img;
 	t_ray	eye;
+	t_dlist	*gb_list;
 }				t_env;
 
 int	*make_img(t_img *img);
@@ -82,7 +83,8 @@ int	*make_img3(t_img *img, t_ray eye, t_dlist **gb_list);
 # define ERROR 1
 # define SUCCESS 0
 // # define BACK_COLOR 100*256*256+149*256+237
-# define BACK_COLOR 0x00faa9fe
+// # define BACK_COLOR 0x00faa9fe
+# define BACK_COLOR 0x00ffffff
 
 enum{
 	ALLOW_LEFT = 123,

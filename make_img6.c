@@ -1,16 +1,5 @@
 #include "all.h"
 
-static int	make_white_color6(double bright)
-{
-	t_img_color	color;
-
-	color.trgb.t = 0;
-	color.trgb.r = bright;
-	color.trgb.g = bright;
-	color.trgb.b = bright;
-	return (color.color);
-}
-
 static t_bright_color	get_ambient_ref_double6(t_reflect ref, t_lighting lighting)
 {
 	return (b_color_mult(ref.am, lighting.intensity));
@@ -64,9 +53,9 @@ static t_bright_color	get_deffsuse_ref6(t_intersection intersection, t_reflect r
 // double	get_specular_ref(t_point_light light, t_circle cir, t_vec3 intersection, t_ray eye)
 static t_bright_color	get_specular_ref6(t_lighting lighting, t_intersection intersection, t_ray eye, t_reflect ref_info)
 {
-	double	ref = 0;
-	double	Ks = ref_info.d_sp;
-	double	Ii = lighting.d_intensity;
+	// double	ref = 0;
+	// double	Ks = ref_info.d_sp;
+	// double	Ii = lighting.d_intensity;
 	double	alpha = ref_info.d_sp_shininess;
 
 	t_vec3	inverse_eyedir = vec_mult(eye.dir, -1);
@@ -119,14 +108,25 @@ static t_bright_color	get_ref6(t_intersection intersection, t_reflect ref_info, 
 
 unsigned int	get_color_with_at(t_ray eye, t_intersection intersection, t_lightsource *light, t_obj *obj)
 {
-	t_circle		*instance;
+	t_circle		*circle;
+	t_plane			*plane;
 	t_bright_color	ref;
+	t_reflect		obj_reflect;
 	t_img_color		color;
 
+	if (obj->type == O_CIRCLE)
+	{
+		circle = obj->instance;
+		obj_reflect = circle->ref;
+	}
+	else if (obj->type == O_PLANE)
+	{
+		plane = obj->instance;
+		obj_reflect = plane->ref;
+	}
 	if (intersection.does_intersect == true)
 	{
-		instance = obj->instance;
-		ref = get_ref6(intersection, instance->ref, light, eye);
+		ref = get_ref6(intersection, obj_reflect, light, eye);
 		color =  to_img_color_from_b_color(ref);
 		// printf("%x %x %x %x\n", color.trgb.t, color.trgb.r, color.trgb.g, color.trgb.b);
 		return (color.color);
@@ -142,30 +142,35 @@ int	*make_img6(t_img *img, t_ray eye, t_dlist **gb_list)
 {
 	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel, &img->line_length, &img->endian);
 
+	t_obj			*obj_content;
 	t_dlist			*obj_list;
+	obj_list = NULL;
 	t_intersection 	intersection;
 	t_vec3			vec_win;
-	t_img_color		color;
-	// double		ref;
-	t_bright_color	ref;
-	t_circle		*instance;
-	t_lightsource	*light = new_light(L_POINT, make_point_light_info(get_vec(-5, 5, -5), 1, gb_list), gb_list);
+	// t_img_color		color;
+	// t_lightsource	*light = new_light(L_POINT, make_point_light_info(get_vec(-5, 5, -5), 1, gb_list), gb_list);
+	t_lightsource	*light = new_light(L_POINT, make_point_light_info(get_vec(-5, 5, -5), b_color_get(0, 0.2, 0, 0), gb_list), gb_list);
 
 	t_obj	*circle;
 	circle = new_obj(O_CIRCLE, make_circle_instance(get_vec(0, 0, 5), 1, get_t_refrect(0.01, 0.69, 0.3, 2), gb_list), gb_list);
 
 	t_obj	*circle2;
 	circle2 = new_obj(O_CIRCLE, make_circle_instance(get_vec(1, 0, 8), 1, get_t_refrect(0.01, 0.69, 0.3, 2), gb_list), gb_list);
+// circle = new_obj(O_CIRCLE, make_circle_instance(get_vec(0, 0, 5), 1, get_t_refrect(0, 1, 0, 0.0), gb_list), gb_list);
 	// circle = new_obj(O_CIRCLE, make_circle_instance(get_vec(0, 0, 5), 1, get_t_refrect(0, 1, 0, 0.0), gb_list), gb_list);
-	// circle = new_obj(O_CIRCLE, make_circle_instance(get_vec(0, 0, 5), 1, get_t_refrect(0, 1, 0, 0.0), gb_list), gb_list);
+	t_obj	*plane1;
+	plane1 = new_obj(O_PLANE, make_plane_instance(vec_normilize(get_vec(0, 1, 0)), get_t_refrect(0.00, 0.0, 0.0, 2), gb_list), gb_list);
+	// plane1 = new_obj(O_PLANE, make_plane_instance(vec_normilize(get_vec(0, 1, 0)), get_t_refrect(0.01, 0.69, 0.3, 2), gb_list), gb_list);
+	// plane1 = new_obj(O_PLANE, make_plane_instance(get_vec(1, 1, 0), get_t_refrect(0.01, 0.69, 0.3, 2), gb_list), gb_list);
+	// plane1 = new_obj(O_PLANE, make_plane_instance(get_vec(0, 0, 1), get_t_refrect(0.01, 0.69, 0.3, 2), gb_list), gb_list);
 
 	ft_dlstadd_back(&obj_list, ft_dlstnew(circle));
 	ft_dlstadd_back(&obj_list, ft_dlstnew(circle2));
+	ft_dlstadd_back(&obj_list, ft_dlstnew(plane1));
 
 	int	x;
 	int	y = 0;
 	t_dlist	*node;
-	bool	do_put = false;
 	while (y < WIN_HEIGHT)
 	{
 		x = 0;
@@ -176,10 +181,11 @@ int	*make_img6(t_img *img, t_ray eye, t_dlist **gb_list)
 			node = obj_list;
 			while (node)
 			{
-				intersection = circle->get_intersection(eye, node->content);
+				obj_content = node->content;
+				intersection = obj_content->get_intersection(eye, obj_content);
 				if (intersection.does_intersect)
 				{
-					mlx_put_to_img(img, x, y, get_color_with_at(eye, intersection, light, node->content));
+					mlx_put_to_img(img, x, y, get_color_with_at(eye, intersection, light, obj_content));
 					break ;
 				}
 				node = node->next;

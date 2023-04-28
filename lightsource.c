@@ -1,17 +1,18 @@
 #include "all.h"
 
 // t_point_light	*make_point_light_info(t_vec3 position, t_img_color intensity, t_dlist **gb_list)
-t_point_light	*make_point_light_info(t_vec3 position, double intensity, t_dlist **gb_list)
+// t_point_light	*make_point_light_info(t_vec3 position, double intensity, t_dlist **gb_list)
+t_point_light	*make_point_light_info(t_vec3 position, t_bright_color intensity, t_dlist **gb_list)
 {
 
 	t_point_light	*light;
 	light = ft_galloc(sizeof(t_point_light), gb_list);
 	// light->intensity = intensity;
-	light->d_intensity = intensity;
-	light->intensity.t = 0;
-	light->intensity.r = 1;
-	light->intensity.g = 1;
-	light->intensity.b = 1;
+	light->intensity = intensity;
+	// light->intensity.t = intensity.t;
+	// light->intensity.r = 0.1;
+	// light->intensity.g = 0.0;
+	// light->intensity.b = 0.0;
 	light->pos = position;
 	return (light);
 }

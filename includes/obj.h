@@ -36,6 +36,12 @@ typedef struct	s_square
 	t_vec3		n_dir;
 }				t_square;
 
+typedef struct	s_plane
+{
+	t_reflect	ref;
+	t_vec3		vertical;
+}				t_plane;
+
 typedef enum e_objtype{
 	O_CAMERA,
 	O_SPHERE,
@@ -71,6 +77,7 @@ struct	s_obj
 // new_obj.c
 t_obj		*new_obj(t_objtype type, void *obj_info, t_dlist **alloc_list);
 t_circle	*make_circle_instance(t_vec3 origin, double r, t_reflect ref, t_dlist **gb_list);
+t_plane	*make_plane_instance(t_vec3 vertical, t_reflect ref, t_dlist **gb_list);
 t_reflect	get_t_refrect(double am, double di, double sp, double sp_shininess);
 // t_reflect	get_t_refrect(t_img_color am, t_img_color di, t_img_color sp, t_img_color sp_shininess);
 
@@ -83,8 +90,9 @@ bool	do_intersect_ray_and_square(t_ray ray, t_square sq);
 t_vec3	get_ray_intersect_vec(t_ray ray, double t);
 t_vec3	get_ray_intersect_vec_dir(t_ray ray, t_vec3 point);
 t_vec3	get_cir_vertical_dir(t_circle cir, t_vec3 surface_p);
-// t_intersection	get_circle_intersection(const t_ray ray, const t_obj *obj, t_dlist **alloc_list);
-// t_intersection	get_circle_intersection(const t_ray ray, const t_obj *obj, t_dlist **alloc_list);
-t_intersection	get_circle_intersection(const t_ray ray, const t_obj *obj);
+// t_intersection	get_intersection_circle(const t_ray ray, const t_obj *obj, t_dlist **alloc_list);
+// t_intersection	get_intersection_circle(const t_ray ray, const t_obj *obj, t_dlist **alloc_list);
+t_intersection	get_intersection_circle(const t_ray ray, const t_obj *obj);
+t_intersection	get_intersection_plane(const t_ray ray, const t_obj *obj);
 
 #endif

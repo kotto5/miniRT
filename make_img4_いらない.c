@@ -50,7 +50,7 @@
 // // 		return (NULL);
 // // 	obj->type = O_CIRCLE;
 // // 	obj->instance = circle;
-// // 	obj->get_intersection = get_circle_intersection;
+// // 	obj->get_intersection = get_intersection_circle;
 // // 	return (obj);
 // // }
 
