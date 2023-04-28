@@ -13,6 +13,12 @@
 			"externalConsole": false,
 			"MIMode": "lldb",
 			"preLaunchTask": "build",
+            // "sourceMap": {
+            //     // 以下のsymlinkの場合.
+            //     // work -> /home/fuga/workspace/gitprjs
+            //     // real path -> symlink path の対応をそれぞれ絶対パスで定義してやる.
+            //     "/home/fuga/workspace/gitprjs": "/home/fuga/work"
+            // },
 		},
     ]
 }

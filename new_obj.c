@@ -8,7 +8,7 @@
 // 	return (obj);
 // }
 
-t_circle	*make_circle_instance(t_vec3 origin, double r, t_reflect ref, t_dlist **gb_list)
+t_circle	*make_circle_instance(t_vec3 origin, double r, t_dlist **gb_list)
 {
 	t_circle	*instance;
 
@@ -17,7 +17,7 @@ t_circle	*make_circle_instance(t_vec3 origin, double r, t_reflect ref, t_dlist *
 		return (NULL);
 	instance->r = r;
 	instance->pos = origin;
-	instance->ref = ref;
+	// instance->ref = ref;
 	// instance->ref.d_am = 0.1;
 	// instance->ref.d_di = 0.69;
 	// instance->ref.d_sp = 0.3;
@@ -25,7 +25,8 @@ t_circle	*make_circle_instance(t_vec3 origin, double r, t_reflect ref, t_dlist *
 	return (instance);
 }
 
-t_plane	*make_plane_instance(t_vec3 vertical, t_reflect ref, t_dlist **gb_list)
+// t_plane	*make_plane_instance(t_vec3 vertical, t_reflect ref, t_dlist **gb_list)
+t_plane	*make_plane_instance(t_vec3 vertical, t_dlist **gb_list)
 {
 	t_plane	*instance;
 
@@ -36,12 +37,12 @@ t_plane	*make_plane_instance(t_vec3 vertical, t_reflect ref, t_dlist **gb_list)
 	// instance->vertical.x = 0;
 	// instance->vertical.y = 1;
 	// instance->vertical.z = 0;
-	instance->ref = ref;
+	// instance->ref = ref;
 	return (instance);
 }
 
 
-t_obj	*new_obj(t_objtype type, void *obj_info, t_dlist **alloc_list)
+t_obj	*new_obj(t_objtype type, t_reflect ref, void *obj_info, t_dlist **alloc_list)
 {
 	t_obj	*obj;
 
@@ -50,6 +51,7 @@ t_obj	*new_obj(t_objtype type, void *obj_info, t_dlist **alloc_list)
 	obj = ft_galloc(sizeof(t_obj), alloc_list);
 	if (obj == NULL)
 		return (NULL);
+	obj->ref = ref;
 	obj->type = type;
 	obj->instance = obj_info;
 	if (type == O_CIRCLE)

@@ -90,6 +90,10 @@ t_intersection	get_intersection_plane(const t_ray ray, const t_obj *obj)
 	t = get_t_ray_plane(ray, plane);
 	if (t >= 0)
 	{
+		if (t >= 20 && t <= 30)
+		{
+			usleep(1);
+		}
 		intersection.does_intersect = true;
 		dt = vec_mult(ray.dir, t);
 		intersection.position = vec_add(ray.pos, dt);

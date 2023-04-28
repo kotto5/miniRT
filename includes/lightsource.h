@@ -13,7 +13,7 @@ typedef enum e_lighttype{
 typedef struct	s_lighting
 {
 	double	distance;
-	double	d_intensity;
+	// double	d_intensity;
 	t_bright_color	intensity;
 	t_vec3	incident_to_light;
 }				t_lighting;
@@ -31,14 +31,14 @@ typedef struct	s_point_light
 	t_vec3		pos;
 	// t_img_color		intensity;
 	t_bright_color	intensity;
-	double		d_intensity;
+	// double		d_intensity;
 }				t_point_light;
 
 typedef struct	s_parallel_light
 {
 	t_vec3		dir;
 	// t_img_color		intensity;
-	double		d_intensity;
+	// double		d_intensity;
 }				t_parallel_light;
 
 // light.h
