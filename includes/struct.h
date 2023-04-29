@@ -83,16 +83,17 @@ typedef struct	s_scene
 typedef struct	s_reflect
 {
 	// 環境光反射係数 ambient
-	// double	d_am;
 	t_bright_color	am;
 	// 拡散反射係数 diffuse
-	// double	d_di;
 	t_bright_color	di;
 	// 鏡面反射係数 spqcular
-	// double	d_sp;
 	t_bright_color	sp;
 	// 1 <= shininess ハイライトの鋭さ
-	double	sp_shininess;
+	double			sp_shininess;
+
+	// 完全鏡面反射　使うか
+	bool			use_perfect_reflectance;
+	t_bright_color	perfect_reflectance;
 }				t_reflect;
 
 typedef	struct s_circle t_circle;
@@ -115,6 +116,7 @@ typedef struct	s_square
 typedef struct	s_plane
 {
 	// t_reflect	ref;
+	t_vec3		position;
 	t_vec3		vertical;
 }				t_plane;
 
@@ -197,15 +199,6 @@ typedef struct	s_intersion_info
 	t_obj	*obj;
 	t_intersection intersection;
 }				t_intersection_info;
-
-
-
-
-
-
-
-
-
 
 
 

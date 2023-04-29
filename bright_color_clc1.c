@@ -34,20 +34,20 @@ t_bright_color	b_color_mult(t_bright_color b1, t_bright_color b2)
 
 	buf = b1.t * b2.t;
 	if (buf > 256)
-		buf = 100;
+		buf = 256;
 	b_color.t = buf;
 
 	buf = b1.r * b2.r;
 	if (buf > 256)
-		buf = 100;
+		buf = 256;
 	b_color.r = buf;
 	buf = b1.g * b2.g;
 	if (buf > 256)
-		buf = 100;
+		buf = 256;
 	b_color.g = buf;
 	buf = b1.b * b2.b;
 	if (buf > 256)
-		buf = 100;
+		buf = 256;
 	b_color.b = buf;
 
 	return (b_color);

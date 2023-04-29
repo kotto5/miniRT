@@ -26,7 +26,8 @@ t_circle	*make_circle_instance(t_vec3 origin, double r, t_dlist **gb_list)
 }
 
 // t_plane	*make_plane_instance(t_vec3 vertical, t_reflect ref, t_dlist **gb_list)
-t_plane	*make_plane_instance(t_vec3 vertical, t_dlist **gb_list)
+// t_plane	*make_plane_instance(t_vec3 vertical, t_dlist **gb_list)
+t_plane	*make_plane_instance(t_vec3 vertical, t_vec3 point, t_dlist **gb_list)
 {
 	t_plane	*instance;
 
@@ -34,6 +35,7 @@ t_plane	*make_plane_instance(t_vec3 vertical, t_dlist **gb_list)
 	if (instance == NULL)
 		return (NULL);
 	instance->vertical = vertical;
+	instance->position = point;
 	// instance->vertical.x = 0;
 	// instance->vertical.y = 1;
 	// instance->vertical.z = 0;
