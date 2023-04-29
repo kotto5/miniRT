@@ -1,7 +1,7 @@
 NAME = miniRT
 CC = gcc
-# CFLAGS = -Wall -Wextra -Werror
-CFLAGS = -Wall -Wextra -Werror -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror
+# CFLAGS = -Wall -Wextra -Werror -fsanitize=address
 # CFLAGS = -Wall -fsanitize=address
 # CFLAGS = -Wall
 SRCS = $(wildcard *.c)
