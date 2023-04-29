@@ -141,65 +141,93 @@ static t_bright_color	get_ref6(t_intersection intersection, t_reflect ref_info, 
 	return (ref);
 }
 
-t_img_color	get_color_with_at(t_ray eye, t_intersection intersection, t_lightsource *light, t_obj *obj)
+// t_img_color	get_color_with_at(t_ray eye, t_intersection intersection, t_lightsource *light, t_obj *obj)
+// {
+// 	t_bright_color	ref;
+// 	t_img_color		color;
+
+// 	if (intersection.does_intersect == true)
+// 	{
+// 		ref = get_ref6(intersection, obj->ref, light, eye);
+// 		color =  to_img_color_from_b_color(ref);
+
+// 		// printf("%x %x %x %x\n", color.trgb.t, color.trgb.r, color.trgb.g, color.trgb.b);
+// 		// return (color.color);
+// 		return (color);
+// 	}
+// 	else
+// 	{
+// 		// printf("FALSE\n");
+// 		color.color = BACK_COLOR;
+// 		return (color);
+// 	}
+// }
+
+t_bright_color	get_color_with_at(t_ray eye, t_intersection intersection, t_lightsource *light, t_obj *obj)
 {
 	t_bright_color	ref;
-	t_img_color		color;
+	ft_memset(&ref, 0, sizeof(t_bright_color));
 
 	if (intersection.does_intersect == true)
-	{
 		ref = get_ref6(intersection, obj->ref, light, eye);
-		color =  to_img_color_from_b_color(ref);
-
-		// printf("%x %x %x %x\n", color.trgb.t, color.trgb.r, color.trgb.g, color.trgb.b);
-		// return (color.color);
-		return (color);
-	}
-	else
-	{
-		// printf("FALSE\n");
-		color.color = BACK_COLOR;
-		return (color);
-	}
+	return (ref);
 }
 
-t_intersection_info	get_nearest_intersection(t_scene *scene, t_ray *ray)
+t_intersection_info	*get_nearest_intersection(t_scene *scene, t_ray *ray)
 {
 	t_dlist			*node;
 	t_obj			*obj_content;
 	t_intersection	tmp;
-	t_intersection_info	info;
+	t_intersection_info	*info;
 
+	info = malloc(sizeof(t_intersection_info));
+	ft_memset(info, 0, sizeof(t_intersection_info));
 	node = scene->obj_list;
-	ft_memset(&info, 0, sizeof(t_intersection_info));
-	info.intersection.does_intersect = false;
+	info->intersection.does_intersect = false;
 	while (node)
 	{
 		obj_content = node->content;
 		// if (obj_content->type == O_CIRCLE)
 		// 	usleep(1);
 		tmp = obj_content->get_intersection(*ray, obj_content);
-		if (tmp.does_intersect)
+		if (tmp.does_intersect && (info->intersection.does_intersect == false || tmp.distance < info->intersection.distance))
 		{
-			if (info.intersection.does_intersect == false || tmp.distance > info.intersection.distance)
-			{
-				info.intersection = tmp;
-				info.obj = obj_content;
-			}
+			info->intersection = tmp;
+			info->obj = obj_content;
 		}
 		node = node->next;
 	}
 	return (info);
 }
 
+t_bright_color	*ray_trace(t_scene *scene, t_ray *ray)
+{
+	t_bright_color		*b_color;
+	t_intersection_info	*info;
+	t_dlist				*node;
+
+	b_color = NULL;
+	info = get_nearest_intersection(scene, ray);
+	if (info->intersection.does_intersect)
+	{
+			b_color = ft_calloc(sizeof(t_bright_color), 1);
+			node = scene->light_list;
+			while (node)
+			{
+				*b_color = b_color_add(*b_color, get_color_with_at(*ray, info->intersection, node->content, info->obj));
+				node = node->next;
+			}
+	}
+	return (b_color);
+}
+
 int	*make_img6(t_img *img, t_ray eye, t_dlist **gb_list)
 {
 	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel, &img->line_length, &img->endian);
 
-	t_dlist			*light_node;
 	t_vec3			vec_win;
-	// t_lightsource	*light = new_light(L_POINT, make_point_light_info(get_vec(-5, 5, -5), b_color_get(0, 1.0, 1.0, 1.0), gb_list), gb_list);
 	t_img_color		color;
+	t_bright_color	*ref_color;
 
 	t_scene			scene;
 	scene.obj_list = get_obj_list(gb_list);
@@ -215,99 +243,12 @@ int	*make_img6(t_img *img, t_ray eye, t_dlist **gb_list)
 		{
 			vec_win = get_screen_vec(x, y, eye);
 			eye.dir = vec_normilize(vec_sub(vec_win, eye.pos));
-
-			// t_intersection_info	info;
-			// info = get_nearest_intersection(&scene, &eye);
-			// if (info.intersection.does_intersect)
-			// {
-			// 		color.color = 0;
-			// 		light_node = scene.light_list;
-			// 		while (light_node)
-			// 		{
-			// 			color = img_color_add(color, get_color_with_at(eye, info.intersection, light_node->content, info.obj));
-			// 			light_node = light_node->next;
-			// 		}
-			// 		mlx_put_to_img(img, x, y, color.color);
-			// 		break ;
-			// }
-			// else
-			// 	mlx_put_to_img(img, x, y, BACK_COLOR);
-
-			// t_dlist			*node;
-			// t_obj			*obj_content;
-			// t_intersection	intersection;
-			// ft_memset(&intersection, 0, sizeof(t_intersection));
-			// node = scene.obj_list;
-			// while (node)
-			// {
-			// 	obj_content = node->content;
-			// 	intersection = obj_content->get_intersection(eye, obj_content);
-			// 	if (intersection.does_intersect)
-			// 		break;
-			// 	node = node->next;
-			// }
-			// if (intersection.does_intersect)
-			// {
-			// 	color.color = 0;
-			// 	light_node = scene.light_list;
-			// 	while (light_node)
-			// 	{
-			// 		color = img_color_add(color, get_color_with_at(eye, intersection, light_node->content, obj_content));
-			// 		light_node = light_node->next;
-			// 	}
-			// 	mlx_put_to_img(img, x, y, color.color);
-			// }
-			// else
-			// 	mlx_put_to_img(img, x, y, BACK_COLOR);
-
-			t_intersection	buf;
-			t_dlist			*node;
-			t_obj			*obj_content;
-			// t_intersection	intersection;
-			t_intersection_info	info;
-			ft_memset(&info, 0, sizeof(t_intersection_info));
-			node = scene.obj_list;
-			while (node)
-			{
-				obj_content = node->content;
-				buf = obj_content->get_intersection(eye, obj_content);
-				if (buf.does_intersect && (info.intersection.does_intersect == false || buf.distance < info.intersection.distance))
-				{
-					info.intersection = buf;
-					info.obj = obj_content;
-				}
-				// if ((intersection.does_intersect == false || buf.distance < intersection.distance))
-				// 	intersection = buf;
-				node = node->next;
-			}
-			if (info.intersection.does_intersect)
-			{
-				color.color = 0;
-				light_node = scene.light_list;
-				while (light_node)
-				{
-					color = img_color_add(color, get_color_with_at(eye, info.intersection, light_node->content, info.obj));
-					light_node = light_node->next;
-				}
-				mlx_put_to_img(img, x, y, color.color);
-			}
+			ref_color = ray_trace(&scene, &eye);
+			if (ref_color == NULL)
+				color.color = BACK_COLOR;
 			else
-				mlx_put_to_img(img, x, y, BACK_COLOR);
-
-
-			// if (intersection.does_intersect)
-			// {
-			// 	color.color = 0;
-			// 	light_node = scene.light_list;
-			// 	while (light_node)
-			// 	{
-			// 		color = img_color_add(color, get_color_with_at(eye, intersection, light_node->content, obj_content));
-			// 		light_node = light_node->next;
-			// 	}
-			// 	mlx_put_to_img(img, x, y, color.color);
-			// }
-			// else
-			// 	mlx_put_to_img(img, x, y, BACK_COLOR);
+				color = to_img_color_from_b_color(*ref_color);
+			mlx_put_to_img(img, x, y, color.color);
 			x++;
 		}
 		y++;

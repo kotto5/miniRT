@@ -35,33 +35,17 @@ t_intersection	get_intersection_circle(const t_ray ray, const t_obj *obj)
 	const t_circle		*info = obj->instance;
 	t_intersection		intersection;
 	double				t;
-	// t_vec3				test_dir;
+	t_vec3				dt;
 
 	intersection.does_intersect = false; 
 	t = get_ray_t_to_cir(ray, (t_circle *)obj->instance);
 	if (t < 0)
 		return (intersection);
 	intersection.does_intersect = true;
-	intersection.position = vec_add(ray.pos, vec_mult(ray.dir, t));
-
-// distance に関してはどちらでも結果は変わらない。距離だから、そうだよね
-	// intersection.distance = vec_mag(vec_sub(ray.pos, info->pos));
-	// intersection.distance = vec_mag(vec_sub(info->pos, ray.pos));
-// ↑おかしくない？　交点と視点の距離じゃないの？　これだと物体と視点の距離（しかも、球の場合は中心点だし。。）
-// ↓こうじゃないかなあ
-	intersection.distance = vec_mag(vec_mult(ray.dir, t));
-// やっぱあってた！
-
-// この二つで結果が変わる。法線ベクトルのdir って正負関係なくない？
+	dt = vec_mult(ray.dir, t);
+	intersection.position = vec_add(ray.pos, dt);
+	intersection.distance = vec_mag(dt);
 	intersection.vertical_dir = vec_normilize(vec_sub(intersection.position, info->pos)); 
-	// intersection.vertical_dir = vec_normilize(vec_sub(info->pos, intersection.position));
-
-	// test_dir = vec_normilize(vec_sub(info->pos, intersection.position));
-	// print_vec(intersection.vertical_dir, "virtical dir");
-	// print_vec(intersection.vertical_dir, "test virtical dir");
-
-	// double	r_test = vec_mag(vec_sub(intersection.position, info->pos));
-	// printf("return intersect position:[%f,%f,%f], [obj r = %f, test r = %f]\n", intersection.position.x, intersection.position.y, intersection.position.z, info->r, r_test);
 
 	return (intersection);
 }
