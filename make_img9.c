@@ -1,65 +1,23 @@
 #include "all.h"
 #include <math.h>
 
-t_dlist	*get_obj_list(t_dlist **gb_list)
-{
-	t_dlist			*obj_list;
-
-	obj_list = NULL;
-
-	// ft_dlstadd_back(&obj_list, ft_dlstnew(new_obj(O_CIRCLE, get_t_refrect(b_color_get(0, 0.1, 0.1, 0.1), b_color_get(0.0, 0.0, 0.69, 0.0), b_color_get(0, 0.30, 0.30, 0.30), 0, false, (t_bright_color){0, 0, 0, 0}),
-	// 	make_circle_instance(get_vec(0, 1, 10), 1, gb_list), gb_list)));
-
-	ft_dlstadd_back(&obj_list, ft_dlstnew(new_obj(O_CIRCLE, get_t_refrect(b_color_get(0, 0.1, 0.1, 0.1), b_color_get(0.0, 0.0, 0.69, 0.0), b_color_get(0, 0.30, 0.30, 0.30), 5, true, (t_bright_color){0.5, 0.5, 0.5, 0.5}),
-		make_circle_instance(get_vec(0, 1, 10), 1, gb_list), gb_list)));
-
-	ft_dlstadd_back(&obj_list, ft_dlstnew(new_obj(O_CIRCLE, get_t_refrect(b_color_get(0, 0.1, 0.1, 0.1), b_color_get(0.0, 0.0, 0.0, 0.69), b_color_get(0, 0.30, 0.30, 0.30), 0, false, (t_bright_color){0, 0, 0, 0}),
-		make_circle_instance(get_vec(1, 1, 15), 1, gb_list), gb_list)));
-
-	ft_dlstadd_back(&obj_list, ft_dlstnew(new_obj(O_CIRCLE, get_t_refrect(b_color_get(0, 0.1, 0.1, 0.1), b_color_get(0.0, 0.0, 0.69, 0.69), b_color_get(0, 0.30, 0.30, 0.30), 1, false, (t_bright_color){0, 0, 0, 0}),
-		make_circle_instance(get_vec(2, 1, 20), 1, gb_list), gb_list)));
-
-	ft_dlstadd_back(&obj_list, ft_dlstnew(new_obj(O_CIRCLE, get_t_refrect(b_color_get(0, 0.1, 0.1, 0.1), b_color_get(0.0, 0.69, 0.0, 0.69), b_color_get(0, 0.30, 0.30, 0.30), 1, false, (t_bright_color){0, 0, 0, 0}),
-		make_circle_instance(get_vec(3, 1, 25), 1, gb_list), gb_list)));
-
-	ft_dlstadd_back(&obj_list, ft_dlstnew(new_obj(O_CIRCLE, get_t_refrect(b_color_get(0, 0.1, 0.1, 0.1), b_color_get(0.0, 0.69, 0.0, 0.0), b_color_get(0, 0.30, 0.30, 0.30), 0, false, (t_bright_color){0, 0, 0, 0}),
-		make_circle_instance(get_vec(-1, 1, 5), 1, gb_list), gb_list)));
-
-// wall
-	ft_dlstadd_back(&obj_list, ft_dlstnew(new_obj(O_PLANE, get_t_refrect(b_color_get(0, 0.0, 0.8, 0.0), b_color_get(0, 0.0, 0.8, 0.0), b_color_get(0, 0.0, 0.8, 0.0), 1, false, (t_bright_color){0, 0, 0, 0}),
-		make_plane_instance(vec_normilize(get_vec(0, 1, 0)), get_vec(0, 0, 0),  gb_list), gb_list)));
-
-	// ft_dlstadd_back(&obj_list, ft_dlstnew(new_obj(O_PLANE, get_t_refrect(b_color_get(0, 0.0, 0.8, 0.0), b_color_get(0, 0.0, 0.8, 0.0), b_color_get(0, 0.0, 0.8, 0.0), 1, false, (t_bright_color){0, 0, 0, 0}),
-	// 	make_plane_instance(vec_normilize(get_vec(0, 1, 0)), get_vec(0, 10, 0),  gb_list), gb_list)));
-
-	// ft_dlstadd_back(&obj_list, ft_dlstnew(new_obj(O_PLANE, get_t_refrect(b_color_get(0, 0.8, 0.0, 0.0), b_color_get(0, 0.8, 0.0, 0.0), b_color_get(0, 0.8, 0.0, 0.0), 1, false, (t_bright_color){0, 0, 0, 0}),
-	// 	make_plane_instance(vec_normilize(get_vec(1, 0, 0)), get_vec(-6, 0, 0),  gb_list), gb_list)));
-
-	// ft_dlstadd_back(&obj_list, ft_dlstnew(new_obj(O_PLANE, get_t_refrect(b_color_get(0, 0.8, 0.0, 0.0), b_color_get(0, 0.8, 0.0, 0.0), b_color_get(0, 0.8, 0.0, 0.0), 1, false, (t_bright_color){0, 0, 0, 0}),
-	// 	make_plane_instance(vec_normilize(get_vec(1, 0, 0)), get_vec(6, 0, 0),  gb_list), gb_list)));
-
-	// ft_dlstadd_back(&obj_list, ft_dlstnew(new_obj(O_PLANE, get_t_refrect(b_color_get(0, 0.0, 0.0, 0.8), b_color_get(0, 0.0, 0.0, 0.8), b_color_get(0, 0.0, 0.0, 0.8), 1, false, (t_bright_color){0, 0, 0, 0}),
-	// 	make_plane_instance(vec_normilize(get_vec(0, 0, 1)), get_vec(0, 0, 40),  gb_list), gb_list)));
-
-	// ft_dlstadd_back(&obj_list, ft_dlstnew(new_obj(O_PLANE, get_t_refrect(b_color_get(0, 0.0, 0.0, 0.8), b_color_get(0, 0.0, 0.0, 0.8), b_color_get(0, 0.0, 0.0, 0.8), 1, false, (t_bright_color){0, 0, 0, 0}),
-	// 	make_plane_instance(vec_normilize(get_vec(0, 0, 1)), get_vec(0, 0, -40),  gb_list), gb_list)));
-
-// 	ft_dlstadd_back(&obj_list, ft_dlstnew(circle3));
-// 	ft_dlstadd_back(&obj_list, ft_dlstnew(circle3));
-	return (obj_list);
-}
+#define EPSILON 0.001
 
 t_dlist	*get_light_list(t_dlist **gb_list)
 {
 	t_dlist	*light_list;
 
 	light_list = NULL;
+	// ft_dlstadd_back(&light_list, ft_dlstnew(
+	// 	new_light(L_POINT, make_point_light_info(get_vec(-5, 5, -5), b_color_get(0, 0.5, 0.5, 0.5), gb_list), gb_list)));
+	// ft_dlstadd_back(&light_list, ft_dlstnew(
+	// 	new_light(L_POINT, make_point_light_info(get_vec(-5, 0, -5), b_color_get(0, 0.5, 0.5, 0.5), gb_list), gb_list)));
+	// ft_dlstadd_back(&light_list, ft_dlstnew( 
+	// 	new_light(L_POINT, make_point_light_info(get_vec(-5, 20, -5), b_color_get(0, 0.5, 0.5, 0.5), gb_list), gb_list)));
+
 	ft_dlstadd_back(&light_list, ft_dlstnew(
-		new_light(L_POINT, make_point_light_info(get_vec(-5, 5, -5), b_color_get(0, 0.5, 0.5, 0.5), gb_list), gb_list)));
-	ft_dlstadd_back(&light_list, ft_dlstnew(
-		new_light(L_POINT, make_point_light_info(get_vec(-5, 0, -5), b_color_get(0, 0.5, 0.5, 0.5), gb_list), gb_list)));
-	ft_dlstadd_back(&light_list, ft_dlstnew( 
-		new_light(L_POINT, make_point_light_info(get_vec(-5, 20, -5), b_color_get(0, 0.5, 0.5, 0.5), gb_list), gb_list)));
+		new_light(L_POINT, make_point_light_info(get_vec(0, 0.9, 2.5), b_color_get(0, 1.0, 1.0, 1.0), gb_list), gb_list)));
+
 	return (light_list);
 }
 
@@ -253,9 +211,9 @@ t_bright_color	*ray_trace(t_scene *scene, t_ray *ray);
 t_bright_color	get_color_with_at(t_scene *scene, t_intersection_info *info, t_lightsource *light, t_ray *ray)
 {
 	t_bright_color	ref;
-	t_lighting		lighting;
-	t_ray			reflect_ray;
-	t_bright_color	*ret;
+	// t_lighting		lighting;
+	// t_ray			reflect_ray;
+	// t_bright_color	*ret;
 	ft_memset(&ref, 0, sizeof(t_bright_color));
 
 	if (info->intersection.does_intersect == true)
@@ -264,25 +222,58 @@ t_bright_color	get_color_with_at(t_scene *scene, t_intersection_info *info, t_li
 		{
 			return (ref);
 		}
-		if (info->obj->ref.use_perfect_reflectance)
-		{
-			lighting = light->lighting_at(info->intersection.position, light);
-			reflect_ray.dir = vec_sub( vec_mult(info->intersection.vertical_dir, 2.0 * vec_dot(info->intersection.vertical_dir, lighting.incident_to_light)), lighting.incident_to_light);
-			reflect_ray.pos = vec_add(info->intersection.position, vec_mult(reflect_ray.dir, 10.0));
-			ref = get_ref6(info->intersection, info->obj->ref, light, *ray);
-			ret = ray_trace(scene, &reflect_ray);
-			if (ret)
-			{
-				*ret = b_color_mult(*ret, info->obj->ref.perfect_reflectance);
-				b_color_add(ref, *ret);
-			}
-			return (ref);
-			// ref += get_ref6()
-		}
 		else
 			ref = get_ref6(info->intersection, info->obj->ref, light, *ray);
 	}
 	return (ref);
+}
+
+
+t_bright_color	*ray_trace_ref(t_scene *scene, t_ray *ray, size_t times)
+{
+	t_bright_color		*b_color;
+	t_intersection_info	*info;
+	t_dlist				*node;
+
+	if (times > 3)
+		return (NULL);
+	b_color = NULL;
+	info = get_nearest_intersection(scene, ray);
+	if (info->intersection.does_intersect)
+	{
+		b_color = ft_calloc(sizeof(t_bright_color), 1);
+		node = scene->light_list;
+		while (node)
+		{
+			*b_color = b_color_add(*b_color, get_color_with_at(scene, info, node->content, ray));
+			// *b_color = b_color_add(*b_color, get_color_with_at(*ray, info->intersection, node->content, info->obj));
+			node = node->next;
+		}
+		if (info->obj->ref.use_perfect_reflectance)
+		{
+			t_ray			re_ray;
+			t_bright_color	*ret;
+			t_vec3			v;
+			t_vec3			v2;
+			double			dot_product;
+			// v = vec_normilize(ray->dir);
+			v = vec_mult(ray->dir, -1);
+			v2 = vec_normilize(info->intersection.vertical_dir);
+			dot_product = vec_dot(v2, v);
+			if (dot_product < 0.0)
+				return (b_color);
+			// re_ray.dir = vec_sub(v, vec_mult(v2, 2.0 * dot_product));
+			re_ray.dir = vec_sub(vec_mult(v2, 2.0 * dot_product), v);
+			re_ray.pos = vec_add(info->intersection.position, vec_mult(re_ray.dir, EPSILON));
+			ret = ray_trace_ref(scene, &re_ray, 0);
+			if (ret)
+			{
+				*ret = b_color_mult(*ret, info->obj->ref.perfect_reflectance);
+				*b_color = b_color_add(*b_color, *ret);
+			}
+		}
+	}
+	return (b_color);
 }
 
 t_bright_color	*ray_trace(t_scene *scene, t_ray *ray)
@@ -295,14 +286,37 @@ t_bright_color	*ray_trace(t_scene *scene, t_ray *ray)
 	info = get_nearest_intersection(scene, ray);
 	if (info->intersection.does_intersect)
 	{
-			b_color = ft_calloc(sizeof(t_bright_color), 1);
-			node = scene->light_list;
-			while (node)
+		b_color = ft_calloc(sizeof(t_bright_color), 1);
+		node = scene->light_list;
+		while (node)
+		{
+			*b_color = b_color_add(*b_color, get_color_with_at(scene, info, node->content, ray));
+			// *b_color = b_color_add(*b_color, get_color_with_at(*ray, info->intersection, node->content, info->obj));
+			node = node->next;
+		}
+		if (info->obj->ref.use_perfect_reflectance)
+		{
+			t_ray			re_ray;
+			t_bright_color	*ret;
+			t_vec3			v;
+			t_vec3			v2;
+			double			dot_product;
+			// v = vec_normilize(ray->dir);
+			v = vec_mult(ray->dir, -1);
+			v2 = vec_normilize(info->intersection.vertical_dir);
+			dot_product = vec_dot(v2, v);
+			if (dot_product < 0.0)
+				return (b_color);
+			// re_ray.dir = vec_sub(v, vec_mult(v2, 2.0 * dot_product));
+			re_ray.dir = vec_sub(vec_mult(v2, 2.0 * dot_product), v);
+			re_ray.pos = vec_add(info->intersection.position, vec_mult(re_ray.dir, EPSILON));
+			ret = ray_trace_ref(scene, &re_ray, 0);
+			if (ret)
 			{
-				*b_color = b_color_add(*b_color, get_color_with_at(scene, info, node->content, ray));
-				// *b_color = b_color_add(*b_color, get_color_with_at(*ray, info->intersection, node->content, info->obj));
-				node = node->next;
+				*ret = b_color_mult(*ret, info->obj->ref.perfect_reflectance);
+				*b_color = b_color_add(*b_color, *ret);
 			}
+		}
 	}
 	return (b_color);
 }

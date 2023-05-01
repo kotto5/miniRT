@@ -53,6 +53,7 @@ void	print_vec(t_vec3 vec, char *str);
 t_vec3	get_vec(double x, double y, double z);
 double	constrain(double v, double vmin, double vmax);
 double	map(double v, double vmin, double vmax, double tmin, double tmax); // 値のマッピング
+t_dlist	*get_obj_list(t_dlist **gb_list);
 
 // t_img_color	get_img_color(double t, double r, double g, double b);
 // t_img_color	color_mult(t_img_color color, double k);

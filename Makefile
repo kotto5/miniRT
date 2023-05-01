@@ -52,8 +52,9 @@ CFLAGS_DEBUG = -g
 
 $(NAME_DEBUG): $(LIBFT) $(LIBMLX) $(OBJ)
 	@printf "$(GREEN)"
-	$(CC) $(CFLAGS) $(INCLUDES) $(LIBMLXFLAGS) $^ -o $@
+	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(LIBMLX) $(INCLUDES) $(LIBMLXFLAGS) -lm -o $@
 	@printf "$(RESET)"
+# $(CC) $(CFLAGS) $(INCLUDES) $(LIBMLXFLAGS) $^ -lm -o $@
 
 debug: CFLAGS += $(CFLAGS_DEBUG)
 debug: $(NAME_DEBUG)

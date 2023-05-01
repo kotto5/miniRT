@@ -13,7 +13,10 @@
 			"externalConsole": false,
 			"MIMode": "lldb",
 			"preLaunchTask": "build",
-            // "sourceMap": {
+			// linux用
+			// "miDebuggerPath": "/usr/bin/lldb",
+
+			// "sourceMap": {
             //     // 以下のsymlinkの場合.
             //     // work -> /home/fuga/workspace/gitprjs
             //     // real path -> symlink path の対応をそれぞれ絶対パスで定義してやる.

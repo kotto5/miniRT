@@ -78,7 +78,7 @@ t_intersection	get_intersection_plane(const t_ray ray, const t_obj *obj)
 		td = vec_mult(ray.dir, t);
 		intersection.position = vec_add(ray.pos, td);
 		intersection.distance = vec_mag(td);
-		intersection.vertical_dir = plane->vertical;
+		intersection.vertical_dir = vec_normilize(plane->vertical);
 		// if (t >= 2120.0)
 		// {
 		// 	printf("t is %f, distance %f, ", t, intersection.distance);
