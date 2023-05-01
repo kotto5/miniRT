@@ -6,7 +6,7 @@
 /*   By: kakiba <kotto555555@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 11:07:28 by kakiba            #+#    #+#             */
-/*   Updated: 2023/04/29 14:30:30 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/05/01 09:33:13 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,11 +77,9 @@ int	main(int argc, char *argv[])
 	(void)argv;
 	t_env	env;
 	env.gb_list = NULL;
-	t_dlist	*gb_list;
-	gb_list = NULL;
 
-	// set_vec3(&env.eye.pos, 0, 2, -1);
-	set_vec3(&env.eye.pos, 5, 2, 0);
+	set_vec3(&env.eye.pos, 0, 2, -1);
+	// set_vec3(&env.eye.pos, 5, 2, 0);
 	env.mlx = mlx_init();
 	env.win = mlx_new_window(env.mlx, WIN_WIDTH, WIN_HEIGHT, "Hello world!");
 	// set_event();

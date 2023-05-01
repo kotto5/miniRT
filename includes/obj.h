@@ -11,7 +11,8 @@ t_obj	*new_obj(t_objtype type, t_reflect ref, void *obj_info, t_dlist **alloc_li
 // t_plane	*make_plane_instance(t_vec3 vertical, t_reflect ref, t_dlist **gb_list);
 
 t_circle	*make_circle_instance(t_vec3 origin, double r, t_dlist **gb_list);
-t_plane	*make_plane_instance(t_vec3 vertical, t_dlist **gb_list);
+// t_plane	*make_plane_instance(t_vec3 vertical, t_dlist **gb_list);
+t_plane	*make_plane_instance(t_vec3 vertical, t_vec3 point, t_dlist **gb_list);
 
 // t_reflect	get_t_refrect(double am, double di, double sp, double sp_shininess);
 // t_reflect	get_t_refrect(t_bright_color am, t_bright_color di, t_bright_color sp, double sp_shininess);

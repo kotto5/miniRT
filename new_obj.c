@@ -1,4 +1,4 @@
-#include "includes/all.h"
+#include "all.h"
 
 // t_obj	*new_circle(t_obj *obj, t_circle *circle)
 // {

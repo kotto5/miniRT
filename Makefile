@@ -1,42 +1,51 @@
 NAME = miniRT
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
-# CFLAGS = -Wall -Wextra -Werror -fsanitize=address
-# CFLAGS = -Wall -fsanitize=address
-# CFLAGS = -Wall
+# CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g
+
 SRCS = $(wildcard *.c)
 OBJ = $(SRCS:.c=.o)
-INCLUDES = -I./includes -Ilibft/
-LIBFT = ./libft/libft.a
-# LIBMLX = ./minilibx/libmlx.dylib
-LIBMLX = ./minilibx/libmlx.a
-# LIBMLXFLAGS = -lmlx -Lmlx -framework OpenGL -framework AppKit
-LIBMLXFLAGS = -framework OpenGL -framework AppKit
+LIBFTDIR = ./libft
+LIBFT = $(LIBFTDIR)/libft.a
+# mac
+# LIBXDIR = ./minilibx
+# LIBMLX = ./minilibx/libmlx.a
+# LIBMLXFLAGS = -framework OpenGL -framework AppKit
+
+# linux
+LIBXDIR = ./minilibx-linux
+LIBMLX = $(LIBXDIR)/libmlx.a
+LIBMLXFLAGS = -lXext -lX11
+# CFLAGS += -lm
+
+INCLUDES = -I./includes -I./libft -I./minilibx-linux
 
 all: $(NAME)
 
 %.o: %.c
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+# $(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 $(NAME): $(LIBFT) $(LIBMLX) $(OBJ)
-	$(CC) $(CFLAGS) $(INCLUDES) $(LIBMLXFLAGS) $^ -o $@
+	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(LIBMLX) $(INCLUDES) $(LIBMLXFLAGS) -lm -o $@
+# $(CC) $(CFLAGS) $(INCLUDES) $(LIBMLXFLAGS) $^ -o $@
 
 $(LIBFT): FORCE
-	make -C ./libft
+	make -C ./$(LIBFTDIR)
 
 FORCE:
 
 $(LIBMLX):
-	make -C ./minilibx
+	make -C $(LIBXDIR)
 
 clean:
 	rm -f $(OBJ)
-	make clean -C ./libft
-	make clean -C ./minilibx
+	make clean -C $(LIBFTDIR)
+	make clean -C $(LIBXDIR)
 
 fclean: clean
 	rm -f $(NAME)
-	make fclean -C ./libft
+	make fclean -C $(LIBFTDIR)
 
 NAME_DEBUG = debugfile
 CFLAGS_DEBUG = -g

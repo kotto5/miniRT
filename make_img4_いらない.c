@@ -158,7 +158,7 @@
 // 	if (cos_incident_and_vertical < 0)
 // 		return (0);
 // 	// print_vec(l, "deff");
-// 	// printf("ans [%f] \n", ref.d_di * light.d_intensity * cos_incident_and_vertical);
+// 	// printf("ans [%f] n", ref.d_di * light.d_intensity * cos_incident_and_vertical);
 // 	/*
 // 	0 <= cos <= 1
 // 	intensity ..? この流れだと 0 <= intensity <= 1
@@ -236,11 +236,11 @@
 // 	// color_add(ref, get_deffsuse_ref2(intersection, ref_info, *point_light));
 // 	// color_add(ref, get_specular_ref2(*point_light, intersection, eye, ref_info));
 // 	ref += get_ambient_ref_double(ref_info, *point_light);
-// 	// printf("%f, \n", ref);
+// 	// printf("%f, n", ref);
 // 	ref += get_deffsuse_ref(intersection, ref_info, *point_light);
-// 	// printf("%f, \n", ref);
+// 	// printf("%f, n", ref);
 // 	ref += get_specular_ref(*point_light, intersection, eye, ref_info);
-// 	// printf("%f, \n", ref);
+// 	// printf("%f, n", ref);
 // 	if (ref > 1.0)
 // 	{
 // 		printf("ref is over 1   ref:%f", ref);
@@ -280,7 +280,7 @@
 // 			intersection = circle->get_intersection(eye, circle);
 // 			if (intersection.does_intersect == true)
 // 			{
-// 				// printf("%f %f %f\n", intersection.position.x, intersection.position.y, intersection.position.z);
+// 				// printf("%f %f %fn", intersection.position.x, intersection.position.y, intersection.position.z);
 // 				instance = circle->instance;
 // 				ref = get_ref2(intersection, instance->ref, light, eye);
 // 				mlx_put_to_img(img, x, y, make_white_color(ref * 255));
@@ -303,21 +303,21 @@
 // // 	t_circle	*instance;
 
 // // 	t_lightsource	*light;
-// // 	light = new_light(L_POINT, make_point_light_info(get_vec(-5, 5, -5), \
+// // 	light = new_light(L_POINT, make_point_light_info(get_vec(-5, 5, -5), 
 // // 		get_img_color(0, 255, 255, 255), gb_list), gb_list);
 
 // // 	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel,
 // // 		&img->line_length, &img->endian);
 
 // // 	t_obj	*circle;
-// // 	circle = new_obj(O_CIRCLE, \
-// // 				make_circle_instance( \
-// // 					get_vec(0, 0, 5), 1, \
-// // 					get_t_refrect(	get_img_color(0.1, 0.1, 0.1, 0.1), \
-// // 									get_img_color(0.69, 0.69, 0.69, 0.69), \
+// // 	circle = new_obj(O_CIRCLE, 
+// // 				make_circle_instance( 
+// // 					get_vec(0, 0, 5), 1, 
+// // 					get_t_refrect(	get_img_color(0.1, 0.1, 0.1, 0.1), 
+// // 									get_img_color(0.69, 0.69, 0.69, 0.69), 
 // // 									get_img_color(0.3, 0.3, 0.3, 0.3), 
 // // 									get_img_color(0.0, 0.0, 0.0, 0.0)), 
-// // 									gb_list), \
+// // 									gb_list), 
 // // 					gb_list);
 
 // // 	eye.dir = get_vec(0, 0, 5);
@@ -333,7 +333,7 @@
 // // 			intersection = circle->get_intersection(eye, circle);
 // // 			if (intersection.does_intersect == true)
 // // 			{
-// // 				printf("%f %f %f\n", intersection.position.x, intersection.position.y, intersection.position.z);
+// // 				printf("%f %f %fn", intersection.position.x, intersection.position.y, intersection.position.z);
 // // 				instance = circle->instance;
 // // 				ref = get_ref2(intersection, instance->ref, light, eye);
 // // 				color.trgb.t = ref * 100;

@@ -8,20 +8,23 @@
 # include <fcntl.h>
 # include <string.h>
 # include <limits.h>
-# include <math.h>
 # include "libft.h"
-#include "struct.h"
+# include "struct.h"
+# include "mlx.h"
+# include "obj.h"
+# include "lightsource.h"
 
 
 int	*make_img(t_img *img);
 int	*make_img2(t_img *img, t_ray eye);
 int	*make_img3(t_img *img, t_ray eye, t_dlist **gb_list);
 
-// #define WIN_WIDTH 1000
-// #define WIN_HEIGHT 1000
+#define WIN_WIDTH 1500
+#define WIN_HEIGHT 800
 
-#define WIN_WIDTH 1800
-#define WIN_HEIGHT 1200
+// #define WIN_WIDTH 1800
+// #define WIN_HEIGHT 1200
+
 // # define WIN_WIDTH 712
 // # define WIN_HEIGHT 512
 # define ERROR 1
@@ -63,10 +66,6 @@ t_vec3	get_screen_vec(int x, int y, t_ray eye);
 
 // 関数ポインタ使って、クラスっぽいこと実現しよう
 // square.n() 的な
-
-# include "mlx.h"
-# include "obj.h"
-# include "lightsource.h"
 
 
 #endif

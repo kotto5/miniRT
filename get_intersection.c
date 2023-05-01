@@ -58,7 +58,7 @@ static double	get_t_ray_plane(t_ray ray, t_plane *plane)
 	denom = vec_dot(ray.dir, plane->vertical);
 	if (denom == 0.00)
 		return (-1);
-	t = -1.0 * (vec_dot(ray.pos, plane->vertical) / denom);
+	t = vec_dot(vec_sub(plane->position, ray.pos), plane->vertical) / denom;
 	return (t);
 }
 
@@ -68,16 +68,16 @@ t_intersection	get_intersection_plane(const t_ray ray, const t_obj *obj)
 	t_plane			*plane;
 	t_intersection	intersection;
 	double t;
-	t_vec3	dt;
+	t_vec3	td;
 
 	plane = obj->instance;
 	t = get_t_ray_plane(ray, plane);
 	if (t >= 0)
 	{
 		intersection.does_intersect = true;
-		dt = vec_mult(ray.dir, t);
-		intersection.position = vec_add(ray.pos, dt);
-		intersection.distance = vec_mag(dt);
+		td = vec_mult(ray.dir, t);
+		intersection.position = vec_add(ray.pos, td);
+		intersection.distance = vec_mag(td);
 		intersection.vertical_dir = plane->vertical;
 		// if (t >= 2120.0)
 		// {
