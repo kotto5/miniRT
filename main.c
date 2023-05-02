@@ -6,7 +6,7 @@
 /*   By: kakiba <kotto555555@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 11:07:28 by kakiba            #+#    #+#             */
-/*   Updated: 2023/05/01 10:12:47 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/05/02 22:51:00 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ft_exit(int status, t_dlist **gc)
 	exit(status);
 }
 
-int	*make_img6(t_img *img, t_ray eye, t_dlist **gb_list);
+int	*make_img6(t_env *env);
 
 int	key_event(int key, void *data)
 {
@@ -37,39 +37,32 @@ int	key_event(int key, void *data)
 		env->eye.pos.x += 0.1;
 	else if (key == ALLOW_RIGHT)
 		env->eye.pos.x -= 0.1;
-	printf("key is :%d\n", key);
-	// printf("")
-	make_img6(&env->img, env->eye, &env->gb_list);
+	else if (key == KEY_Z)
+		env->eye.pos.z += 0.1;
+	else if (key == KEY_X)
+		env->eye.pos.z -= 0.1;
+	else if (key == 53)
+		ft_exit(0, &env->gb_list);
+	else
+	{
+		printf("key is :%d\n", key);
+		return (0);
+	}
+	// make_img6(&env->img, env->eye, &env->gb_list);
+	make_img6(env);
 	mlx_put_image_to_window(env->mlx, env->win, env->img.img, 0, 0);
 	mlx_loop(env->mlx);
 	return (0);
 }
 
+double	get_distance_to_window(int fov)
+{
+	double			fov_rad;
+	const double	pi = 3.14159265358979323846;
 
-
-// int	main(int argc, char *argv[])
-// {
-// 	(void)argc;
-// 	(void)argv;
-// 	t_env	env;
-// 	t_dlist	*gb_list;
-// 	gb_list = NULL;
-// 	set_vec3(&env.eye.pos, 0, 0, -5);
-
-// 	env.mlx = mlx_init();
-// 	env.win = mlx_new_window(env.mlx, WIN_WIDTH, WIN_HEIGHT, "Hello world!");
-// 	// set_event();
-// 	mlx_key_hook(env.win, key_event, &env);
-// 	env.img.img = mlx_new_image(env.mlx, WIN_WIDTH, WIN_HEIGHT);
-// 	make_img3(&env.img, env.eye, &gb_list);
-// 	printf("IMG MADE\n");
-// 	// make_img2(&env.img, env.eye);
-// 	// make_img(&env.img);
-// 	mlx_put_image_to_window(env.mlx, env.win, env.img.img, 0, 0);
-// 	printf("PUT IMAGE TO WINDOW\n");
-// 	mlx_loop(env.mlx);
-// }
-
+	fov_rad = (double)fov * pi / 180.0;
+	return (((double)WIN_WIDTH / (double)WIN_ORD) / 2.0 / tan(fov_rad / 2.0));
+}
 
 int	main(int argc, char *argv[])
 {
@@ -78,25 +71,26 @@ int	main(int argc, char *argv[])
 	t_env	env;
 	env.gb_list = NULL;
 
-	// set_vec3(&env.eye.pos, 0, 2, -1);
-	set_vec3(&env.eye.pos, 0, 0, -5);
+	// set_vec3(&env.eye.pos, 3, 2, -1);
+	set_vec3(&env.eye.pos, 3, 0, -5);
+	// env.eye.distance_to_window = get_distance_to_window(50);
+	// env.eye.distance_to_window = get_distance_to_window(70);
+	// env.eye.distance_to_window = get_distance_to_window(100);
+	env.eye.distance_to_window = get_distance_to_window(160);
+	// env.eye.distance_to_window = get_distance_to_window(40);
+	printf("distance_to_window is %f\n", env.eye.distance_to_window);
+	// set_vec3(&env.eye.pos, 0.0, 0, -5);
+	// set_vec3(&env.eye.pos, -0.25, 0.5, 1);
 	// set_vec3(&env.eye.pos, 5, 2, 0);
 	env.mlx = mlx_init();
 	env.win = mlx_new_window(env.mlx, WIN_WIDTH, WIN_HEIGHT, "Hello world!");
 	// set_event();
 	mlx_key_hook(env.win, key_event, &env);
 	env.img.img = mlx_new_image(env.mlx, WIN_WIDTH, WIN_HEIGHT);
-	// make_img3(&env.img, env.eye, &gb_list);
-	// make_img5(&env.img, env.eye, &gb_list);
-	make_img6(&env.img, env.eye, &env.gb_list);
-	// make_img6(&env.img, env.eye, &gb_list);
+	make_img6(&env);
 	// ft_dlstclear(&gb_list, free);
-	// return (0);
-	// printf("IMG MADE\n");
-	// make_img2(&env.img, env.eye);
-	// make_img(&env.img);
 	mlx_put_image_to_window(env.mlx, env.win, env.img.img, 0, 0);
-	// printf("PUT IMAGE TO WINDOW\n");
+	printf("PUT IMAGE TO WINDOW\n");
 	mlx_loop(env.mlx);
 }
 

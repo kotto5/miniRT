@@ -21,6 +21,7 @@ int	*make_img3(t_img *img, t_ray eye, t_dlist **gb_list);
 
 #define WIN_WIDTH 1500
 #define WIN_HEIGHT 800
+#define WIN_ORD 200
 
 // #define WIN_WIDTH 1800
 // #define WIN_HEIGHT 1200
@@ -33,11 +34,21 @@ int	*make_img3(t_img *img, t_ray eye, t_dlist **gb_list);
 // # define BACK_COLOR 0x00faa9fe
 # define BACK_COLOR 0x00ffffff
 
+// enum{
+// 	ALLOW_LEFT = 123,
+// 	ALLOW_RIGHT = 124,
+// 	ALLOW_DOWN = 125,
+// 	ALLOW_UP = 126,
+// };
+
+// linux
 enum{
-	ALLOW_LEFT = 123,
-	ALLOW_RIGHT = 124,
-	ALLOW_DOWN = 125,
-	ALLOW_UP = 126,
+	ALLOW_LEFT = 65361,
+	ALLOW_RIGHT = 65363,
+	ALLOW_DOWN = 65364,
+	ALLOW_UP = 65362,
+	KEY_Z = 122,
+	KEY_X = 120,
 };
 
 void	set_vec3(t_vec3 *vec, double x, double y, double z);

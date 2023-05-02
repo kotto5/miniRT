@@ -89,3 +89,70 @@ t_intersection	get_intersection_plane(const t_ray ray, const t_obj *obj)
 		intersection.does_intersect = false;
 	return (intersection);
 }
+
+// static double	get_t_ray_cylinder(t_ray ray, t_cylinder *cylinder)
+// {
+// 	t_vec3	vertical_vert = cos
+
+// 	double A = pow(ray.dir.x, 2) + pow(ray.dir.y, 2);
+// 	double B = 2 * (ray.dir.x * ray.pos.x + ray.dir.y * ray.pos.y);
+// 	double C = pow(ray.pos.x, 2) + pow(ray.pos.y, 2) - pow(cylinder->r, 2);
+// 	double root = pow(B, 2) - 4 * A * C;
+
+// 	if (root < 0)
+// 		return (-1);
+// 	double t1 = (-B + sqrt(root)) / (2 * A);
+// 	double t2 = (-B - sqrt(root)) / (2 * A);
+// 	if (t1 < 0.0 && t2 < 0.0)
+// 		return (t1);
+// 	else if (t1 > 0.0 && ((t2 < 0.0) || (t1 < t2)))
+// 		return (t1);
+// 	else
+// 		return (t2);
+// }
+
+static double	get_t_ray_cylinder(t_ray ray, t_cylinder *cylinder)
+{
+	t_vec3	P = vec_sub(ray.dir, (vec_mult(cylinder->vertical, vec_dot(ray.dir, cylinder->vertical))));
+	t_vec3	Q = vec_sub(vec_sub(ray.pos, cylinder->position), vec_mult(cylinder->vertical, vec_dot(vec_sub(ray.pos, cylinder->position), cylinder->vertical)));
+	double A = vec_mag_sq(P);
+	double B = 2 * vec_dot(P, Q);
+	double C = vec_mag_sq(Q) - pow(cylinder->r, 2);
+	double root = pow(B, 2) - 4 * A * C;
+
+	if (root < 0)
+		return (-1);
+	double t1 = (-B + sqrt(root)) / (2 * A);
+	double t2 = (-B - sqrt(root)) / (2 * A);
+	if (t1 < 0.0 && t2 < 0.0)
+		return (t1);
+	else if (t1 > 0.0 && ((t2 < 0.0) || (t1 < t2)))
+		return (t1);
+	else
+		return (t2);
+}
+
+t_intersection	get_intersection_cylinder(const t_ray ray, const t_obj *obj)
+{
+	t_cylinder		*cylinder;
+	t_intersection	intersection;
+	double	t;
+	t_vec3	dt;
+	// t_vec3	td;
+
+	cylinder = obj->instance;
+	intersection.does_intersect = false;
+	t = get_t_ray_cylinder(ray, cylinder);
+	if (t < 0)
+		return (intersection);
+	dt = vec_mult(ray.dir, t);
+	// if (!(10.0f > dt.z && dt.z > 3.0f))
+	// 	return (intersection);
+	intersection.does_intersect = true;
+	intersection.position = vec_add(ray.pos, dt);
+	intersection.distance = vec_mag(dt);
+	t_vec3	buf = cylinder->position;
+	buf.z += dt.z;
+	intersection.vertical_dir = vec_normilize(vec_sub(intersection.position, buf));
+	return (intersection);
+}

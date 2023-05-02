@@ -1,13 +1,5 @@
 #include "all.h"
 
-// t_obj	*new_circle(t_obj *obj, t_circle *circle)
-// {
-// 	obj->type = O_CIRCLE;
-// 	obj->instance = circle;
-// 	obj->get_intersection = get_intersection_circle;
-// 	return (obj);
-// }
-
 t_circle	*make_circle_instance(t_vec3 origin, double r, t_dlist **gb_list)
 {
 	t_circle	*instance;
@@ -17,16 +9,9 @@ t_circle	*make_circle_instance(t_vec3 origin, double r, t_dlist **gb_list)
 		return (NULL);
 	instance->r = r;
 	instance->pos = origin;
-	// instance->ref = ref;
-	// instance->ref.d_am = 0.1;
-	// instance->ref.d_di = 0.69;
-	// instance->ref.d_sp = 0.3;
-	// instance->ref.sp_shininess = 0.0;
 	return (instance);
 }
 
-// t_plane	*make_plane_instance(t_vec3 vertical, t_reflect ref, t_dlist **gb_list)
-// t_plane	*make_plane_instance(t_vec3 vertical, t_dlist **gb_list)
 t_plane	*make_plane_instance(t_vec3 vertical, t_vec3 point, t_dlist **gb_list)
 {
 	t_plane	*instance;
@@ -36,13 +21,21 @@ t_plane	*make_plane_instance(t_vec3 vertical, t_vec3 point, t_dlist **gb_list)
 		return (NULL);
 	instance->vertical = vertical;
 	instance->position = point;
-	// instance->vertical.x = 0;
-	// instance->vertical.y = 1;
-	// instance->vertical.z = 0;
-	// instance->ref = ref;
 	return (instance);
 }
 
+t_cylinder	*make_cylinder_instance(t_vec3 vertical, t_vec3 point, double r, t_dlist **gb_list)
+{
+	t_cylinder	*instance;
+
+	instance = ft_galloc(sizeof(t_cylinder), gb_list);
+	if (instance == NULL)
+		return (NULL);
+	instance->r = r;
+	instance->vertical = vertical;
+	instance->position = point;
+	return (instance);
+}
 
 t_obj	*new_obj(t_objtype type, t_reflect ref, void *obj_info, t_dlist **alloc_list)
 {
@@ -60,6 +53,8 @@ t_obj	*new_obj(t_objtype type, t_reflect ref, void *obj_info, t_dlist **alloc_li
 		obj->get_intersection = get_intersection_circle;
 	else if (type == O_PLANE)
 		obj->get_intersection = get_intersection_plane;
+	else if (type == O_CYLINDER)
+		obj->get_intersection = get_intersection_cylinder;
 	else
 		obj->get_intersection = NULL;
 	return (obj);

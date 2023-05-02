@@ -40,6 +40,7 @@ typedef struct	s_ray
 {
 	t_vec3	pos;
 	t_vec3	dir;
+	double		distance_to_window;
 }				t_ray;
 
 typedef struct	s_img {
@@ -108,17 +109,22 @@ struct	s_circle
 // VecP (x, y, z) VecN (a, b, c) が直交
 typedef struct	s_square
 {
-	// t_reflect	ref;
 	t_vec3		pos;
 	t_vec3		n_dir;
 }				t_square;
 
 typedef struct	s_plane
 {
-	// t_reflect	ref;
 	t_vec3		position;
 	t_vec3		vertical;
 }				t_plane;
+
+typedef struct	s_cylinder
+{
+	double		r;
+	t_vec3		position;
+	t_vec3		vertical;
+}				t_cylinder;
 
 typedef enum e_objtype{
 	O_CAMERA,

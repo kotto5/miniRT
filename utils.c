@@ -6,7 +6,7 @@
 /*   By: kakiba <kotto555555@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 07:50:29 by kakiba            #+#    #+#             */
-/*   Updated: 2023/04/28 16:12:30 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/05/02 22:50:49 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ void	mlx_put_to_img(t_img *data, int x, int y, int color)
 // 	return (vec_win);
 // }
 
-#define WIN_ORD 400
 // static t_vec3	convert_to_vec(int x, int y, t_vec3 eye_pos)
 t_vec3	get_screen_vec(int x, int y, t_ray eye)
 {
@@ -62,5 +61,6 @@ t_vec3	get_screen_vec(int x, int y, t_ray eye)
 	ord = (double)WIN_ORD;
 	win_x = (double)x / (ord / 2.0) - width / ord + eye.pos.x;
 	win_y = height / ord - (double)y / (ord / 2.0) + eye.pos.y;
-	return (get_vec(win_x, win_y, eye.pos.z + 5.0));
+	// return (get_vec(win_x, win_y, eye.pos.z + 5.0));
+	return (get_vec(win_x, win_y, eye.pos.z + eye.distance_to_window));
 }

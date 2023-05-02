@@ -8,6 +8,7 @@ t_dlist	*get_light_list(t_dlist **gb_list)
 	t_dlist	*light_list;
 
 	light_list = NULL;
+
 	// ft_dlstadd_back(&light_list, ft_dlstnew(
 	// 	new_light(L_POINT, make_point_light_info(get_vec(-5, 5, -5), b_color_get(0, 0.5, 0.5, 0.5), gb_list), gb_list)));
 	// ft_dlstadd_back(&light_list, ft_dlstnew(
@@ -15,8 +16,20 @@ t_dlist	*get_light_list(t_dlist **gb_list)
 	// ft_dlstadd_back(&light_list, ft_dlstnew( 
 	// 	new_light(L_POINT, make_point_light_info(get_vec(-5, 20, -5), b_color_get(0, 0.5, 0.5, 0.5), gb_list), gb_list)));
 
+	// ft_dlstadd_back(&light_list, ft_dlstnew(
+	// 	new_light(L_POINT, make_point_light_info(get_vec(0, 0.9, 2.5), b_color_get(0, 1.0, 1.0, 1.0), gb_list), gb_list)));
+
+	// ft_dlstadd_back(&light_list, ft_dlstnew(
+	// 	new_light(L_POINT, make_point_light_info(get_vec(0, 0.1, -2.5), b_color_get(0, 1.0, 1.0, 1.0), gb_list), gb_list)));
+
+	// ft_dlstadd_back(&light_list, ft_dlstnew(
+	// 	new_light(L_POINT, make_point_light_info(get_vec(0.5, 0.1, -2.5), b_color_get(0, 1.0, 1.0, 1.0), gb_list), gb_list)));
+
+	// ft_dlstadd_back(&light_list, ft_dlstnew(
+	// 	new_light(L_POINT, make_point_light_info(get_vec(-0.25, 0.5, -1), b_color_get(0, 1.0, 1.0, 1.0), gb_list), gb_list)));
+
 	ft_dlstadd_back(&light_list, ft_dlstnew(
-		new_light(L_POINT, make_point_light_info(get_vec(0, 0.9, 2.5), b_color_get(0, 1.0, 1.0, 1.0), gb_list), gb_list)));
+		new_light(L_POINT, make_point_light_info(get_vec(2, 1.5, 0.9), b_color_get(0, 1.0, 1.0, 1.0), gb_list), gb_list)));
 
 	return (light_list);
 }
@@ -235,7 +248,7 @@ t_bright_color	*ray_trace_ref(t_scene *scene, t_ray *ray, size_t times)
 	t_intersection_info	*info;
 	t_dlist				*node;
 
-	if (times > 3)
+	if (times > 4)
 		return (NULL);
 	b_color = NULL;
 	info = get_nearest_intersection(scene, ray);
@@ -256,16 +269,14 @@ t_bright_color	*ray_trace_ref(t_scene *scene, t_ray *ray, size_t times)
 			t_vec3			v;
 			t_vec3			v2;
 			double			dot_product;
-			// v = vec_normilize(ray->dir);
 			v = vec_mult(ray->dir, -1);
 			v2 = vec_normilize(info->intersection.vertical_dir);
 			dot_product = vec_dot(v2, v);
 			if (dot_product < 0.0)
 				return (b_color);
-			// re_ray.dir = vec_sub(v, vec_mult(v2, 2.0 * dot_product));
 			re_ray.dir = vec_sub(vec_mult(v2, 2.0 * dot_product), v);
 			re_ray.pos = vec_add(info->intersection.position, vec_mult(re_ray.dir, EPSILON));
-			ret = ray_trace_ref(scene, &re_ray, 0);
+			ret = ray_trace_ref(scene, &re_ray, times + 1);
 			if (ret)
 			{
 				*ret = b_color_mult(*ret, info->obj->ref.perfect_reflectance);
@@ -301,13 +312,11 @@ t_bright_color	*ray_trace(t_scene *scene, t_ray *ray)
 			t_vec3			v;
 			t_vec3			v2;
 			double			dot_product;
-			// v = vec_normilize(ray->dir);
 			v = vec_mult(ray->dir, -1);
 			v2 = vec_normilize(info->intersection.vertical_dir);
 			dot_product = vec_dot(v2, v);
 			if (dot_product < 0.0)
 				return (b_color);
-			// re_ray.dir = vec_sub(v, vec_mult(v2, 2.0 * dot_product));
 			re_ray.dir = vec_sub(vec_mult(v2, 2.0 * dot_product), v);
 			re_ray.pos = vec_add(info->intersection.position, vec_mult(re_ray.dir, EPSILON));
 			ret = ray_trace_ref(scene, &re_ray, 0);
@@ -321,17 +330,19 @@ t_bright_color	*ray_trace(t_scene *scene, t_ray *ray)
 	return (b_color);
 }
 
-int	*make_img6(t_img *img, t_ray eye, t_dlist **gb_list)
+// int	*make_img6(t_img *img, t_ray eye, t_dlist **gb_list)
+int	*make_img6(t_env *env)
 {
-	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel, &img->line_length, &img->endian);
+	env->img.addr = mlx_get_data_addr(env->img.img, &env->img.bits_per_pixel, &env->img.line_length, &env->img.endian);
 
+	
 	t_vec3			vec_win;
 	t_img_color		color;
 	t_bright_color	*ref_color;
 
 	t_scene			scene;
-	scene.obj_list = get_obj_list(gb_list);
-	scene.light_list = get_light_list(gb_list);
+	scene.obj_list = get_obj_list(&env->gb_list);
+	scene.light_list = get_light_list(&env->gb_list);
 
 	int	x;
 	int	y = 0;
@@ -341,14 +352,14 @@ int	*make_img6(t_img *img, t_ray eye, t_dlist **gb_list)
 		x = 0;
 		while (x < WIN_WIDTH)
 		{
-			vec_win = get_screen_vec(x, y, eye);
-			eye.dir = vec_normilize(vec_sub(vec_win, eye.pos));
-			ref_color = ray_trace(&scene, &eye);
+			vec_win = get_screen_vec(x, y, env->eye);
+			env->eye.dir = vec_normilize(vec_sub(vec_win, env->eye.pos));
+			ref_color = ray_trace(&scene, &env->eye);
 			if (ref_color == NULL)
 				color.color = BACK_COLOR;
 			else
 				color = to_img_color_from_b_color(*ref_color);
-			mlx_put_to_img(img, x, y, color.color);
+			mlx_put_to_img(&env->img, x, y, color.color);
 			x++;
 		}
 		y++;
