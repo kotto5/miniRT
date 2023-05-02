@@ -6,7 +6,7 @@
 /*   By: kakiba <kotto555555@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 07:50:29 by kakiba            #+#    #+#             */
-/*   Updated: 2023/05/02 22:50:49 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/05/02 23:31:23 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,38 +20,11 @@ void	mlx_put_to_img(t_img *data, int x, int y, int color)
 	*(unsigned int*)dst = color;
 }
 
-// t_vec3	get_screen_vec(int x, int y)
-// {
-// 	t_vec3	vec_win;
-
-// 	// vec_win.x = (x / (WIN_WIDTH - 1.0)) - 1.0;
-// 	// vec_win.y = (y / (WIN_HEIGHT - 1.0)) + 1.0;
-
-// 	vec_win.x = (2.0 * x / (WIN_WIDTH - 1.0)) - 1.0;
-// 	vec_win.y = (-2.0 * y / (WIN_HEIGHT - 1.0)) + 1.0;
-
-// 	// vec_win.x = (4.0 * x / (WIN_WIDTH - 1.0)) - 2.0;
-// 	// vec_win.y = (-4.0 * y / (WIN_HEIGHT - 1.0)) + 2.0;
-
-// 	vec_win.z = 0;
-// 	return (vec_win);
-// }
-
-// t_vec3	get_screen_vec(int x, int y, t_ray eye)
-// {
-// 	t_vec3	vec_win;
-
-// 	vec_win.x = (2.0 * x / (WIN_WIDTH - 1.0)) - 1.0 + eye.pos.x;
-// 	vec_win.y = (-2.0 * y / (WIN_HEIGHT - 1.0)) + 1.0 + eye.pos.y;
-// 	vec_win.z = eye.pos.z + 5;
-// 	return (vec_win);
-// }
-
-// static t_vec3	convert_to_vec(int x, int y, t_vec3 eye_pos)
 t_vec3	get_screen_vec(int x, int y, t_ray eye)
 {
 	double	win_x;
 	double	win_y;
+	double	win_z;
 	double	width;
 	double	height;
 	double	ord;
@@ -59,8 +32,21 @@ t_vec3	get_screen_vec(int x, int y, t_ray eye)
 	width = (double)WIN_WIDTH;
 	height = (double)WIN_HEIGHT;
 	ord = (double)WIN_ORD;
-	win_x = (double)x / (ord / 2.0) - width / ord + eye.pos.x;
-	win_y = height / ord - (double)y / (ord / 2.0) + eye.pos.y;
-	// return (get_vec(win_x, win_y, eye.pos.z + 5.0));
-	return (get_vec(win_x, win_y, eye.pos.z + eye.distance_to_window));
+	// win_x = (double)x / (ord / 2.0) - width / ord + eye.pos.x;
+	// win_y = height / ord - (double)y / (ord / 2.0) + eye.pos.y;
+	// win_z = eye.pos.z + eye.distance_to_window;
+	// print_vec(eye.orientation, "win_x is");
+	win_x = (double)x / (ord / 2.0) - width / ord + eye.pos.x + eye.orientation.x;
+	win_y = height / ord - (double)y / (ord / 2.0) + eye.pos.y + eye.orientation.y;
+	win_z = eye.pos.z + eye.distance_to_window + eye.orientation.z;
+	return (get_vec(win_x, win_y, win_z));
+}
+
+double	get_distance_to_window(int fov)
+{
+	double			fov_rad;
+	const double	pi = 3.14159265358979323846;
+
+	fov_rad = (double)fov * pi / 180.0;
+	return (((double)WIN_WIDTH / (double)WIN_ORD) / 2.0 / tan(fov_rad / 2.0));
 }

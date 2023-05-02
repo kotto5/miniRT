@@ -40,7 +40,8 @@ typedef struct	s_ray
 {
 	t_vec3	pos;
 	t_vec3	dir;
-	double		distance_to_window;
+	double	distance_to_window;
+	t_vec3	orientation;
 }				t_ray;
 
 typedef struct	s_img {
