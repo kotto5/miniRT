@@ -194,6 +194,13 @@ static double	max(double a, double b)
 		return (b);
 }
 
+// 直すこと
+
+// rect bound1 >= bound2
+// rect bound1 < bound2
+
+// 0 ジョさん
+
 static double	get_t_ray_rect(t_ray ray, t_rect *rect)
 {
 	double	buf;
