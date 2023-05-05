@@ -77,10 +77,6 @@ typedef struct	s_scene
 	// t_intersection	get_nearest_intersection(*t_scene, t_ray);
 }				t_scene;
 
-
-
-
-
 // Rr = Ra + Rd + Rs
 typedef struct	s_reflect
 {
@@ -101,24 +97,21 @@ typedef struct	s_reflect
 typedef	struct s_circle t_circle;
 struct	s_circle
 {
-	// t_reflect	ref;
 	t_vec3		pos;
 	double		r;
-	t_vec3		(*vertical)(t_circle, t_vec3);
 };
-
-// VecP (x, y, z) VecN (a, b, c) が直交
-typedef struct	s_square
-{
-	t_vec3		pos;
-	t_vec3		n_dir;
-}				t_square;
 
 typedef struct	s_plane
 {
 	t_vec3		position;
 	t_vec3		vertical;
 }				t_plane;
+
+typedef struct	s_rect
+{
+	t_vec3		bound1;
+	t_vec3		bound2;
+}				t_rect;
 
 typedef struct	s_cylinder
 {
@@ -127,12 +120,14 @@ typedef struct	s_cylinder
 	t_vec3		vertical;
 }				t_cylinder;
 
+	// O_CAMERA,
+
 typedef enum e_objtype{
-	O_CAMERA,
+	O_CIRCLE,
 	O_SPHERE,
 	O_PLANE,
 	O_CYLINDER,
-	O_CIRCLE,
+	O_RECT,
 } t_objtype;
 
 struct	s_intersection
@@ -143,28 +138,16 @@ struct	s_intersection
 	t_vec3	vertical_dir;
 };
 
-typedef struct	s_circle_info
-{
-	t_reflect	ref;
-	t_vec3		pos;
-	t_vec3		n_dir;
-}				t_circle_info;
-
 struct	s_obj
 {
-	t_reflect	ref;
 	t_objtype	type;
 	void		*instance;
+
+	t_reflect	ref;
 	t_intersection		(*get_intersection)(const t_ray, const t_obj *);
 };
 
-
-
-
-
-
 typedef enum e_lighttype{
-	// O_AMBIRNT_LIGHT,
 	// O_LIGHT,
 	L_POINT,
 	L_PARALLEL,
@@ -173,7 +156,6 @@ typedef enum e_lighttype{
 typedef struct	s_lighting
 {
 	double	distance;
-	// double	d_intensity;
 	t_bright_color	intensity;
 	t_vec3	incident_to_light;
 }				t_lighting;
@@ -188,17 +170,14 @@ struct	s_light
 
 typedef struct	s_point_light
 {
-	t_vec3		pos;
-	// t_img_color		intensity;
+	t_vec3			pos;
 	t_bright_color	intensity;
-	// double		d_intensity;
 }				t_point_light;
 
 typedef struct	s_parallel_light
 {
 	t_vec3		dir;
 	// t_img_color		intensity;
-	// double		d_intensity;
 }				t_parallel_light;
 
 typedef struct	s_intersion_info

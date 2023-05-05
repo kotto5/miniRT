@@ -37,6 +37,19 @@ t_cylinder	*make_cylinder_instance(t_vec3 vertical, t_vec3 point, double r, t_dl
 	return (instance);
 }
 
+t_rect	*make_rect_instance(t_vec3 bound1, t_vec3 bound2, t_dlist **gb_list)
+{
+	t_rect	*instance;
+
+	instance = ft_galloc(sizeof(t_rect), gb_list);
+	// instance = malloc(sizeof(t_rect));
+	if (instance == NULL)
+		return (NULL);
+	instance->bound1 = bound1;
+	instance->bound2 = bound2;
+	return (instance);
+}
+
 t_obj	*new_obj(t_objtype type, t_reflect ref, void *obj_info, t_dlist **alloc_list)
 {
 	t_obj	*obj;
@@ -44,6 +57,7 @@ t_obj	*new_obj(t_objtype type, t_reflect ref, void *obj_info, t_dlist **alloc_li
 	if (obj_info == NULL)
 		return (NULL);
 	obj = ft_galloc(sizeof(t_obj), alloc_list);
+	// obj = malloc(sizeof(t_obj));
 	if (obj == NULL)
 		return (NULL);
 	obj->ref = ref;
@@ -55,6 +69,8 @@ t_obj	*new_obj(t_objtype type, t_reflect ref, void *obj_info, t_dlist **alloc_li
 		obj->get_intersection = get_intersection_plane;
 	else if (type == O_CYLINDER)
 		obj->get_intersection = get_intersection_cylinder;
+	else if (type == O_RECT)
+		obj->get_intersection = get_intersection_rect;
 	else
 		obj->get_intersection = NULL;
 	return (obj);

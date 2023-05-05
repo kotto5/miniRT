@@ -1,21 +1,22 @@
 NAME = miniRT
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
-# CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g
+# CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g
 
 SRCS = $(wildcard *.c)
 OBJ = $(SRCS:.c=.o)
 LIBFTDIR = ./libft
 LIBFT = $(LIBFTDIR)/libft.a
+
 # mac
-# LIBXDIR = ./minilibx
-# LIBMLX = ./minilibx/libmlx.a
-# LIBMLXFLAGS = -framework OpenGL -framework AppKit
+LIBXDIR = ./minilibx
+LIBMLX = ./minilibx/libmlx.a
+LIBMLXFLAGS = -framework OpenGL -framework AppKit
 
 # linux
-LIBXDIR = ./minilibx-linux
-LIBMLX = $(LIBXDIR)/libmlx.a
-LIBMLXFLAGS = -lXext -lX11
+# LIBXDIR = ./minilibx-linux
+# LIBMLX = $(LIBXDIR)/libmlx.a
+# LIBMLXFLAGS = -lXext -lX11
 # CFLAGS += -lm
 
 INCLUDES = -I./includes -I./libft -I./minilibx-linux

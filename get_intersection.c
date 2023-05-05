@@ -156,3 +156,110 @@ t_intersection	get_intersection_cylinder(const t_ray ray, const t_obj *obj)
 	intersection.vertical_dir = vec_normilize(vec_sub(intersection.position, buf));
 	return (intersection);
 }
+
+static double	get_minimum(double a, double b, double c)
+{
+	if (a <= b && a <= c )
+		return (a);
+	else if (b <= a && b <= c)
+		return (b);
+	else
+		return (c);
+}
+
+
+static double	get_maximum(double a, double b, double c)
+{
+	if (a >= b && a >= c )
+		return (a);
+	else if (b >= a && b >= c)
+		return (b);
+	else
+		return (c);
+}
+
+static double	min(double a, double b)
+{
+	if (a < b)
+		return (a);
+	else
+		return (b);
+}
+
+static double	max(double a, double b)
+{
+	if (a > b)
+		return (a);
+	else
+		return (b);
+}
+
+static double	get_t_ray_rect(t_ray ray, t_rect *rect)
+{
+	double	buf;
+
+	double	t0_start;
+	double	t0_end;
+	t0_start = (rect->bound1.x - ray.pos.x) / ray.dir.x;
+	t0_end = (rect->bound2.x - ray.pos.x) / ray.dir.x;
+	if (t0_start > t0_end)
+	{
+		buf = t0_start;
+		t0_start = t0_end;
+		t0_end = buf;
+	}
+
+
+	double	t1_start;
+	double	t1_end;
+	t1_start = (rect->bound1.y - ray.pos.y) / ray.dir.y;
+	t1_end = (rect->bound2.y - ray.pos.y) / ray.dir.y;
+	if (t1_start > t1_end)
+	{
+		buf = t1_start;
+		t1_start = t1_end;
+		t1_end = buf;
+	}
+
+	double	t2_start;
+	double	t2_end;
+	t2_start = (rect->bound1.z - ray.pos.z) / ray.dir.z;
+	t2_end = (rect->bound2.z - ray.pos.z) / ray.dir.z;
+	printf("test1 %f, %f\n", t2_start, t2_end);
+	if (t2_start > t2_end)
+	{
+		buf = t2_start;
+		t2_start = t2_end;
+		t2_end = buf;
+	}
+
+	double	start = get_maximum(t0_start, t1_start, t2_start);
+	double	end = get_minimum(t0_end, t1_end, t2_end);
+
+	if (start >= end)
+		return (start);
+	else
+		return (-1);
+}
+
+t_intersection	get_intersection_rect(const t_ray ray, const t_obj *obj)
+{
+	t_rect		*rect;
+	t_intersection	intersection;
+	double	t;
+	t_vec3	dt;
+	// t_vec3	td;
+
+	rect = obj->instance;
+	intersection.does_intersect = false;
+	t = get_t_ray_rect(ray, rect);
+	if (t < 0)
+		return (intersection);
+
+	dt = vec_mult(ray.dir, t);
+	intersection.does_intersect = true;
+	intersection.position = vec_add(ray.pos, dt);
+	intersection.distance = vec_mag(dt);
+	intersection.vertical_dir = vec_normilize(vec_sub(intersection.position, ray.pos));
+	return (intersection);
+}
