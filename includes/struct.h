@@ -66,6 +66,8 @@ typedef struct	s_env
 	void	*win;
 	t_img	img;
 	t_ray	eye;
+	t_dlist	*obj_list;
+	t_dlist	*light_list;
 	t_dlist	*gb_list;
 }				t_env;
 

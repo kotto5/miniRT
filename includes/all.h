@@ -29,7 +29,7 @@ int	*make_img6(t_env *env);
 # define SUCCESS 0
 // # define BACK_COLOR 100*256*256+149*256+237
 // # define BACK_COLOR 0x00faa9fe
-# define BACK_COLOR 0x00ffffff
+# define BACK_COLOR 0x00000000
 
 // if uset os is mac, use this key code
 #ifdef __APPLE__
@@ -125,8 +125,13 @@ void	mlx_put_to_img(t_img *data, int x, int y, int color);
 t_vec3	get_screen_vec(int x, int y, t_ray eye);
 double	get_distance_to_window(int fov);
 
-// 関数ポインタ使って、クラスっぽいこと実現しよう
-// square.n() 的な
+double	get_min_double(const double a, const double b);
+double	get_max_double(const double a, const double b);
+
+
+int	*test_rect(t_env *env);
+t_intersection_info	*get_nearest_intersection(t_scene *scene, t_ray *ray);
+t_dlist	*get_light_list(t_dlist **gb_list);
 
 
 #endif

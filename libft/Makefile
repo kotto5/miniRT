@@ -63,6 +63,7 @@ ft_lstiter.c\
 ft_lstmap.c\
 ft_strtol.c\
 ft_galloc.c\
+ft_treenew.c\
 
 M_OBJS = $(M_SRCS:%.c=%.o)
 B_OBJS = $(B_SRCS:%.c=%.o)

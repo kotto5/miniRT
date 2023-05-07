@@ -1,15 +1,15 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   vec_clc3.c                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: kakiba <kotto555555@gmail.com>             +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/17 06:43:53 by kakiba            #+#    #+#             */
-/*   Updated: 2023/04/17 07:02:21 by kakiba           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "all.h"
 
+double	get_min_double(const double a, const double b)
+{
+	if (a > b)
+		return (b);
+	return (a);
+}
 
+double	get_max_double(const double a, const double b)
+{
+	if (a > b)
+		return (a);
+	return (b);
+}

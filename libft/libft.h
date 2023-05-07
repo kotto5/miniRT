@@ -6,7 +6,7 @@
 /*   By: kakiba <kotto555555@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/18 10:04:29 by kakiba            #+#    #+#             */
-/*   Updated: 2023/04/15 12:24:53 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/05/07 19:01:10 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,22 @@ typedef struct s_dlist{
 	void			*content;
 	struct s_dlist	*next;
 }			t_dlist;
+
+typedef enum e_dtree_type{
+	DT_ROOT,
+	DT_NODE,
+	DT_LEAF,
+} t_dtree_type;
+
+typedef struct s_dtree{
+	struct s_dtree	*root;
+	struct s_dtree	*left;
+	struct s_dtree	*right;
+	void			*content;
+	t_dtree_type	type;
+}			t_dtree;
+
+
 
 int				ft_isalpha(int c);
 int				ft_isdigit(int c);
@@ -118,5 +134,10 @@ int				ft_putllnbr_fd(int long long n, int fd);
 char			c_to_hex(int n, char c);
 int				ft_puthex_fd(unsigned long long n, int fd, char c);
 int				ft_hex_output(unsigned long long n, int fd, char c);
+
+bool			ft_tree_add(t_dtree **root, t_dtree *new, char *label);
+t_dtree			*ft_treenew(void *content);
+// int	print_node(t_dtree *node, size_t level);
+int	print_node(t_dtree *node, size_t level, int c);
 
 #endif

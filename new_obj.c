@@ -42,11 +42,15 @@ t_rect	*make_rect_instance(t_vec3 bound1, t_vec3 bound2, t_dlist **gb_list)
 	t_rect	*instance;
 
 	instance = ft_galloc(sizeof(t_rect), gb_list);
-	// instance = malloc(sizeof(t_rect));
 	if (instance == NULL)
 		return (NULL);
-	instance->bound1 = bound1;
-	instance->bound2 = bound2;
+	instance->bound1.x = get_min_double(bound1.x, bound2.x);
+	instance->bound2.x = get_max_double(bound1.x, bound2.x);
+	instance->bound1.y = get_min_double(bound1.y, bound2.y);
+	instance->bound2.y = get_max_double(bound1.y, bound2.y);
+	instance->bound1.z = get_min_double(bound1.z, bound2.z);
+	instance->bound2.z = get_max_double(bound1.z, bound2.z);
+
 	return (instance);
 }
 

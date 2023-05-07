@@ -178,21 +178,6 @@ static double	get_maximum(double a, double b, double c)
 		return (c);
 }
 
-static double	min(double a, double b)
-{
-	if (a < b)
-		return (a);
-	else
-		return (b);
-}
-
-static double	max(double a, double b)
-{
-	if (a > b)
-		return (a);
-	else
-		return (b);
-}
 
 // 直すこと
 
@@ -203,45 +188,21 @@ static double	max(double a, double b)
 
 static double	get_t_ray_rect(t_ray ray, t_rect *rect)
 {
-	double	buf;
+	double	tx_start = (rect->bound1.x - ray.pos.x) / ray.dir.x;
+	double	tx_end = (rect->bound2.x - ray.pos.x) / ray.dir.x;
+	double	ty_start = (rect->bound1.y - ray.pos.y) / ray.dir.y;
+	double	ty_end = (rect->bound2.y - ray.pos.y) / ray.dir.y;
+	double	tz_start = (rect->bound1.z - ray.pos.z) / ray.dir.z;
+	double	tz_end =(rect->bound2.z - ray.pos.z) / ray.dir.z;
 
-	double	t0_start;
-	double	t0_end;
-	t0_start = (rect->bound1.x - ray.pos.x) / ray.dir.x;
-	t0_end = (rect->bound2.x - ray.pos.x) / ray.dir.x;
-	if (t0_start > t0_end)
-	{
-		buf = t0_start;
-		t0_start = t0_end;
-		t0_end = buf;
-	}
+	double	start = get_maximum(tx_start, ty_start, tz_start);
+	double	end = get_minimum(tx_end, ty_end, tz_end);
 
-
-	double	t1_start;
-	double	t1_end;
-	t1_start = (rect->bound1.y - ray.pos.y) / ray.dir.y;
-	t1_end = (rect->bound2.y - ray.pos.y) / ray.dir.y;
-	if (t1_start > t1_end)
-	{
-		buf = t1_start;
-		t1_start = t1_end;
-		t1_end = buf;
-	}
-
-	double	t2_start;
-	double	t2_end;
-	t2_start = (rect->bound1.z - ray.pos.z) / ray.dir.z;
-	t2_end = (rect->bound2.z - ray.pos.z) / ray.dir.z;
-	printf("test1 %f, %f\n", t2_start, t2_end);
-	if (t2_start > t2_end)
-	{
-		buf = t2_start;
-		t2_start = t2_end;
-		t2_end = buf;
-	}
-
-	double	start = get_maximum(t0_start, t1_start, t2_start);
-	double	end = get_minimum(t0_end, t1_end, t2_end);
+// 実質plane （高さ0）のケースも込み
+	if (rect->bound1.x - ray.pos.x <= 0 && rect->bound2.x - ray.pos.x >= 0 &&
+		rect->bound1.y - ray.pos.y <= 0 && rect->bound2.y - ray.pos.y >= 0 &&
+		rect->bound1.z - ray.pos.z <= 0 && rect->bound2.z - ray.pos.z >= 0)
+		return (true);
 
 	if (start >= end)
 		return (start);
@@ -256,12 +217,23 @@ t_intersection	get_intersection_rect(const t_ray ray, const t_obj *obj)
 	double	t;
 	t_vec3	dt;
 	// t_vec3	td;
+	// printf("Aa\n");
 
 	rect = obj->instance;
 	intersection.does_intersect = false;
 	t = get_t_ray_rect(ray, rect);
+	printf("t[%f] \n", t);
 	if (t < 0)
+	{
+		// printf("NOT !\n");
 		return (intersection);
+	}
+	else
+	{
+		// printf("INTER! !\n");
+		intersection.does_intersect = true;
+		return (intersection);
+	}
 
 	dt = vec_mult(ray.dir, t);
 	intersection.does_intersect = true;
