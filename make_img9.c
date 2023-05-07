@@ -305,27 +305,27 @@ t_bright_color	*ray_trace(t_scene *scene, t_ray *ray)
 			// *b_color = b_color_add(*b_color, get_color_with_at(*ray, info->intersection, node->content, info->obj));
 			node = node->next;
 		}
-		if (info->obj->ref.use_perfect_reflectance)
-		{
-			t_ray			re_ray;
-			t_bright_color	*ret;
-			t_vec3			v;
-			t_vec3			v2;
-			double			dot_product;
-			v = vec_mult(ray->dir, -1);
-			v2 = vec_normilize(info->intersection.vertical_dir);
-			dot_product = vec_dot(v2, v);
-			if (dot_product < 0.0)
-				return (b_color);
-			re_ray.dir = vec_sub(vec_mult(v2, 2.0 * dot_product), v);
-			re_ray.pos = vec_add(info->intersection.position, vec_mult(re_ray.dir, EPSILON));
-			ret = ray_trace_ref(scene, &re_ray, 0);
-			if (ret)
-			{
-				*ret = b_color_mult(*ret, info->obj->ref.perfect_reflectance);
-				*b_color = b_color_add(*b_color, *ret);
-			}
-		}
+		// if (info->obj->ref.use_perfect_reflectance)
+		// {
+		// 	t_ray			re_ray;
+		// 	t_bright_color	*ret;
+		// 	t_vec3			v;
+		// 	t_vec3			v2;
+		// 	double			dot_product;
+		// 	v = vec_mult(ray->dir, -1);
+		// 	v2 = vec_normilize(info->intersection.vertical_dir);
+		// 	dot_product = vec_dot(v2, v);
+		// 	if (dot_product < 0.0)
+		// 		return (b_color);
+		// 	re_ray.dir = vec_sub(vec_mult(v2, 2.0 * dot_product), v);
+		// 	re_ray.pos = vec_add(info->intersection.position, vec_mult(re_ray.dir, EPSILON));
+		// 	ret = ray_trace_ref(scene, &re_ray, 0);
+		// 	if (ret)
+		// 	{
+		// 		*ret = b_color_mult(*ret, info->obj->ref.perfect_reflectance);
+		// 		*b_color = b_color_add(*b_color, *ret);
+		// 	}
+		// }
 	}
 	return (b_color);
 }

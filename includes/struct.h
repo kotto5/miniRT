@@ -120,7 +120,6 @@ typedef struct	s_cylinder
 	t_vec3		vertical;
 }				t_cylinder;
 
-	// O_CAMERA,
 
 typedef enum e_objtype{
 	O_CIRCLE,
