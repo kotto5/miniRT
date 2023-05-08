@@ -6,7 +6,7 @@
 /*   By: kakiba <kotto555555@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/18 10:04:29 by kakiba            #+#    #+#             */
-/*   Updated: 2023/05/07 19:01:10 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/05/08 20:09:34 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,6 @@ typedef struct s_dtree{
 	void			*content;
 	t_dtree_type	type;
 }			t_dtree;
-
-
 
 int				ft_isalpha(int c);
 int				ft_isdigit(int c);

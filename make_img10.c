@@ -2,10 +2,36 @@
 
 #define EPSILON 0.001
 
+// t_intersection_info	*get_nearest_intersection(t_scene *scene, t_ray *ray)
+// {
+// 	t_dlist			*node;
+// 	t_obj			*obj_content;
+// 	t_intersection	tmp;
+// 	t_intersection_info	*info;
+
+// 	info = malloc(sizeof(t_intersection_info));
+// 	ft_memset(info, 0, sizeof(t_intersection_info));
+// 	node = scene->obj_list;
+// 	info->intersection.does_intersect = false;
+// 	while (node)
+// 	{
+// 		obj_content = node->content;
+// 		tmp = obj_content->get_intersection(*ray, obj_content);
+// 		if (tmp.does_intersect && (info->intersection.does_intersect == false || tmp.distance < info->intersection.distance))
+// 		{
+// 			info->intersection = tmp;
+// 			info->obj = obj_content;
+// 		}
+// 		node = node->next;
+// 	}
+// 	return (info);
+// }
+
 t_intersection_info	*get_nearest_intersection(t_scene *scene, t_ray *ray)
 {
 	t_dlist			*node;
 	t_obj			*obj_content;
+	t_dtree			*obj_tree;
 	t_intersection	tmp;
 	t_intersection_info	*info;
 
@@ -13,6 +39,10 @@ t_intersection_info	*get_nearest_intersection(t_scene *scene, t_ray *ray)
 	ft_memset(info, 0, sizeof(t_intersection_info));
 	node = scene->obj_list;
 	info->intersection.does_intersect = false;
+	obj_tree = scene->obj_tree;
+	if (obj_tree == NULL)
+		return (NULL);
+	
 	while (node)
 	{
 		obj_content = node->content;
@@ -26,6 +56,7 @@ t_intersection_info	*get_nearest_intersection(t_scene *scene, t_ray *ray)
 	}
 	return (info);
 }
+
 
 t_bright_color	*ray_trace(t_scene *scene, t_ray *ray);
 

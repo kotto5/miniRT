@@ -1,6 +1,7 @@
 NAME = libft.a
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
+DFLAGS = -MMD -MP
 
 M_SRCS = \
 ft_isalnum.c\
@@ -73,6 +74,11 @@ ifdef WITH_BONUS
 OBJS += $(B_OBJS)
 endif
 
+DEPS = $(OBJS:%.o=%.d)
+
+%.o: %.c
+	$(CC) $(CFLAGS) $(DFLAGS) $(INCLUDES) -c $< -o $@
+
 all:$(NAME)
 
 $(NAME):$(OBJS)
@@ -85,9 +91,12 @@ bonus:
 	make WITH_BONUS=1
 
 clean:
-	rm -f $(M_OBJS) $(B_OBJS)
+	rm -f $(M_OBJS) $(B_OBJS) $(DEPS)
 
 fclean:clean
 	rm -f $(NAME)
 
 re:fclean all
+
+-include $(DEPS)
+

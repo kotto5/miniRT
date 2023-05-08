@@ -52,6 +52,7 @@ enum{
 	KEY_Z = 122,
 	KEY_X = 120,
 	KEY_ESC = 65307,
+	
 };
 
 #endif

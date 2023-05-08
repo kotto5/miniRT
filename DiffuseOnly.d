@@ -1,0 +1,1 @@
+DiffuseOnly.o: DiffuseOnly.c

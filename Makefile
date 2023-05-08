@@ -2,6 +2,7 @@ NAME = miniRT
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 # CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g
+DFLAGS = -MMD -MP
 
 SRCS = $(wildcard *.c)
 OBJ = $(SRCS:.c=.o)
@@ -21,15 +22,16 @@ LIBMLXFLAGS = -framework OpenGL -framework AppKit
 
 INCLUDES = -I./includes -I./libft -I./minilibx-linux
 
+DEPENDS    :=  $(SRCS:.c=.d)
+
+
 all: $(NAME)
 
 %.o: %.c
-	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
-# $(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+	$(CC) $(CFLAGS) $(DFLAGS) $(INCLUDES) -c $< -o $@
 
 $(NAME): $(LIBFT) $(LIBMLX) $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(LIBMLX) $(INCLUDES) $(LIBMLXFLAGS) -lm -o $@
-# $(CC) $(CFLAGS) $(INCLUDES) $(LIBMLXFLAGS) $^ -o $@
 
 $(LIBFT): FORCE
 	make -C ./$(LIBFTDIR)
@@ -40,7 +42,7 @@ $(LIBMLX):
 	make -C $(LIBXDIR)
 
 clean:
-	rm -f $(OBJ)
+	rm -f $(OBJ) $(DEPENDS)
 	make clean -C $(LIBFTDIR)
 	make clean -C $(LIBXDIR)
 
@@ -66,3 +68,5 @@ re: fclean all
 
 norm:
 	norminette
+
+-include $(DEPENDS)
