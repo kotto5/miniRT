@@ -1,5 +1,27 @@
 #include "all.h"
 
+t_dlist	*get_obj_list(t_dlist **gb_list)
+{
+	t_dlist			*obj_list;
+
+	obj_list = NULL;
+
+
+	ft_dlstadd_back(&obj_list, ft_dlstnew(new_obj(O_CIRCLE, get_t_refrect(b_color_get(0, 0.1, 0.1, 0.1), b_color_get(0.0, 0.0, 0.69, 0.69), b_color_get(0, 0.30, 0.30, 0.30), 5, false, (t_bright_color){0.5, 0.5, 0.5, 0.5}),
+		make_circle_instance(get_vec(-4, 6, 10), 3, gb_list), gb_list)));
+
+	ft_dlstadd_back(&obj_list, ft_dlstnew(new_obj(O_CIRCLE, get_t_refrect(b_color_get(0, 0.1, 0.1, 0.1), b_color_get(0.0, 0.69, 0, 0.69), b_color_get(0, 0.30, 0.30, 0.30), 5, false, (t_bright_color){0.5, 0.5, 0.5, 0.5}),
+		make_circle_instance(get_vec(4, 6, 10), 3, gb_list), gb_list)));
+
+	ft_dlstadd_back(&obj_list, ft_dlstnew(new_obj(O_CIRCLE, get_t_refrect(b_color_get(0, 0.1, 0.1, 0.1), b_color_get(0.0, 0.0, 0.69, 0.0), b_color_get(0, 0.30, 0.30, 0.30), 5, false, (t_bright_color){0.5, 0.5, 0.5, 0.5}),
+		make_circle_instance(get_vec(-4, -2, 10), 3, gb_list), gb_list)));
+
+	ft_dlstadd_back(&obj_list, ft_dlstnew(new_obj(O_CIRCLE, get_t_refrect(b_color_get(0, 0.1, 0.1, 0.1), b_color_get(0.0, 0.69, 0.69, 0.0), b_color_get(0, 0.30, 0.30, 0.30), 5, false, (t_bright_color){0.5, 0.5, 0.5, 0.5}),
+		make_circle_instance(get_vec(4, -2, 10), 3, gb_list), gb_list)));
+
+	return (obj_list);
+}
+
 // t_dlist	*get_obj_list(t_dlist **gb_list)
 // {
 // 	t_dlist			*obj_list;
@@ -25,44 +47,41 @@
 // 		make_circle_instance(get_vec(-1, 1, 5), 1, gb_list), gb_list)));
 
 // // wall
-// 	ft_dlstadd_back(&obj_list, ft_dlstnew(new_obj(O_PLANE, get_t_refrect(b_color_get(0, 0.0, 0.8, 0.0), b_color_get(0, 0.0, 0.8, 0.0), b_color_get(0, 0.0, 0.8, 0.0), 1, false, (t_bright_color){0, 0, 0, 0}),
-// 		make_plane_instance(vec_normilize(get_vec(0, 1, 0)), get_vec(0, 0, 0),  gb_list), gb_list)));
+// 	// ft_dlstadd_back(&obj_list, ft_dlstnew(new_obj(O_PLANE, get_t_refrect(b_color_get(0, 0.0, 0.8, 0.0), b_color_get(0, 0.0, 0.8, 0.0), b_color_get(0, 0.0, 0.8, 0.0), 1, false, (t_bright_color){0, 0, 0, 0}),
+// 	// 	make_plane_instance(vec_normilize(get_vec(0, 1, 0)), get_vec(0, 0, 0),  gb_list), gb_list)));
 
-// 	ft_dlstadd_back(&obj_list, ft_dlstnew(new_obj(O_PLANE, get_t_refrect(b_color_get(0, 0.0, 0.8, 0.0), b_color_get(0, 0.0, 0.8, 0.0), b_color_get(0, 0.0, 0.8, 0.0), 1, false, (t_bright_color){0, 0, 0, 0}),
-// 		make_plane_instance(vec_normilize(get_vec(0, 1, 0)), get_vec(0, 10, 0),  gb_list), gb_list)));
+// 	// ft_dlstadd_back(&obj_list, ft_dlstnew(new_obj(O_PLANE, get_t_refrect(b_color_get(0, 0.0, 0.8, 0.0), b_color_get(0, 0.0, 0.8, 0.0), b_color_get(0, 0.0, 0.8, 0.0), 1, false, (t_bright_color){0, 0, 0, 0}),
+// 	// 	make_plane_instance(vec_normilize(get_vec(0, 1, 0)), get_vec(0, 10, 0),  gb_list), gb_list)));
 
-// 	ft_dlstadd_back(&obj_list, ft_dlstnew(new_obj(O_PLANE, get_t_refrect(b_color_get(0, 0.8, 0.0, 0.0), b_color_get(0, 0.8, 0.0, 0.0), b_color_get(0, 0.8, 0.0, 0.0), 1, false, (t_bright_color){0, 0, 0, 0}),
-// 		make_plane_instance(vec_normilize(get_vec(1, 0, 0)), get_vec(-6, 0, 0),  gb_list), gb_list)));
+// 	// ft_dlstadd_back(&obj_list, ft_dlstnew(new_obj(O_PLANE, get_t_refrect(b_color_get(0, 0.8, 0.0, 0.0), b_color_get(0, 0.8, 0.0, 0.0), b_color_get(0, 0.8, 0.0, 0.0), 1, false, (t_bright_color){0, 0, 0, 0}),
+// 	// 	make_plane_instance(vec_normilize(get_vec(1, 0, 0)), get_vec(-6, 0, 0),  gb_list), gb_list)));
 
-// 	ft_dlstadd_back(&obj_list, ft_dlstnew(new_obj(O_PLANE, get_t_refrect(b_color_get(0, 0.8, 0.0, 0.0), b_color_get(0, 0.8, 0.0, 0.0), b_color_get(0, 0.8, 0.0, 0.0), 1, false, (t_bright_color){0, 0, 0, 0}),
-// 		make_plane_instance(vec_normilize(get_vec(1, 0, 0)), get_vec(6, 0, 0),  gb_list), gb_list)));
+// 	// ft_dlstadd_back(&obj_list, ft_dlstnew(new_obj(O_PLANE, get_t_refrect(b_color_get(0, 0.8, 0.0, 0.0), b_color_get(0, 0.8, 0.0, 0.0), b_color_get(0, 0.8, 0.0, 0.0), 1, false, (t_bright_color){0, 0, 0, 0}),
+// 	// 	make_plane_instance(vec_normilize(get_vec(1, 0, 0)), get_vec(6, 0, 0),  gb_list), gb_list)));
 
-// 	ft_dlstadd_back(&obj_list, ft_dlstnew(new_obj(O_PLANE, get_t_refrect(b_color_get(0, 0.0, 0.0, 0.8), b_color_get(0, 0.0, 0.0, 0.8), b_color_get(0, 0.0, 0.0, 0.8), 1, false, (t_bright_color){0, 0, 0, 0}),
-// 		make_plane_instance(vec_normilize(get_vec(0, 0, 1)), get_vec(0, 0, 40),  gb_list), gb_list)));
+// 	// ft_dlstadd_back(&obj_list, ft_dlstnew(new_obj(O_PLANE, get_t_refrect(b_color_get(0, 0.0, 0.0, 0.8), b_color_get(0, 0.0, 0.0, 0.8), b_color_get(0, 0.0, 0.0, 0.8), 1, false, (t_bright_color){0, 0, 0, 0}),
+// 	// 	make_plane_instance(vec_normilize(get_vec(0, 0, 1)), get_vec(0, 0, 40),  gb_list), gb_list)));
 
-	// ft_dlstadd_back(&obj_list, ft_dlstnew(new_obj(O_PLANE, get_t_refrect(b_color_get(0, 0.0, 0.0, 0.8), b_color_get(0, 0.0, 0.0, 0.8), b_color_get(0, 0.0, 0.0, 0.8), 1, false, (t_bright_color){0, 0, 0, 0}),
-	// 	make_plane_instance(vec_normilize(get_vec(0, 0, 1)), get_vec(0, 0, -40),  gb_list), gb_list)));
-
-// 	ft_dlstadd_back(&obj_list, ft_dlstnew(circle3));
-// 	ft_dlstadd_back(&obj_list, ft_dlstnew(circle3));
-	// return (obj_list);
+// 	// ft_dlstadd_back(&obj_list, ft_dlstnew(new_obj(O_PLANE, get_t_refrect(b_color_get(0, 0.0, 0.0, 0.8), b_color_get(0, 0.0, 0.0, 0.8), b_color_get(0, 0.0, 0.0, 0.8), 1, false, (t_bright_color){0, 0, 0, 0}),
+// 	// 	make_plane_instance(vec_normilize(get_vec(0, 0, 1)), get_vec(0, 0, -40),  gb_list), gb_list)));
+// 	return (obj_list);
 // }
 
 
-t_dlist	*get_obj_list(t_dlist **gb_list){
-	t_dlist			*obj_list;
+// t_dlist	*get_obj_list(t_dlist **gb_list){
+// 	t_dlist			*obj_list;
 
-	obj_list = NULL;
+// 	obj_list = NULL;
 
-	t_obj	*obj;
-	t_rect	*rect;
-	// rect = make_rect_instance(get_vec(2,2,2), get_vec(6, 8, 6), gb_list);
-	rect = make_rect_instance(get_vec(5,5,30), get_vec(100, 30, 100), gb_list);
-	obj = new_obj(O_RECT, get_t_refrect(b_color_get(0,0,0,0), b_color_get(0, 1,1,0), b_color_get(0,0,1,0), 5, false, (t_bright_color){1.0, 1.0, 1.0, 1.0}),
-		rect, gb_list);
-	ft_dlstadd_back(&obj_list, ft_dlstnew(obj));
-	return (obj_list);
-}
+// 	t_obj	*obj;
+// 	t_rect	*rect;
+// 	// rect = make_rect_instance(get_vec(2,2,2), get_vec(6, 8, 6), gb_list);
+// 	rect = make_rect_instance(get_vec(5,5,30), get_vec(100, 30, 100), gb_list);
+// 	obj = new_obj(O_RECT, get_t_refrect(b_color_get(0,0,0,0), b_color_get(0, 1,1,0), b_color_get(0,0,1,0), 5, false, (t_bright_color){1.0, 1.0, 1.0, 1.0}),
+// 		rect, gb_list);
+// 	ft_dlstadd_back(&obj_list, ft_dlstnew(obj));
+// 	return (obj_list);
+// }
 
 
 // t_dlist	*get_obj_list(t_dlist **gb_list)

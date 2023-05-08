@@ -14,8 +14,6 @@
 # include "obj.h"
 # include "lightsource.h"
 
-int	*make_img6(t_env *env);
-
 #define WIN_WIDTH 1500
 #define WIN_HEIGHT 800
 #define WIN_ORD 200
@@ -124,6 +122,7 @@ void	mlx_put_to_img(t_img *data, int x, int y, int color);
 // t_vec3	get_screen_vec(int x, int y);
 t_vec3	get_screen_vec(int x, int y, t_ray eye);
 double	get_distance_to_window(int fov);
+t_bright_color	get_color_with_at(t_scene *scene, t_intersection_info *info, t_lightsource *light, t_ray *ray);
 
 double	get_min_double(const double a, const double b);
 double	get_max_double(const double a, const double b);
@@ -132,6 +131,9 @@ double	get_max_double(const double a, const double b);
 int	*test_rect(t_env *env);
 t_intersection_info	*get_nearest_intersection(t_scene *scene, t_ray *ray);
 t_dlist	*get_light_list(t_dlist **gb_list);
+t_bright_color	get_ref6(t_intersection intersection, t_reflect ref_info, t_lightsource *light, t_ray eye);
+t_dtree *get_obj_tree(t_env *env);
 
+int	*make_img6(t_env *env);
 
 #endif

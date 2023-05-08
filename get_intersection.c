@@ -222,7 +222,7 @@ t_intersection	get_intersection_rect(const t_ray ray, const t_obj *obj)
 	rect = obj->instance;
 	intersection.does_intersect = false;
 	t = get_t_ray_rect(ray, rect);
-	printf("t[%f] \n", t);
+	// printf("t[%f] \n", t);
 	if (t < 0)
 	{
 		// printf("NOT !\n");

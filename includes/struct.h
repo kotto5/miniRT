@@ -69,6 +69,7 @@ typedef struct	s_env
 	t_dlist	*obj_list;
 	t_dlist	*light_list;
 	t_dlist	*gb_list;
+	t_dtree	*obj_tree;
 }				t_env;
 
 typedef struct	s_scene
@@ -76,6 +77,7 @@ typedef struct	s_scene
 	t_dlist	*obj_list;
 	t_dlist	*light_list;
 	double	ambient_intensity;
+	t_dtree	*obj_tree;
 	// t_intersection	get_nearest_intersection(*t_scene, t_ray);
 }				t_scene;
 
