@@ -4,10 +4,15 @@ CFLAGS = -Wall -Wextra -Werror
 # CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g
 DFLAGS = -MMD -MP
 
-SRCS = $(wildcard *.c)
-OBJ = $(SRCS:.c=.o)
+SRCDIR = srcs
+SRCS = $(wildcard $(SRCDIR)/*.c)
+OBJDIR = ./objs
 LIBFTDIR = ./libft
 LIBFT = $(LIBFTDIR)/libft.a
+
+OBJ    :=  $(patsubst $(SRCDIR)%, $(OBJDIR)%, $(SRCS:%.c=%.o))
+DEPENDS    :=  $(patsubst $(SRCDIR)%, $(OBJDIR)%, $(SRCS:%.c=%.d))
+
 
 # mac
 LIBXDIR = ./minilibx
@@ -22,12 +27,18 @@ LIBMLXFLAGS = -framework OpenGL -framework AppKit
 
 INCLUDES = -I./includes -I./libft -I./minilibx-linux
 
-DEPENDS    :=  $(SRCS:.c=.d)
 
 
 all: $(NAME)
 
+# $(OBJDIR)/%.o: %.c
+# $(OBJDIR)/%.o: $(SRCS)
+$(OBJDIR)/%.o: $(SRCDIR)/%.c
+	-mkdir -p $(@D) 
+	$(CC) $(CFLAGS) $(DFLAGS) $(INCLUDES) -c $< -o $@ 
+
 %.o: %.c
+	-mkdir -p $(@D) 
 	$(CC) $(CFLAGS) $(DFLAGS) $(INCLUDES) -c $< -o $@
 
 $(NAME): $(LIBFT) $(LIBMLX) $(OBJ)

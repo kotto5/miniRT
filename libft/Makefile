@@ -3,81 +3,90 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 DFLAGS = -MMD -MP
 
-M_SRCS = \
-ft_isalnum.c\
-ft_isalpha.c\
-ft_isascii.c\
-ft_isdigit.c\
-ft_isprint.c\
-ft_isdigit_str.c\
-ft_isdouble.c\
-ft_strlen.c\
-ft_memcpy.c\
-ft_memset.c\
-ft_bzero.c\
-ft_memmove.c\
-ft_strlcpy.c\
-ft_strlcat.c\
-ft_calloc.c\
-ft_atoi.c\
-ft_atof.c\
-ft_itoa.c\
-ft_memchr.c\
-ft_memcmp.c\
-ft_putchar_fd.c\
-ft_putendl_fd.c\
-ft_putnbr_fd.c\
-ft_putstr_fd.c\
-ft_split.c\
-ft_strchr.c\
-ft_strdup.c\
-ft_striteri.c\
-ft_strjoin.c\
-ft_strmapi.c\
-ft_strncmp.c\
-ft_strnstr.c\
-ft_strrchr.c\
-ft_strtrim.c\
-ft_substr.c\
-ft_tolower.c\
-ft_toupper.c\
-ft_print_system.c\
-ft_print_system2.c\
-ft_printf.c\
-ft_dlstnew.c\
-ft_dlsthead.c\
-ft_dlstlast.c\
-ft_dlstadd_back.c\
-ft_dlstadd_front.c\
-ft_dlstclear.c\
-ft_dlstdelone.c\
-ft_dlstsearch.c\
-ft_dlstdelete.c\
-ft_lstnew.c\
-ft_lstadd_front.c\
-ft_lstsize.c\
-ft_lstlast.c\
-ft_lstadd_back.c\
-ft_lstdelone.c\
-ft_lstclear.c\
-ft_lstiter.c\
-ft_lstmap.c\
-ft_strtol.c\
-ft_galloc.c\
-ft_treenew.c\
+SRCDIR = srcs
+SRCS = \
+$(SRCDIR)/ft_isalnum.c\
+$(SRCDIR)/ft_isalpha.c\
+$(SRCDIR)/ft_isascii.c\
+$(SRCDIR)/ft_isdigit.c\
+$(SRCDIR)/ft_isprint.c\
+$(SRCDIR)/ft_isdigit_str.c\
+$(SRCDIR)/ft_isdouble.c\
+$(SRCDIR)/ft_strlen.c\
+$(SRCDIR)/ft_memcpy.c\
+$(SRCDIR)/ft_memset.c\
+$(SRCDIR)/ft_bzero.c\
+$(SRCDIR)/ft_memmove.c\
+$(SRCDIR)/ft_strlcpy.c\
+$(SRCDIR)/ft_strlcat.c\
+$(SRCDIR)/ft_calloc.c\
+$(SRCDIR)/ft_atoi.c\
+$(SRCDIR)/ft_atof.c\
+$(SRCDIR)/ft_itoa.c\
+$(SRCDIR)/ft_memchr.c\
+$(SRCDIR)/ft_memcmp.c\
+$(SRCDIR)/ft_putchar_fd.c\
+$(SRCDIR)/ft_putendl_fd.c\
+$(SRCDIR)/ft_putnbr_fd.c\
+$(SRCDIR)/ft_putstr_fd.c\
+$(SRCDIR)/ft_split.c\
+$(SRCDIR)/ft_strchr.c\
+$(SRCDIR)/ft_strdup.c\
+$(SRCDIR)/ft_striteri.c\
+$(SRCDIR)/ft_strjoin.c\
+$(SRCDIR)/ft_strmapi.c\
+$(SRCDIR)/ft_strncmp.c\
+$(SRCDIR)/ft_strnstr.c\
+$(SRCDIR)/ft_strrchr.c\
+$(SRCDIR)/ft_strtrim.c\
+$(SRCDIR)/ft_substr.c\
+$(SRCDIR)/ft_tolower.c\
+$(SRCDIR)/ft_toupper.c\
+$(SRCDIR)/ft_print_system.c\
+$(SRCDIR)/ft_print_system2.c\
+$(SRCDIR)/ft_printf.c\
+$(SRCDIR)/ft_dlstnew.c\
+$(SRCDIR)/ft_dlsthead.c\
+$(SRCDIR)/ft_dlstlast.c\
+$(SRCDIR)/ft_dlstadd_back.c\
+$(SRCDIR)/ft_dlstadd_front.c\
+$(SRCDIR)/ft_dlstclear.c\
+$(SRCDIR)/ft_dlstdelone.c\
+$(SRCDIR)/ft_dlstsearch.c\
+$(SRCDIR)/ft_dlstdelete.c\
+$(SRCDIR)/ft_lstnew.c\
+$(SRCDIR)/ft_lstadd_front.c\
+$(SRCDIR)/ft_lstsize.c\
+$(SRCDIR)/ft_lstlast.c\
+$(SRCDIR)/ft_lstadd_back.c\
+$(SRCDIR)/ft_lstdelone.c\
+$(SRCDIR)/ft_lstclear.c\
+$(SRCDIR)/ft_lstiter.c\
+$(SRCDIR)/ft_lstmap.c\
+$(SRCDIR)/ft_strtol.c\
+$(SRCDIR)/ft_galloc.c\
+$(SRCDIR)/ft_treenew.c\
 
-M_OBJS = $(M_SRCS:%.c=%.o)
-B_OBJS = $(B_SRCS:%.c=%.o)
+# M_OBJS = $(M_SRCS:%.c=%.o)
+# B_OBJS = $(B_SRCS:%.c=%.o)
 
-OBJS = $(M_OBJS)
-ifdef WITH_BONUS
-OBJS += $(B_OBJS)
-endif
 
-DEPS = $(OBJS:%.o=%.d)
+# OBJS = $(M_OBJS)
+# ifdef WITH_BONUS
+# OBJS += $(B_OBJS)
+# endif
 
-%.o: %.c
-	$(CC) $(CFLAGS) $(DFLAGS) $(INCLUDES) -c $< -o $@
+# DEPS = $(OBJS:%.o=%.d)
+# OBJS    :=  $(patsubst $(SRCDIR)/%, $(OBJDIR)%, $(SRCS:%.c=%.o))
+OBJS    :=  $(patsubst $(SRCDIR)/%, ./, $(SRCS:%.c=%.o))
+DEPENDS    :=  $(patsubst $(SRCDIR)%, $(OBJDIR)%, $(SRCS:%.c=%.d))
+
+$(OBJDIR)/%.o: $(SRCDIR)/%.c
+	-mkdir -p $(@D) 
+	$(CC) $(CFLAGS) $(DFLAGS) $(INCLUDES) -c $< -o $@ 
+
+# %.o: %.c
+# 	$(CC) $(CFLAGS) $(DFLAGS) $(INCLUDES) -c $< -o $@
 
 all:$(NAME)
 
@@ -87,16 +96,13 @@ $(NAME):$(OBJS)
 .PHONY:
 	clean;
 
-bonus:
-	make WITH_BONUS=1
-
 clean:
-	rm -f $(M_OBJS) $(B_OBJS) $(DEPS)
+	rm -f $(OBJS) $(DEPENDS)
 
 fclean:clean
 	rm -f $(NAME)
 
 re:fclean all
 
--include $(DEPS)
+-include $(DEPENDS)
 

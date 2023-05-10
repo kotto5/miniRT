@@ -1,1 +1,0 @@
-SimpleShading.o: SimpleShading.c

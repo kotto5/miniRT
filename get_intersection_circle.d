@@ -1,1 +1,0 @@
-get_intersection_circle.o: get_intersection_circle.c
