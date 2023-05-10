@@ -27,12 +27,8 @@ LIBMLXFLAGS = -framework OpenGL -framework AppKit
 
 INCLUDES = -I./includes -I./libft -I./minilibx-linux
 
-
-
 all: $(NAME)
 
-# $(OBJDIR)/%.o: %.c
-# $(OBJDIR)/%.o: $(SRCS)
 $(OBJDIR)/%.o: $(SRCDIR)/%.c
 	-mkdir -p $(@D) 
 	$(CC) $(CFLAGS) $(DFLAGS) $(INCLUDES) -c $< -o $@ 

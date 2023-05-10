@@ -67,26 +67,14 @@ $(SRCDIR)/ft_strtol.c\
 $(SRCDIR)/ft_galloc.c\
 $(SRCDIR)/ft_treenew.c\
 
-# M_OBJS = $(M_SRCS:%.c=%.o)
-# B_OBJS = $(B_SRCS:%.c=%.o)
+INCLUDES = -Iincludes
+OBJDIR = obj
+OBJS		:= $(patsubst $(SRCDIR)/%, $(OBJDIR)/%, $(SRCS:%.c=%.o))
+DEPENDS		:= $(patsubst $(SRCDIR)%, $(OBJDIR)/%, $(SRCS:%.c=%.d))
 
-
-# OBJS = $(M_OBJS)
-# ifdef WITH_BONUS
-# OBJS += $(B_OBJS)
-# endif
-
-# DEPS = $(OBJS:%.o=%.d)
-# OBJS    :=  $(patsubst $(SRCDIR)/%, $(OBJDIR)%, $(SRCS:%.c=%.o))
-OBJS    :=  $(patsubst $(SRCDIR)/%, ./, $(SRCS:%.c=%.o))
-DEPENDS    :=  $(patsubst $(SRCDIR)%, $(OBJDIR)%, $(SRCS:%.c=%.d))
-
-$(OBJDIR)/%.o: $(SRCDIR)/%.c
+$(OBJDIR)/%.o: $(SRCDIR)/%.c 
 	-mkdir -p $(@D) 
 	$(CC) $(CFLAGS) $(DFLAGS) $(INCLUDES) -c $< -o $@ 
-
-# %.o: %.c
-# 	$(CC) $(CFLAGS) $(DFLAGS) $(INCLUDES) -c $< -o $@
 
 all:$(NAME)
 
