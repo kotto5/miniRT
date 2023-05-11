@@ -6,7 +6,7 @@
 /*   By: kakiba <kotto555555@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 11:31:23 by kakiba            #+#    #+#             */
-/*   Updated: 2023/02/09 15:15:04 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/05/10 19:00:15 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ int	ft_isdouble(char *str)
 	if (str[i] == '0')
 		if (str[i + 1] != '.' && str[i + 1] != '\0')
 			return (0);
-	if (len != 1 && str[len - 1] == '0')
-		return (0);
+	// if (len != 1 && str[len - 1] == '0') // 0終了を弾く。ありにする
+	// 	return (0);
 	while (i < len)
 	{
 		if (!ft_isdigit(str[i]) && str[i] != '.')

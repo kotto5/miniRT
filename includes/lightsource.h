@@ -20,7 +20,9 @@ t_parallel_light	*make_parallel_light_info(t_vec3 dir, double intensity, t_dlist
 t_lighting	lighting_at_point(t_vec3 position, t_lightsource *light);
 
 // bright_color_clc1.c
-t_img_color		to_img_color_from_b_color(t_bright_color b_color);
+// t_img_color		to_img_color_from_b_color(t_bright_color b_color);
+unsigned int	to_img_color_from_b_color(t_bright_color *b_color);
+
 t_bright_color	b_color_mult(t_bright_color b1, t_bright_color b2);
 t_bright_color	b_color_add(t_bright_color b1, t_bright_color b2);
 t_bright_color	b_color_get(double t, double r, double g, double b);

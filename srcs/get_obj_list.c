@@ -9,13 +9,10 @@ t_dlist	*get_obj_list(t_dlist **gb_list)
 
 	ft_dlstadd_back(&obj_list, ft_dlstnew(new_obj(O_CIRCLE, get_t_refrect(b_color_get(0, 0.1, 0.1, 0.1), b_color_get(0.0, 0.0, 0.69, 0.69), b_color_get(0, 0.30, 0.30, 0.30), 5, false, (t_bright_color){0.5, 0.5, 0.5, 0.5}),
 		make_circle_instance(get_vec(-4, 6, 10), 3, gb_list), gb_list)));
-
 	ft_dlstadd_back(&obj_list, ft_dlstnew(new_obj(O_CIRCLE, get_t_refrect(b_color_get(0, 0.1, 0.1, 0.1), b_color_get(0.0, 0.69, 0, 0.69), b_color_get(0, 0.30, 0.30, 0.30), 5, false, (t_bright_color){0.5, 0.5, 0.5, 0.5}),
 		make_circle_instance(get_vec(4, 6, 10), 3, gb_list), gb_list)));
-
 	ft_dlstadd_back(&obj_list, ft_dlstnew(new_obj(O_CIRCLE, get_t_refrect(b_color_get(0, 0.1, 0.1, 0.1), b_color_get(0.0, 0.0, 0.69, 0.0), b_color_get(0, 0.30, 0.30, 0.30), 5, false, (t_bright_color){0.5, 0.5, 0.5, 0.5}),
 		make_circle_instance(get_vec(-4, -2, 10), 3, gb_list), gb_list)));
-
 	ft_dlstadd_back(&obj_list, ft_dlstnew(new_obj(O_CIRCLE, get_t_refrect(b_color_get(0, 0.1, 0.1, 0.1), b_color_get(0.0, 0.69, 0.69, 0.0), b_color_get(0, 0.30, 0.30, 0.30), 5, false, (t_bright_color){0.5, 0.5, 0.5, 0.5}),
 		make_circle_instance(get_vec(4, -2, 10), 3, gb_list), gb_list)));
 

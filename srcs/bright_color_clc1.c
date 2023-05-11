@@ -78,30 +78,30 @@ t_bright_color	b_color_mult_constant(t_bright_color b1, double d)
 	return (b_color);
 }
 
-t_img_color	to_img_color_from_b_color(t_bright_color b_color)
+unsigned int	to_img_color_from_b_color(t_bright_color *b_color)
 {
-	// printf("%f %f %f %f\n", b_color.t, b_color.r, b_color.g, b_color.b);
-	t_img_color	img_color;
+	static t_img_color	img_color;
 
-
-	if (b_color.t > 1)
+	if (b_color == NULL)
+		return (BACK_COLOR);
+	if (b_color->t > 1)
 		img_color.trgb.t = 0xff;
 	else
-		img_color.trgb.t = (b_color.t * 0xff);
+		img_color.trgb.t = (b_color->t * 0xff);
 
-	if (b_color.r > 1)
+	if (b_color->r > 1)
 		img_color.trgb.r = 0xff;
 	else
-		img_color.trgb.r = (b_color.r * 0xff);
+		img_color.trgb.r = (b_color->r * 0xff);
 
-	if (b_color.g > 1)
+	if (b_color->g > 1)
 		img_color.trgb.g = 0xff;
 	else
-		img_color.trgb.g = (b_color.g * 0xff);
+		img_color.trgb.g = (b_color->g * 0xff);
 
-	if (b_color.b > 1)
+	if (b_color->b > 1)
 		img_color.trgb.b = 0xff;
 	else
-		img_color.trgb.b = (b_color.b * 0xff);
-	return (img_color);
+		img_color.trgb.b = (b_color->b * 0xff);
+	return (img_color.color);
 }

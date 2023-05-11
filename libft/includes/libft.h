@@ -6,7 +6,7 @@
 /*   By: kakiba <kotto555555@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/18 10:04:29 by kakiba            #+#    #+#             */
-/*   Updated: 2023/05/10 11:24:53 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/05/10 17:59:25 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <stdio.h>
 # include <stdarg.h>
 # include <stdbool.h>
+# include "get_next_line_bonus.h"
 
 # define FALSE 0
 # define TRUE 1

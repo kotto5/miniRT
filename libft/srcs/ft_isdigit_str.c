@@ -6,7 +6,7 @@
 /*   By: kakiba <kotto555555@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 11:02:52 by kakiba            #+#    #+#             */
-/*   Updated: 2023/01/19 11:28:01 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/05/11 14:45:33 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ int	ft_isdigit_str(char *str, size_t sign_allowable)
 		return (0);
 	i += nums_of_sign;
 	start_of_digit = str[i];
-	if (start_of_digit == '0')
+	// if (start_of_digit == '0')
+	if (start_of_digit == '0' && str[i + 1] != '\0')
 		return (0);
 	while (i < len)
 	{

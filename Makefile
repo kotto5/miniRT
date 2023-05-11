@@ -25,7 +25,7 @@ LIBMLXFLAGS = -framework OpenGL -framework AppKit
 # LIBMLXFLAGS = -lXext -lX11
 # CFLAGS += -lm
 
-INCLUDES = -I./includes -I./libft -I./minilibx-linux
+INCLUDES = -I./includes -I./libft/includes -I./minilibx-linux
 
 all: $(NAME)
 
