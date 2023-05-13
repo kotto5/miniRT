@@ -20,14 +20,14 @@ size_t	get_size_double_ptr(char **ptr)
 void	print_argv(char **argv)
 {
 	(void)argv;
-	// size_t	i = 0;
+	size_t	i = 0;
 
-	// printf("===== print argv =======\n");
-	// if (argv == NULL)
-	// 	printf("ARG is NULL!\n");
-	// while (argv[i])
-	// 	printf("[%s]:", argv[i++]);
-	// printf(" size[%ld] \n============\n", i);
+	printf("===== print argv =======\n");
+	if (argv == NULL)
+		printf("ARG is NULL!\n");
+	while (argv[i])
+		printf("[%s]:", argv[i++]);
+	printf(" size[%ld] \n============\n", i);
 }
 
 void	free_double_ptr(char **ptr){
@@ -260,13 +260,13 @@ void	*get_light_node(char **split)
 
 bool	is_valid_identifer(char *input, size_t *index)
 {
-	static const char	*identifers[] = {"A", "C", "L", "sp", "pl", "cy"};
+	static const char	*identifers[] = {"A", "C", "L", "sp", "pl", "cy", NULL};
 	size_t	i;
 
 	i = 0;
-	while (identifers[i])
+	while (i < sizeof(identifers) / sizeof(char *))
 	{
-		if (ft_strncmp(input, identifers[i], ft_strlen(identifers[i])) == 0)
+		if (ft_strncmp(input, identifers[i], ft_strlen(identifers[i]) + 1) == 0)
 		{
 			*index = i;
 			return (true);
@@ -302,8 +302,9 @@ int	parse_line(char *line, t_env *env)
 	void				*ret;
 	bool				is_valid;
 
+	// printf("A\n");
 	split = ft_split(line, ' ');
-	print_argv(split);
+	// print_argv(split);
 	if (split == NULL)
 		return (SUCCESS);
 	if (split[0] == NULL)
@@ -311,9 +312,12 @@ int	parse_line(char *line, t_env *env)
 		free (split);
 		return (SUCCESS);
 	}
+	// printf("2\n");
 	is_valid = is_valid_identifer(split[0], &index);
+	// printf("C\n");
 	if (is_valid)
 		ret = get_identifer_info(split, index);
+	// printf("B\n");
 	free_double_ptr(split);
 	if (is_valid == false || ret == NULL)
 		return (ERROR);
@@ -322,6 +326,7 @@ int	parse_line(char *line, t_env *env)
 		free (ret);
 		return (ERROR);
 	}
+	// printf("3\n");
 	if (index == 0)
 		env->am_light = ret;
 	else if (index == 1)
@@ -329,7 +334,11 @@ int	parse_line(char *line, t_env *env)
 	else if (index < 3)
 		ft_dlstadd_back(&env->light_list, ret);
 	else
+	{
+		// printf("OBJ ADD!\n");
 		ft_dlstadd_back(&env->obj_list, ret);
+	}
+	// printf("4\n");
 	return (SUCCESS);
 }
 
@@ -354,6 +363,7 @@ int	parse_file(t_env *env, char *file)
 		// if (ft_strlen(line) && parse_line(line, env) == ERROR)
 		if (parse_line(line, env) == ERROR)
 			exit_error(SYNTAX);
+		printf("PARSED\n");
 		free (line);
 		i++;
 	}
@@ -382,6 +392,13 @@ int	main(int argc, char **argv)
 	// printf("SUCSESS!\n");
 	return (0);
 }
+
+// int	main(void)
+// {
+// 	return (ft_strncmp("1", "123", 4));
+// }
+
+
 
 // __attribute__((destructor)) static void destructor()
 // {

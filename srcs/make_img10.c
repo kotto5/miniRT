@@ -116,7 +116,8 @@ t_bright_color	*ray_trace(t_bright_color *b_color, t_scene *scene, t_ray *ray)
 	if (info.intersection.does_intersect)
 	{
 		node = scene->light_list;
-		*b_color = b_color_mult(info.obj->ref.am, *scene->am_light);
+		if (scene->am_light)
+			*b_color = b_color_mult(info.obj->ref.am, *scene->am_light);
 		while (node)
 		{
 			*b_color = b_color_add(*b_color, get_color_with_at(scene, &info, node->content, ray));
