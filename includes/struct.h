@@ -70,14 +70,15 @@ typedef struct	s_env
 	t_dlist	*light_list;
 	t_dlist	*gb_list;
 	t_dtree	*obj_tree;
+	t_bright_color	*am_light;
 }				t_env;
 
 typedef struct	s_scene
 {
-	t_dlist		*obj_list;
-	t_dlist		*light_list;
-	double		ambient_intensity;
-	t_dtree		*obj_tree;
+	t_dlist			*obj_list;
+	t_dlist			*light_list;
+	t_bright_color	*am_light;
+	t_dtree			*obj_tree;
 }				t_scene;
 
 // Rr = Ra + Rd + Rs

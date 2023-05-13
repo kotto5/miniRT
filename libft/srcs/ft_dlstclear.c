@@ -6,7 +6,7 @@
 /*   By: kakiba <kotto555555@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 15:20:14 by kakiba            #+#    #+#             */
-/*   Updated: 2022/12/10 15:30:34 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/05/12 16:33:26 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,12 @@ void	ft_dlstclear(t_dlist **lst, void (*del)(void*))
 		return ;
 	while (*lst)
 	{
-		ndptr = (*lst)-> next;
+		ndptr = (*lst)->next;
 		ft_dlstdelone(*lst, del);
 		*lst = ndptr;
 	}
-	lst = NULL;
+	*lst = NULL;
 }
+
+// lst = NULL;
+

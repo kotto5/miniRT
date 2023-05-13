@@ -136,7 +136,8 @@ int	*test_rect(t_env *env);
 // t_intersection_info	*get_nearest_intersection(t_scene *scene, t_ray *ray);
 int	get_nearest_intersection(t_intersection_info *info, t_scene *scene, t_ray *ray);
 t_dlist	*get_light_list(t_dlist **gb_list);
-t_bright_color	get_ref6(t_intersection intersection, t_reflect ref_info, t_lightsource *light, t_ray eye);
+// t_bright_color	get_ref6(t_intersection intersection, t_reflect ref_info, t_lightsource *light, t_ray eye);
+t_bright_color	get_ref6(t_intersection_info *info, t_lightsource *light, t_ray eye, t_scene *scene);
 t_dtree *get_obj_tree(t_env *env);
 void	print_time(int a);
 

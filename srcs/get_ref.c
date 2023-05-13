@@ -1,9 +1,10 @@
 #include "all.h"
 
-static t_bright_color	get_ambient_ref_double6(t_reflect ref, t_lighting lighting)
-{
-	return (b_color_mult(ref.am, lighting.intensity));
-}
+// static t_bright_color	get_ambient_ref_double6(t_reflect ref, t_lighting lighting)
+// static t_bright_color	get_ambient_ref_double6(t_reflect ref, t_bright_color am_light)
+// {
+// 	return (b_color_mult(ref.am, am_light));
+// }
 
 // deffuse refrection ... 乱反射。光がランダムな方向に分散して反射する
 // double	get_deffsuse_ref(double power, t_vec3 light_p, t_vec3 p, t_vec3 n, double di)
@@ -79,16 +80,17 @@ static t_bright_color	get_specular_ref6(t_lighting lighting, t_intersection inte
 // 半直線との交差判定の方法は　対象の形状ごとに異なる。
 // しかし、どの方法であっても、交差判定に結果として交点の位置や交点における法線方向がわかれば
 // 陰影の計算が可能である。
-t_bright_color	get_ref6(t_intersection intersection, t_reflect ref_info, t_lightsource *light, t_ray eye)
+// t_bright_color	get_ref6(t_intersection intersection, t_reflect ref_info, t_lightsource *light, t_ray eye)
+t_bright_color	get_ref6(t_intersection_info *info, t_lightsource *light, t_ray eye, t_scene *scene)
 {
+	(void)scene;
 	t_bright_color		ref;
+	const t_lighting	lighting = light->lighting_at(info->intersection.position, light);
 
-	t_lighting		lighting = light->lighting_at(intersection.position, light);
-
-	ref = b_color_get(0, 0, 0, 0);
-	ref = b_color_add(ref, get_ambient_ref_double6(ref_info, lighting));
-	ref = b_color_add(ref, get_deffsuse_ref6(intersection, ref_info, lighting));
-	ref = b_color_add(ref, get_specular_ref6(lighting, intersection, eye, ref_info));
+	ft_memset(&ref, 0, sizeof(t_bright_color));
+	// ref = b_color_add(ref, get_ambient_ref_double6(info->obj->ref, *scene->am_light));
+	ref = b_color_add(ref, get_deffsuse_ref6(info->intersection, info->obj->ref, lighting));
+	ref = b_color_add(ref, get_specular_ref6(lighting, info->intersection, eye, info->obj->ref));
 	if (ref.r > 1.0)
 	{
 		// printf("ref is over 1   ref:%f", ref.r);

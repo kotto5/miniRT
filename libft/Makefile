@@ -68,6 +68,7 @@ $(SRCDIR)/ft_galloc.c\
 $(SRCDIR)/ft_treenew.c\
 $(SRCDIR)/get_next_line_bonus.c\
 $(SRCDIR)/get_next_line_utils_bonus.c\
+$(SRCDIR)/gc_malloc.c\
 
 INCLUDES = -Iincludes
 OBJDIR = obj

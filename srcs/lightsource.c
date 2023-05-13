@@ -2,11 +2,15 @@
 
 // t_point_light	*make_point_light_info(t_vec3 position, t_img_color intensity, t_dlist **gb_list)
 // t_point_light	*make_point_light_info(t_vec3 position, double intensity, t_dlist **gb_list)
-t_point_light	*make_point_light_info(t_vec3 position, t_bright_color intensity, t_dlist **gb_list)
+// t_point_light	*make_point_light_info(t_vec3 position, t_bright_color intensity, t_dlist **gb_list)
+t_point_light	*make_point_light_info(t_vec3 position, t_bright_color intensity)
 {
 
 	t_point_light	*light;
-	light = ft_galloc(sizeof(t_point_light), gb_list);
+	// light = ft_galloc(sizeof(t_point_light), gb_list);
+	light = gc_malloc(sizeof(t_point_light));
+	if (light == NULL)
+		return (NULL);
 	light->intensity = intensity;
 	light->pos = position;
 	return (light);
@@ -76,13 +80,14 @@ t_parallel_light	*make_parallel_light_info(t_vec3 dir, double intensity, t_dlist
 	return (light);
 }
 
-t_lightsource	*new_light(t_lighttype type, void *light_info, t_dlist **gb_list)
+// t_lightsource	*new_light(t_lighttype type, void *light_info, t_dlist **gb_list)
+t_lightsource	*new_light(t_lighttype type, void *light_info)
 {
 	t_lightsource	*light;
 
 	if (light_info == NULL)
 		return (NULL);
-	light = ft_galloc(sizeof(t_lightsource), gb_list);
+	light = gc_malloc(sizeof(t_lightsource));
 	if (light == NULL)
 		return (NULL);
 	light->type = type;

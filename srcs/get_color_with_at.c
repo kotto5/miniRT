@@ -34,19 +34,15 @@ bool	do_through_other_obj_by_light(t_dlist *obj_list, t_lightsource *light, t_in
 t_bright_color	get_color_with_at(t_scene *scene, t_intersection_info *info, t_lightsource *light, t_ray *ray)
 {
 	t_bright_color	ref;
-	// t_lighting		lighting;
-	// t_ray			reflect_ray;
-	// t_bright_color	*ret;
 	ft_memset(&ref, 0, sizeof(t_bright_color));
 
 	if (info->intersection.does_intersect == true)
 	{
 		if (do_through_other_obj_by_light(scene->obj_list, light, info))
-		{
 			return (ref);
-		}
 		else
-			ref = get_ref6(info->intersection, info->obj->ref, light, *ray);
+			ref = get_ref6(info, light, *ray, scene);
+			// ref = get_ref6(info->intersection, info->obj->ref, light, *ray);
 	}
 	return (ref);
 }

@@ -73,6 +73,7 @@ t_bright_color	*ray_trace_ref(t_scene *scene, t_ray *ray, size_t times)
 	if (info.intersection.does_intersect)
 	{
 		b_color = ft_calloc(sizeof(t_bright_color), 1);
+		*b_color = b_color_mult(info.obj->ref.am, *scene->am_light);
 		node = scene->light_list;
 		while (node)
 		{
@@ -115,6 +116,7 @@ t_bright_color	*ray_trace(t_bright_color *b_color, t_scene *scene, t_ray *ray)
 	if (info.intersection.does_intersect)
 	{
 		node = scene->light_list;
+		*b_color = b_color_mult(info.obj->ref.am, *scene->am_light);
 		while (node)
 		{
 			*b_color = b_color_add(*b_color, get_color_with_at(scene, &info, node->content, ray));
@@ -166,6 +168,7 @@ int	*make_img6(t_env *env)
 
 	scene.obj_list = env->obj_list;
 	scene.light_list = env->light_list;
+	scene.am_light = env->am_light;
 	print_time(3);
 	while (y < WIN_HEIGHT)
 	{
