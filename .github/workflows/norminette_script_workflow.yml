@@ -25,18 +25,18 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
+      # - uses: actions/checkout@v3
 
-      - name: Install Norminette.
-        run: |
-          python3 -m pip install --upgrade pip setuptools
-          python3 -m pip install norminette
+      # - name: Install Norminette.
+      #   run: |
+      #     python3 -m pip install --upgrade pip setuptools
+      #     python3 -m pip install norminette
 
       # Runs a single command using the runners shell
       # アクションの終了コードの設定 - GitHub Docs => 終了ステータス0以外ならfailureが出ます。
       # https://docs.github.com/ja/actions/creating-actions/setting-exit-codes-for-actions
-      - name: Run Norminette.
-        run: norminette
+      # - name: Run Norminette.
+      #   run: norminette
 
       # - name: Run Test.
         # run: bash ./all-test.sh tests

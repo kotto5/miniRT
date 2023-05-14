@@ -65,7 +65,7 @@ t_bright_color	*ray_trace_ref(t_scene *scene, t_ray *ray, size_t times)
 	t_intersection_info	info;
 	t_dlist				*node;
 
-	if (times > 4)
+	if (times > 6)
 		return (NULL);
 	b_color = NULL;
 	get_nearest_intersection(&info, scene, ray);
