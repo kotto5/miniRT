@@ -176,8 +176,8 @@ int	*make_img6(t_env *env)
 		x = 0;
 		while (x < WIN_WIDTH)
 		{
-			env->eye.dir = vec_normilize(vec_sub(get_screen_vec(x, y, env->eye), env->eye.pos));
-			ray_trace(&ref_color, &scene, &env->eye);
+			env->eye->dir = vec_normilize(vec_sub(get_screen_vec(x, y, *env->eye), env->eye->pos));
+			ray_trace(&ref_color, &scene, env->eye);
 			mlx_put_to_img(&env->img, x, y, to_img_color_from_b_color(&ref_color));
 			x++;
 		}

@@ -6,7 +6,7 @@
 /*   By: kakiba <kotto555555@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 22:54:52 by kakiba            #+#    #+#             */
-/*   Updated: 2023/05/02 23:17:17 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/05/13 22:01:21 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,12 @@ int	mouse_event(int button, int x, int y, void *data)
 	if (button == 1)
 	{
 		printf("button is %d\n", button);
-		env->eye.pos.z += 0.1;
+		env->eye->pos.z += 0.1;
 	}
 	else if (button == 2)
 	{
 		printf("button is %d\n", button);
-		env->eye.pos.z -= 0.1;
+		env->eye->pos.z -= 0.1;
 	}
 	else
 	{
@@ -75,17 +75,17 @@ int	key_event(int key, void *data)
 	t_env	*env = data;
 
 	if (key == ALLOW_DOWN)
-		env->eye.pos.y += 0.1;
+		env->eye->pos.y += 0.1;
 	else if (key == ALLOW_UP)
-		env->eye.pos.y -= 0.1;
+		env->eye->pos.y -= 0.1;
 	else if (key == ALLOW_LEFT)
-		env->eye.pos.x += 0.1;
+		env->eye->pos.x += 0.1;
 	else if (key == ALLOW_RIGHT)
-		env->eye.pos.x -= 0.1;
+		env->eye->pos.x -= 0.1;
 	else if (key == KEY_Z)
-		env->eye.pos.z += 0.1;
+		env->eye->pos.z += 0.1;
 	else if (key == KEY_X)
-		env->eye.pos.z -= 0.1;
+		env->eye->pos.z -= 0.1;
 	else if (key == KEY_ESC)
 		exit_proc(0, &env->gb_list);
 	else

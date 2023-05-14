@@ -21,9 +21,9 @@ int	*test_rect(t_env *env)
 		x = 0;
 		while (x < WIN_WIDTH)
 		{
-			vec_win = get_screen_vec(x, y, env->eye);
-			env->eye.dir = vec_normilize(vec_sub(vec_win, env->eye.pos));
-			info = obj->get_intersection(env->eye, obj);
+			vec_win = get_screen_vec(x, y, *env->eye);
+			env->eye->dir = vec_normilize(vec_sub(vec_win, env->eye->pos));
+			info = obj->get_intersection(*env->eye, obj);
 			// info = get_nearest_intersection(&scene, &env->eye);
 			if (info.does_intersect)
 				color.color = 0xffa0ff;

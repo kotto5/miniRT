@@ -142,33 +142,33 @@
 // }
 
 
-// // 鏡面ハウス
-// t_dlist	*get_obj_list(t_dlist **gb_list)
-// {
-// 	t_dlist			*obj_list;
+// 鏡面ハウス
+t_dlist	*get_obj_list(void)
+{
+	t_dlist			*obj_list;
 
-// 	obj_list = NULL;
+	obj_list = NULL;
 
-// 	ft_dlstadd_back(&obj_list, ft_dlstnew(new_obj(O_CIRCLE, get_t_refrect(b_color_get(0, 0, 0, 0), b_color_get(0, 0, 0, 0.0), b_color_get(0, 0, 0, 0), 5, true, (t_bright_color){1.0, 1.0, 1.0, 1.0}),
-// 		make_circle_instance(get_vec(-0.25, -0.5, 1), 0.5, gb_list), gb_list)));
+	ft_dlstadd_back(&obj_list, ft_dlstnew(new_obj(O_CIRCLE, get_t_refrect(b_color_get(0, 0, 0, 0), b_color_get(0, 0, 0, 0.0), b_color_get(0, 0, 0, 0), 5, true, (t_bright_color){1.0, 1.0, 1.0, 1.0}),
+		make_circle_instance(get_vec(-0.25, -0.5, 1), 0.5))));
 
-// 	ft_dlstadd_back(&obj_list, ft_dlstnew(new_obj(O_PLANE, get_t_refrect(b_color_get(0, 0.0, 0.0, 0.0), b_color_get(0.0,0,0,0), b_color_get(0, 0.0, 0.0, 0.0), 1, true, (t_bright_color){0,1,1,1}),
-// 		make_plane_instance(vec_normilize(get_vec(0, 1, 0)), get_vec(0, -1, 0),  gb_list), gb_list)));
+	ft_dlstadd_back(&obj_list, ft_dlstnew(new_obj(O_PLANE, get_t_refrect(b_color_get(0, 0.0, 0.0, 0.0), b_color_get(0.0,0,0,0), b_color_get(0, 0.0, 0.0, 0.0), 1, true, (t_bright_color){0,1,1,1}),
+		make_plane_instance(vec_normilize(get_vec(0, 1, 0)), get_vec(0, -1, 0)))));
 
-// 	ft_dlstadd_back(&obj_list, ft_dlstnew(new_obj(O_PLANE, get_t_refrect(b_color_get(0, 0.0, 0.0, 0.0), b_color_get(0.0, 1, 1, 1), b_color_get(0, 0.0, 0.0, 0.0), 1, true, (t_bright_color){0, 1, 1, 1}),
-// 		make_plane_instance(vec_normilize(get_vec(0, -1, 0)), get_vec(0, 1, 0),  gb_list), gb_list)));
+	ft_dlstadd_back(&obj_list, ft_dlstnew(new_obj(O_PLANE, get_t_refrect(b_color_get(0, 0.0, 0.0, 0.0), b_color_get(0.0, 1, 1, 1), b_color_get(0, 0.0, 0.0, 0.0), 1, true, (t_bright_color){0, 1, 1, 1}),
+		make_plane_instance(vec_normilize(get_vec(0, -1, 0)), get_vec(0, 1, 0)))));
 
-// 	ft_dlstadd_back(&obj_list, ft_dlstnew(new_obj(O_PLANE, get_t_refrect(b_color_get(0, 0.0, 0.0, 0.0), b_color_get(0.0, 0, 1, 0), b_color_get(0, 0.0, 0.0, 0.0), 1, true, (t_bright_color){0,1,1,1}),
-// 		make_plane_instance(vec_normilize(get_vec(-1, 0, 0)), get_vec(1, 0, 0),  gb_list), gb_list)));
+	ft_dlstadd_back(&obj_list, ft_dlstnew(new_obj(O_PLANE, get_t_refrect(b_color_get(0, 0.0, 0.0, 0.0), b_color_get(0.0, 0, 1, 0), b_color_get(0, 0.0, 0.0, 0.0), 1, true, (t_bright_color){0,1,1,1}),
+		make_plane_instance(vec_normilize(get_vec(-1, 0, 0)), get_vec(1, 0, 0)))));
 
-// 	ft_dlstadd_back(&obj_list, ft_dlstnew(new_obj(O_PLANE, get_t_refrect(b_color_get(0, 0.0, 0.0, 0.0), b_color_get(0.0, 1, 0, 0), b_color_get(0, 0.0, 0.0, 0.0), 1, true, (t_bright_color){0,1,1,1}),
-// 		make_plane_instance(vec_normilize(get_vec(1, 0, 0)), get_vec(-1, 0, 0),  gb_list), gb_list)));
+	ft_dlstadd_back(&obj_list, ft_dlstnew(new_obj(O_PLANE, get_t_refrect(b_color_get(0, 0.0, 0.0, 0.0), b_color_get(0.0, 1, 0, 0), b_color_get(0, 0.0, 0.0, 0.0), 1, true, (t_bright_color){0,1,1,1}),
+		make_plane_instance(vec_normilize(get_vec(1, 0, 0)), get_vec(-1, 0, 0)))));
 
-// 	ft_dlstadd_back(&obj_list, ft_dlstnew(new_obj(O_PLANE, get_t_refrect(b_color_get(0,0,0,0.1), b_color_get(0,0,0,0), b_color_get(0, 0.0, 0.0, 0.0), 1, true, (t_bright_color){0,1,1,1}),
-// 		make_plane_instance(vec_normilize(get_vec(0, 0, -1)), get_vec(0, 0, 5),  gb_list), gb_list)));
+	ft_dlstadd_back(&obj_list, ft_dlstnew(new_obj(O_PLANE, get_t_refrect(b_color_get(0,0,0,0.1), b_color_get(0,0,0,0), b_color_get(0, 0.0, 0.0, 0.0), 1, true, (t_bright_color){0,1,1,1}),
+		make_plane_instance(vec_normilize(get_vec(0, 0, -1)), get_vec(0, 0, 5)))));
 
-// 	ft_dlstadd_back(&obj_list, ft_dlstnew(new_obj(O_PLANE, get_t_refrect(b_color_get(0,0,0,0.1), b_color_get(0,0,0,0), b_color_get(0, 0.0, 0.0, 0.0), 1, true, (t_bright_color){0,1,1,1}),
-// 		make_plane_instance(vec_normilize(get_vec(0, 0, 1)), get_vec(0, 0, -10),  gb_list), gb_list)));
+	ft_dlstadd_back(&obj_list, ft_dlstnew(new_obj(O_PLANE, get_t_refrect(b_color_get(0,0,0,0.1), b_color_get(0,0,0,0), b_color_get(0, 0.0, 0.0, 0.0), 1, true, (t_bright_color){0,1,1,1}),
+		make_plane_instance(vec_normilize(get_vec(0, 0, 1)), get_vec(0, 0, -10)))));
 
-// 	return (obj_list);
-// }
+	return (obj_list);
+}

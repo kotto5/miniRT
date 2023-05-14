@@ -3,6 +3,7 @@
 #define SYNTAX 3
 #define OPEN_ERROR 2
 #define CLOSE_ERROR 4
+#define ARG_INSUFFICIENT 5
 
 // size_t	get_size_double_ptr(void **ptr) これで怒られるのなんで？
 size_t	get_size_double_ptr(char **ptr)
@@ -312,12 +313,12 @@ int	parse_line(char *line, t_env *env)
 		free (split);
 		return (SUCCESS);
 	}
-	// printf("2\n");
+	printf("2\n");
 	is_valid = is_valid_identifer(split[0], &index);
-	// printf("C\n");
+	printf("C\n");
 	if (is_valid)
 		ret = get_identifer_info(split, index);
-	// printf("B\n");
+	printf("B\n");
 	free_double_ptr(split);
 	if (is_valid == false || ret == NULL)
 		return (ERROR);
@@ -326,19 +327,19 @@ int	parse_line(char *line, t_env *env)
 		free (ret);
 		return (ERROR);
 	}
-	// printf("3\n");
+	printf("3\n");
 	if (index == 0)
 		env->am_light = ret;
 	else if (index == 1)
-		env->eye = *(t_ray *)ret;
+		env->eye = ret;
 	else if (index < 3)
 		ft_dlstadd_back(&env->light_list, ret);
 	else
 	{
-		// printf("OBJ ADD!\n");
+		printf("OBJ ADD!\n");
 		ft_dlstadd_back(&env->obj_list, ret);
 	}
-	// printf("4\n");
+	printf("4\n");
 	return (SUCCESS);
 }
 
@@ -368,7 +369,9 @@ int	parse_file(t_env *env, char *file)
 		i++;
 	}
 	if (close(fd))
-		exit_error(CLOSE_ERROR);
+		exit_error(ERROR);
+	if (env->eye == NULL)
+		exit_error(ARG_INSUFFICIENT);
 	return (SUCCESS);
 }
 
@@ -379,6 +382,7 @@ int	main(int argc, char **argv)
 		exit_error(1);
 	ft_memset(&env, 0, sizeof(t_env));
 	parse_file(&env, argv[1]);
+	env.obj_list = get_obj_list();
 	env.mlx = mlx_init();
 	env.win = mlx_new_window(env.mlx, WIN_WIDTH, WIN_HEIGHT, "Hello world!");
 	set_event(&env);
