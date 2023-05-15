@@ -231,6 +231,7 @@ void	*get_camera(char **split)
 	if (ray == NULL)
 		return (NULL);
 	ray->pos = position;
+	ray->orientation = orientation;
 	ray->distance_to_window = get_distance_to_window(ft_atoi(split[3]));
 	return (ray);
 }
@@ -382,7 +383,7 @@ int	main(int argc, char **argv)
 		exit_error(1);
 	ft_memset(&env, 0, sizeof(t_env));
 	parse_file(&env, argv[1]);
-	env.obj_list = get_obj_list();
+	// env.obj_list = get_obj_list();
 	env.mlx = mlx_init();
 	env.win = mlx_new_window(env.mlx, WIN_WIDTH, WIN_HEIGHT, "Hello world!");
 	set_event(&env);

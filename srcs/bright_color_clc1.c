@@ -84,6 +84,10 @@ unsigned int	to_img_color_from_b_color(t_bright_color *b_color)
 
 	if (b_color == NULL)
 		return (BACK_COLOR);
+	if (isnan(b_color->t))
+	{
+		printf("OH!\n");
+	}
 	if (b_color->t > 1)
 		img_color.trgb.t = 0xff;
 	else

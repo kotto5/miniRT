@@ -124,7 +124,6 @@ typedef struct	s_cylinder
 	t_vec3		vertical;
 }				t_cylinder;
 
-
 typedef enum e_objtype{
 	O_CIRCLE,
 	O_SPHERE,
@@ -136,6 +135,7 @@ typedef enum e_objtype{
 struct	s_intersection
 {
 	bool	does_intersect;
+	bool	is_inside;
 	double	distance;
 	t_vec3	position;
 	t_vec3	vertical_dir;

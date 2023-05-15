@@ -19,14 +19,6 @@ static double	get_ray_t_to_cir(t_ray ray, t_circle *cir)
 		root = sqrt(root);
 		double	t1 = (-1.0 * B + root) / (2.0 * A);
 		double	t2 = (-1.0 * B - root) / (2.0 * A);
-		// if (t1 < 0)
-		// 	return (t2);
-		// else if (t2 < 0)
-		// 	return (t1);
-		// else if (t1 <= t2)
-		// 	return (t1);
-		// else
-		// 	return (t2);
 	if (t1 >= 0.0 && ((t2 < 0.0) || (t1 < t2)))
 		return (t1);
 	else
@@ -34,25 +26,53 @@ static double	get_ray_t_to_cir(t_ray ray, t_circle *cir)
 	}
 }
 
+// t_intersection	get_intersection_circle(const t_ray ray, const t_obj *obj)
+
 t_intersection	get_intersection_circle(const t_ray ray, const t_obj *obj)
 {
-	const t_circle		*info = obj->instance;
+	t_circle			*circle;
 	t_intersection		intersection;
 	double				t;
-	t_vec3				dt;
 
-	intersection.does_intersect = false; 
-	t = get_ray_t_to_cir(ray, (t_circle *)obj->instance);
+	circle = obj->instance;
+	ft_memset(&intersection, 0, sizeof(t_intersection));
+	t = get_ray_t_to_cir(ray, circle);
 	if (t < 0)
 		return (intersection);
 	intersection.does_intersect = true;
-	dt = vec_mult(ray.dir, t);
-	intersection.position = vec_add(ray.pos, dt);
-	intersection.distance = vec_mag(dt);
-	intersection.vertical_dir = vec_normilize(vec_sub(intersection.position, info->pos)); 
-
+	intersection.position = vec_add(ray.pos, vec_mult(ray.dir, t));
+	intersection.distance = t;
+	intersection.vertical_dir = vec_normilize(vec_sub(intersection.position, circle->pos)); 
+	if (vec_dot(intersection.vertical_dir, ray.dir) > 0)
+	{
+		intersection.vertical_dir = vec_mult(intersection.vertical_dir, -1);
+		intersection.is_inside = true;
+	}
 	return (intersection);
 }
+// {
+// 	t_circle			*circle;
+// 	t_intersection		intersection;
+// 	double				t;
+// 	t_vec3				dt;
+
+// 	circle = obj->instance;
+// 	ft_memset(&intersection, 0, sizeof(t_intersection));
+// 	t = get_ray_t_to_cir(ray, circle);
+// 	if (t < 0)
+// 		return (intersection);
+// 	intersection.does_intersect = true;
+// 	dt = vec_mult(ray.dir, t);
+// 	intersection.position = vec_add(ray.pos, dt);
+// 	intersection.distance = vec_mag(dt);
+// 	intersection.vertical_dir = vec_normilize(vec_sub(intersection.position, circle->pos)); 
+// 	if (vec_dot(intersection.vertical_dir, ray.dir) > 0)
+// 	{
+// 		intersection.vertical_dir = vec_mult(intersection.vertical_dir, -1);
+// 		intersection.is_inside = true;
+// 	}
+// 	return (intersection);
+// }
 
 static double	get_t_ray_plane(t_ray ray, t_plane *plane)
 {

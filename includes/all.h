@@ -14,8 +14,8 @@
 # include "obj.h"
 # include "lightsource.h"
 
-#define WIN_WIDTH 1500
-#define WIN_HEIGHT 800
+#define WIN_WIDTH 1800
+#define WIN_HEIGHT 100
 #define WIN_ORD 200
 
 // #define WIN_WIDTH 1800
@@ -140,6 +140,7 @@ t_dlist	*get_light_list(t_dlist **gb_list);
 t_bright_color	get_ref6(t_intersection_info *info, t_lightsource *light, t_ray eye, t_scene *scene);
 t_dtree *get_obj_tree(t_env *env);
 void	print_time(int a);
+double	abs_double(double d);
 
 int	*make_img6(t_env *env);
 

@@ -1,8 +1,8 @@
 NAME = miniRT
 CC = gcc
-# CFLAGS = -Wall -Wextra -Werror -g
-# CFLAGS = -Wall -Wextra -Werror -g -fsanitize=undefined
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g 
+# CFLAGS = -Wall -Wextra -Werror -g -Wshadow
+# CFLAGS = -Wall -Wextra -Werror
 # CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g
 DFLAGS = -MMD -MP
 

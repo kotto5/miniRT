@@ -170,7 +170,7 @@ int	*make_img6(t_env *env)
 	scene.obj_list = env->obj_list;
 	scene.light_list = env->light_list;
 	scene.am_light = env->am_light;
-	print_time(3);
+	// print_time(3);
 	while (y < WIN_HEIGHT)
 	{
 		x = 0;

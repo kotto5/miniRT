@@ -6,7 +6,7 @@
 /*   By: kakiba <kotto555555@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 07:50:29 by kakiba            #+#    #+#             */
-/*   Updated: 2023/05/10 17:53:12 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/05/15 10:08:42 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,4 +81,11 @@ void	print_time(int a)
 	else
 		printf("[%d]time %ld\n", a, now - before);
 	before = now;
+}
+
+double	abs_double(double d)
+{
+	if (d < 0)
+		return (d * -1.0);
+	return (d);
 }
