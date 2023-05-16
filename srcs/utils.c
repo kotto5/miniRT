@@ -6,7 +6,7 @@
 /*   By: kakiba <kotto555555@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 07:50:29 by kakiba            #+#    #+#             */
-/*   Updated: 2023/05/28 18:47:51 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/05/28 18:48:24 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ t_camera	*make_camera(double fov)
 
 	fov_rad = (double)fov * pi / 180.0;
 	double	h = tan(fov_rad / 2);
-	printf("[%f] \n", h);
+	printf("[%f] [%f] \n", h, fov);
 	// double	h = tan(fov / 2);
 	// double	viewport_height = 2.0;
 	// double	viewport_width = aspect * viewport_height;
@@ -156,6 +156,7 @@ t_ray	*get_ray(t_camera *camera, int x, int y)
 	ray->dir = vec_add(ray->dir, camera->lower_left_corner);
 	ray->dir = vec_sub(ray->dir, camera->origin);
 	// print_vec(ray->dir, "dir");
+	// printf("[%d]\n", ray->dir.x )
 	ray->dir = vec_normilize(ray->dir);
 	// print_vec(camera->lower_left_corner, "L F");
 	// print_vec(camera->horizontal, "hori");

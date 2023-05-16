@@ -21,14 +21,14 @@ size_t	get_size_double_ptr(char **ptr)
 void	print_argv(char **argv)
 {
 	(void)argv;
-	size_t	i = 0;
+	// size_t	i = 0;
 
-	printf("===== print argv =======\n");
-	if (argv == NULL)
-		printf("ARG is NULL!\n");
-	while (argv[i])
-		printf("[%s]:", argv[i++]);
-	printf(" size[%ld] \n============\n", i);
+	// printf("===== print argv =======\n");
+	// if (argv == NULL)
+	// 	printf("ARG is NULL!\n");
+	// while (argv[i])
+	// 	printf("[%s]:", argv[i++]);
+	// printf(" size[%ld] \n============\n", i);
 }
 
 void	free_double_ptr(char **ptr){
@@ -313,7 +313,7 @@ void	*get_identifer_info(char **split, size_t index)
 		get_cylinder_node,
 		};
 
-	printf("size func array [%zu] divide [%zu]\n", sizeof(get_func), sizeof(get_func) / sizeof(void *));
+	// printf("size func array [%zu] divide [%zu]\n", sizeof(get_func), sizeof(get_func) / sizeof(void *));
 	if (index >= sizeof(get_func) / sizeof(void *))
 		return (NULL);
 	else
@@ -337,12 +337,12 @@ int	parse_line(char *line, t_env *env)
 		free (split);
 		return (SUCCESS);
 	}
-	printf("2\n");
+	// printf("2\n");
 	is_valid = is_valid_identifer(split[0], &index);
-	printf("C\n");
+	// printf("C\n");
 	if (is_valid)
 		ret = get_identifer_info(split, index);
-	printf("B\n");
+	// printf("B\n");
 	free_double_ptr(split);
 	if (is_valid == false || ret == NULL)
 		return (ERROR);
@@ -351,7 +351,7 @@ int	parse_line(char *line, t_env *env)
 		free (ret);
 		return (ERROR);
 	}
-	printf("3\n");
+	// printf("3\n");
 	if (index == 0)
 		env->am_light = ret;
 	else if (index == 1)
@@ -361,10 +361,10 @@ int	parse_line(char *line, t_env *env)
 		ft_dlstadd_back(&env->light_list, ret);
 	else
 	{
-		printf("OBJ ADD!\n");
+		// printf("OBJ ADD!\n");
 		ft_dlstadd_back(&env->obj_list, ret);
 	}
-	printf("4\n");
+	// printf("4\n");
 	return (SUCCESS);
 }
 
@@ -385,11 +385,11 @@ int	parse_file(t_env *env, char *file)
 			break;
 		if (line[ft_strlen(line) - 1] == '\n')
 			line[ft_strlen(line) - 1] = '\0';
-		printf("line : %d\n", i);
+		// printf("line : %d\n", i);
 		// if (ft_strlen(line) && parse_line(line, env) == ERROR)
 		if (parse_line(line, env) == ERROR)
 			exit_error(SYNTAX);
-		printf("PARSED\n");
+		// printf("PARSED\n");
 		free (line);
 		i++;
 	}
