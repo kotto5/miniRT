@@ -60,6 +60,14 @@ typedef struct	s_mlx {
 	t_img	img;
 }				t_mlx;
 
+typedef struct	s_camera
+{
+	t_vec3	origin;
+	t_vec3	lower_left_corner;
+	t_vec3	horizontal;
+	t_vec3	vertical;
+}				t_camera;
+
 typedef struct	s_env
 {
 	void	*mlx;
@@ -71,6 +79,7 @@ typedef struct	s_env
 	t_dlist	*gb_list;
 	t_dtree	*obj_tree;
 	t_bright_color	*am_light;
+	t_camera	*camera;
 }				t_env;
 
 typedef struct	s_scene
@@ -98,8 +107,8 @@ typedef struct	s_reflect
 	t_bright_color	perfect_reflectance;
 }				t_reflect;
 
-typedef	struct s_circle t_circle;
-struct	s_circle
+typedef	struct s_sphere t_sphere;
+struct	s_sphere
 {
 	t_vec3		pos;
 	double		r;
@@ -125,7 +134,6 @@ typedef struct	s_cylinder
 }				t_cylinder;
 
 typedef enum e_objtype{
-	O_CIRCLE,
 	O_SPHERE,
 	O_PLANE,
 	O_CYLINDER,

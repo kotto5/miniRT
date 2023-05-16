@@ -5,25 +5,25 @@
 // 	t_dlist			*obj_list;
 
 // 	obj_list = NULL;
-// 	ft_dlstadd_back(&obj_list, ft_dlstnew(new_obj(O_CIRCLE, get_t_refrect(b_color_get(0, 0.1, 0.1, 0.1), b_color_get(0.0, 0.69, 0.0, 0.0), b_color_get(0, 0.30, 0.30, 0.30), 0),
-// 		make_circle_instance(get_vec(-1, 0, 5), 1, gb_list), gb_list)));
+// 	ft_dlstadd_back(&obj_list, ft_dlstnew(new_obj(O_SPHERE, get_t_refrect(b_color_get(0, 0.1, 0.1, 0.1), b_color_get(0.0, 0.69, 0.0, 0.0), b_color_get(0, 0.30, 0.30, 0.30), 0),
+// 		make_sphere_instance(get_vec(-1, 0, 5), 1, gb_list), gb_list)));
 
-// 	ft_dlstadd_back(&obj_list, ft_dlstnew(new_obj(O_CIRCLE, get_t_refrect(b_color_get(0, 0.1, 0.1, 0.1), b_color_get(0.0, 0.0, 0.69, 0.0), b_color_get(0, 0.30, 0.30, 0.30), 0),
-// 		make_circle_instance(get_vec(0, 0, 10), 1, gb_list), gb_list)));
+// 	ft_dlstadd_back(&obj_list, ft_dlstnew(new_obj(O_SPHERE, get_t_refrect(b_color_get(0, 0.1, 0.1, 0.1), b_color_get(0.0, 0.0, 0.69, 0.0), b_color_get(0, 0.30, 0.30, 0.30), 0),
+// 		make_sphere_instance(get_vec(0, 0, 10), 1, gb_list), gb_list)));
 
-// 	ft_dlstadd_back(&obj_list, ft_dlstnew(new_obj(O_CIRCLE, get_t_refrect(b_color_get(0, 0.1, 0.1, 0.1), b_color_get(0.0, 0.0, 0.0, 0.69), b_color_get(0, 0.30, 0.30, 0.30), 0),
-// 		make_circle_instance(get_vec(1, 0, 15), 1, gb_list), gb_list)));
+// 	ft_dlstadd_back(&obj_list, ft_dlstnew(new_obj(O_SPHERE, get_t_refrect(b_color_get(0, 0.1, 0.1, 0.1), b_color_get(0.0, 0.0, 0.0, 0.69), b_color_get(0, 0.30, 0.30, 0.30), 0),
+// 		make_sphere_instance(get_vec(1, 0, 15), 1, gb_list), gb_list)));
 
-// 	ft_dlstadd_back(&obj_list, ft_dlstnew(new_obj(O_CIRCLE, get_t_refrect(b_color_get(0, 0.1, 0.1, 0.1), b_color_get(0.0, 0.0, 0.69, 0.69), b_color_get(0, 0.30, 0.30, 0.30), 1),
-// 		make_circle_instance(get_vec(2, 0, 20), 1, gb_list), gb_list)));
+// 	ft_dlstadd_back(&obj_list, ft_dlstnew(new_obj(O_SPHERE, get_t_refrect(b_color_get(0, 0.1, 0.1, 0.1), b_color_get(0.0, 0.0, 0.69, 0.69), b_color_get(0, 0.30, 0.30, 0.30), 1),
+// 		make_sphere_instance(get_vec(2, 0, 20), 1, gb_list), gb_list)));
 
-// 	ft_dlstadd_back(&obj_list, ft_dlstnew(new_obj(O_CIRCLE, get_t_refrect(b_color_get(0, 0.1, 0.1, 0.1), b_color_get(0.0, 0.69, 0.0, 0.69), b_color_get(0, 0.30, 0.30, 0.30), 1),
-// 		make_circle_instance(get_vec(3, 0, 25), 1, gb_list), gb_list)));
+// 	ft_dlstadd_back(&obj_list, ft_dlstnew(new_obj(O_SPHERE, get_t_refrect(b_color_get(0, 0.1, 0.1, 0.1), b_color_get(0.0, 0.69, 0.0, 0.69), b_color_get(0, 0.30, 0.30, 0.30), 1),
+// 		make_sphere_instance(get_vec(3, 0, 25), 1, gb_list), gb_list)));
 
 // 	ft_dlstadd_back(&obj_list, ft_dlstnew(new_obj(O_PLANE, get_t_refrect(b_color_get(0, 0.2, 0.2, 0.2), b_color_get(0, 0.2, 0.2, 0.2), b_color_get(0, 0.2, 0.2, 0.2), 1),
 // 		make_plane_instance(vec_normilize(get_vec(0, 1, 0)), gb_list), gb_list)));
-// // 	ft_dlstadd_back(&obj_list, ft_dlstnew(circle3));
-// // 	ft_dlstadd_back(&obj_list, ft_dlstnew(circle3));
+// // 	ft_dlstadd_back(&obj_list, ft_dlstnew(sphere3));
+// // 	ft_dlstadd_back(&obj_list, ft_dlstnew(sphere3));
 // 	return (obj_list);
 // }
 
@@ -49,7 +49,7 @@
 
 // // deffuse refrection ... 乱反射。光がランダムな方向に分散して反射する
 // // double	get_deffsuse_ref(double power, t_vec3 light_p, t_vec3 p, t_vec3 n, double di)
-// // double	get_deffsuse_ref(t_point_light light, t_circle cir, t_vec3 point)
+// // double	get_deffsuse_ref(t_point_light light, t_sphere cir, t_vec3 point)
 // // 入射ベクトル incident は、計算の都合上、入射する方向の逆を取る。
 // // 光源をp 交点をa とすると、 p - a が入射ベクトル。
 
@@ -91,7 +91,7 @@
 // // 感覚 向けたい方向(BA なら A) の位置ベクトル(OA) に対して、始点にしたいベクトル(OB)を指定する。
 
 
-// // double	get_specular_ref(t_point_light light, t_circle cir, t_vec3 intersection, t_ray eye)
+// // double	get_specular_ref(t_point_light light, t_sphere cir, t_vec3 intersection, t_ray eye)
 // static t_bright_color	get_specular_ref6(t_lighting lighting, t_intersection intersection, t_ray eye, t_reflect ref_info)
 // {
 // 	// double	ref = 0;

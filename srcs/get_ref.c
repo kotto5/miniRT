@@ -8,7 +8,7 @@
 
 // deffuse refrection ... 乱反射。光がランダムな方向に分散して反射する
 // double	get_deffsuse_ref(double power, t_vec3 light_p, t_vec3 p, t_vec3 n, double di)
-// double	get_deffsuse_ref(t_point_light light, t_circle cir, t_vec3 point)
+// double	get_deffsuse_ref(t_point_light light, t_sphere cir, t_vec3 point)
 // 入射ベクトル incident は、計算の都合上、入射する方向の逆を取る。
 // 光源をp 交点をa とすると、 p - a が入射ベクトル。
 
@@ -48,7 +48,7 @@ static t_bright_color	get_deffsuse_ref6(t_intersection intersection, t_reflect r
 // 感覚 向けたい方向(BA なら A) の位置ベクトル(OA) に対して、始点にしたいベクトル(OB)を指定する。
 
 
-// double	get_specular_ref(t_point_light light, t_circle cir, t_vec3 intersection, t_ray eye)
+// double	get_specular_ref(t_point_light light, t_sphere cir, t_vec3 intersection, t_ray eye)
 static t_bright_color	get_specular_ref6(t_lighting lighting, t_intersection intersection, t_ray eye, t_reflect ref_info)
 {
 	// double	ref = 0;

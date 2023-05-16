@@ -6,7 +6,7 @@ t_dtree *get_obj_tree(t_env *env)
 	t_dtree	*tree;
 	t_vec3	pos;
 	t_obj		*obj;
-	t_circle	*circle;
+	t_sphere	*sphere;
 	double	average;
 	t_dlist	*node;
 	size_t	cnt_obj;
@@ -18,8 +18,8 @@ t_dtree *get_obj_tree(t_env *env)
 	while (node)
 	{
 		obj = node->content;
-		circle = obj->instance;
-		pos = circle->pos;
+		sphere = obj->instance;
+		pos = sphere->pos;
 		average += pos.y;
 		node = node->next;
 		cnt_obj++;

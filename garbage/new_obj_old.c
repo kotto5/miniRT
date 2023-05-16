@@ -1,10 +1,10 @@
 // #include "all.h"
 
-// t_circle	*make_circle_instance(t_vec3 origin, double r, t_dlist **gb_list)
+// t_sphere	*make_sphere_instance(t_vec3 origin, double r, t_dlist **gb_list)
 // {
-// 	t_circle	*instance;
+// 	t_sphere	*instance;
 
-// 	instance = ft_galloc(sizeof(t_circle), gb_list);
+// 	instance = ft_galloc(sizeof(t_sphere), gb_list);
 // 	if (instance == NULL)
 // 		return (NULL);
 // 	instance->r = r;
@@ -67,8 +67,8 @@
 // 	obj->ref = ref;
 // 	obj->type = type;
 // 	obj->instance = obj_info;
-// 	if (type == O_CIRCLE)
-// 		obj->get_intersection = get_intersection_circle;
+// 	if (type == O_SPHERE)
+// 		obj->get_intersection = get_intersection_sphere;
 // 	else if (type == O_PLANE)
 // 		obj->get_intersection = get_intersection_plane;
 // 	else if (type == O_CYLINDER)
