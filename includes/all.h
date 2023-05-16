@@ -14,7 +14,7 @@
 # include "obj.h"
 # include "lightsource.h"
 
-#define WIN_HEIGHT 1000
+#define WIN_HEIGHT 300
 #define ASPECT (double)(4.0 / 3.0)
 #define WIN_WIDTH (int)((double)WIN_HEIGHT * ASPECT)
 // #define WIN_ORD 200

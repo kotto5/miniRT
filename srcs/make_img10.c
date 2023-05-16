@@ -167,13 +167,14 @@ int	*make_img6(t_env *env)
 	int	x = 0;
 	int	y = 0;
 
+	printf("%d, \n", WIN_WIDTH);
 	scene.obj_list = env->obj_list;
 	scene.light_list = env->light_list;
 	scene.am_light = env->am_light;
 	// print_time(3);
-	// env->eye = malloc(sizeof(t_ray));
-	// env->eye->distance_to_window = 1.3;
-	// env->eye->pos = get_vec(0, 0, 0);
+	env->eye = malloc(sizeof(t_ray));
+	env->eye->distance_to_window = 1.3;
+	env->eye->pos = get_vec(0, 0, 0);
 	while (y < WIN_HEIGHT)
 	{
 		x = 0;

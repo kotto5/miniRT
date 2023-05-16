@@ -6,7 +6,7 @@
 /*   By: kakiba <kotto555555@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 07:50:29 by kakiba            #+#    #+#             */
-/*   Updated: 2023/05/16 11:49:46 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/05/16 12:22:25 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ t_vec3	get_screen_vec(int x, int y, t_ray eye)
 
 	win_x = (eye.pos.x - 1.0) + (2.0f * (double)x) / ((double)WIN_WIDTH - 1.0f) - 1.0f;
 	win_y = (eye.pos.y - 1.0) + (-2.0f * (double)y) / ((double)WIN_HEIGHT - 1.0f) + 1.0f;
-	win_z = eye.pos.z;
+	win_z = eye.pos.z + 0.3;
+
 	// win_z = eye.pos.z + eye.distance_to_window;
 	// win_z = eye.pos.z + 0.466308;
 	// win_z = eye.pos.z + 2.0;
@@ -140,7 +141,7 @@ t_camera	*make_camera(double fov)
 
 	fov_rad = (double)fov * pi / 180.0;
 	double	h = tan(fov_rad / 2);
-	printf("[%f] \n", h);
+	printf("[%f] [%f] \n", h, fov);
 	// double	h = tan(fov / 2);
 	// double	viewport_height = 2.0;
 	// double	viewport_width = aspect * viewport_height;
@@ -186,6 +187,7 @@ t_ray	*get_ray(t_camera *camera, int x, int y)
 	ray->dir = vec_add(ray->dir, camera->lower_left_corner);
 	ray->dir = vec_sub(ray->dir, camera->origin);
 	// print_vec(ray->dir, "dir");
+	// printf("[%d]\n", ray->dir.x )
 	ray->dir = vec_normilize(ray->dir);
 	// print_vec(camera->lower_left_corner, "L F");
 	// print_vec(camera->horizontal, "hori");
