@@ -166,6 +166,7 @@ int	color_img(t_env *env)
 	int	x = 0;
 	int	y = 0;
 
+	printf("%d, \n", WIN_WIDTH);
 	scene.obj_list = env->obj_list;
 	scene.light_list = env->light_list;
 	scene.am_light = env->am_light;
