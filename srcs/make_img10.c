@@ -171,12 +171,17 @@ int	*make_img6(t_env *env)
 	scene.light_list = env->light_list;
 	scene.am_light = env->am_light;
 	// print_time(3);
+	// env->eye = malloc(sizeof(t_ray));
+	// env->eye->distance_to_window = 1.3;
+	// env->eye->pos = get_vec(0, 0, 0);
 	while (y < WIN_HEIGHT)
 	{
 		x = 0;
 		while (x < WIN_WIDTH)
 		{
-			env->eye->dir = vec_normilize(vec_sub(get_screen_vec(x, y, *env->eye), env->eye->pos));
+			env->eye = get_ray(env->camera, x, y);
+			// env->eye->dir = vec_normilize(env->eye->dir);
+			// env->eye->dir = vec_normilize(vec_sub(get_screen_vec(x, y, *env->eye), env->eye->pos));
 			ray_trace(&ref_color, &scene, env->eye);
 			mlx_put_to_img(&env->img, x, y, to_img_color_from_b_color(&ref_color));
 			x++;

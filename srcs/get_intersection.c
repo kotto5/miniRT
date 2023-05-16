@@ -5,67 +5,107 @@
 // t が 二つの解を持ち、両方とも正ならば、ray は球を貫通していて、小さい方が手前、大きい方が奥側の貫通点である。
 // 二つの解のうち、大きい方を返すと、呼び出す関数は奥側の値を計算するので、誤解を恐れずいうと、暗く見える。
 
-static double	get_ray_t_to_cir(t_ray ray, t_circle *cir)
+// static double	get_ray_t_to_cir(t_ray ray, t_sphere *cir)
+// {
+// 	double	A = vec_mag_sq(ray.dir);
+// 	double	B = 2.0 * vec_dot(ray.dir, (vec_sub(ray.pos, cir->pos)));
+// 	double	C = vec_mag_sq(vec_sub(ray.pos, cir->pos)) - (cir->r * cir->r);
+// 	double	root = B * B - (4.0 * A * C);
+
+// 	if (A == 0 || root < 0)
+// 		return (-1);
+// 	else
+// 	{
+// 		root = sqrt(root);
+// 		double	t1 = (-1.0 * B + root) / (2.0 * A);
+// 		double	t2 = (-1.0 * B - root) / (2.0 * A);
+
+// 	// return (t2);
+// 		if (t2 < 0 || (t1 > 0 && t1 < t2))
+// 			return (t1);
+// 		else
+// 			return (t2);
+
+// 	// if (t1 < 0.0 && t2 < 0.0)
+// 	// 	return (t1);
+// 	// else if (t1 > 0.0 && ((t2 < 0.0) || (t1 < t2)))
+// 	// 	return (t1);
+// 	// else
+// 	// 	return (t2);
+// 	}
+
+// 	// if (t1 >= 0.0 && ((t2 < 0.0) || (t1 < t2)))
+// 	// 	return (t1);
+// 	// else
+// 	// 	return (t2);
+// 	// }
+// }
+
+static double	get_ray_t_to_cir(t_ray ray, t_sphere *cir)
 {
 	double	A = vec_mag_sq(ray.dir);
 	double	B = 2.0 * vec_dot(ray.dir, (vec_sub(ray.pos, cir->pos)));
 	double	C = vec_mag_sq(vec_sub(ray.pos, cir->pos)) - (cir->r * cir->r);
 	double	root = B * B - (4.0 * A * C);
 
-	if (A == 0 || root < 0)
+	if (A == 0.0 || root < 0.0)
 		return (-1);
 	else
 	{
 		root = sqrt(root);
 		double	t1 = (-1.0 * B + root) / (2.0 * A);
 		double	t2 = (-1.0 * B - root) / (2.0 * A);
-	if (t1 >= 0.0 && ((t2 < 0.0) || (t1 < t2)))
-		return (t1);
-	else
-		return (t2);
+		if (t2 < 0 || (t1 > 0 && t1 < t2))
+			return (t1);
+		else
+			return (t2);
 	}
 }
 
-// t_intersection	get_intersection_circle(const t_ray ray, const t_obj *obj)
-
-t_intersection	get_intersection_circle(const t_ray ray, const t_obj *obj)
+t_intersection	get_intersection_sphere(const t_ray ray, const t_obj *obj)
 {
-	t_circle			*circle;
+	t_sphere			*sphere;
 	t_intersection		intersection;
 	double				t;
 
-	circle = obj->instance;
+	sphere = obj->instance;
 	ft_memset(&intersection, 0, sizeof(t_intersection));
-	t = get_ray_t_to_cir(ray, circle);
+	t = get_ray_t_to_cir(ray, sphere);
 	if (t < 0)
 		return (intersection);
+	t_vec3	dt;
+	dt = vec_mult(ray.dir, t);
 	intersection.does_intersect = true;
-	intersection.position = vec_add(ray.pos, vec_mult(ray.dir, t));
-	intersection.distance = t;
-	intersection.vertical_dir = vec_normilize(vec_sub(intersection.position, circle->pos)); 
-	if (vec_dot(intersection.vertical_dir, ray.dir) > 0)
+	intersection.position = vec_add(ray.pos, dt);
+	intersection.distance = vec_mag(dt);
+	intersection.vertical_dir = vec_normilize(vec_sub(intersection.position, sphere->pos));
+	if (vec_dot(intersection.vertical_dir, ray.dir) > 0.0)
 	{
 		intersection.vertical_dir = vec_mult(intersection.vertical_dir, -1);
 		intersection.is_inside = true;
 	}
 	return (intersection);
 }
+	// intersection.position = vec_mult(ray.dir, t);
+	// if (abs_double(vec_mag_sq(vec_sub(intersection.position, sphere->pos)) - sphere->r * sphere->r) > 0.0000000001)
+		// print_vec(intersection.position, "pos!");
+
 // {
-// 	t_circle			*circle;
+// 	t_sphere			*sphere;
 // 	t_intersection		intersection;
 // 	double				t;
 // 	t_vec3				dt;
 
-// 	circle = obj->instance;
+// 	sphere = obj->instance;
 // 	ft_memset(&intersection, 0, sizeof(t_intersection));
-// 	t = get_ray_t_to_cir(ray, circle);
+// 	t = get_ray_t_to_cir(ray, sphere);
 // 	if (t < 0)
 // 		return (intersection);
 // 	intersection.does_intersect = true;
 // 	dt = vec_mult(ray.dir, t);
 // 	intersection.position = vec_add(ray.pos, dt);
 // 	intersection.distance = vec_mag(dt);
-// 	intersection.vertical_dir = vec_normilize(vec_sub(intersection.position, circle->pos)); 
+// 	intersection.vertical_dir = vec_normilize(vec_sub(intersection.position, sphere->pos)); 
 // 	if (vec_dot(intersection.vertical_dir, ray.dir) > 0)
 // 	{
 // 		intersection.vertical_dir = vec_mult(intersection.vertical_dir, -1);

@@ -30,7 +30,7 @@
 
 // // 球の法線ベクトルは、原点Cから球表面上の点Pのベクトル
 // // それを正規化したベクトルを返す。
-// t_vec3	get_cir_vertical_dir(t_circle cir, t_vec3 surface_p)
+// t_vec3	get_cir_vertical_dir(t_sphere cir, t_vec3 surface_p)
 // {
 // 	t_vec3	vertical_vec = vec_sub(surface_p, cir.pos);
 // 	return (vec_normilize(vertical_vec));

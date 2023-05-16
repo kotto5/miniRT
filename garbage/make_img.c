@@ -7,7 +7,7 @@
 // 			&img->line_length, &img->endian);
 // 	t_vec3		vec_win;
 // 	t_ray		eye;
-// 	t_circle	c1;
+// 	t_sphere	c1;
 // 	double		t;
 // 	t_vec3		n;
 // 	t_vec3		inter_p;

@@ -17,7 +17,7 @@
 
 // // deffuse refrection ... 乱反射。光がランダムな方向に分散して反射する
 // // double	get_deffsuse_ref(double power, t_vec3 light_p, t_vec3 p, t_vec3 n, double di)
-// // double	get_deffsuse_ref(t_point_light light, t_circle cir, t_vec3 point)
+// // double	get_deffsuse_ref(t_point_light light, t_sphere cir, t_vec3 point)
 // // 入射ベクトル incident は、計算の都合上、入射する方向の逆を取る。
 // // 光源をp 交点をa とすると、 p - a が入射ベクトル。
 // double	get_deffsuse_ref(t_intersection intersection, t_reflect ref, t_point_light light)
@@ -62,7 +62,7 @@
 // // 感覚 向けたい方向(BA なら A) の位置ベクトル(OA) に対して、始点にしたいベクトル(OB)を指定する。
 
 
-// // double	get_specular_ref(t_point_light light, t_circle cir, t_vec3 intersection, t_ray eye)
+// // double	get_specular_ref(t_point_light light, t_sphere cir, t_vec3 intersection, t_ray eye)
 // double	get_specular_ref(t_point_light light, t_intersection intersection, t_ray eye, t_reflect ref_info)
 // {
 // 	double	ref = 0;
@@ -120,13 +120,13 @@
 // 	t_vec3		vec_win;
 // 	t_img_color		color;
 // 	double		ref;
-// 	t_circle	*instance;
+// 	t_sphere	*instance;
 // 	t_lightsource	*light = new_light(L_POINT, make_point_light_info(get_vec(-5, 5, -5), 1, gb_list), gb_list);
 
-// 	t_obj	*circle;
-// 	// circle = new_obj(O_CIRCLE, make_circle_instance(get_vec(0, 0, 5), 1, get_t_refrect(0, 1, 0, 0.0), gb_list), gb_list);
-// 	circle = new_obj(O_CIRCLE, make_circle_instance(get_vec(0, 0, 5), 1, get_t_refrect(0.01, 0.69, 0.3, 2), gb_list), gb_list);
-// 	// circle = new_obj(O_CIRCLE, make_circle_instance(get_vec(0, 0, 5), 1, get_t_refrect(0, 1, 0, 0.0), gb_list), gb_list);
+// 	t_obj	*sphere;
+// 	// sphere = new_obj(O_SPHERE, make_sphere_instance(get_vec(0, 0, 5), 1, get_t_refrect(0, 1, 0, 0.0), gb_list), gb_list);
+// 	sphere = new_obj(O_SPHERE, make_sphere_instance(get_vec(0, 0, 5), 1, get_t_refrect(0.01, 0.69, 0.3, 2), gb_list), gb_list);
+// 	// sphere = new_obj(O_SPHERE, make_sphere_instance(get_vec(0, 0, 5), 1, get_t_refrect(0, 1, 0, 0.0), gb_list), gb_list);
 
 // 	int	x;
 // 	int	y = 0;
@@ -137,10 +137,10 @@
 // 		{
 // 			vec_win = get_screen_vec(x, y, eye);
 // 			eye.dir = vec_normilize(vec_sub(vec_win, eye.pos));
-// 			intersection = circle->get_intersection(eye, circle);
+// 			intersection = sphere->get_intersection(eye, sphere);
 // 			if (intersection.does_intersect == true)
 // 			{
-// 				instance = circle->instance;
+// 				instance = sphere->instance;
 // 				ref = get_ref2(intersection, instance->ref, light, eye);
 // 				mlx_put_to_img(img, x, y, make_white_color(ref * 255));
 // 			}

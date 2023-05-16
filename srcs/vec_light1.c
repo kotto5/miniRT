@@ -1,7 +1,7 @@
 // #include "all.h"
 
 // double	get_ambient_ref(double ref_am, double intensity);
-// double	get_specular_ref(t_point_light light, t_circle cir, t_vec3 point, t_ray eye);
+// double	get_specular_ref(t_point_light light, t_sphere cir, t_vec3 point, t_ray eye);
 
 // t_vec3	get_light_incident_dir(t_point_light light, t_vec3 p)
 // {
@@ -19,7 +19,7 @@
 // 	return (vec_mult(l_prime, 1.0 / vec_mag(l_prime)));
 // }
 
-// double	get_ref(t_point_light light, t_circle cir, t_ray eye, double t)
+// double	get_ref(t_point_light light, t_sphere cir, t_ray eye, double t)
 // {
 // 	double	ref;
 // 	t_vec3	intersection;
@@ -41,7 +41,7 @@
 // }
 
 // // double	get_deffsuse_ref(double power, t_vec3 light_p, t_vec3 p, t_vec3 n, double di)
-// double	get_deffsuse_ref(t_point_light light, t_circle cir, t_vec3 point)
+// double	get_deffsuse_ref(t_point_light light, t_sphere cir, t_vec3 point)
 // {
 // 	double	cos;
 
@@ -74,7 +74,7 @@
 // // 感覚 向けたい方向(BA なら A) の位置ベクトル(OA) に対して、始点にしたいベクトル(OB)を指定する。
 
 
-// double	get_specular_ref(t_point_light light, t_circle cir, t_vec3 intersection, t_ray eye)
+// double	get_specular_ref(t_point_light light, t_sphere cir, t_vec3 intersection, t_ray eye)
 // {
 
 // 	double	ref = 0;

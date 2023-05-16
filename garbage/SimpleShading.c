@@ -23,9 +23,9 @@
 // 	return (color.color);
 // }
 
-// t_circle	init_circle(t_vec3 origin, double r)
+// t_sphere	init_sphere(t_vec3 origin, double r)
 // {
-// 	t_circle	cir;
+// 	t_sphere	cir;
 
 // 	cir.pos = origin;
 // 	cir.r = r;
@@ -43,7 +43,7 @@
 // {
 // 	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel,
 // 			&img->line_length, &img->endian);
-// 	t_circle	c1 = init_circle(get_vec(0, 0, 5) , 1);
+// 	t_sphere	c1 = init_sphere(get_vec(0, 0, 5) , 1);
 // 	double		t;
 // 	t_vec3		vec_win;
 // 	t_lightsource	*light;

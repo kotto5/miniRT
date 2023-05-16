@@ -1,10 +1,10 @@
 #include "all.h"
 
-t_circle	*make_circle_instance(t_vec3 origin, double r)
+t_sphere	*make_sphere_instance(t_vec3 origin, double r)
 {
-	t_circle	*instance;
+	t_sphere	*instance;
 
-	instance = gc_malloc(sizeof(t_circle));
+	instance = gc_malloc(sizeof(t_sphere));
 	if (instance == NULL)
 		return (NULL);
 	instance->r = r;
@@ -66,8 +66,8 @@ t_obj	*new_obj(t_objtype type, t_reflect ref, void *obj_info)
 	obj->ref = ref;
 	obj->type = type;
 	obj->instance = obj_info;
-	if (type == O_CIRCLE)
-		obj->get_intersection = get_intersection_circle;
+	if (type == O_SPHERE)
+		obj->get_intersection = get_intersection_sphere;
 	else if (type == O_PLANE)
 		obj->get_intersection = get_intersection_plane;
 	else if (type == O_CYLINDER)

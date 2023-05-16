@@ -5,7 +5,7 @@
 // 	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel,
 // 			&img->line_length, &img->endian);
 // 	t_ray		eye;
-// 	t_circle	c1;
+// 	t_sphere	c1;
 // 	double		t;
 // 	t_vec3		vec_win;
 // 	t_vec3		inter_p;
@@ -62,8 +62,8 @@
 // 	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel,
 // 			&img->line_length, &img->endian);
 // 	t_ray		eye;
-// 	t_circle	c1;
-// 	t_circle	c2;
+// 	t_sphere	c1;
+// 	t_sphere	c2;
 // 	double		t;
 // 	t_vec3		vec_win;
 // 	t_vec3		inter_p;
@@ -135,7 +135,7 @@
 // C = (VecRayP - VecCirP)^2 - r^2
 // 交差している座標 p = VecRayP + t*VecRayDir
 
-// double	get_ray_t_to_cir(t_ray ray, t_circle cir)
+// double	get_ray_t_to_cir(t_ray ray, t_sphere cir)
 // {
 // 	double	A = vec_mag_sq(ray.dir);
 // 	double	B = 2.0 * vec_dot(ray.dir, (vec_sub(ray.pos, cir.pos)));
@@ -158,7 +158,7 @@
 // 	}
 // }
 
-// double	get_ray_t_to_cir(t_ray ray, t_circle cir)
+// double	get_ray_t_to_cir(t_ray ray, t_sphere cir)
 // {
 // 	double	A = vec_mag_sq(ray.dir);
 // 	double	B = 2 * vec_dot(ray.dir, vec_sub(ray.pos, cir.pos));

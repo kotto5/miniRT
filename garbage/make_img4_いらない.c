@@ -11,65 +11,65 @@
 // 	return (color.color);
 // }
 
-// // t_circle	*make_circle(t_vec3 origin, double r, t_dlist **gb_list)
+// // t_sphere	*make_sphere(t_vec3 origin, double r, t_dlist **gb_list)
 // // {
-// // 	t_circle	*circle;
+// // 	t_sphere	*sphere;
 
-// // 	circle = ft_galloc(sizeof(t_circle), gb_list);
-// // 	if (!circle)
+// // 	sphere = ft_galloc(sizeof(t_sphere), gb_list);
+// // 	if (!sphere)
 // // 		return (NULL);
-// // 	circle->pos = origin;
-// // 	circle->r = r;
-// // 	circle->ref.am = 0.01;
-// // 	circle->ref.di = 0.69;
-// // 	// circle->ref.di = 1.00;
-// // 	circle->ref.sp = 0.3;
-// // 	circle->ref.sp_shininess = 8;
-// // 	circle->vertical = get_cir_vertical_dir;
-// // 	return (circle);
+// // 	sphere->pos = origin;
+// // 	sphere->r = r;
+// // 	sphere->ref.am = 0.01;
+// // 	sphere->ref.di = 0.69;
+// // 	// sphere->ref.di = 1.00;
+// // 	sphere->ref.sp = 0.3;
+// // 	sphere->ref.sp_shininess = 8;
+// // 	sphere->vertical = get_cir_vertical_dir;
+// // 	return (sphere);
 // // }
 
-// // t_obj	*make_obj_circle(t_vec3 origin, double r, t_dlist **gb_list)
+// // t_obj	*make_obj_sphere(t_vec3 origin, double r, t_dlist **gb_list)
 // // {
 // // 	t_obj		*obj;
-// // 	t_circle	*circle;
+// // 	t_sphere	*sphere;
 
-// // 	circle = ft_galloc(sizeof(t_circle), gb_list);
-// // 	if (circle == NULL)
+// // 	sphere = ft_galloc(sizeof(t_sphere), gb_list);
+// // 	if (sphere == NULL)
 // // 		return (NULL);
-// // 	circle->pos = origin;
-// // 	circle->r = r;
-// // 	circle->ref.am = 0.01;
-// // 	circle->ref.di = 0.69;
-// // 	// circle->ref.di = 1.00;
-// // 	circle->ref.sp = 0.3;
-// // 	circle->ref.sp_shininess = 8;
-// // 	circle->vertical = get_cir_vertical_dir;
+// // 	sphere->pos = origin;
+// // 	sphere->r = r;
+// // 	sphere->ref.am = 0.01;
+// // 	sphere->ref.di = 0.69;
+// // 	// sphere->ref.di = 1.00;
+// // 	sphere->ref.sp = 0.3;
+// // 	sphere->ref.sp_shininess = 8;
+// // 	sphere->vertical = get_cir_vertical_dir;
 // // 	obj = ft_galloc(sizeof(t_obj), gb_list);
 // // 	if (obj == NULL)
 // // 		return (NULL);
-// // 	obj->type = O_CIRCLE;
-// // 	obj->instance = circle;
-// // 	obj->get_intersection = get_intersection_circle;
+// // 	obj->type = O_SPHERE;
+// // 	obj->instance = sphere;
+// // 	obj->get_intersection = get_intersection_sphere;
 // // 	return (obj);
 // // }
 
 // // int	*make_img3(t_img *img, t_ray eye, t_dlist **gb_list)
 // // {
-// // 	t_obj	*circle;
+// // 	t_obj	*sphere;
 // // 	// void	*instance;
 
 // // 	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel,
 // // 		&img->line_length, &img->endian);
-// // 	// instance = make_circle(get_vec3(0, 0, 5), 1, gb_list);
+// // 	// instance = make_sphere(get_vec3(0, 0, 5), 1, gb_list);
 // // 	// if (!instance)
 // // 	// 	return (NULL);
-// // 	// circle = new_obj(O_CIRCLE, instance, gb_list);
+// // 	// sphere = new_obj(O_SPHERE, instance, gb_list);
 
-// // 	circle = make_obj_circle(get_vec(0, 0, 5), 1, gb_list);
+// // 	sphere = make_obj_sphere(get_vec(0, 0, 5), 1, gb_list);
 // // 	t_intersection inter;
 
-// // 	inter = circle->get_intersection(eye, circle);
+// // 	inter = sphere->get_intersection(eye, sphere);
 // // 	printf("%f, ", inter.distance);
 // // 	print_vec(inter.position, "position");
 // // 	print_vec(inter.vertical_dir, "vertical");
@@ -115,7 +115,7 @@
 // // 	return (color);
 // // }
 
-// // t_img_color	get_specular_ref2(t_point_light light, t_circle cir, t_vec3 intersection, t_ray eye)
+// // t_img_color	get_specular_ref2(t_point_light light, t_sphere cir, t_vec3 intersection, t_ray eye)
 // // t_img_color	get_specular_ref2(t_point_light light, t_intersection intersection, t_ray eye, t_reflect ref_info)
 // // {
 // // 	t_img_color	ref;
@@ -143,7 +143,7 @@
 
 // // deffuse refrection ... 乱反射。光がランダムな方向に分散して反射する
 // // double	get_deffsuse_ref(double power, t_vec3 light_p, t_vec3 p, t_vec3 n, double di)
-// // double	get_deffsuse_ref(t_point_light light, t_circle cir, t_vec3 point)
+// // double	get_deffsuse_ref(t_point_light light, t_sphere cir, t_vec3 point)
 // // 入射ベクトル incident は、計算の都合上、入射する方向の逆を取る。
 // // 光源をp 交点をa とすると、 p - a が入射ベクトル。
 // double	get_deffsuse_ref(t_intersection intersection, t_reflect ref, t_point_light light)
@@ -188,7 +188,7 @@
 // // 感覚 向けたい方向(BA なら A) の位置ベクトル(OA) に対して、始点にしたいベクトル(OB)を指定する。
 
 
-// // double	get_specular_ref(t_point_light light, t_circle cir, t_vec3 intersection, t_ray eye)
+// // double	get_specular_ref(t_point_light light, t_sphere cir, t_vec3 intersection, t_ray eye)
 // double	get_specular_ref(t_point_light light, t_intersection intersection, t_ray eye, t_reflect ref_info)
 // {
 // 	double	ref = 0;
@@ -258,13 +258,13 @@
 // 	t_vec3		vec_win;
 // 	t_img_color		color;
 // 	double		ref;
-// 	t_circle	*instance;
+// 	t_sphere	*instance;
 // 	t_lightsource	*light = new_light(L_POINT, make_point_light_info(get_vec(-5, 5, -5), 1, gb_list), gb_list);
 
-// 	t_obj	*circle;
-// 	// circle = new_obj(O_CIRCLE, make_circle_instance(get_vec(0, 0, 5), 1, get_t_refrect(0, 1, 0, 0.0), gb_list), gb_list);
-// 	circle = new_obj(O_CIRCLE, make_circle_instance(get_vec(0, 0, 5), 1, get_t_refrect(0.01, 0.69, 0.3, 8), gb_list), gb_list);
-// 	// circle = new_obj(O_CIRCLE, make_circle_instance(get_vec(0, 0, 5), 1, get_t_refrect(0, 1, 0, 0.0), gb_list), gb_list);
+// 	t_obj	*sphere;
+// 	// sphere = new_obj(O_SPHERE, make_sphere_instance(get_vec(0, 0, 5), 1, get_t_refrect(0, 1, 0, 0.0), gb_list), gb_list);
+// 	sphere = new_obj(O_SPHERE, make_sphere_instance(get_vec(0, 0, 5), 1, get_t_refrect(0.01, 0.69, 0.3, 8), gb_list), gb_list);
+// 	// sphere = new_obj(O_SPHERE, make_sphere_instance(get_vec(0, 0, 5), 1, get_t_refrect(0, 1, 0, 0.0), gb_list), gb_list);
 // // get_t_refrect(0.1, 0.69, 0.3, 0.0), gb_list),
 // // gb_list);
 
@@ -277,11 +277,11 @@
 // 		{
 // 			vec_win = get_screen_vec(x, y, eye);
 // 			eye.dir = vec_normilize(vec_sub(vec_win, eye.pos));
-// 			intersection = circle->get_intersection(eye, circle);
+// 			intersection = sphere->get_intersection(eye, sphere);
 // 			if (intersection.does_intersect == true)
 // 			{
 // 				// printf("%f %f %fn", intersection.position.x, intersection.position.y, intersection.position.z);
-// 				instance = circle->instance;
+// 				instance = sphere->instance;
 // 				ref = get_ref2(intersection, instance->ref, light, eye);
 // 				mlx_put_to_img(img, x, y, make_white_color(ref * 255));
 // 			}
@@ -300,7 +300,7 @@
 // // 	t_vec3		vec_win;
 // // 	t_img_color		color;
 // // 	double		ref;
-// // 	t_circle	*instance;
+// // 	t_sphere	*instance;
 
 // // 	t_lightsource	*light;
 // // 	light = new_light(L_POINT, make_point_light_info(get_vec(-5, 5, -5), 
@@ -309,9 +309,9 @@
 // // 	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel,
 // // 		&img->line_length, &img->endian);
 
-// // 	t_obj	*circle;
-// // 	circle = new_obj(O_CIRCLE, 
-// // 				make_circle_instance( 
+// // 	t_obj	*sphere;
+// // 	sphere = new_obj(O_SPHERE, 
+// // 				make_sphere_instance( 
 // // 					get_vec(0, 0, 5), 1, 
 // // 					get_t_refrect(	get_img_color(0.1, 0.1, 0.1, 0.1), 
 // // 									get_img_color(0.69, 0.69, 0.69, 0.69), 
@@ -330,11 +330,11 @@
 // // 		{
 // // 			vec_win = get_screen_vec(x, y, eye);
 // // 			eye.dir = vec_normilize(vec_sub(vec_win, eye.pos));
-// // 			intersection = circle->get_intersection(eye, circle);
+// // 			intersection = sphere->get_intersection(eye, sphere);
 // // 			if (intersection.does_intersect == true)
 // // 			{
 // // 				printf("%f %f %fn", intersection.position.x, intersection.position.y, intersection.position.z);
-// // 				instance = circle->instance;
+// // 				instance = sphere->instance;
 // // 				ref = get_ref2(intersection, instance->ref, light, eye);
 // // 				color.trgb.t = ref * 100;
 // // 				color.trgb.r = ref * 100;

@@ -1,9 +1,9 @@
 #include "all.h"
-
 #define SYNTAX 3
 #define OPEN_ERROR 2
 #define CLOSE_ERROR 4
 #define ARG_INSUFFICIENT 5
+
 
 // size_t	get_size_double_ptr(void **ptr) これで怒られるのなんで？
 size_t	get_size_double_ptr(char **ptr)
@@ -124,7 +124,7 @@ void	*get_sphere_node(char **split)
 	t_vec3					position;
 	t_reflect				ref;
 	double					r;
-	t_circle				*circle;
+	t_sphere				*sphere;
 	t_obj					*obj;
 
 	if (get_size_double_ptr(split) != 4)
@@ -134,10 +134,10 @@ void	*get_sphere_node(char **split)
 	if (ft_isdouble(split[2]) == false)
 		return (NULL);
 	r = ft_atof(split[2]);
-	circle = make_circle_instance(position, r);
-	if (circle == NULL)
+	sphere = make_sphere_instance(position, r);
+	if (sphere == NULL)
 		return (NULL);
-	obj = new_obj(O_CIRCLE, ref, circle);
+	obj = new_obj(O_SPHERE, ref, sphere);
 	if (obj == NULL)
 		return (NULL);
 	return (ft_dlstnew(obj));
@@ -215,9 +215,30 @@ void	*get_ambient_lignt(char **split)
 	return (am_light);
 }
 
+// void	*get_camera(char **split)
+// {
+// 	t_ray		*ray;
+// 	t_vec3		position;
+// 	t_vec3		orientation;
+
+// 	if (get_size_double_ptr(split) != 4)
+// 		return (NULL);
+// 	if (ft_isdigit_str(split[3], 0) == false ||
+// 		get_vec_from_split(split[1], &position) ||
+// 		get_vec_from_split(split[2], &orientation))
+// 		return (NULL);
+// 	ray = malloc(sizeof(t_ray));
+// 	if (ray == NULL)
+// 		return (NULL);
+// 	ray->pos = position;
+// 	ray->orientation = vec_normilize(orientation);
+// 	ray->distance_to_window = get_distance_to_window(ft_atoi(split[3]));
+// 	return (ray);
+// }
+
 void	*get_camera(char **split)
 {
-	t_ray		*ray;
+	t_camera	*camera;
 	t_vec3		position;
 	t_vec3		orientation;
 
@@ -227,13 +248,15 @@ void	*get_camera(char **split)
 		get_vec_from_split(split[1], &position) ||
 		get_vec_from_split(split[2], &orientation))
 		return (NULL);
-	ray = malloc(sizeof(t_ray));
-	if (ray == NULL)
-		return (NULL);
-	ray->pos = position;
-	ray->orientation = orientation;
-	ray->distance_to_window = get_distance_to_window(ft_atoi(split[3]));
-	return (ray);
+	// ray = malloc(sizeof(t_ray));
+	// if (ray == NULL)
+	// 	return (NULL);
+	// ray->pos = position;
+	// ray->orientation = vec_normilize(orientation);
+	// ray->distance_to_window = get_distance_to_window(ft_atoi(split[3]));
+	// return (ray);
+	camera = make_camera(ft_atof(split[3]));
+	return (camera);
 }
 
 void	*get_light_node(char **split)
@@ -262,7 +285,7 @@ void	*get_light_node(char **split)
 
 bool	is_valid_identifer(char *input, size_t *index)
 {
-	static const char	*identifers[] = {"A", "C", "L", "sp", "pl", "cy", NULL};
+	static const char	*identifers[] = {"A", "C", "L", "sp", "pl", "cy"};
 	size_t	i;
 
 	i = 0;
@@ -332,7 +355,8 @@ int	parse_line(char *line, t_env *env)
 	if (index == 0)
 		env->am_light = ret;
 	else if (index == 1)
-		env->eye = ret;
+		env->camera = ret;
+		// env->eye = ret;
 	else if (index < 3)
 		ft_dlstadd_back(&env->light_list, ret);
 	else
@@ -371,8 +395,9 @@ int	parse_file(t_env *env, char *file)
 	}
 	if (close(fd))
 		exit_error(ERROR);
-	if (env->eye == NULL)
+	if (env->camera == NULL)
 		exit_error(ARG_INSUFFICIENT);
+	// if (env->eye == NULL)
 	return (SUCCESS);
 }
 
