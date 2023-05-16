@@ -109,50 +109,55 @@ t_bright_color	*ray_trace_ref(t_scene *scene, t_ray *ray, size_t times)
 t_bright_color	*ray_trace(t_bright_color *b_color, t_scene *scene, t_ray *ray)
 {
 	t_intersection_info	info;
-	t_dlist				*node;
+	// t_dlist				*node;
 
 	ft_memset(b_color, 0, sizeof(t_bright_color));
 	get_nearest_intersection(&info, scene, ray);
 	if (info.intersection.does_intersect)
 	{
-		node = scene->light_list;
-		if (scene->am_light)
-			*b_color = b_color_mult(info.obj->ref.am, *scene->am_light);
-		while (node)
-		{
-			*b_color = b_color_add(*b_color, get_color_with_at(scene, &info, node->content, ray));
-			// *b_color = b_color_add(*b_color, get_color_with_at(*ray, info.intersection, node->content, info.obj));
-			node = node->next;
-		}
-		if (info.obj->ref.use_perfect_reflectance)
-		{
-			t_ray			re_ray;
-			t_bright_color	*ret;
-			t_vec3			v;
-			t_vec3			v2;
-			double			dot_product;
-			v = vec_mult(ray->dir, -1);
-			v2 = vec_normilize(info.intersection.vertical_dir);
-			dot_product = vec_dot(v2, v);
-			if (dot_product < 0.0)
-				return (b_color);
-			re_ray.dir = vec_sub(vec_mult(v2, 2.0 * dot_product), v);
-			re_ray.pos = vec_add(info.intersection.position, vec_mult(re_ray.dir, EPSILON));
-			// ret = ray_trace_ref(scene, &re_ray, 0);
-			// if (ret)
-			// {
-			// 	*ret = b_color_mult(*ret, info.obj->ref.perfect_reflectance);
-			// 	*b_color = b_color_add(*b_color, *ret);
-			// }
+		// node = scene->light_list;
+		// if (scene->am_light)
+		// 	*b_color = b_color_mult(info.obj->ref.am, *scene->am_light);
+		// while (node)
+		// {
+		// 	*b_color = b_color_add(*b_color, get_color_with_at(scene, &info, node->content, ray));
+		// 	// *b_color = b_color_add(*b_color, get_color_with_at(*ray, info.intersection, node->content, info.obj));
+		// 	node = node->next;
+		// }
 
-			// return (ray_trace_ref(scene, &re_ray, 0));
-			ret = ray_trace_ref(scene, &re_ray, 0);
-			if (ret)
-			{
-				*ret = b_color_mult(*ret, info.obj->ref.perfect_reflectance);
-				*b_color = b_color_add(*b_color, *ret);
-			}
-		}
+		// if (info.obj->ref.use_perfect_reflectance)
+		// {
+		// 	t_ray			re_ray;
+		// 	t_bright_color	*ret;
+		// 	t_vec3			v;
+		// 	t_vec3			v2;
+		// 	double			dot_product;
+		// 	v = vec_mult(ray->dir, -1);
+		// 	v2 = vec_normilize(info.intersection.vertical_dir);
+		// 	dot_product = vec_dot(v2, v);
+		// 	if (dot_product < 0.0)
+		// 		return (b_color);
+		// 	re_ray.dir = vec_sub(vec_mult(v2, 2.0 * dot_product), v);
+		// 	re_ray.pos = vec_add(info.intersection.position, vec_mult(re_ray.dir, EPSILON));
+		// 	// ret = ray_trace_ref(scene, &re_ray, 0);
+		// 	// if (ret)
+		// 	// {
+		// 	// 	*ret = b_color_mult(*ret, info.obj->ref.perfect_reflectance);
+		// 	// 	*b_color = b_color_add(*b_color, *ret);
+		// 	// }
+
+		// 	// return (ray_trace_ref(scene, &re_ray, 0));
+		// 	ret = ray_trace_ref(scene, &re_ray, 0);
+		// 	if (ret)
+		// 	{
+		// 		*ret = b_color_mult(*ret, info.obj->ref.perfect_reflectance);
+		// 		*b_color = b_color_add(*b_color, *ret);
+		// 	}
+		// }
+		b_color->b = 1;
+		b_color->t = 0;
+		b_color->r = 1;
+		b_color->b = 1;
 	}
 	return (b_color);
 }

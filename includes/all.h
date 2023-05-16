@@ -29,6 +29,7 @@
 // # define BACK_COLOR 100*256*256+149*256+237
 // # define BACK_COLOR 0x00faa9fe
 # define BACK_COLOR 0x00000000
+# define OBJ_COLOR 0xa0af0f991
 
 
 
