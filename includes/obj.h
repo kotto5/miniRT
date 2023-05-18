@@ -8,7 +8,8 @@
 t_obj		*new_obj(t_objtype type, t_reflect ref, void *obj_info);
 t_sphere	*make_sphere_instance(t_vec3 origin, double r);
 t_plane		*make_plane_instance(t_vec3 vertical, t_vec3 point);
-t_cylinder	*make_cylinder_instance(t_vec3 vertical, t_vec3 point, double r);
+// t_cylinder	*make_cylinder_instance(t_vec3 vertical, t_vec3 point, double r);
+t_cylinder	*make_cylinder_instance(t_vec3 vertical, t_vec3 point, double r, double height);
 t_rect		*make_rect_instance(t_vec3 bound1, t_vec3 bound2);
 
 // t_reflect	get_t_refrect(double am, double di, double sp, double sp_shininess);

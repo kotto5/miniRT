@@ -14,12 +14,20 @@
 # include "obj.h"
 # include "lightsource.h"
 
-#define WIN_HEIGHT 300
-#define ASPECT (double)(4.0 / 3.0)
-#define WIN_WIDTH (int)((double)WIN_HEIGHT * ASPECT)
+// #define WIN_HEIGHT 900
+// #define ASPECT (double)(16.0 / 9.0)
+// #define WIN_WIDTH (int)((double)WIN_HEIGHT * ASPECT)
+
+#define WIN_WIDTH 1200
+// #define ASPECT (double)(9.0 / 16.0)
+#define ASPECT (double)(12.0/16.0)
+// #define ASPECT (double)(1)
+
+#define WIN_HEIGHT (int)((double)WIN_WIDTH * ASPECT)
+
 // #define WIN_ORD 200
 
-// #define WIN_WIDTH 1800
+// #define WIN_WIDTH 1200
 // #define WIN_HEIGHT 1200
 
 // # define WIN_WIDTH 712
@@ -151,36 +159,7 @@ t_ray	*get_ray(t_camera *camera, int x, int y);
 t_camera	*make_camera(double fov);
 
 int	*make_img6(t_env *env);
+int	parse_file(t_env *env, char *file);
+void	exit_error(int ret);
 
 #endif
-
-// class camera {
-// public:
-//   camera(
-//     double vfov, // 垂直方向の視野角 (弧度法)
-//     double aspect_ratio
-//   ) {
-//     auto theta = degrees_to_radians(vfov);
-//     auto h = tan(theta/2);
-//     auto viewport_height = 2.0 * h;
-//     auto viewport_width = aspect_ratio * viewport_height;
-
-//     auto focal_length = 1.0;
-
-//     origin = point3(0, 0, 0);
-//     horizontal = vec3(viewport_width, 0.0, 0.0);
-//     vertical = vec3(0.0, viewport_height, 0.0);
-//     lower_left_corner =
-//       origin - horizontal/2 - vertical/2 - vec3(0, 0, focal_length);
-//   }
-
-//   ray get_ray(double u, double v) const {
-//     return ray(origin, lower_left_corner + u*horizontal + v*vertical - origin);
-//   }
-
-// private:
-//   point3 origin;
-//   point3 lower_left_corner;
-//   vec3 horizontal;
-//   vec3 vertical;
-// };

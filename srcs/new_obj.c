@@ -24,7 +24,7 @@ t_plane	*make_plane_instance(t_vec3 vertical, t_vec3 point)
 	return (instance);
 }
 
-t_cylinder	*make_cylinder_instance(t_vec3 vertical, t_vec3 point, double r)
+t_cylinder	*make_cylinder_instance(t_vec3 vertical, t_vec3 point, double r, double height)
 {
 	t_cylinder	*instance;
 
@@ -34,6 +34,7 @@ t_cylinder	*make_cylinder_instance(t_vec3 vertical, t_vec3 point, double r)
 	instance->r = r;
 	instance->vertical = vertical;
 	instance->position = point;
+	instance->height = height;
 	return (instance);
 }
 
