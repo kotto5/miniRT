@@ -68,7 +68,7 @@ typedef struct	s_mlx {
 typedef struct	s_camera
 {
 	t_vec3	origin;
-	t_vec3	lower_left_corner;
+	t_vec3	higher_left_corner;
 	t_vec3	horizontal;
 	t_vec3	vertical;
 }				t_camera;
@@ -136,6 +136,7 @@ typedef struct	s_cylinder
 	double		r;
 	t_vec3		position;
 	t_vec3		vertical;
+	double		height;
 }				t_cylinder;
 
 typedef enum e_objtype{

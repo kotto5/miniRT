@@ -6,11 +6,42 @@
 /*   By: kakiba <kotto555555@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 11:07:28 by kakiba            #+#    #+#             */
-/*   Updated: 2023/05/14 18:33:28 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/05/17 18:46:42 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "all.h"
+
+
+
+int	main(int argc, char **argv)
+{
+	t_env	env;
+
+	if (argc != 2)
+		exit_error(1);
+	(void) argc;
+	(void) argv;
+	// argv = malloc(sizeof(char *) * 3);
+	// argv[0] = ft_strdup("file");
+	// argv[1] = ft_strdup("/Users/kakiba/AAproject/miniRT/inputfiles/file_case6.rt");
+	// argv[2] = NULL;
+	ft_memset(&env, 0, sizeof(t_env));
+	parse_file(&env, argv[1]);
+	// // env.obj_list = get_obj_list();
+	env.mlx = mlx_init();
+	env.win = mlx_new_window(env.mlx, WIN_WIDTH, WIN_HEIGHT, "Hello world!");
+	// set_event(&env);
+	env.img.img = mlx_new_image(env.mlx, WIN_WIDTH, WIN_HEIGHT);
+	make_img6(&env);
+	mlx_put_image_to_window(env.mlx, env.win, env.img.img, 0, 0);
+	printf("PUT IMAGE TO WINDOW\n");
+	mlx_loop(env.mlx);
+
+	// gc_clear();
+	// printf("SUCSESS!\n");
+	return (0);
+}
 
 // 全体で2000ms くらい
 // int	main(int argc, char *argv[])

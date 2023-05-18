@@ -113,12 +113,6 @@ int get_ref_from_split(char *str, t_reflect *ref)
 	return (SUCCESS);
 }
 
-void	exit_error(int ret)
-{
-	// printf("ERROR %d\n", ret);
-	exit(ret);
-}
-
 void	*get_sphere_node(char **split)
 {
 	t_vec3					position;
@@ -173,22 +167,16 @@ void	*get_cylinder_node(char **split)
 	t_reflect				ref;
 	t_cylinder				*cylinder;
 	t_obj					*obj;
-	// double					height;
-	double					r;
 
 	if (get_size_double_ptr(split) != 6)
 		return (NULL);
 	if (get_vec_from_split(split[1], &position) ||
 		get_vec_from_split(split[2], &axis) ||
-		get_ref_from_split(split[5], &ref))
+		get_ref_from_split(split[5], &ref) ||
+		ft_isdouble(split[4]) == false ||
+		ft_isdouble(split[3]) == false )
 		return (NULL);
-	if (ft_isdouble(split[3]) == false)
-		return (NULL);
-	r = ft_atof(split[3]);
-	// if (ft_isdouble(split[4]) == false)
-	// 	return (NULL);
-	// height = ft_atof(split[4]);
-	cylinder = make_cylinder_instance(axis, position, r);
+	cylinder = make_cylinder_instance(axis, position, ft_atof(split[3]), ft_atof(split[4]));
 	if (cylinder == NULL)
 		return (NULL);
 	obj = new_obj(O_CYLINDER, ref, cylinder);
@@ -380,6 +368,7 @@ int	parse_file(t_env *env, char *file)
 		exit_error(OPEN_ERROR);
 	while (1)
 	{
+
 		line = get_next_line(fd);
 		if (!line)
 			break;
@@ -400,35 +389,6 @@ int	parse_file(t_env *env, char *file)
 	// if (env->eye == NULL)
 	return (SUCCESS);
 }
-
-int	main(int argc, char **argv)
-{
-	t_env	env;
-	if (argc != 2)
-		exit_error(1);
-	ft_memset(&env, 0, sizeof(t_env));
-	parse_file(&env, argv[1]);
-	// env.obj_list = get_obj_list();
-	env.mlx = mlx_init();
-	env.win = mlx_new_window(env.mlx, WIN_WIDTH, WIN_HEIGHT, "Hello world!");
-	set_event(&env);
-	env.img.img = mlx_new_image(env.mlx, WIN_WIDTH, WIN_HEIGHT);
-	make_img6(&env);
-	mlx_put_image_to_window(env.mlx, env.win, env.img.img, 0, 0);
-	printf("PUT IMAGE TO WINDOW\n");
-	mlx_loop(env.mlx);
-
-	// gc_clear();
-	// printf("SUCSESS!\n");
-	return (0);
-}
-
-// int	main(void)
-// {
-// 	return (ft_strncmp("1", "123", 4));
-// }
-
-
 
 // __attribute__((destructor)) static void destructor()
 // {

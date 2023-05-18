@@ -41,7 +41,7 @@
 // 	// }
 // }
 
-static double	get_ray_t_to_cir(t_ray ray, t_sphere *cir)
+static double	get_ray_t_to_sphere(t_ray ray, t_sphere *cir)
 {
 	double	A = vec_mag_sq(ray.dir);
 	double	B = 2.0 * vec_dot(ray.dir, (vec_sub(ray.pos, cir->pos)));
@@ -70,7 +70,7 @@ t_intersection	get_intersection_sphere(const t_ray ray, const t_obj *obj)
 
 	sphere = obj->instance;
 	ft_memset(&intersection, 0, sizeof(t_intersection));
-	t = get_ray_t_to_cir(ray, sphere);
+	t = get_ray_t_to_sphere(ray, sphere);
 	if (t < 0)
 		return (intersection);
 	t_vec3	dt;
@@ -210,8 +210,11 @@ t_intersection	get_intersection_cylinder(const t_ray ray, const t_obj *obj)
 	if (t < 0)
 		return (intersection);
 	dt = vec_mult(ray.dir, t);
-	// if (!(10.0f > dt.z && dt.z > 3.0f))
-	// 	return (intersection);
+	// if (cylinder->position.y > dt.y ||
+	// 	cylinder->position.y - dt.y > cylinder->height)
+	if (cylinder->position.y > dt.y || 
+		abs_double(cylinder->position.y - dt.y) > cylinder->height)
+		return (intersection);
 	intersection.does_intersect = true;
 	intersection.position = vec_add(ray.pos, dt);
 	intersection.distance = vec_mag(dt);
