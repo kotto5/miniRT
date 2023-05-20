@@ -6,7 +6,7 @@
 			"type": "lldb",
 			"request": "launch",
 			"program": "${workspaceFolder}/debugfile",
-			"args": ["/Users/kakiba/AAproject/miniRT/inputfiles/file_case10.rt"],
+			"args": ["/Users/kakiba/AAproject/miniRT/inputfiles/file_case8.rt"],
 			"stopAtEntry": false,
 			"cwd": "${fileDirname}",
 			"environment": [],

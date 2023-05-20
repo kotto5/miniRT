@@ -5,7 +5,6 @@
 		"unistd.h": "c",
 		"mlx.h": "c",
 		"__node_handle": "c",
-		"stdlib.h": "c",
-		"libft.h": "c"
+		"stdlib.h": "c"
 	}
 }

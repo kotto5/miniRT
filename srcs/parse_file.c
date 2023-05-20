@@ -361,7 +361,6 @@ int	parse_file(t_env *env, char *file)
 		exit_error(OPEN_ERROR);
 	while (1)
 	{
-
 		line = get_next_line(fd);
 		if (!line)
 			break;

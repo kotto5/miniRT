@@ -6,7 +6,7 @@
 /*   By: kakiba <kotto555555@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 22:54:52 by kakiba            #+#    #+#             */
-/*   Updated: 2023/05/24 20:42:55 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/05/29 15:50:40 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ int	mouse_event(int button, int x, int y, void *data)
 		printf("button is %d\n", button);
 		return (0);
 	}
-
 	color_img(env);
 	mlx_put_image_to_window(env->mlx, env->win, env->img.img, 0, 0);
 	mlx_loop(env->mlx);
