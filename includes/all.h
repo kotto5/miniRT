@@ -134,7 +134,7 @@ void	set_event(t_env *env);
 // utils.c
 void	mlx_put_to_img(t_img *data, int x, int y, int color);
 // t_vec3	get_screen_vec(int x, int y);
-t_vec3	get_screen_vec(int x, int y, t_ray eye);
+t_vec3	get_screen_vec(int x, int y, t_vec3 eye_position);
 double	get_distance_to_window(int fov);
 t_bright_color	get_color_with_at(t_scene *scene, t_intersection_info *info, t_lightsource *light, t_ray *ray);
 
@@ -155,11 +155,20 @@ double	abs_double(double d);
 // t_ray	get_ray(t_camera *camera, int x, int y);
 t_ray	*get_ray(t_camera *camera, int x, int y);
 // t_ray	get_ray(t_camera *camera, double u, double v);
-// t_camera	*make_camera(double fov, double aspect);
-t_camera	*make_camera(double fov);
+t_camera	*make_camera(double fov, t_vec3 pos, t_vec3 orientation);
 
-int	*make_img6(t_env *env);
+int	color_img(t_env *env);
 int	parse_file(t_env *env, char *file);
 void	exit_error(int ret);
+double	degree_to_radian(int degree);
+
+int	set_custom_rotated_vector(
+	t_vec3 *vec, const t_vec3 center, const t_vec3 rdvec);
+double	constrain(double v, double vmin, double vmax);
+int	set_rxmat(double rmat[4][4], const double d);
+int	set_rymat(double rmat[4][4], const double d);
+int	set_rzmat(double rmat[4][4], const double d);
+int	main_affine_rotation(t_vec3 *vec, const t_vec3 input);
+t_vec3 rotate_vec(t_vec3 v, t_vec3 k, double theta);
 
 #endif

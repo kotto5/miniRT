@@ -5,47 +5,11 @@
 // t が 二つの解を持ち、両方とも正ならば、ray は球を貫通していて、小さい方が手前、大きい方が奥側の貫通点である。
 // 二つの解のうち、大きい方を返すと、呼び出す関数は奥側の値を計算するので、誤解を恐れずいうと、暗く見える。
 
-// static double	get_ray_t_to_cir(t_ray ray, t_sphere *cir)
-// {
-// 	double	A = vec_mag_sq(ray.dir);
-// 	double	B = 2.0 * vec_dot(ray.dir, (vec_sub(ray.pos, cir->pos)));
-// 	double	C = vec_mag_sq(vec_sub(ray.pos, cir->pos)) - (cir->r * cir->r);
-// 	double	root = B * B - (4.0 * A * C);
-
-// 	if (A == 0 || root < 0)
-// 		return (-1);
-// 	else
-// 	{
-// 		root = sqrt(root);
-// 		double	t1 = (-1.0 * B + root) / (2.0 * A);
-// 		double	t2 = (-1.0 * B - root) / (2.0 * A);
-
-// 	// return (t2);
-// 		if (t2 < 0 || (t1 > 0 && t1 < t2))
-// 			return (t1);
-// 		else
-// 			return (t2);
-
-// 	// if (t1 < 0.0 && t2 < 0.0)
-// 	// 	return (t1);
-// 	// else if (t1 > 0.0 && ((t2 < 0.0) || (t1 < t2)))
-// 	// 	return (t1);
-// 	// else
-// 	// 	return (t2);
-// 	}
-
-// 	// if (t1 >= 0.0 && ((t2 < 0.0) || (t1 < t2)))
-// 	// 	return (t1);
-// 	// else
-// 	// 	return (t2);
-// 	// }
-// }
-
-static double	get_ray_t_to_sphere(t_ray ray, t_sphere *cir)
+static double	get_ray_t_to_sphere(t_ray ray, t_sphere *sphere)
 {
 	double	A = vec_mag_sq(ray.dir);
-	double	B = 2.0 * vec_dot(ray.dir, (vec_sub(ray.pos, cir->pos)));
-	double	C = vec_mag_sq(vec_sub(ray.pos, cir->pos)) - (cir->r * cir->r);
+	double	B = 2.0 * vec_dot(ray.dir, (vec_sub(ray.pos, sphere->pos)));
+	double	C = vec_mag_sq(vec_sub(ray.pos, sphere->pos)) - (sphere->r * sphere->r);
 	double	root = B * B - (4.0 * A * C);
 
 	if (A == 0.0 || root < 0.0)
@@ -96,37 +60,16 @@ t_intersection	get_intersection_sphere(const t_ray ray, const t_obj *obj)
 // 	double				t;
 // 	t_vec3				dt;
 
-// 	sphere = obj->instance;
-// 	ft_memset(&intersection, 0, sizeof(t_intersection));
-// 	t = get_ray_t_to_cir(ray, sphere);
-// 	if (t < 0)
-// 		return (intersection);
-// 	intersection.does_intersect = true;
-// 	dt = vec_mult(ray.dir, t);
-// 	intersection.position = vec_add(ray.pos, dt);
-// 	intersection.distance = vec_mag(dt);
-// 	intersection.vertical_dir = vec_normilize(vec_sub(intersection.position, sphere->pos)); 
-// 	if (vec_dot(intersection.vertical_dir, ray.dir) > 0)
-// 	{
-// 		intersection.vertical_dir = vec_mult(intersection.vertical_dir, -1);
-// 		intersection.is_inside = true;
-// 	}
-// 	return (intersection);
-// }
-
 static double	get_t_ray_plane(t_ray ray, t_plane *plane)
 {
 	double	denom;
-	double	t;
 
 	denom = vec_dot(ray.dir, plane->vertical);
 	if (denom == 0.00)
 		return (-1);
-	t = vec_dot(vec_sub(plane->position, ray.pos), plane->vertical) / denom;
-	return (t);
+	return (vec_dot(vec_sub(plane->position, ray.pos), plane->vertical) / denom);
 }
 
-// t_intersection	get_intersection_plane(t_vec3 eye_dir, t_vec3 eye_pos, t_vec3 vertical_plane)
 t_intersection	get_intersection_plane(const t_ray ray, const t_obj *obj)
 {
 	t_plane			*plane;
@@ -135,22 +78,16 @@ t_intersection	get_intersection_plane(const t_ray ray, const t_obj *obj)
 	t_vec3	td;
 
 	plane = obj->instance;
+	intersection.does_intersect = false;
 	t = get_t_ray_plane(ray, plane);
-	if (t >= 0)
-	{
-		intersection.does_intersect = true;
-		td = vec_mult(ray.dir, t);
-		intersection.position = vec_add(ray.pos, td);
-		intersection.distance = vec_mag(td);
-		intersection.vertical_dir = vec_normilize(plane->vertical);
-		// if (t >= 2120.0)
-		// {
-		// 	printf("t is %f, distance %f, ", t, intersection.distance);
-		// 	print_vec(intersection.position, "position");
-		// }
-	}
-	else
-		intersection.does_intersect = false;
+	if (t < 0)
+		return (intersection);
+	intersection.does_intersect = true;
+	td = vec_mult(ray.dir, t);
+	intersection.position = vec_add(ray.pos, td);
+	// intersection.distance = d;
+	intersection.distance = vec_mag(td);
+	intersection.vertical_dir = vec_normilize(plane->vertical);
 	return (intersection);
 }
 
@@ -179,15 +116,15 @@ static double	get_t_ray_cylinder(t_ray ray, t_cylinder *cylinder)
 {
 	t_vec3	P = vec_sub(ray.dir, (vec_mult(cylinder->vertical, vec_dot(ray.dir, cylinder->vertical))));
 	t_vec3	Q = vec_sub(vec_sub(ray.pos, cylinder->position), vec_mult(cylinder->vertical, vec_dot(vec_sub(ray.pos, cylinder->position), cylinder->vertical)));
-	double A = vec_mag_sq(P);
-	double B = 2 * vec_dot(P, Q);
-	double C = vec_mag_sq(Q) - pow(cylinder->r, 2);
-	double root = pow(B, 2) - 4 * A * C;
+	double	A = vec_mag_sq(P);
+	double	B = 2 * vec_dot(P, Q);
+	double	C = vec_mag_sq(Q) - pow(cylinder->r, 2);
+	double	root = pow(B, 2) - 4 * A * C;
 
 	if (root < 0)
 		return (-1);
-	double t1 = (-B + sqrt(root)) / (2 * A);
-	double t2 = (-B - sqrt(root)) / (2 * A);
+	double	t1 = (-B + sqrt(root)) / (2 * A);
+	double	t2 = (-B - sqrt(root)) / (2 * A);
 	if (t1 < 0.0 && t2 < 0.0)
 		return (t1);
 	else if (t1 > 0.0 && ((t2 < 0.0) || (t1 < t2)))
@@ -196,13 +133,33 @@ static double	get_t_ray_cylinder(t_ray ray, t_cylinder *cylinder)
 		return (t2);
 }
 
+t_vec3	get_cylinder_normal(t_vec3 position, t_vec3 vertical, t_vec3 cylinder_center)
+{
+	t_vec3 to_center;
+	double projection_length;
+	t_vec3 projection;
+	t_vec3 normal;
+
+	// Calculate the vector from the point to the center of the cylinder
+	to_center = vec_sub(position, cylinder_center);
+
+	// Project this vector onto the vertical vector of the cylinder
+	projection_length = vec_dot(to_center, vertical);
+	projection = vec_mult(vertical, projection_length);
+
+	// Subtract the projection from the original vector to get the normal
+	normal = vec_sub(to_center, projection);
+
+	// Normalize the normal vector before returning
+	return vec_normilize(normal);
+}
+
 t_intersection	get_intersection_cylinder(const t_ray ray, const t_obj *obj)
 {
 	t_cylinder		*cylinder;
 	t_intersection	intersection;
 	double	t;
 	t_vec3	dt;
-	// t_vec3	td;
 
 	cylinder = obj->instance;
 	intersection.does_intersect = false;
@@ -218,9 +175,7 @@ t_intersection	get_intersection_cylinder(const t_ray ray, const t_obj *obj)
 	intersection.does_intersect = true;
 	intersection.position = vec_add(ray.pos, dt);
 	intersection.distance = vec_mag(dt);
-	t_vec3	buf = cylinder->position;
-	buf.z += dt.z;
-	intersection.vertical_dir = vec_normilize(vec_sub(intersection.position, buf));
+	intersection.vertical_dir = get_cylinder_normal(intersection.position, cylinder->vertical, cylinder->position);
 	return (intersection);
 }
 

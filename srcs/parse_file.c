@@ -243,7 +243,7 @@ void	*get_camera(char **split)
 	// ray->orientation = vec_normilize(orientation);
 	// ray->distance_to_window = get_distance_to_window(ft_atoi(split[3]));
 	// return (ray);
-	camera = make_camera(ft_atof(split[3]));
+	camera = make_camera(ft_atof(split[3]), position, orientation);
 	return (camera);
 }
 
@@ -368,7 +368,6 @@ int	parse_file(t_env *env, char *file)
 		exit_error(OPEN_ERROR);
 	while (1)
 	{
-
 		line = get_next_line(fd);
 		if (!line)
 			break;
