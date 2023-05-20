@@ -71,6 +71,10 @@ typedef struct	s_camera
 	t_vec3	higher_left_corner;
 	t_vec3	horizontal;
 	t_vec3	vertical;
+	t_vec3	orientation;
+
+	t_vec3	rotation_axis;
+	double	rotation_radian;
 }				t_camera;
 
 typedef struct	s_env

@@ -161,12 +161,11 @@ t_bright_color	*ray_trace(t_bright_color *b_color, t_scene *scene, t_ray *ray)
 	}
 	return (b_color);
 }
+// 
 
-// int	*make_img6(t_img *img, t_ray eye, t_dlist **gb_list)
-int	*make_img6(t_env *env)
+// int	*color_img(t_img *img, t_ray eye, t_dlist **gb_list)
+int	color_img(t_env *env)
 {
-	env->img.addr = mlx_get_data_addr(env->img.img, &env->img.bits_per_pixel, &env->img.line_length, &env->img.endian);
-
 	t_bright_color	ref_color;
 	t_scene			scene;
 	int	x = 0;
@@ -176,20 +175,22 @@ int	*make_img6(t_env *env)
 	scene.obj_list = env->obj_list;
 	scene.light_list = env->light_list;
 	scene.am_light = env->am_light;
+	printf("3\n");
+
 	// print_time(3);
-	// env->eye = malloc(sizeof(t_ray));
-	// env->eye->distance_to_window = 1.3;
-	// env->eye->pos = get_vec(0, 0, 0);
+	env->eye = malloc(sizeof(t_ray));
+	env->eye->pos = get_vec(0, 0, 0);
 	while (y < WIN_HEIGHT)
 	{
 		x = 0;
 		while (x < WIN_WIDTH)
 		{
-			if (x == 0)
-				printf("");
 			env->eye = get_ray(env->camera, x, y);
+			env->eye->dir = rotate_vec(env->eye->dir, env->camera->rotation_axis, env->camera->rotation_radian);
 			// env->eye->dir = vec_normilize(env->eye->dir);
-			// env->eye->dir = vec_normilize(vec_sub(get_screen_vec(x, y, *env->eye), env->eye->pos));
+			// env->eye->dir = vec_normilize(vec_sub(get_screen_vec(x, y, env->camera->origin), env->camera->origin));
+			// set_custom_rotated_vector(&env->eye->dir, env->eye->pos, vec_normilize(get_vec(0, 0, 0)));
+
 			ray_trace(&ref_color, &scene, env->eye);
 			mlx_put_to_img(&env->img, x, y, to_img_color_from_b_color(&ref_color));
 			x++;
@@ -197,8 +198,9 @@ int	*make_img6(t_env *env)
 		y++;
 	}
 	print_time(4);
-	return (NULL);
+	return (SUCCESS);
 }
+
 
 // bool    is_crossed(t_vec3 d, t_vec3 s, double r)
 // {
@@ -260,7 +262,7 @@ int	*make_img6(t_env *env)
 /*
 #define RADIUS 1
 
-int	*make_img6(t_env *env)
+int	*color_img(t_env *env)
 {
 	env->img.addr = mlx_get_data_addr(env->img.img, &env->img.bits_per_pixel, &env->img.line_length, &env->img.endian);
 

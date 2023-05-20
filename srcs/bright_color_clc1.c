@@ -84,9 +84,9 @@ unsigned int	to_img_color_from_b_color(t_bright_color *b_color)
 
 	if (b_color == NULL)
 		return (BACK_COLOR);
-	if (isnan(b_color->t))
+	if (isnan(b_color->t) || isnan(b_color->r) || isnan(b_color->g) || isnan(b_color->b))
 	{
-		printf("OH!\n");
+		printf("bright_colorclc.1 to_img_color_from_b_color is nan!!!\n");
 	}
 	if (b_color->t > 1)
 		img_color.trgb.t = 0xff;

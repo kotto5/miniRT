@@ -1,5 +1,6 @@
 #include "all.h"
 
+// 
 void	print_intersection(t_intersection intersection)
 {
 	printf("distance %f, inside %d\n", intersection.distance, intersection.is_inside);
@@ -14,7 +15,7 @@ bool	do_through_other_obj_by_light(t_dlist *obj_list, t_lightsource *light, t_in
 	t_ray	light_ray;
 	t_intersection	intersection;
 	t_lighting		lighting = light->lighting_at(info->intersection.position, light);
-	double			epsilon = 1.0 / 8;
+	double			epsilon = 1.0 / 32;
 
 	light_ray.dir = lighting.incident_to_light;
 	light_ray.pos = vec_add(info->intersection.position, vec_mult(light_ray.dir, epsilon));
@@ -30,10 +31,6 @@ bool	do_through_other_obj_by_light(t_dlist *obj_list, t_lightsource *light, t_in
 	}
 	return (false);
 }
-
-		// if ((instance == info->obj) && ())
-		// 	return (true);
-
 
 t_bright_color	get_color_with_at(t_scene *scene, t_intersection_info *info, t_lightsource *light, t_ray *ray)
 {

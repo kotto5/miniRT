@@ -4,6 +4,7 @@
 		"math.h": "c",
 		"unistd.h": "c",
 		"mlx.h": "c",
-		"__node_handle": "c"
+		"__node_handle": "c",
+		"stdlib.h": "c"
 	}
 }

@@ -138,7 +138,7 @@
 // 	}
 // }
 
-// int	*make_img6(t_img *img, t_ray eye, t_dlist **gb_list)
+// int	*color_img(t_img *img, t_ray eye, t_dlist **gb_list)
 // {
 // 	img->addr = mlx_get_data_addr(img->img, &img->bits_per_pixel, &img->line_length, &img->endian);
 
