@@ -42,7 +42,7 @@ t_intersection	get_intersection_sphere(const t_ray ray, const t_obj *obj)
 	intersection.does_intersect = true;
 	intersection.position = vec_add(ray.pos, dt);
 	intersection.distance = vec_mag(dt);
-	intersection.vertical_dir = vec_normilize(vec_sub(intersection.position, sphere->pos));
+	intersection.vertical_dir = vec_normalize(vec_sub(intersection.position, sphere->pos));
 	if (vec_dot(intersection.vertical_dir, ray.dir) > 0.0)
 	{
 		intersection.vertical_dir = vec_mult(intersection.vertical_dir, -1);
@@ -87,7 +87,7 @@ t_intersection	get_intersection_plane(const t_ray ray, const t_obj *obj)
 	intersection.position = vec_add(ray.pos, td);
 	// intersection.distance = d;
 	intersection.distance = vec_mag(td);
-	intersection.vertical_dir = vec_normilize(plane->vertical);
+	intersection.vertical_dir = vec_normalize(plane->vertical);
 	return (intersection);
 }
 
@@ -151,7 +151,7 @@ t_vec3	get_cylinder_normal(t_vec3 position, t_vec3 vertical, t_vec3 cylinder_cen
 	normal = vec_sub(to_center, projection);
 
 	// Normalize the normal vector before returning
-	return vec_normilize(normal);
+	return vec_normalize(normal);
 }
 
 t_intersection	get_intersection_cylinder(const t_ray ray, const t_obj *obj)
@@ -261,6 +261,6 @@ t_intersection	get_intersection_rect(const t_ray ray, const t_obj *obj)
 	intersection.does_intersect = true;
 	intersection.position = vec_add(ray.pos, dt);
 	intersection.distance = vec_mag(dt);
-	intersection.vertical_dir = vec_normilize(vec_sub(intersection.position, ray.pos));
+	intersection.vertical_dir = vec_normalize(vec_sub(intersection.position, ray.pos));
 	return (intersection);
 }

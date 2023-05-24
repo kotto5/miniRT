@@ -6,7 +6,7 @@
 /*   By: kakiba <kotto555555@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 06:42:05 by kakiba            #+#    #+#             */
-/*   Updated: 2023/05/28 18:49:09 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/05/28 18:49:15 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	set_vec3(t_vec3 *vec, double x, double y, double z)
 	vec->z = z;
 }
 
-t_vec3	vec_normilize(t_vec3 vec)
+t_vec3	vec_normalize(t_vec3 vec)
 {
 	return (vec_mult(vec, 1.0 / vec_mag(vec)));
 }

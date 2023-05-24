@@ -104,7 +104,7 @@
 
 // // 	color.color = 0;
 // // 	n = intersection.vertical_dir;
-// // 	l = vec_normilize(vec_sub(light.pos, intersection.position));
+// // 	l = vec_normalize(vec_sub(light.pos, intersection.position));
 // // 	cos = vec_dot(n, l);
 // // 	if (cos < 0)
 // // 		return (color);
@@ -121,11 +121,11 @@
 // // 	t_img_color	ref;
 
 // // // 入射ベクトル ray と交点
-// // 	t_vec3	vecV = vec_normilize(vec_mult(eye.dir, -1));
+// // 	t_vec3	vecV = vec_normalize(vec_mult(eye.dir, -1));
 
 // // // vecR
 // // 	t_vec3	vecN = intersection.vertical_dir;
-// // 	t_vec3	vecL = vec_normilize(vec_sub(light.pos, intersection.position));
+// // 	t_vec3	vecL = vec_normalize(vec_sub(light.pos, intersection.position));
 // // 	t_vec3	vecR = vec_sub( vec_mult(vecN, 2.0 * vec_dot(vecN, vecL)), vecL);
 
 // // 	double	inner_product = vec_dot(vecV, vecR);
@@ -151,7 +151,7 @@
 // 	double	cos_incident_and_vertical;
 
 // 	t_vec3	incident;
-// 	incident = vec_normilize(vec_sub(light.pos, intersection.position));
+// 	incident = vec_normalize(vec_sub(light.pos, intersection.position));
 // 	// if (do_through_other_obj_by_light(objs, incident))
 // 	// 	return (0);
 // 	cos_incident_and_vertical = vec_dot(intersection.vertical_dir, incident);
@@ -196,17 +196,17 @@
 // 	double	Ii = light.d_intensity;
 // 	double	alpha = ref_info.sp_shininess;
 
-// 	// t_vec3	inverse_eyedir = vec_normilize(vec_mult(eye.dir, -1));
+// 	// t_vec3	inverse_eyedir = vec_normalize(vec_mult(eye.dir, -1));
 // 	t_vec3	inverse_eyedir = vec_mult(eye.dir, -1);
 
 // // vecR 1
 // 	// t_vec3	vecR = vec_sub(light.pos, intersection);
-// 	// vecR = vec_normilize(vecR);
+// 	// vecR = vec_normalize(vecR);
 
 // // vecR 2
 // 	t_vec3	vertical = intersection.vertical_dir;
 // 	// t_vec3	vecL = get_light_incident_dir(light, intersection);
-// 	t_vec3	incident = vec_normilize(vec_sub(light.pos, intersection.position));
+// 	t_vec3	incident = vec_normalize(vec_sub(light.pos, intersection.position));
 // 	t_vec3	regular_ref_incident = vec_sub( vec_mult(vertical, 2.0 * vec_dot(vertical, incident)), incident);
 
 // 	double	inner_product = vec_dot(inverse_eyedir, regular_ref_incident);
@@ -276,7 +276,7 @@
 // 		while (x < WIN_WIDTH)
 // 		{
 // 			vec_win = get_screen_vec(x, y, eye);
-// 			eye.dir = vec_normilize(vec_sub(vec_win, eye.pos));
+// 			eye.dir = vec_normalize(vec_sub(vec_win, eye.pos));
 // 			intersection = sphere->get_intersection(eye, sphere);
 // 			if (intersection.does_intersect == true)
 // 			{
@@ -329,7 +329,7 @@
 // // 		while (x < WIN_WIDTH)
 // // 		{
 // // 			vec_win = get_screen_vec(x, y, eye);
-// // 			eye.dir = vec_normilize(vec_sub(vec_win, eye.pos));
+// // 			eye.dir = vec_normalize(vec_sub(vec_win, eye.pos));
 // // 			intersection = sphere->get_intersection(eye, sphere);
 // // 			if (intersection.does_intersect == true)
 // // 			{

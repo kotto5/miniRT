@@ -19,7 +19,7 @@ t_plane	*make_plane_instance(t_vec3 vertical, t_vec3 point)
 	instance = gc_malloc(sizeof(t_plane));
 	if (instance == NULL)
 		return (NULL);
-	instance->vertical = vec_normilize(vertical);
+	instance->vertical = vec_normalize(vertical);
 	instance->position = point;
 	return (instance);
 }

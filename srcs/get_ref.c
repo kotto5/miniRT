@@ -60,7 +60,7 @@ static t_bright_color	get_specular_ref6(t_lighting lighting, t_intersection inte
 
 	t_vec3	vertical = intersection.vertical_dir;
 	// t_vec3	vecL = get_light_incident_dir(light, intersection);
-	// t_vec3	incident = vec_normilize(vec_sub(light.pos, intersection.position));
+	// t_vec3	incident = vec_normalize(vec_sub(light.pos, intersection.position));
 	t_vec3	incident = lighting.incident_to_light;
 	t_vec3	regular_ref_incident = vec_sub( vec_mult(vertical, 2.0 * vec_dot(vertical, incident)), incident);
 	if (vec_dot(vertical, incident) < 0)

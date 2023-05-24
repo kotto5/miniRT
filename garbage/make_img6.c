@@ -62,7 +62,7 @@
 
 // 	t_vec3	vertical = intersection.vertical_dir;
 // 	// t_vec3	vecL = get_light_incident_dir(light, intersection);
-// 	// t_vec3	incident = vec_normilize(vec_sub(light.pos, intersection.position));
+// 	// t_vec3	incident = vec_normalize(vec_sub(light.pos, intersection.position));
 // 	t_vec3	incident = lighting.incident_to_light;
 // 	t_vec3	regular_ref_incident = vec_sub( vec_mult(vertical, 2.0 * vec_dot(vertical, incident)), incident);
 // 	if (vec_dot(vertical, incident) < 0)
@@ -174,10 +174,10 @@
 // // sphere = new_obj(O_SPHERE, make_sphere_instance(get_vec(0, 0, 5), 1, get_t_refrect(0, 1, 0, 0.0), gb_list), gb_list);
 // 	// sphere = new_obj(O_SPHERE, make_sphere_instance(get_vec(0, 0, 5), 1, get_t_refrect(0, 1, 0, 0.0), gb_list), gb_list);
 // 	t_obj	*plane1;
-// 	plane1 = new_obj(O_PLANE, make_plane_instance(vec_normilize(get_vec(0, 1, 0)), 
+// 	plane1 = new_obj(O_PLANE, make_plane_instance(vec_normalize(get_vec(0, 1, 0)), 
 // 		get_t_refrect(b_color_get(0, 0.2, 0.2, 0.2), b_color_get(0, 0.2, 0.2, 0.2), b_color_get(0, 0.2, 0.2, 0.2), 1)
 // 		, gb_list), gb_list);
-// 	// plane1 = new_obj(O_PLANE, make_plane_instance(vec_normilize(get_vec(0, 1, 0)), get_t_refrect(0.01, 0.69, 0.3, 2), gb_list), gb_list);
+// 	// plane1 = new_obj(O_PLANE, make_plane_instance(vec_normalize(get_vec(0, 1, 0)), get_t_refrect(0.01, 0.69, 0.3, 2), gb_list), gb_list);
 // 	// plane1 = new_obj(O_PLANE, make_plane_instance(get_vec(1, 1, 0), get_t_refrect(0.01, 0.69, 0.3, 2), gb_list), gb_list);
 // 	// plane1 = new_obj(O_PLANE, make_plane_instance(get_vec(0, 0, 1), get_t_refrect(0.01, 0.69, 0.3, 2), gb_list), gb_list);
 
@@ -195,7 +195,7 @@
 // 		while (x < WIN_WIDTH)
 // 		{
 // 			vec_win = get_screen_vec(x, y, eye);
-// 			eye.dir = vec_normilize(vec_sub(vec_win, eye.pos));
+// 			eye.dir = vec_normalize(vec_sub(vec_win, eye.pos));
 // 			node = obj_list;
 // 			while (node)
 // 			{

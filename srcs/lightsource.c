@@ -27,7 +27,7 @@ t_lighting	lighting_at_point(t_vec3 position, t_lightsource *light)
 	vec = vec_sub(info->pos, position);
 	// printf("LIGHT 7\n");
 
-	lighting.incident_to_light = vec_normilize(vec);
+	lighting.incident_to_light = vec_normalize(vec);
 	// printf("LIGHT 8\n");
 	lighting.distance = vec_mag(vec);
 	// printf("LIGHT 9\n");

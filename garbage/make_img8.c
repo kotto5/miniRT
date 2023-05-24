@@ -19,7 +19,7 @@
 // 		make_sphere_instance(get_vec(3, 1, 25), 1, gb_list), gb_list)));
 
 // 	ft_dlstadd_back(&obj_list, ft_dlstnew(new_obj(O_PLANE, get_t_refrect(b_color_get(0, 0.2, 0.2, 0.2), b_color_get(0, 0.2, 0.2, 0.2), b_color_get(0, 0.2, 0.2, 0.2), 1),
-// 		make_plane_instance(vec_normilize(get_vec(0, 1, 0)), gb_list), gb_list)));
+// 		make_plane_instance(vec_normalize(get_vec(0, 1, 0)), gb_list), gb_list)));
 // 	ft_dlstadd_back(&obj_list, ft_dlstnew(new_obj(O_SPHERE, get_t_refrect(b_color_get(0, 0.1, 0.1, 0.1), b_color_get(0.0, 0.69, 0.0, 0.0), b_color_get(0, 0.30, 0.30, 0.30), 0),
 // 		make_sphere_instance(get_vec(-1, 1, 5), 1, gb_list), gb_list)));
 // // 	ft_dlstadd_back(&obj_list, ft_dlstnew(sphere3));
@@ -103,7 +103,7 @@
 
 // 	t_vec3	vertical = intersection.vertical_dir;
 // 	// t_vec3	vecL = get_light_incident_dir(light, intersection);
-// 	// t_vec3	incident = vec_normilize(vec_sub(light.pos, intersection.position));
+// 	// t_vec3	incident = vec_normalize(vec_sub(light.pos, intersection.position));
 // 	t_vec3	incident = lighting.incident_to_light;
 // 	t_vec3	regular_ref_incident = vec_sub( vec_mult(vertical, 2.0 * vec_dot(vertical, incident)), incident);
 // 	if (vec_dot(vertical, incident) < 0)
@@ -242,7 +242,7 @@
 // 		while (x < WIN_WIDTH)
 // 		{
 // 			vec_win = get_screen_vec(x, y, eye);
-// 			eye.dir = vec_normilize(vec_sub(vec_win, eye.pos));
+// 			eye.dir = vec_normalize(vec_sub(vec_win, eye.pos));
 // 			ref_color = ray_trace(&scene, &eye);
 // 			if (ref_color == NULL)
 // 				color.color = BACK_COLOR;
