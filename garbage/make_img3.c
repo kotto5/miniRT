@@ -25,7 +25,7 @@
 // 	double	cos_incident_and_vertical;
 
 // 	t_vec3	incident;
-// 	incident = vec_normilize(vec_sub(light.pos, intersection.position));
+// 	incident = vec_normalize(vec_sub(light.pos, intersection.position));
 // 	// if (do_through_other_obj_by_light(objs, incident))
 // 	// 	return (0);
 // 	cos_incident_and_vertical = vec_dot(intersection.vertical_dir, incident);
@@ -74,7 +74,7 @@
 
 // 	t_vec3	vertical = intersection.vertical_dir;
 // 	// t_vec3	vecL = get_light_incident_dir(light, intersection);
-// 	t_vec3	incident = vec_normilize(vec_sub(light.pos, intersection.position));
+// 	t_vec3	incident = vec_normalize(vec_sub(light.pos, intersection.position));
 // 	t_vec3	regular_ref_incident = vec_sub( vec_mult(vertical, 2.0 * vec_dot(vertical, incident)), incident);
 // 	if (vec_dot(vertical, incident) < 0)
 // 	{
@@ -136,7 +136,7 @@
 // 		while (x < WIN_WIDTH)
 // 		{
 // 			vec_win = get_screen_vec(x, y, eye);
-// 			eye.dir = vec_normilize(vec_sub(vec_win, eye.pos));
+// 			eye.dir = vec_normalize(vec_sub(vec_win, eye.pos));
 // 			intersection = sphere->get_intersection(eye, sphere);
 // 			if (intersection.does_intersect == true)
 // 			{

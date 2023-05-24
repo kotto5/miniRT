@@ -94,7 +94,7 @@
 
 // 	t_vec3	vertical = intersection.vertical_dir;
 // 	// t_vec3	vecL = get_light_incident_dir(light, intersection);
-// 	// t_vec3	incident = vec_normilize(vec_sub(light.pos, intersection.position));
+// 	// t_vec3	incident = vec_normalize(vec_sub(light.pos, intersection.position));
 // 	t_vec3	incident = lighting.incident_to_light;
 // 	t_vec3	regular_ref_incident = vec_sub( vec_mult(vertical, 2.0 * vec_dot(vertical, incident)), incident);
 // 	if (vec_dot(vertical, incident) < 0)
@@ -270,7 +270,7 @@
 // 			t_vec3			v2;
 // 			double			dot_product;
 // 			v = vec_mult(ray->dir, -1);
-// 			v2 = vec_normilize(info->intersection.vertical_dir);
+// 			v2 = vec_normalize(info->intersection.vertical_dir);
 // 			dot_product = vec_dot(v2, v);
 // 			if (dot_product < 0.0)
 // 				return (b_color);
@@ -313,7 +313,7 @@
 // 		// 	t_vec3			v2;
 // 		// 	double			dot_product;
 // 		// 	v = vec_mult(ray->dir, -1);
-// 		// 	v2 = vec_normilize(info->intersection.vertical_dir);
+// 		// 	v2 = vec_normalize(info->intersection.vertical_dir);
 // 		// 	dot_product = vec_dot(v2, v);
 // 		// 	if (dot_product < 0.0)
 // 		// 		return (b_color);
@@ -352,7 +352,7 @@
 // 		while (x < WIN_WIDTH)
 // 		{
 // 			vec_win = get_screen_vec(x, y, env->eye);
-// 			env->eye.dir = vec_normilize(vec_sub(vec_win, env->eye.pos));
+// 			env->eye.dir = vec_normalize(vec_sub(vec_win, env->eye.pos));
 // 			ref_color = ray_trace(&scene, &env->eye);
 // 			if (ref_color == NULL)
 // 				color.color = BACK_COLOR;

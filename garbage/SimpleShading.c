@@ -64,7 +64,7 @@
 // 		while (x < WIN_WIDTH)
 // 		{
 // 			vec_win = get_screen_vec(x, y, eye);
-// 			eye.dir = vec_normilize(vec_sub(vec_win, eye.pos));
+// 			eye.dir = vec_normalize(vec_sub(vec_win, eye.pos));
 // 			t = get_ray_t_to_cir(eye, c1);
 // 			if (t >= 0)
 // 			{

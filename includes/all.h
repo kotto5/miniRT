@@ -20,18 +20,12 @@
 
 #define WIN_WIDTH 1200
 // #define ASPECT (double)(9.0 / 16.0)
-#define ASPECT (double)(12.0/16.0)
-// #define ASPECT (double)(1)
+// #define ASPECT (double)(12.0/16.0)
+#define ASPECT (double)(1)
 
 #define WIN_HEIGHT (int)((double)WIN_WIDTH * ASPECT)
+#define EPS 1e-10
 
-// #define WIN_ORD 200
-
-// #define WIN_WIDTH 1200
-// #define WIN_HEIGHT 1200
-
-// # define WIN_WIDTH 712
-// # define WIN_HEIGHT 512
 # define ERROR 1
 # define SUCCESS 0
 // # define BACK_COLOR 100*256*256+149*256+237
@@ -39,7 +33,8 @@
 # define BACK_COLOR 0x00000000
 # define OBJ_COLOR 0xa0af0f991
 
-
+# define BACK_COLOR_RED "\x1b[41m"
+# define BACK_COLOR_DEF "\x1b[49m"
 
 
 // if uset os is mac, use this key code
@@ -117,7 +112,7 @@ double	vec_dot(t_vec3 va, t_vec3 vb);
 t_vec3	vec_cross(t_vec3 va, t_vec3 vb);
 double	vec_mag_sq(t_vec3 va);
 double	vec_mag(t_vec3 va);
-t_vec3	vec_normilize(t_vec3 vec);
+t_vec3	vec_normalize(t_vec3 vec);
 void	print_vec(t_vec3 vec, char *str);
 t_vec3	get_vec(double x, double y, double z);
 double	constrain(double v, double vmin, double vmax);

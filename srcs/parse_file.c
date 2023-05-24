@@ -219,7 +219,7 @@ void	*get_ambient_lignt(char **split)
 // 	if (ray == NULL)
 // 		return (NULL);
 // 	ray->pos = position;
-// 	ray->orientation = vec_normilize(orientation);
+// 	ray->orientation = vec_normalize(orientation);
 // 	ray->distance_to_window = get_distance_to_window(ft_atoi(split[3]));
 // 	return (ray);
 // }
@@ -236,13 +236,6 @@ void	*get_camera(char **split)
 		get_vec_from_split(split[1], &position) ||
 		get_vec_from_split(split[2], &orientation))
 		return (NULL);
-	// ray = malloc(sizeof(t_ray));
-	// if (ray == NULL)
-	// 	return (NULL);
-	// ray->pos = position;
-	// ray->orientation = vec_normilize(orientation);
-	// ray->distance_to_window = get_distance_to_window(ft_atoi(split[3]));
-	// return (ray);
 	camera = make_camera(ft_atof(split[3]), position, orientation);
 	return (camera);
 }

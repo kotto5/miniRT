@@ -6,7 +6,7 @@
 /*   By: kakiba <kotto555555@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 11:07:28 by kakiba            #+#    #+#             */
-/*   Updated: 2023/05/20 11:02:05 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/05/24 14:49:41 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 		exit_error(1);
+	printf("EPS %f\n", EPS);
 	ft_memset(&env, 0, sizeof(t_env));
 	if (parse_file(&env, argv[1]) == ERROR)
 		exit_error(1);
