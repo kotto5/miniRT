@@ -6,7 +6,7 @@
 /*   By: kakiba <kotto555555@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 07:50:29 by kakiba            #+#    #+#             */
-/*   Updated: 2023/05/29 15:50:56 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/05/29 15:52:44 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -239,8 +239,41 @@ t_ray	*get_ray(t_camera *camera, int x, int y)
 	return (ray);
 }
 
+// t_ray	*get_ray(t_camera *camera, int x, int y)
+// {
+//     static const double	fx = 1.0 / (double)(WIN_WIDTH - 1);
+//     static const double	fy = 1.0 / (double)(WIN_HEIGHT - 1);
+//     const double	u = (double)x * fx;
+//     const double	v = (double)y * fy;
+//     t_ray	*ray;
+    
+//     ray = malloc(sizeof(t_ray));
+//     if (ray == NULL)
+//         return (NULL);
+//     ft_memset(ray, 0, sizeof(t_ray));
+//     ray->pos = camera->origin;
+//     ray->dir = vec_sub(
+// 		vec_add(
+// 			vec_add(
+// 				vec_mult(camera->horizontal, u), 
+// 				vec_mult(camera->vertical, v)), camera->higher_left_corner), camera->origin);
+//     ray->dir = vec_normalize(ray->dir);
+//     return (ray);
+// }
+
 void	exit_error(int ret)
 {
 	// printf("ERROR %d\n", ret);
 	exit(ret);
 }
+
+// sp    -10,0,-10  1.00        10,50,200
+// sp    -10,0,0   1.00        0,255,255
+// sp    -10,0,10  1.00        255,0,255
+
+// sp    0,0,-10    1.00        255,255,255
+// sp    0,0,10    1.00        50,50,50
+
+// sp    10,0,-10   1.00        200,100,50
+// sp    10,0,0   1.00        255,255,0
+// sp    10,0,10   1.00        0,255,0

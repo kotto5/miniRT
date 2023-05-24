@@ -157,7 +157,6 @@ t_bright_color	*ray_trace(t_bright_color *b_color, t_scene *scene, t_ray *ray)
 	}
 	return (b_color);
 }
-// 
 
 // int	*color_img(t_img *img, t_ray eye, t_dlist **gb_list)
 int	color_img(t_env *env)
