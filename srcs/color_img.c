@@ -166,13 +166,11 @@ int	color_img(t_env *env)
 	int	x = 0;
 	int	y = 0;
 
-	printf("%d, \n", WIN_WIDTH);
 	scene.obj_list = env->obj_list;
 	scene.light_list = env->light_list;
 	scene.am_light = env->am_light;
-	printf("3\n");
 
-	// print_time(3);
+	print_time(3);
 	env->eye = malloc(sizeof(t_ray));
 	env->eye->pos = get_vec(0, 0, 0);
 	while (y < WIN_HEIGHT)
@@ -181,13 +179,6 @@ int	color_img(t_env *env)
 		while (x < WIN_WIDTH)
 		{
 			env->eye = get_ray(env->camera, x, y);
-			// env->eye->dir = vec_normalize(env->eye->dir);
-
-			// env->eye->dir = vec_normalize(vec_sub(get_screen_vec(x, y, env->camera->origin), env->camera->origin));
-			// env->eye->dir = rotate_vec(env->eye->dir, env->camera->rotation_axis, env->camera->rotation_radian);
-
-			// set_custom_rotated_vector(&env->eye->dir, env->eye->pos, vec_normalize(get_vec(0, 0, 0)));
-
 			ray_trace(&ref_color, &scene, env->eye);
 			mlx_put_to_img(&env->img, x, y, to_img_color_from_b_color(&ref_color));
 			x++;

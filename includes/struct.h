@@ -75,6 +75,7 @@ typedef struct	s_camera
 
 	t_vec3	rotation_axis;
 	double	rotation_radian;
+	double	fov;
 }				t_camera;
 
 typedef struct	s_env
@@ -166,6 +167,8 @@ struct	s_obj
 
 	t_reflect	ref;
 	t_intersection		(*get_intersection)(const t_ray, const t_obj *);
+	bool				(*is_inside_point)(const t_obj *obj, const t_vec3 point);
+	bool				is_closed;
 };
 
 typedef enum e_lighttype{

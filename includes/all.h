@@ -20,8 +20,8 @@
 
 #define WIN_WIDTH 1200
 // #define ASPECT (double)(9.0 / 16.0)
-// #define ASPECT (double)(12.0/16.0)
-#define ASPECT (double)(1)
+#define ASPECT (double)(12.0/16.0)
+// #define ASPECT (double)(1)
 
 #define WIN_HEIGHT (int)((double)WIN_WIDTH * ASPECT)
 #define EPS 1e-10
@@ -171,5 +171,8 @@ int	set_rymat(double rmat[4][4], const double d);
 int	set_rzmat(double rmat[4][4], const double d);
 int	main_affine_rotation(t_vec3 *vec, const t_vec3 input);
 t_vec3 rotate_vec(t_vec3 v, t_vec3 k, double theta);
+
+bool	is_inside_sphere(const t_obj *obj, const t_vec3 point);
+bool	is_inside_cylinder(const t_obj *obj, const t_vec3 point);
 
 #endif
