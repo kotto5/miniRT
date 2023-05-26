@@ -52,18 +52,3 @@ t_bright_color	get_color_with_at(t_scene *scene, t_intersection_info *info, t_li
 	}
 	return (ref);
 }
-
-
-cat 
-^C 
-bash$
-
-cat 
-^C bash$
-
-cat 
-^\ Quit: 3
-bash$
-
-cat 
-^\bash$
