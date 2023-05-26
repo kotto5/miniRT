@@ -91,8 +91,9 @@ t_bright_color	get_ref6(t_intersection_info *info, t_lightsource *light, t_ray e
 	const t_lighting	lighting = light->lighting_at(info->intersection.position, light);
 
 	ft_memset(&ref, 0, sizeof(t_bright_color));
-	// if (fabs(vec_dot(info->intersection.vertical_dir, lighting.incident_to_light)) < 0.01)
-	// 	return (ref);
+// うっすらと光の線が出るときにこれで対処できる 円とか円柱とか
+	if (fabs(vec_dot(info->intersection.vertical_dir, lighting.incident_to_light)) < 0.01)
+		return (ref);
 
 	// printf(" [%f]  \n", vec_dot(info->intersection.vertical_dir, lighting.incident_to_light));
 	// b_color_add(ref, get_deffsuse_ref6(info->intersection, info->obj->ref, lighting));

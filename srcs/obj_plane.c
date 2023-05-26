@@ -6,7 +6,7 @@
 /*   By: kakiba <kotto555555@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 15:43:21 by kakiba            #+#    #+#             */
-/*   Updated: 2023/05/26 15:43:22 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/05/27 06:02:48 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,5 +44,10 @@ t_intersection	get_intersection_plane(const t_ray ray, const t_obj *obj)
 	// intersection.distance = d;
 	intersection.distance = vec_mag(td);
 	intersection.vertical_dir = vec_normalize(plane->vertical);
+	if (vec_dot(intersection.vertical_dir, ray.dir) >= 0.0)
+	{
+		intersection.vertical_dir = vec_mult(intersection.vertical_dir, -1);
+		intersection.is_inside = true;
+	}
 	return (intersection);
 }
