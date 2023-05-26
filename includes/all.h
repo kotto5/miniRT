@@ -20,8 +20,8 @@
 
 #define WIN_WIDTH 1200
 // #define ASPECT (double)(9.0 / 16.0)
-// #define ASPECT (double)(12.0/16.0)
-#define ASPECT (double)(1)
+#define ASPECT (double)(12.0/16.0)
+// #define ASPECT (double)(1)
 
 #define WIN_HEIGHT (int)((double)WIN_WIDTH * ASPECT)
 #define EPS 1e-10
