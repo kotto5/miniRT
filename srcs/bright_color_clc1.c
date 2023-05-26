@@ -25,11 +25,6 @@ t_bright_color	b_color_add(t_bright_color b1, t_bright_color b2)
 t_bright_color	b_color_mult(t_bright_color b1, t_bright_color b2)
 {
 	t_bright_color	b_color;
-
-	// b_color.t = b1.t * b2.t;
-	// b_color.r = b1.r * b2.r;
-	// b_color.g = b1.g * b2.g;
-	// b_color.b = b1.b * b2.b;
 	double			buf;
 
 	buf = b1.t * b2.t;

@@ -32,7 +32,7 @@ t_cylinder	*make_cylinder_instance(t_vec3 vertical, t_vec3 point, double r, doub
 	if (instance == NULL)
 		return (NULL);
 	instance->r = r;
-	instance->vertical = vertical;
+	instance->vertical = vec_normalize(vertical);
 	instance->position = point;
 	instance->height = height;
 	return (instance);
@@ -68,11 +68,22 @@ t_obj	*new_obj(t_objtype type, t_reflect ref, void *obj_info)
 	obj->type = type;
 	obj->instance = obj_info;
 	if (type == O_SPHERE)
+	{
 		obj->get_intersection = get_intersection_sphere;
+		obj->is_inside_point = is_inside_sphere;
+		obj->is_closed = true;
+	}
 	else if (type == O_PLANE)
+	{
 		obj->get_intersection = get_intersection_plane;
+		obj->is_closed = false;
+	}
 	else if (type == O_CYLINDER)
+	{
 		obj->get_intersection = get_intersection_cylinder;
+		obj->is_inside_point = is_inside_cylinder;
+		obj->is_closed = false;
+	}
 	else if (type == O_RECT)
 		obj->get_intersection = get_intersection_rect;
 	else

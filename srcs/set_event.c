@@ -6,7 +6,7 @@
 /*   By: kakiba <kotto555555@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 22:54:52 by kakiba            #+#    #+#             */
-/*   Updated: 2023/05/20 08:20:41 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/05/24 20:42:55 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,21 +38,21 @@ int	mouse_event(int button, int x, int y, void *data)
 	if (button == 1)
 	{
 		printf("button is %d\n", button);
-		env->eye->pos.z += 0.1;
 		env->camera->origin.z += 0.1;
+		env->camera = make_camera(env->camera->fov, env->camera->origin, env->camera->orientation);
 	}
 	else if (button == 2)
 	{
 		printf("button is %d\n", button);
-		env->eye->pos.z -= 0.1;
 		env->camera->origin.z -= 0.1;
+		env->camera = make_camera(env->camera->fov, env->camera->origin, env->camera->orientation);
 	}
 	else
 	{
 		printf("button is %d\n", button);
 		return (0);
 	}
-	
+
 	color_img(env);
 	mlx_put_image_to_window(env->mlx, env->win, env->img.img, 0, 0);
 	mlx_loop(env->mlx);

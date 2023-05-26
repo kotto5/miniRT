@@ -69,6 +69,8 @@ static t_bright_color	get_specular_ref6(t_lighting lighting, t_intersection inte
 		return (b_color_get(0, 0, 0, 0));
 	}
 	double	inner_product = vec_dot(inverse_eyedir, regular_ref_incident);
+	if (inner_product > 0.000)
+		printf("");
 	if (inner_product < 0)
 		inner_product = 0;
 	if (inner_product > 1)
@@ -84,12 +86,19 @@ static t_bright_color	get_specular_ref6(t_lighting lighting, t_intersection inte
 t_bright_color	get_ref6(t_intersection_info *info, t_lightsource *light, t_ray eye, t_scene *scene)
 {
 	(void)scene;
+	(void)eye;
 	t_bright_color		ref;
 	const t_lighting	lighting = light->lighting_at(info->intersection.position, light);
 
 	ft_memset(&ref, 0, sizeof(t_bright_color));
-	// ref = b_color_add(ref, get_ambient_ref_double6(info->obj->ref, *scene->am_light));
+	// if (fabs(vec_dot(info->intersection.vertical_dir, lighting.incident_to_light)) < 0.01)
+	// 	return (ref);
+
+	// printf(" [%f]  \n", vec_dot(info->intersection.vertical_dir, lighting.incident_to_light));
+	// b_color_add(ref, get_deffsuse_ref6(info->intersection, info->obj->ref, lighting));
 	ref = b_color_add(ref, get_deffsuse_ref6(info->intersection, info->obj->ref, lighting));
+
+	// b_color_add(ref, get_specular_ref6(lighting, info->intersection, eye, info->obj->ref));
 	ref = b_color_add(ref, get_specular_ref6(lighting, info->intersection, eye, info->obj->ref));
 	if (ref.r > 1.0)
 	{
