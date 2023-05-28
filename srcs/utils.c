@@ -6,7 +6,11 @@
 /*   By: kakiba <kotto555555@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 07:50:29 by kakiba            #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/05/28 18:49:42 by kakiba           ###   ########.fr       */
+=======
+/*   Updated: 2023/05/28 18:44:49 by kakiba           ###   ########.fr       */
+>>>>>>> 8e29e4e (めちゃ前のやつ　いらない)
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +44,7 @@ void	mlx_put_to_img(t_img *data, int x, int y, int color)
 	win_z = eye.pos.z + eye.distance_to_window + eye.orientation.z;
 	return (get_vec(win_x, win_y, win_z));
 }
+
 
 double	get_distance_to_window(int fov)
 {
