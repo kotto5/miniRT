@@ -6,7 +6,7 @@
 /*   By: kakiba <kotto555555@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 07:50:29 by kakiba            #+#    #+#             */
-/*   Updated: 2023/05/28 18:35:01 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/05/28 18:39:24 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,40 +40,40 @@ t_vec3	get_screen_vec(int x, int y, t_ray eye)
 }
 
 
-// ウィンドウの中心は、eye.pos + eye.distance_to_window * eye.orientation
-// これを基にして、x, y, zに応じて今まで通り計算すればおk
-t_vec3	get_screen_vec(int x, int y, t_ray eye)
-{
-//	t_vec3	center_of_window;
-	double	win_x;
-	double	win_y;
-	double	win_z;
-	double	width;
-	double	height;
-	double	ord;
+// // ウィンドウの中心は、eye.pos + eye.distance_to_window * eye.orientation
+// // これを基にして、x, y, zに応じて今まで通り計算すればおk
+// t_vec3	get_screen_vec(int x, int y, t_ray eye)
+// {
+// //	t_vec3	center_of_window;
+// 	double	win_x;
+// 	double	win_y;
+// 	double	win_z;
+// 	double	width;
+// 	double	height;
+// 	double	ord;
 
-//	center_of_window = get_vec(eye.pos.x + eye.distance_to_window * eye.orientation.x,
-//		eye.pos.y + eye.distance_to_window * eye.orientation.y,
-//		eye.pos.z + eye.distance_to_window * eye.orientation.z);
-//	win_x = (double)x / (ord / 2.0) - width / ord + center_of_window.x;
-//	win_y = height / ord - (double)y / (ord / 2.0) + center_of_window.y;
-//	win_z = center_of_window.z;
+// //	center_of_window = get_vec(eye.pos.x + eye.distance_to_window * eye.orientation.x,
+// //		eye.pos.y + eye.distance_to_window * eye.orientation.y,
+// //		eye.pos.z + eye.distance_to_window * eye.orientation.z);
+// //	win_x = (double)x / (ord / 2.0) - width / ord + center_of_window.x;
+// //	win_y = height / ord - (double)y / (ord / 2.0) + center_of_window.y;
+// //	win_z = center_of_window.z;
 
 
-	width = (double)WIN_WIDTH;
-	height = (double)WIN_HEIGHT;
-	ord = (double)WIN_ORD;
-	// win_x = (double)x / (ord / 2.0) - width / ord + eye.pos.x;
-	// win_y = height / ord - (double)y / (ord / 2.0) + eye.pos.y;
-	// win_z = eye.pos.z + eye.distance_to_window;
-	// print_vec(eye.orientation, "win_x is");
-	win_x = (double)x / (ord / 2.0) - width / ord + eye.pos.x;
-	win_y = height / ord - (double)y / (ord / 2.0) + eye.pos.y;
-	win_z = eye.pos.z + eye.distance_to_window;
-//	t_vec3 vec = get_vec(win_x * eye.orientation.x, win_y * eye.orientation.y, win_z * eye.orientation.z);
-	t_vec3 vec = get_vec(win_x, win_y, win_z);
-	return (vec);
-}
+// 	width = (double)WIN_WIDTH;
+// 	height = (double)WIN_HEIGHT;
+// 	ord = (double)WIN_ORD;
+// 	// win_x = (double)x / (ord / 2.0) - width / ord + eye.pos.x;
+// 	// win_y = height / ord - (double)y / (ord / 2.0) + eye.pos.y;
+// 	// win_z = eye.pos.z + eye.distance_to_window;
+// 	// print_vec(eye.orientation, "win_x is");
+// 	win_x = (double)x / (ord / 2.0) - width / ord + eye.pos.x;
+// 	win_y = height / ord - (double)y / (ord / 2.0) + eye.pos.y;
+// 	win_z = eye.pos.z + eye.distance_to_window;
+// //	t_vec3 vec = get_vec(win_x * eye.orientation.x, win_y * eye.orientation.y, win_z * eye.orientation.z);
+// 	t_vec3 vec = get_vec(win_x, win_y, win_z);
+// 	return (vec);
+// }
 
 
 double	get_distance_to_window(int fov)
