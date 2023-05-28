@@ -36,12 +36,17 @@ typedef struct	s_vec3
 	double	z;
 }				t_vec3;
 
+typedef struct	s_mat3{
+	double	m[3][3];
+}				t_mat3;
+
 typedef struct	s_ray
 {
 	t_vec3	pos;
 	t_vec3	dir;
 	double	distance_to_window;
 	t_vec3	orientation;
+	t_mat3	rotation;
 }				t_ray;
 
 typedef struct	s_img {

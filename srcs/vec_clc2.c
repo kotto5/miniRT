@@ -6,7 +6,7 @@
 /*   By: kakiba <kotto555555@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 06:42:05 by kakiba            #+#    #+#             */
-/*   Updated: 2023/04/29 12:49:12 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/05/03 10:20:21 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,25 +81,73 @@ t_reflect	get_t_refrect(t_bright_color am, t_bright_color di, t_bright_color sp,
 	return (ref);
 }
 
-// t_reflect	get_t_refrect(double am, double di, double sp, double sp_shininess)
-// {
-// 	t_reflect	ref;
+t_vec3	vec_rotate(t_vec3 v, t_mat3 m) {
+	t_vec3 result;
+	result.x = m.m[0][0] * v.x + m.m[0][1] * v.y + m.m[0][2] * v.z;
+	result.y = m.m[1][0] * v.x + m.m[1][1] * v.y + m.m[1][2] * v.z;
+	result.z = m.m[2][0] * v.x + m.m[2][1] * v.y + m.m[2][2] * v.z;
+	return result;
+}
 
-// 	ref.d_am = am;
-// 	ref.d_di = di;
-// 	ref.d_sp = sp;
-// 	ref.sp_shininess = sp_shininess;
-// 	return (ref);
-// }
+t_mat3 multiply_matrices(t_mat3 a, t_mat3 b) {
+    t_mat3 result;
 
+    for (int i = 0; i < 3; ++i) {
+        for (int j = 0; j < 3; ++j) {
+            result.m[i][j] = 0;
+            for (int k = 0; k < 3; ++k) {
+                result.m[i][j] += a.m[i][k] * b.m[k][j];
+            }
+        }
+    }
 
+    return result;
+}
 
-/*
-color	t  r  b  g
-		ff 41 42 a5
+t_mat3 rotation_matrix(t_vec3 vec)
+{
+    double cx = cos(vec.x);
+    double sx = sin(vec.x);
+    double cy = cos(vec.y);
+    double sy = sin(vec.y);
+    double cz = cos(vec.z);
+    double sz = sin(vec.z);
 
-color	t r g b
-		
+    t_mat3 rot_x = {
+        .m = {
+            {1, 0, 0},
+            {0, cx, -sx},
+            {0, sx, cx}
+        }
+    };
 
-*/
+    t_mat3 rot_y = {
+        .m = {
+            {cy, 0, sy},
+            {0, 1, 0},
+            {-sy, 0, cy}
+        }
+    };
 
+    t_mat3 rot_z = {
+        .m = {
+            {cz, -sz, 0},
+            {sz, cz, 0},
+            {0, 0, 1}
+        }
+    };
+
+    // 回転行列を掛け合わせる関数が必要です。
+    t_mat3 result = multiply_matrices(rot_z, multiply_matrices(rot_y, rot_x));
+    return result;
+}
+
+t_vec3 direction_to_euler(t_vec3 direction)
+{
+    t_vec3 euler;
+    euler.x = asin(direction.y);
+    euler.y = atan2(-direction.x, direction.z);
+    euler.z = 0; // ロール角は通常0とします（必要に応じて変更してください）
+
+    return euler;
+}

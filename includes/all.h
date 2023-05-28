@@ -114,6 +114,12 @@ double	constrain(double v, double vmin, double vmax);
 double	map(double v, double vmin, double vmax, double tmin, double tmax); // 値のマッピング
 t_dlist	*get_obj_list(void);
 
+t_vec3 direction_to_euler(t_vec3 direction);
+t_mat3 rotation_matrix(t_vec3 vec);
+t_mat3 multiply_matrices(t_mat3 a, t_mat3 b);
+t_vec3	vec_rotate(t_vec3 v, t_mat3 m);
+
+
 void	set_event(t_env *env);
 
 // t_img_color	get_img_color(double t, double r, double g, double b);
