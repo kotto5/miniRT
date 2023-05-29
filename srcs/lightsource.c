@@ -1,8 +1,5 @@
 #include "all.h"
 
-// t_point_light	*make_point_light_info(t_vec3 position, t_img_color intensity, t_dlist **gb_list)
-// t_point_light	*make_point_light_info(t_vec3 position, double intensity, t_dlist **gb_list)
-// t_point_light	*make_point_light_info(t_vec3 position, t_bright_color intensity, t_dlist **gb_list)
 t_point_light	*make_point_light_info(t_vec3 position, t_bright_color intensity)
 {
 
@@ -23,7 +20,6 @@ t_lighting	lighting_at_point(t_vec3 position, t_lightsource *light)
 	t_vec3		vec;
 
 	info = light->instance;
-	// vec = vec_sub(position, info->pos);
 	vec = vec_sub(info->pos, position);
 	// printf("LIGHT 7\n");
 
