@@ -6,7 +6,7 @@
 /*   By: kakiba <kotto555555@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 07:50:29 by kakiba            #+#    #+#             */
-/*   Updated: 2023/05/29 16:04:25 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/05/29 16:45:11 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,40 +107,6 @@ int	get_rotate_axis(t_vec3 base_vec, t_vec3 orien_vec, t_vec3 *rotate_axis, doub
 	}
 	return (SUCCESS);
 }
-
-// t_camera	*make_camera(double fov, t_vec3 pos, t_vec3 orientation)
-// {
-// 	t_camera	*camera;
-
-// 	camera = malloc(sizeof(t_camera));
-// 	if (camera == NULL)
-// 		return (NULL);
-// 	double	h = tan(degree_to_radian(fov) / 2.0);
-// 	double	viewport_width = 2.0 * h;
-// 	double	viewport_height = (double)ASPECT * viewport_width;
-// 	double	focal_length = 1.0;
-
-// 	camera->origin = pos;
-// 	camera->orientation = vec_normalize(orientation);
-// 	// camera->rotation_axis = vec_normalize(vec_cross(camera->orientation, get_vec(0, 0, -1)));
-// 	// camera->rotation_radian = acos(vec_dot(camera->orientation, get_vec(0, 0, -1)));
-// 	get_rotate_axis(get_vec(0, 0, 1), orientation, &camera->rotation_axis, &camera->rotation_radian);
-// 	if (isnan(camera->rotation_axis.x) || isnan(camera->rotation_axis.y) ||
-// 		isnan(camera->rotation_axis.z) || isnan(camera->rotation_radian))
-// 	{
-// 		printf("====%s ISNAN ! %s====\n", BACK_COLOR_RED, BACK_COLOR_DEF);
-// 		camera->rotation_axis = get_vec(0, 0, 1);
-// 		camera->rotation_radian = 0;
-// 	}
-// 	camera->horizontal = get_vec(viewport_width, 0, 0);
-// 	camera->vertical = get_vec(0, viewport_height, 0);
-// 	camera->higher_left_corner = 
-// 		vec_sub(vec_add(
-// 			vec_sub(camera->origin, vec_mult(camera->horizontal, 0.5)),
-// 				vec_mult(camera->vertical, 0.5)),
-// 					get_vec(0, 0, focal_length));
-// 	return (camera);
-// }
 
 t_camera	*make_camera(double fov, t_vec3 pos, t_vec3 forward)
 {
