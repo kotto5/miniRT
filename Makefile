@@ -17,15 +17,15 @@ DEPENDS    :=  $(patsubst $(SRCDIR)%, $(OBJDIR)%, $(SRCS:%.c=%.d))
 
 
 # mac
-# LIBXDIR = ./minilibx
-# LIBMLX = ./minilibx/libmlx.a
-# LIBMLXFLAGS = -framework OpenGL -framework AppKit
+LIBXDIR = ./minilibx
+LIBMLX = ./minilibx/libmlx.a
+LIBMLXFLAGS = -framework OpenGL -framework AppKit
 
 # linux
-LIBXDIR = ./minilibx-linux
-LIBMLX = $(LIBXDIR)/libmlx.a
-LIBMLXFLAGS = -lXext -lX11
-CFLAGS += -lm
+# LIBXDIR = ./minilibx-linux
+# LIBMLX = $(LIBXDIR)/libmlx.a
+# LIBMLXFLAGS = -lXext -lX11
+# CFLAGS += -lm
 
 INCLUDES = -I./includes -I./libft/includes -I./minilibx-linux
 

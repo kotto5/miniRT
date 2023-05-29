@@ -103,8 +103,8 @@ t_bright_color	get_ref6(t_intersection_info *info, t_lightsource *light, t_ray e
 	// b_color_add(ref, get_deffsuse_ref6(info->intersection, info->obj->ref, lighting));
 	ref = b_color_add(ref, get_deffsuse_ref6(info->intersection, info->obj->ref, lighting));
 
-	// b_color_add(ref, get_specular_ref6(lighting, info->intersection, eye, info->obj->ref));
-	ref = b_color_add(ref, get_specular_ref6(lighting, info->intersection, eye, info->obj->ref));
+	b_color_add(ref, get_specular_ref6(lighting, info->intersection, eye, info->obj->ref));
+	// ref = b_color_add(ref, get_specular_ref6(lighting, info->intersection, eye, info->obj->ref));
 	if (ref.r > 1.0)
 	{
 		// printf("ref is over 1   ref:%f", ref.r);

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   vec_clc3.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kakiba <kotto555555@gmail.com>             +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/29 16:03:35 by kakiba            #+#    #+#             */
+/*   Updated: 2023/05/29 16:03:36 by kakiba           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "all.h"
 
 double	get_min_double(const double a, const double b)
@@ -25,14 +37,6 @@ int	set_custom_rotated_vector(
 	set_vec3(vec, nvec.x, nvec.y, nvec.z);
 	return (0);
 }
-
-// double angleBetween(t_vec3 v1, t_vec3 v2) {
-// 	double	dot = dotProduct(v1, v2);
-// 	double	mag1 = magnitude(v1);
-// 	double	mag2 = magnitude(v2);
-
-// 	return acos(dot / (mag1 * mag2));
-// }
 
 t_vec3 rotate_vec(t_vec3 v, t_vec3 k, double theta) {
 	t_vec3 vRot;

@@ -22,30 +22,12 @@
 // #define ASPECT (double)(9.0 / 16.0)
 #define ASPECT (double)(12.0/16.0)
 // #define ASPECT (double)(1)
-<<<<<<< HEAD
 
 #define WIN_HEIGHT (int)((double)WIN_WIDTH * ASPECT)
 #define EPS 1e-10
 
-<<<<<<< HEAD
 // #define WIN_ORD 200
 
-#define WIN_WIDTH 1200
-// #define ASPECT (double)(9.0 / 16.0)
-#define ASPECT (double)(12.0/16.0)
-// #define ASPECT (double)(1)
-
-#define WIN_HEIGHT (int)((double)WIN_WIDTH * ASPECT)
-#define EPS 1e-10
-
-=======
->>>>>>> 視点　完成したかな..
-=======
-
-#define WIN_HEIGHT (int)((double)WIN_WIDTH * ASPECT)
-#define EPS 1e-10
-
->>>>>>> 4d1631e62ec1fa997b6800e87541a214f2b14616
 # define ERROR 1
 # define SUCCESS 0
 // # define BACK_COLOR 100*256*256+149*256+237
@@ -55,15 +37,6 @@
 
 # define BACK_COLOR_RED "\x1b[41m"
 # define BACK_COLOR_DEF "\x1b[49m"
-<<<<<<< HEAD
-<<<<<<< HEAD
-# define WIN_ORD 1
-=======
-
->>>>>>> 視点　完成したかな..
-=======
-
->>>>>>> 4d1631e62ec1fa997b6800e87541a214f2b14616
 
 // if uset os is mac, use this key code
 #ifdef __APPLE__

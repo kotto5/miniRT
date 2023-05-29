@@ -54,21 +54,21 @@ t_bright_color	b_color_mult_constant(t_bright_color b1, double d)
 	double			buf;
 
 	buf = b1.t * d;
-	if (buf > 256)
-		buf = 100;
+	// if (buf > 256)
+	// 	buf = 100;
 	b_color.t = buf;
 
 	buf = b1.r * d;
-	if (buf > 256)
-		buf = 100;
+	// if (buf > 256)
+	// 	buf = 100;
 	b_color.r = buf;
 	buf = b1.g * d;
-	if (buf > 256)
-		buf = 100;
+	// if (buf > 256)
+	// 	buf = 100;
 	b_color.g = buf;
 	buf = b1.b * d;
-	if (buf > 256)
-		buf = 100;
+	// if (buf > 256)
+	// 	buf = 100;
 	b_color.b = buf;
 	return (b_color);
 }
