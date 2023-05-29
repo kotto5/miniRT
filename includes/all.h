@@ -35,7 +35,7 @@
 
 # define BACK_COLOR_RED "\x1b[41m"
 # define BACK_COLOR_DEF "\x1b[49m"
-
+# define WIN_ORD 1
 
 // if uset os is mac, use this key code
 #ifdef __APPLE__

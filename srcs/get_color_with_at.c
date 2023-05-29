@@ -41,8 +41,8 @@ t_bright_color	get_color_with_at(t_scene *scene, t_intersection_info *info, t_li
 	ft_memset(&ref, 0, sizeof(t_bright_color));
 	if (info->intersection.does_intersect == true)
 	{
-		if (0)
-			;
+		// if (0)
+		// 	;
 		if (do_through_other_obj_by_light(scene->obj_list, light, info))
 			return (ref);
 		else if (info->obj->is_closed && info->intersection.is_inside != info->obj->is_inside_point(info->obj, p_light->pos))

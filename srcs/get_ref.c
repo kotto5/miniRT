@@ -54,6 +54,10 @@ static t_bright_color	get_specular_ref6(t_lighting lighting, t_intersection inte
 	// double	ref = 0;
 	// double	Ks = ref_info.d_sp;
 	// double	Ii = lighting.d_intensity;
+
+	if (fabs(vec_dot(intersection.vertical_dir, lighting.incident_to_light)) < 0.01)
+		return (b_color_get(0, 0, 0, 0));
+
 	double	alpha = ref_info.sp_shininess;
 
 	t_vec3	inverse_eyedir = vec_mult(eye.dir, -1);
@@ -69,8 +73,8 @@ static t_bright_color	get_specular_ref6(t_lighting lighting, t_intersection inte
 		return (b_color_get(0, 0, 0, 0));
 	}
 	double	inner_product = vec_dot(inverse_eyedir, regular_ref_incident);
-	if (inner_product > 0.000)
-		printf("");
+	// if (inner_product > 0.000)
+	// 	printf("");
 	if (inner_product < 0)
 		inner_product = 0;
 	if (inner_product > 1)
@@ -91,9 +95,9 @@ t_bright_color	get_ref6(t_intersection_info *info, t_lightsource *light, t_ray e
 	const t_lighting	lighting = light->lighting_at(info->intersection.position, light);
 
 	ft_memset(&ref, 0, sizeof(t_bright_color));
+
 // うっすらと光の線が出るときにこれで対処できる 円とか円柱とか
-	if (fabs(vec_dot(info->intersection.vertical_dir, lighting.incident_to_light)) < 0.01)
-		return (ref);
+// inside sy 3 みたいに、側面に垂直に光宛てられた時の挙動は変わっちゃう
 
 	// printf(" [%f]  \n", vec_dot(info->intersection.vertical_dir, lighting.incident_to_light));
 	// b_color_add(ref, get_deffsuse_ref6(info->intersection, info->obj->ref, lighting));
