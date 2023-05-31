@@ -42,6 +42,11 @@
 # define EPSILON 0.001
 # define FOCAL_LENGTH 1.0
 
+# define SYNTAX 3
+# define OPEN_ERROR 2
+# define CLOSE_ERROR 4
+# define ARG_INSUFFICIENT 5
+
 // if uset os is mac, use this key code
 #ifdef __APPLE__
 // mac
@@ -162,6 +167,7 @@ t_camera	*make_camera(double fov, t_vec3 pos, t_vec3 orientation);
 
 int	color_img(t_env *env);
 int	parse_file(t_env *env, char *file);
+int	parse_line(char *line, t_env *env);
 void	exit_error(int ret);
 double	degree_to_radian(int degree);
 
@@ -176,5 +182,15 @@ t_vec3 rotate_vec(t_vec3 v, t_vec3 k, double theta);
 
 bool	is_inside_sphere(const t_obj *obj, const t_vec3 point);
 bool	is_inside_cylinder(const t_obj *obj, const t_vec3 point);
+
+void		*get_light_node(char **split);
+void		*get_ambient_lignt(char **split);
+
+void		*get_camera(char **split);
+void		*get_cylinder_node(char **split);
+void		*get_plane_node(char **split);
+void		*get_sphere_node(char **split);
+int			get_ref_from_split(char *str, t_reflect *ref);
+int			get_vec_from_split(char *str, t_vec3 *vec);
 
 #endif

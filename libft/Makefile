@@ -69,15 +69,17 @@ $(SRCDIR)/ft_treenew.c\
 $(SRCDIR)/get_next_line_bonus.c\
 $(SRCDIR)/get_next_line_utils_bonus.c\
 $(SRCDIR)/gc_malloc.c\
+$(SRCDIR)/ft_free_double_ptr.c\
+$(SRCDIR)/ft_get_size_double_ptr.c\
 
 INCLUDES = -Iincludes
 OBJDIR = obj
 OBJS		:= $(patsubst $(SRCDIR)/%, $(OBJDIR)/%, $(SRCS:%.c=%.o))
 DEPENDS		:= $(patsubst $(SRCDIR)%, $(OBJDIR)/%, $(SRCS:%.c=%.d))
 
-$(OBJDIR)/%.o: $(SRCDIR)/%.c 
-	-mkdir -p $(@D) 
-	$(CC) $(CFLAGS) $(DFLAGS) $(INCLUDES) -c $< -o $@ 
+$(OBJDIR)/%.o: $(SRCDIR)/%.c
+	-mkdir -p $(@D)
+	$(CC) $(CFLAGS) $(DFLAGS) $(INCLUDES) -c $< -o $@
 
 all:$(NAME)
 
