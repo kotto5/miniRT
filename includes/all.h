@@ -38,6 +38,10 @@
 # define BACK_COLOR_RED "\x1b[41m"
 # define BACK_COLOR_DEF "\x1b[49m"
 
+# define PI 3.14159265358979323846
+# define EPSILON 0.001
+# define FOCAL_LENGTH 1.0
+
 // if uset os is mac, use this key code
 #ifdef __APPLE__
 // mac
@@ -61,7 +65,7 @@ enum{
 	KEY_Z = 122,
 	KEY_X = 120,
 	KEY_ESC = 65307,
-	
+
 };
 
 #endif
@@ -117,7 +121,6 @@ t_vec3	vec_normalize(t_vec3 vec);
 void	print_vec(t_vec3 vec, char *str);
 t_vec3	get_vec(double x, double y, double z);
 double	constrain(double v, double vmin, double vmax);
-double	map(double v, double vmin, double vmax, double tmin, double tmax); // 値のマッピング
 t_dlist	*get_obj_list(void);
 
 t_vec3 direction_to_euler(t_vec3 direction);
@@ -151,8 +154,6 @@ t_dlist	*get_light_list(t_dlist **gb_list);
 // t_bright_color	get_ref6(t_intersection intersection, t_reflect ref_info, t_lightsource *light, t_ray eye);
 t_bright_color	get_ref6(t_intersection_info *info, t_lightsource *light, t_ray eye, t_scene *scene);
 t_dtree *get_obj_tree(t_env *env);
-void	print_time(int a);
-double	abs_double(double d);
 
 // t_ray	get_ray(t_camera *camera, int x, int y);
 t_ray	*get_ray(t_camera *camera, int x, int y);

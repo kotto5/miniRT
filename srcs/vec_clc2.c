@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vec_clc2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kakiba <kotto555555@gmail.com>             +#+  +:+       +#+        */
+/*   By: shtanemu <shtanemu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 06:42:05 by kakiba            #+#    #+#             */
-/*   Updated: 2023/05/29 16:03:29 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/05/31 15:24:34 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,3 @@ t_vec3	get_vec(double x, double y, double z)
 	vec.z = z;
 	return (vec);
 }
-
-

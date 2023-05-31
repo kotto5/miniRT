@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kakiba <kotto555555@gmail.com>             +#+  +:+       +#+        */
+/*   By: shtanemu <shtanemu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 07:50:29 by kakiba            #+#    #+#             */
-/*   Updated: 2023/05/29 16:45:11 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/05/31 16:17:01 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,9 @@ void	mlx_put_to_img(t_img *data, int x, int y, int color)
 {
 	char	*dst;
 
-	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
-}
-
-double    degree_to_radian(int degree)
-{
-    static const double    pi = 3.14159265358979323846;
-    return ((double)degree * pi / 180.0);
+	dst = data->addr \
+		+ (y * data->line_length + x * (data->bits_per_pixel / 8));
+	*(unsigned int *)dst = color;
 }
 
 double	get_distance_to_window(int fov)
@@ -33,157 +28,60 @@ double	get_distance_to_window(int fov)
 
 	fov_rad = (double)fov * pi / 180.0;
 	return (1 / tan(fov_rad / 2.0));
-	// return (((double)WIN_WIDTH / (double)WIN_ORD) / 2.0 / tan(fov_rad / 2.0));
-}
-
-#include <sys/time.h>
-
-static long	ft_get_time_in_usec(void)
-{
-	struct timeval	t1;
-	long			sec_milli;
-	long			s_time;
-
-	if (gettimeofday(&t1, NULL))
-	{
-		return (-1);
-	}
-	s_time = (long)(t1.tv_sec);
-	sec_milli = s_time * 10000000 + (long)(t1.tv_usec);
-	// sec_milli = (long)(t1.tv_usec);
-	// sec_milli = s_time * 1000 + (long)(t1.tv_usec) / 1000;
-	return (sec_milli);
-}
-
-void	print_time(int a)
-{
-	static long	before;
-	static long	now;
-
-	now = ft_get_time_in_usec();
-	if (before == 0)
-		printf("[%d]time %d\n", a, 0);
-	else
-		printf("[%d]time %ld\n", a, now - before);
-	before = now;
-}
-
-double	abs_double(double d)
-{
-	if (d < 0)
-		return (d * -1.0);
-	return (d);
-}
-
-int	get_rotate_axis(t_vec3 base_vec, t_vec3 orien_vec, t_vec3 *rotate_axis, double *rotate_angle)
-{
-	*rotate_axis = vec_normalize(vec_cross(orien_vec, base_vec));
-	// if (vec_mag(*rotate_axis) <= 0)
-	if (isnan(rotate_axis->x) || isnan(rotate_axis->y) || isnan(rotate_axis->z))
-	{
-		printf("====%s get_rotate_axis PLOBLEM ! %s====\n", BACK_COLOR_RED, BACK_COLOR_DEF);
-		if (vec_dot(base_vec, orien_vec) > 0)
-		{
-			printf("====%s in IF %s====\n", BACK_COLOR_RED, BACK_COLOR_DEF);
-		// A and B are in the same direction.
-		// Any axis of rotation is valid. We choose (1, 0, 0).
-			*rotate_axis = get_vec(1.0, 0.0, 0.0);
-			*rotate_angle = M_PI;  // 180 degree rotation
-		}
-		else
-		{
-			printf("====%s in ELSE %s====\n", BACK_COLOR_RED, BACK_COLOR_DEF);
-			*rotate_axis = get_vec(1.0, 0.0, 0.0);
-			*rotate_angle = 0.0;  // No rotation needed
-			// A and B are in opposite directions.
-			// Any axis perpendicular to A (and B) is valid. We choose (1, 0, 0) if A is not along x, and (0, 1, 0) otherwise.
-		}
-	}
-	else
-	{
-		*rotate_axis = vec_normalize(*rotate_axis);
-		*rotate_axis = vec_mult(*rotate_axis, 1);
-		*rotate_angle = (acos(vec_dot(base_vec, orien_vec) / (vec_mag(base_vec) * vec_mag(orien_vec))));
-	}
-	return (SUCCESS);
 }
 
 t_camera	*make_camera(double fov, t_vec3 pos, t_vec3 forward)
 {
-    t_camera	*camera;
-    
-    camera = malloc(sizeof(t_camera));
-    if (camera == NULL)
-        return (NULL);
+	t_camera		*camera;
+	const double	viewport_width = 2.0 * tan((double)fov * PI / 180.0 / 2.0);
+	t_vec3			up;
+	t_vec3			right;
 
-    // compute the viewport size
-    double	h = tan(degree_to_radian(fov) / 2.0);
-    double	viewport_width = 2.0 * h;
-    double	viewport_height = (double)ASPECT * viewport_width;
-    double	focal_length = 1.0;
-
-    // normalize the forward vector
-    camera->orientation = vec_normalize(forward);
-
-    // choose an up vector
-    t_vec3 up;
-    if (fabs(camera->orientation.x) < EPS && fabs(camera->orientation.z) < EPS) { // if the camera->orientation is almost (0, ±1, 0)
-        up = (t_vec3){0.0, 0.0, 1.0};  // choose a different up vector
-    } else {
-        up = (t_vec3){0.0, 1.0, 0.0};  // default up vector
-    }
-    // compute the right and true up vectors
-    // t_vec3 right = vec_normalize(vec_cross(camera->orientation, up));
-    t_vec3 right = vec_normalize(vec_cross(up, camera->orientation));
-    up = vec_cross(camera->orientation, right);
-    // up = vec_cross(right, camera->orientation);
-
-
-
-	// right = vec_mult(right, -1);
-	// up = vec_mult(up, -1);
-
-    // compute the corners of the viewport
-
-    t_vec3 horizontal = vec_mult(right, viewport_width);
-    t_vec3 vertical = vec_mult(up, viewport_height);
-    t_vec3 middle = vec_mult(camera->orientation, focal_length);
-    t_vec3 higher_left_corner = vec_add(vec_add(vec_sub(pos, vec_mult(horizontal, 0.5)), vec_mult(vertical, 0.5)), middle);
-
-    // store the results
-    camera->origin = pos;
-    camera->horizontal = horizontal;
-    camera->vertical = vertical;
-    camera->higher_left_corner = higher_left_corner;
+	camera = malloc(sizeof(t_camera));
+	if (camera == NULL)
+		return (NULL);
+	camera->orientation = vec_normalize(forward);
+	if (fabs(camera->orientation.x) < EPS \
+		&& fabs(camera->orientation.z) < EPS)
+		up = (t_vec3){0.0, 0.0, 1.0};
+	else
+		up = (t_vec3){0.0, 1.0, 0.0};
+	right = vec_normalize(vec_cross(up, camera->orientation));
+	up = vec_cross(camera->orientation, right);
+	camera->origin = pos;
+	camera->horizontal = vec_mult(right, viewport_width);
+	camera->vertical = vec_mult(up, (double)ASPECT * viewport_width);
+	camera->higher_left_corner = vec_add(\
+		vec_add(vec_sub(pos, vec_mult(camera->horizontal, 0.5)), \
+		vec_mult(camera->vertical, 0.5)), \
+		vec_mult(camera->orientation, FOCAL_LENGTH));
 	camera->fov = fov;
-
-    return camera;
+	return (camera);
 }
 
 t_ray	*get_ray(t_camera *camera, int x, int y)
 {
 	static const double	fx = 1.0 / (double)(WIN_WIDTH - 1);
 	static const double	fy = 1.0 / (double)(WIN_HEIGHT - 1);
-	const double	u = (double)x * fx;
-	const double	v = (double)y * fy;
-	t_ray	*ray;
-	t_vec3	screen_pos;
+	const double		u = (double)x * fx;
+	const double		v = (double)y * fy;
+	t_ray				*ray;
 
 	ray = malloc(sizeof(t_ray));
 	if (ray == NULL)
 		return (NULL);
 	ft_memset(ray, 0, sizeof(t_ray));
-	screen_pos = vec_sub(
-		vec_add(camera->higher_left_corner, vec_mult(camera->horizontal, u)),
-		vec_mult(camera->vertical, v));
 	ray->pos = camera->origin;
-	ray->dir = vec_sub(screen_pos, ray->pos);
+	ray->dir = vec_sub(vec_sub(\
+		vec_add(camera->higher_left_corner, \
+		vec_mult(camera->horizontal, u)), \
+		vec_mult(camera->vertical, v)), ray->pos);
 	ray->dir = vec_normalize(ray->dir);
 	return (ray);
 }
 
 void	exit_error(int ret)
 {
-	// printf("ERROR %d\n", ret);
+	printf("ERROR %d\n", ret);
 	exit(ret);
 }

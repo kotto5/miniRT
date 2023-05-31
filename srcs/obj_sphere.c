@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   obj_sphere.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kakiba <kotto555555@gmail.com>             +#+  +:+       +#+        */
+/*   By: shtanemu <shtanemu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 15:42:42 by kakiba            #+#    #+#             */
-/*   Updated: 2023/05/26 15:42:43 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/05/31 15:40:58 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,15 +57,6 @@ t_intersection	get_intersection_sphere(const t_ray ray, const t_obj *obj)
 	}
 	return (intersection);
 }
-	// intersection.position = vec_mult(ray.dir, t);
-	// if (abs_double(vec_mag_sq(vec_sub(intersection.position, sphere->pos)) - sphere->r * sphere->r) > 0.0000000001)
-		// print_vec(intersection.position, "pos!");
-
-// {
-// 	t_sphere			*sphere;
-// 	t_intersection		intersection;
-// 	double				t;
-// 	t_vec3				dt;
 
 bool	is_inside_sphere(const t_obj *obj, const t_vec3 point)
 {

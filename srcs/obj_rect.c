@@ -1,5 +1,26 @@
 #include "all.h"
 
+double	get_minimum(double a, double b, double c)
+{
+	if (a <= b && a <= c )
+		return (a);
+	else if (b <= a && b <= c)
+		return (b);
+	else
+		return (c);
+}
+
+double	get_maximum(double a, double b, double c)
+{
+	if (a >= b && a >= c )
+		return (a);
+	else if (b >= a && b >= c)
+		return (b);
+	else
+		return (c);
+}
+
+
 static double	get_t_ray_rect(t_ray ray, t_rect *rect)
 {
 	double	tx_start = (rect->bound1.x - ray.pos.x) / ray.dir.x;
