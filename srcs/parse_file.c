@@ -6,7 +6,7 @@
 /*   By: shtanemu <shtanemu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 07:50:29 by kakiba            #+#    #+#             */
-/*   Updated: 2023/05/31 18:27:03 by shtanemu         ###   ########.fr       */
+/*   Updated: 2023/05/31 19:15:20 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,9 @@
 static int	process_each_line(int fd, t_env *env)
 {
 	char	*line;
+	size_t	i;
 
+	i = 0;
 	while (1)
 	{
 		line = get_next_line(fd);
@@ -34,13 +36,11 @@ static int	process_each_line(int fd, t_env *env)
 int	parse_file(t_env *env, char *file)
 {
 	int		fd;
-	int		i;
 
-	i = 0;
 	fd = open(file, O_RDONLY, 0);
 	if (fd == -1)
 		exit_error(OPEN_ERROR);
-	process_each_line(fd, line);
+	process_each_line(fd, env);
 	if (close(fd))
 		exit_error(ERROR);
 	if (env->camera == NULL)
