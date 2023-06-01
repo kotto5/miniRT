@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_line.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shtanemu <shtanemu@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: kakiba <kotto555555@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 07:50:29 by kakiba            #+#    #+#             */
-/*   Updated: 2023/05/31 18:20:00 by shtanemu         ###   ########.fr       */
+/*   Updated: 2023/06/01 14:51:43 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,16 +59,14 @@ static int	set_instance(t_env *env, size_t index, void *ret)
 	return (0);
 }
 
-static int	check_split(char **split)
+static bool	is_empty_line(char **split)
 {
-	if (split == NULL)
-		return (SUCCESS);
 	if (split[0] == NULL)
 	{
 		free (split);
-		return (SUCCESS);
+		return (true);
 	}
-	return (0);
+	return (false);
 }
 
 int	parse_line(char *line, t_env *env)
@@ -79,7 +77,9 @@ int	parse_line(char *line, t_env *env)
 	bool	is_valid;
 
 	split = ft_split(line, ' ');
-	if (check_split(split) == SUCCESS)
+	if (split == NULL)
+		return (ERROR);
+	if (is_empty_line(split))
 		return (SUCCESS);
 	is_valid = is_valid_identifer(split[0], &index);
 	if (is_valid)
