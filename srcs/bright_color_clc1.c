@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   bright_color_clc1.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: shtanemu <shtanemu@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/05 18:40:24 by shtanemu          #+#    #+#             */
+/*   Updated: 2023/06/05 18:41:15 by shtanemu         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "all.h"
 
 t_bright_color	b_color_get(double t, double r, double g, double b)
@@ -31,7 +43,6 @@ t_bright_color	b_color_mult(t_bright_color b1, t_bright_color b2)
 	if (buf > 256)
 		buf = 256;
 	b_color.t = buf;
-
 	buf = b1.r * b2.r;
 	if (buf > 256)
 		buf = 256;
@@ -44,7 +55,6 @@ t_bright_color	b_color_mult(t_bright_color b1, t_bright_color b2)
 	if (buf > 256)
 		buf = 256;
 	b_color.b = buf;
-
 	return (b_color);
 }
 
@@ -54,21 +64,12 @@ t_bright_color	b_color_mult_constant(t_bright_color b1, double d)
 	double			buf;
 
 	buf = b1.t * d;
-	// if (buf > 256)
-	// 	buf = 100;
 	b_color.t = buf;
-
 	buf = b1.r * d;
-	// if (buf > 256)
-	// 	buf = 100;
 	b_color.r = buf;
 	buf = b1.g * d;
-	// if (buf > 256)
-	// 	buf = 100;
 	b_color.g = buf;
 	buf = b1.b * d;
-	// if (buf > 256)
-	// 	buf = 100;
 	b_color.b = buf;
 	return (b_color);
 }
@@ -79,25 +80,21 @@ unsigned int	to_img_color_from_b_color(t_bright_color *b_color)
 
 	if (b_color == NULL)
 		return (BACK_COLOR);
-	if (isnan(b_color->t) || isnan(b_color->r) || isnan(b_color->g) || isnan(b_color->b))
-	{
+	if (isnan(b_color->t) || isnan(b_color->r) \
+		|| isnan(b_color->g) || isnan(b_color->b))
 		printf("bright_colorclc.1 to_img_color_from_b_color is nan!!!\n");
-	}
 	if (b_color->t > 1)
 		img_color.trgb.t = 0xff;
 	else
 		img_color.trgb.t = (b_color->t * 0xff);
-
 	if (b_color->r > 1)
 		img_color.trgb.r = 0xff;
 	else
 		img_color.trgb.r = (b_color->r * 0xff);
-
 	if (b_color->g > 1)
 		img_color.trgb.g = 0xff;
 	else
 		img_color.trgb.g = (b_color->g * 0xff);
-
 	if (b_color->b > 1)
 		img_color.trgb.b = 0xff;
 	else
