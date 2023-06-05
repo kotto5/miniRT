@@ -6,7 +6,7 @@
 /*   By: shtanemu <shtanemu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 16:43:47 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/06/05 16:44:21 by shtanemu         ###   ########.fr       */
+/*   Updated: 2023/06/05 17:06:26 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,10 @@ t_plane	*make_plane_instance(t_vec3 vertical, t_vec3 point)
 	return (instance);
 }
 
-t_cylinder	*make_cylinder_instance(t_vec3 vertical, t_vec3 point, double r, double height)
+t_cylinder	*make_cylinder_instance(t_vec3 vertical, \
+									t_vec3 point, \
+									double r, \
+									double height)
 {
 	t_cylinder	*instance;
 
@@ -63,6 +66,5 @@ t_rect	*make_rect_instance(t_vec3 bound1, t_vec3 bound2)
 	instance->bound2.y = get_max_double(bound1.y, bound2.y);
 	instance->bound1.z = get_min_double(bound1.z, bound2.z);
 	instance->bound2.z = get_max_double(bound1.z, bound2.z);
-
 	return (instance);
 }
