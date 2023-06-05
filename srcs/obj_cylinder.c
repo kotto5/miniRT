@@ -6,7 +6,7 @@
 /*   By: shtanemu <shtanemu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 15:43:21 by kakiba            #+#    #+#             */
-/*   Updated: 2023/05/31 19:21:25 by shtanemu         ###   ########.fr       */
+/*   Updated: 2023/06/05 16:36:19 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,28 +84,13 @@ static int	get_t_ray_cylinder(t_ray ray, \
 	return (SUCCESS);
 }
 
-t_vec3	get_cylinder_normal(t_vec3 intersect, \
-							t_vec3 vertical, \
-							t_vec3 cylinder_center)
-{
-	t_vec3	to_center;
-	double	projection_length;
-	t_vec3	projection;
-	t_vec3	normal;
-
-	to_center = vec_sub(intersect, cylinder_center);
-	projection_length = vec_dot(to_center, vertical);
-	projection = vec_mult(vertical, projection_length);
-	normal = vec_sub(to_center, projection);
-	return (vec_normalize(normal));
-}
-
 t_intersection	get_intersection_cylinder(const t_ray ray, const t_obj *obj)
 {
 	t_cylinder		*cylinder;
 	t_intersection	intersection;
 	double			t;
 	t_vec3			dt;
+	t_vec3			to_center;
 
 	cylinder = obj->instance;
 	intersection.does_intersect = false;
@@ -115,9 +100,9 @@ t_intersection	get_intersection_cylinder(const t_ray ray, const t_obj *obj)
 	dt = vec_mult(ray.dir, t);
 	intersection.position = vec_add(ray.pos, dt);
 	intersection.distance = vec_mag(dt);
-	intersection.vertical_dir = get_cylinder_normal(intersection.position, \
-													cylinder->vertical, \
-													cylinder->position);
+	to_center = vec_sub(intersection.position, cylinder->position);
+	intersection.vertical_dir = vec_normalize(vec_sub(to_center, vec_mult(\
+		cylinder->vertical, vec_dot(to_center, cylinder->vertical))));
 	if (vec_dot(intersection.vertical_dir, ray.dir) >= 0.0)
 	{
 		intersection.vertical_dir = vec_mult(intersection.vertical_dir, -1);
