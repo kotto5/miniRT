@@ -6,7 +6,7 @@
 /*   By: shtanemu <shtanemu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 22:24:49 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/06/06 00:51:46 by shtanemu         ###   ########.fr       */
+/*   Updated: 2023/06/06 00:53:35 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define STRUCT_H
 
 # include "all.h"
-// # include "function_pointer.h"
 
 typedef struct s_vec3
 {
