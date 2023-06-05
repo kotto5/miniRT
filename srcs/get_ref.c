@@ -6,7 +6,7 @@
 /*   By: shtanemu <shtanemu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 17:27:01 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/06/05 17:45:15 by shtanemu         ###   ########.fr       */
+/*   Updated: 2023/06/05 17:52:45 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,14 +59,15 @@ static t_bright_color	get_specular_ref6(t_lighting lighting, \
 											t_intersection intersection, \
 											t_ray eye, t_reflect ref_info)
 {
-	const double	inner_product = vec_dot(vec_mult(eye.dir, -1), \
+	double	inner_product;
+
+	inner_product = vec_dot(vec_mult(eye.dir, -1), \
 									vec_sub(vec_mult(\
 									intersection.vertical_dir, \
 									2.0 * vec_dot(\
 									intersection.vertical_dir, \
 									lighting.incident_to_light)), \
 									lighting.incident_to_light));
-
 	if (fabs(vec_dot(intersection.vertical_dir, \
 						lighting.incident_to_light)) < 0.01)
 		return (b_color_get(0, 0, 0, 0));
