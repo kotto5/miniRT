@@ -6,7 +6,7 @@
 /*   By: shtanemu <shtanemu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/18 10:04:29 by kakiba            #+#    #+#             */
-/*   Updated: 2023/05/31 17:46:14 by shtanemu         ###   ########.fr       */
+/*   Updated: 2023/06/05 20:30:11 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,31 +25,29 @@
 # define FALSE 0
 # define TRUE 1
 
-
-typedef struct s_list
-{
+typedef struct s_list {
 	void			*content;
 	struct s_list	*next;
 }	t_list;
 
-typedef struct s_clist{
+typedef struct s_clist {
 	void			*content;
 	struct s_clist	*next;
 }			t_clist;
 
-typedef struct s_dlist{
+typedef struct s_dlist {
 	struct s_dlist	*prev;
 	void			*content;
 	struct s_dlist	*next;
-}			t_dlist;
+}				t_dlist;
 
-typedef enum e_dtree_type{
+typedef enum e_dtree_type {
 	DT_ROOT,
 	DT_NODE,
 	DT_LEAF,
-} t_dtree_type;
+}			t_dtree_type;
 
-typedef struct s_dtree{
+typedef struct s_dtree {
 	struct s_dtree	*root;
 	struct s_dtree	*left;
 	struct s_dtree	*right;
@@ -117,7 +115,7 @@ void		ft_dlstadd_back(t_dlist **lst, t_dlist *new);
 void		ft_dlstadd_front(t_dlist **lst, t_dlist *new);
 void		ft_dlstclear(t_dlist **lst, void (*del)(void*));
 void		ft_dlstdelone(t_dlist *lst, void (*del)(void *));
-t_dlist	*ft_dlstsearch(t_dlist *node, void *target);
+t_dlist		*ft_dlstsearch(t_dlist *node, void *target);
 bool		ft_dlstdelete(t_dlist **lst, void *target, void (*del)(void *));
 
 long int	ft_strtol(const char *nptr, char **endptr, int base);
