@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   obj_sphere.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shtanemu <shtanemu@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: kakiba <kotto555555@gmail.com>             +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 15:42:42 by kakiba            #+#    #+#             */
-/*   Updated: 2023/05/31 18:41:03 by shtanemu         ###   ########.fr       */
+/*   Updated: 2023/06/01 15:54:25 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ static double	get_ray_t_to_sphere(t_ray ray, t_sphere *sphere)
 
 	root = l_b * l_b \
 			- (4.0 * l_a \
-			* vec_mag_sq(\
-			vec_sub(ray.pos, sphere->pos)) - (sphere->r * sphere->r));
+			* (vec_mag_sq(\
+			vec_sub(ray.pos, sphere->pos)) - (sphere->r * sphere->r)));
 	if (l_a == 0.0 || root < 0.0)
 		return (-1);
 	else
