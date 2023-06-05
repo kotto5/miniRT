@@ -3,16 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   img_color_clc1.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kakiba <kotto555555@gmail.com>             +#+  +:+       +#+        */
+/*   By: shtanemu <shtanemu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 15:06:42 by kakiba            #+#    #+#             */
-/*   Updated: 2023/04/27 16:05:16 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/06/05 17:23:46 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "all.h"
 
-t_img_color	get_img_color(unsigned char t, unsigned char r, unsigned char g, unsigned char b)
+t_img_color	get_img_color(unsigned char t, \
+							unsigned char r, \
+							unsigned char g, \
+							unsigned char b)
 {
 	t_img_color	color;
 
@@ -36,7 +39,7 @@ t_img_color	img_color_mult(t_img_color color, unsigned char k)
 t_img_color	img_color_add(t_img_color color1, t_img_color color2)
 {
 	t_img_color	ans;
-	int	buf;
+	int			buf;
 
 	buf = color1.trgb.t + color2.trgb.t;
 	if (buf > 0xff)
@@ -55,20 +58,4 @@ t_img_color	img_color_add(t_img_color color1, t_img_color color2)
 		buf = 0xff;
 	ans.trgb.b = buf;
 	return (ans);
-}
-
-unsigned int	img_color_mult_ref_incident_constant(t_img_color ref, t_img_color incident, double constant)
-{
-	t_img_color	color;
-	double	buf;
-
-	buf = (double)ref.trgb.t * (double)incident.trgb.t * constant;
-	color.trgb.t = buf / 1.0;
-	buf = (double)ref.trgb.r * (double)incident.trgb.r * constant;
-	color.trgb.r = buf / 1.0;
-	buf = (double)ref.trgb.g * (double)incident.trgb.g * constant;
-	color.trgb.g = buf / 1.0;
-	buf = (double)ref.trgb.b * (double)incident.trgb.b * constant;
-	color.trgb.b = buf / 1.0;
-	return (color.color);
 }

@@ -23,7 +23,6 @@ t_bright_color		b_color_mult_constant(t_bright_color b1, double d);
 
 // img_color_clc1.c
 t_img_color			img_color_add(t_img_color color1, t_img_color color2);
-unsigned int		img_color_mult_ref_incident_constant(t_img_color ref, t_img_color incident, double constant);
 t_img_color			img_color_mult(t_img_color color, unsigned char k);
 t_img_color			get_img_color(unsigned char t, unsigned char r, unsigned char g, unsigned char b);
 
