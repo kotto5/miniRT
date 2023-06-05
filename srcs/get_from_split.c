@@ -6,7 +6,7 @@
 /*   By: shtanemu <shtanemu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 07:50:29 by kakiba            #+#    #+#             */
-/*   Updated: 2023/05/31 17:47:08 by shtanemu         ###   ########.fr       */
+/*   Updated: 2023/06/05 18:02:49 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ static double	convert_range(int a)
 		return (1.0);
 	return ((double)a / 255.0);
 }
+
 int	get_ref_from_split(char *str, t_reflect *ref)
 {
 	char			**split_tmp;
