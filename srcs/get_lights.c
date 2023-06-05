@@ -6,7 +6,7 @@
 /*   By: shtanemu <shtanemu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 07:50:29 by kakiba            #+#    #+#             */
-/*   Updated: 2023/05/31 17:41:15 by shtanemu         ###   ########.fr       */
+/*   Updated: 2023/06/05 17:58:00 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ void	*get_ambient_lignt(char **split)
 
 	if (get_size_double_ptr(split) != 3)
 		return (NULL);
-	if (ft_isdouble(split[1]) == false || get_ref_from_split(split[2], &ref))
+	if (ft_isdouble(split[1]) == false \
+					|| get_ref_from_split(split[2], &ref))
 		return (NULL);
 	raito = ft_atof(split[1]);
 	am_light = malloc(sizeof(t_bright_color));
@@ -40,12 +41,14 @@ void	*get_light_node(char **split)
 
 	if (get_size_double_ptr(split) != 4)
 		return (NULL);
-	if (ft_isdouble(split[2]) == false ||
-		get_ref_from_split(split[3], &ref) ||
+	if (ft_isdouble(split[2]) == false || \
+		get_ref_from_split(split[3], &ref) || \
 		get_vec_from_split(split[1], &pos))
 		return (NULL);
 	raito = ft_atof(split[2]);
-	p_light = make_point_light_info(pos, b_color_mult_constant(ref.am, raito));
+	p_light = make_point_light_info(pos, \
+									b_color_mult_constant(ref.am, \
+															raito));
 	if (p_light == NULL)
 		return (NULL);
 	light = new_light(L_POINT, p_light);
