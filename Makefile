@@ -1,8 +1,5 @@
 NAME = miniRT
 CC = gcc
-# CFLAGS = -Wall -Wextra -Werror -g 
-# CFLAGS = -Wall -Wextra -Werror -g -Wshadow
-# CFLAGS = -Wall -Wextra -Werror
 CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g
 DFLAGS = -MMD -MP
 
@@ -12,14 +9,14 @@ OBJDIR = ./objs
 LIBFTDIR = ./libft
 LIBFT = $(LIBFTDIR)/libft.a
 
-OBJ    :=  $(patsubst $(SRCDIR)%, $(OBJDIR)%, $(SRCS:%.c=%.o))
-DEPENDS    :=  $(patsubst $(SRCDIR)%, $(OBJDIR)%, $(SRCS:%.c=%.d))
+OBJ := $(patsubst $(SRCDIR)%, $(OBJDIR)%, $(SRCS:%.c=%.o))
+DEPENDS := $(patsubst $(SRCDIR)%, $(OBJDIR)%, $(SRCS:%.c=%.d))
 
-
+# for online
 # mac
-LIBXDIR = ./minilibx
-LIBMLX = ./minilibx/libmlx.a
-LIBMLXFLAGS = -framework OpenGL -framework AppKit
+# LIBXDIR = ./minilibx
+# LIBMLX = ./minilibx/libmlx.a
+# LIBMLXFLAGS = -framework OpenGL -framework AppKit
 
 # linux
 # LIBXDIR = ./minilibx-linux
@@ -27,33 +24,48 @@ LIBMLXFLAGS = -framework OpenGL -framework AppKit
 # LIBMLXFLAGS = -lXext -lX11
 # CFLAGS += -lm
 
-INCLUDES = -I./includes -I./libft/includes -I./minilibx-linux
+# for online
+# INCLUDES = -I./includes -I./libft/includes -I./minilibx-linux
+
+# for offline
+INCLUDES = -I./includes -I./libft/includes
 
 all: $(NAME)
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c
-	-mkdir -p $(@D) 
-	$(CC) $(CFLAGS) $(DFLAGS) $(INCLUDES) -c $< -o $@ 
-
-%.o: %.c
-	-mkdir -p $(@D) 
+	-mkdir -p $(@D)
 	$(CC) $(CFLAGS) $(DFLAGS) $(INCLUDES) -c $< -o $@
 
-$(NAME): $(LIBFT) $(LIBMLX) $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(LIBMLX) $(INCLUDES) $(LIBMLXFLAGS) -lm -o $@
+%.o: %.c
+	-mkdir -p $(@D)
+	$(CC) $(CFLAGS) $(DFLAGS) $(INCLUDES) -c $< -o $@
+
+# for online
+# $(NAME): $(LIBFT) $(LIBMLX) $(OBJ)
+# 	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(LIBMLX) $(INCLUDES) $(LIBMLXFLAGS) -lm -o $@
+
+# for offline
+$(NAME): $(LIBFT) $(OBJ)
+	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(INCLUDES) -L/usr/X11R6/lib -lmlx -lX11 -lXext -framework OpenGL -framework AppKit -o $@
 
 $(LIBFT): FORCE
 	make -C ./$(LIBFTDIR)
 
 FORCE:
 
-$(LIBMLX):
-	make -C $(LIBXDIR)
+# for online
+# $(LIBMLX):
+# 	make -C $(LIBXDIR)
 
 clean:
 	rm -f $(OBJ) $(DEPENDS)
 	make clean -C $(LIBFTDIR)
-	make clean -C $(LIBXDIR)
+
+# for online
+# clean:
+# 	rm -f $(OBJ) $(DEPENDS)
+# 	make clean -C $(LIBFTDIR)
+# 	make clean -C $(LIBXDIR)
 
 fclean: clean
 	rm -f $(NAME)
@@ -64,9 +76,14 @@ CFLAGS_DEBUG = -g
 
 $(NAME_DEBUG): $(LIBFT) $(LIBMLX) $(OBJ)
 	@printf "$(GREEN)"
-	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(LIBMLX) $(INCLUDES) $(LIBMLXFLAGS) -lm -o $@
+	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(INCLUDES) -L/usr/X11R6/lib -lmlx -lX11 -lXext -framework OpenGL -framework AppKi -o $@
 	@printf "$(RESET)"
-# $(CC) $(CFLAGS) $(INCLUDES) $(LIBMLXFLAGS) $^ -lm -o $@
+
+# for online
+# $(NAME_DEBUG): $(LIBFT) $(LIBMLX) $(OBJ)
+# 	@printf "$(GREEN)"
+# 	$(CC) $(CFLAGS) $(OBJ) $(LIBFT) $(LIBMLX) $(INCLUDES) $(LIBMLXFLAGS) -lm -o $@
+# 	@printf "$(RESET)"
 
 debug: CFLAGS += $(CFLAGS_DEBUG)
 debug: $(NAME_DEBUG)
