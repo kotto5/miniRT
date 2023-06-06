@@ -6,7 +6,7 @@
 /*   By: shtanemu <shtanemu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 22:54:52 by kakiba            #+#    #+#             */
-/*   Updated: 2023/05/31 16:36:02 by shtanemu         ###   ########.fr       */
+/*   Updated: 2023/06/06 15:45:21 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,16 +35,10 @@ int	mouse_event(int button, int x, int y, void *data)
 		env->camera->origin.z -= 0.1;
 	if (button == 1 || button == 2)
 	{
-		printf("button is %d\n", button);
 		env->camera->origin.z -= 0.1;
 		env->camera = make_camera(env->camera->fov, \
 			env->camera->origin, \
 			env->camera->orientation);
-	}
-	else
-	{
-		printf("button is %d\n", button);
-		return (0);
 	}
 	color_img(env);
 	mlx_put_image_to_window(env->mlx, env->win, env->img.img, 0, 0);
@@ -54,21 +48,18 @@ int	mouse_event(int button, int x, int y, void *data)
 
 // the function that deals with mouse movement
 // if mouse move to right, then move the camera to right
-int	mouse_move(int x, int y, void *data)
-{
-	(void)x;
-	(void)y;
-	(void)data;
-	printf("mouse move x is %d\n", x);
-	printf("mouse move y is %d\n", y);
-	return (0);
-}
+// int	mouse_move(int x, int y, void *data)
+// {
+// 	(void)x;
+// 	(void)y;
+// 	(void)data;
+// 	printf("mouse move x is %d\n", x);
+// 	printf("mouse move y is %d\n", y);
+// 	return (0);
+// }
 
-int	key_event(int key, void *data)
+static int	set_env_eye(t_env *env, int key)
 {
-	t_env	*env;
-
-	env = (t_env *)data;
 	if (key == ALLOW_DOWN)
 		env->eye->pos.y += 0.1;
 	else if (key == ALLOW_UP)
@@ -86,8 +77,17 @@ int	key_event(int key, void *data)
 	else
 	{
 		printf("key is :%d\n", key);
-		return (0);
 	}
+	return (0);
+}
+
+int	key_event(int key, void *data)
+{
+	t_env	*env;
+
+	env = (t_env *)data;
+	if (set_env_eye(env, key) == 1)
+		return (0);
 	color_img(env);
 	mlx_put_image_to_window(env->mlx, env->win, env->img.img, 0, 0);
 	mlx_loop(env->mlx);
@@ -99,5 +99,12 @@ void	set_event(t_env *env)
 	mlx_key_hook(env->win, key_event, env);
 	mlx_mouse_hook(env->win, mouse_event, env);
 	mlx_hook(env->win, 17, 0L, exit_proc, &env);
-	mlx_hook(env->win, 6, 1L << 6, mouse_move, env);
 }
+
+// void	set_event(t_env *env)
+// {
+// 	mlx_key_hook(env->win, key_event, env);
+// 	mlx_mouse_hook(env->win, mouse_event, env);
+// 	mlx_hook(env->win, 17, 0L, exit_proc, &env);
+// 	mlx_hook(env->win, 6, 1L << 6, mouse_move, env);
+// }
