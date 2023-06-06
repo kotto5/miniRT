@@ -6,7 +6,7 @@
 /*   By: shtanemu <shtanemu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 22:54:52 by kakiba            #+#    #+#             */
-/*   Updated: 2023/06/06 21:11:08 by shtanemu         ###   ########.fr       */
+/*   Updated: 2023/06/06 21:23:40 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,17 +78,17 @@ int	mouse_event(int button, int x, int y, void *data)
 static int	set_env_eye(t_env *env, int key)
 {
 	if (key == ALLOW_DOWN)
-		env->eye->pos.y += 0.1;
+		env->eye.pos.y += 0.1;
 	else if (key == ALLOW_UP)
-		env->eye->pos.y -= 0.1;
+		env->eye.pos.y -= 0.1;
 	else if (key == ALLOW_LEFT)
-		env->eye->pos.x += 0.1;
+		env->eye.pos.x += 0.1;
 	else if (key == ALLOW_RIGHT)
-		env->eye->pos.x -= 0.1;
+		env->eye.pos.x -= 0.1;
 	else if (key == KEY_Z)
-		env->eye->pos.z += 0.1;
+		env->eye.pos.z += 0.1;
 	else if (key == KEY_X)
-		env->eye->pos.z -= 0.1;
+		env->eye.pos.z -= 0.1;
 	else if (key == KEY_ESC)
 		exit_proc(env);
 	else

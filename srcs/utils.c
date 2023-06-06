@@ -6,7 +6,7 @@
 /*   By: shtanemu <shtanemu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 07:50:29 by kakiba            #+#    #+#             */
-/*   Updated: 2023/06/06 17:05:07 by shtanemu         ###   ########.fr       */
+/*   Updated: 2023/06/06 21:17:24 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,25 +59,19 @@ t_camera	*make_camera(double fov, t_vec3 pos, t_vec3 forward)
 	return (camera);
 }
 
-t_ray	*get_ray(t_camera *camera, int x, int y)
+void	set_ray(t_camera *camera, int x, int y, t_ray *ray)
 {
 	static const double	fx = 1.0 / (double)(WIN_WIDTH - 1);
 	static const double	fy = 1.0 / (double)(WIN_HEIGHT - 1);
 	const double		u = (double)x * fx;
 	const double		v = (double)y * fy;
-	t_ray				*ray;
 
-	ray = gc_malloc(sizeof(t_ray));
-	if (ray == NULL)
-		return (NULL);
-	ft_memset(ray, 0, sizeof(t_ray));
 	ray->pos = camera->origin;
 	ray->dir = vec_sub(vec_sub(\
 		vec_add(camera->higher_left_corner, \
 		vec_mult(camera->horizontal, u)), \
 		vec_mult(camera->vertical, v)), ray->pos);
 	ray->dir = vec_normalize(ray->dir);
-	return (ray);
 }
 
 void	exit_error(int ret)

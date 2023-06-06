@@ -6,7 +6,7 @@
 /*   By: shtanemu <shtanemu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 21:31:14 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/06/05 21:51:15 by shtanemu         ###   ########.fr       */
+/*   Updated: 2023/06/06 21:16:50 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,7 +159,7 @@ t_bright_color	get_ref6(t_intersection_info *info, \
 							t_scene *scene);
 t_dtree			*get_obj_tree(t_env *env);
 
-t_ray			*get_ray(t_camera *camera, int x, int y);
+void			set_ray(t_camera *camera, int x, int y, t_ray *ray);
 t_camera		*make_camera(double fov, t_vec3 pos, t_vec3 orientation);
 
 int				color_img(t_env *env);

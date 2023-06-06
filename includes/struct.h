@@ -6,7 +6,7 @@
 /*   By: shtanemu <shtanemu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 22:24:49 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/06/06 00:53:35 by shtanemu         ###   ########.fr       */
+/*   Updated: 2023/06/06 21:22:01 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,7 +142,7 @@ typedef struct s_env
 	void			*mlx;
 	void			*win;
 	t_img			img;
-	t_ray			*eye;
+	t_ray			eye;
 	t_dlist			*obj_list;
 	t_dlist			*light_list;
 	t_dlist			*gb_list;
