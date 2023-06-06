@@ -6,7 +6,7 @@
 /*   By: shtanemu <shtanemu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 22:54:52 by kakiba            #+#    #+#             */
-/*   Updated: 2023/06/06 15:45:21 by shtanemu         ###   ########.fr       */
+/*   Updated: 2023/06/06 16:46:21 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,16 @@
 int	key_event(int key, void *data);
 int	mouse_event(int button, int x, int y, void *data);
 
-static int	exit_proc(int status, void *gc)
+static int	exit_proc(void *data)
 {
-	ft_dlstclear(gc, free);
-	exit(status);
+	t_env *env;
+
+	env = (t_env *)data;
+	mlx_destroy_image(env->mlx, env->img.img);
+	mlx_destroy_window(env->mlx, env->win);
+	free(env->mlx);
+	gc_clear();
+	exit(EXIT_SUCCESS);
 	return (0);
 }
 
@@ -73,7 +79,7 @@ static int	set_env_eye(t_env *env, int key)
 	else if (key == KEY_X)
 		env->eye->pos.z -= 0.1;
 	else if (key == KEY_ESC)
-		exit_proc(0, &env->gb_list);
+		exit_proc(env);
 	else
 	{
 		printf("key is :%d\n", key);
@@ -98,7 +104,7 @@ void	set_event(t_env *env)
 {
 	mlx_key_hook(env->win, key_event, env);
 	mlx_mouse_hook(env->win, mouse_event, env);
-	mlx_hook(env->win, 17, 0L, exit_proc, &env);
+	mlx_hook(env->win, 17, 0L, exit_proc, env);
 }
 
 // void	set_event(t_env *env)
