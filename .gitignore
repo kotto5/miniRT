@@ -5,3 +5,5 @@ miniRT
 dbg
 debugfile
 garbage
+.DS_Store
+.vscode
