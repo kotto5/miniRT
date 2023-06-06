@@ -6,7 +6,7 @@
 /*   By: shtanemu <shtanemu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 22:54:52 by kakiba            #+#    #+#             */
-/*   Updated: 2023/06/06 16:58:31 by shtanemu         ###   ########.fr       */
+/*   Updated: 2023/06/06 21:11:08 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	mouse_event(int button, int x, int y, void *data);
 
 int	exit_proc(void *data)
 {
-	t_env *env;
+	t_env	*env;
 
 	env = (t_env *)data;
 	gc_clear();
