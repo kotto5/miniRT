@@ -6,7 +6,7 @@
 /*   By: shtanemu <shtanemu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 18:23:01 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/06/05 18:35:10 by shtanemu         ###   ########.fr       */
+/*   Updated: 2023/06/06 17:08:09 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ static int	init_scene(t_scene *scene, t_env *env)
 	scene->obj_list = env->obj_list;
 	scene->light_list = env->light_list;
 	scene->am_light = env->am_light;
-	env->eye = malloc(sizeof(t_ray));
+	env->eye = gc_malloc(sizeof(t_ray));
 	env->eye->pos = get_vec(0, 0, 0);
 	return (0);
 }

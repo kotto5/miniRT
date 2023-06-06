@@ -6,7 +6,7 @@
 /*   By: shtanemu <shtanemu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 22:54:52 by kakiba            #+#    #+#             */
-/*   Updated: 2023/06/06 16:46:21 by shtanemu         ###   ########.fr       */
+/*   Updated: 2023/06/06 16:58:31 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,27 @@
 int	key_event(int key, void *data);
 int	mouse_event(int button, int x, int y, void *data);
 
-static int	exit_proc(void *data)
+int	exit_proc(void *data)
 {
 	t_env *env;
 
 	env = (t_env *)data;
+	gc_clear();
+	if (env->mlx == NULL)
+		exit(EXIT_SUCCESS);
+	if (env->win)
+	{
+		free (env->mlx);
+		exit(EXIT_SUCCESS);
+	}
+	if (env->img.img == NULL)
+	{
+		mlx_destroy_window(env->mlx, env->win);
+		exit(EXIT_SUCCESS);
+	}
 	mlx_destroy_image(env->mlx, env->img.img);
 	mlx_destroy_window(env->mlx, env->win);
 	free(env->mlx);
-	gc_clear();
-	exit(EXIT_SUCCESS);
 	return (0);
 }
 

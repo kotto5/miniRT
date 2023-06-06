@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kakiba <kotto555555@gmail.com>             +#+  +:+       +#+        */
+/*   By: shtanemu <shtanemu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 07:50:29 by kakiba            #+#    #+#             */
-/*   Updated: 2023/06/01 15:12:31 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/06/06 17:05:07 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ t_ray	*get_ray(t_camera *camera, int x, int y)
 	const double		v = (double)y * fy;
 	t_ray				*ray;
 
-	ray = malloc(sizeof(t_ray));
+	ray = gc_malloc(sizeof(t_ray));
 	if (ray == NULL)
 		return (NULL);
 	ft_memset(ray, 0, sizeof(t_ray));
