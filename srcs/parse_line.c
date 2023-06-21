@@ -6,7 +6,7 @@
 /*   By: kakiba <kakiba@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 07:50:29 by kakiba            #+#    #+#             */
-/*   Updated: 2023/06/21 16:03:08 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/06/21 16:12:17 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,17 +98,25 @@ int	parse_line(char *line, t_env *env)
 
 // create main function for unittest for parse_line.c
 
-int	main(void)
-{
-	t_env	*env;
+// int	main(void)
+// {
+// 	t_env	*env;
 
-	env = malloc(sizeof(t_env));
-	if (env == NULL)
-		return (1);
-	if (parse_line("A 0.2 255,255,255", env))
-		return (1);
-	if (parse_line("A 0.2 255,255,", env))
-		return (1);
+// 	env = malloc(sizeof(t_env));
+// 	if (env == NULL)
+// 		return (1);
+// 	if (parse_line("A 0.2 255,255,255", env))
+// 		return (1);
+// 	if (parse_line("A 0.2 255,255,", env))
+// 		return (1);
 	
-	return (0);
-}
+// 	return (0);
+// }
+
+// 全ての要素は改行で区切る
+// 空行は許されるが、何も文字は許されない
+// 全ての要素の先頭はidentifer である
+// identifer それぞれに、必要な項目がある。
+// 任意の数のスペースは項目を区切る。
+// 複数の数字を含む項目は、カンマで区切られる。
+// A, C identiferは必須
