@@ -12,6 +12,7 @@ $(SRCDIR)/ft_isdigit.c\
 $(SRCDIR)/ft_isprint.c\
 $(SRCDIR)/ft_isdigit_str.c\
 $(SRCDIR)/ft_isdouble.c\
+$(SRCDIR)/ft_isspace.c\
 $(SRCDIR)/ft_strlen.c\
 $(SRCDIR)/ft_memcpy.c\
 $(SRCDIR)/ft_memset.c\

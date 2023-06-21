@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shtanemu <shtanemu@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/18 10:04:29 by kakiba            #+#    #+#             */
-/*   Updated: 2023/06/05 20:30:11 by shtanemu         ###   ########.fr       */
+/*   Updated: 2023/06/21 21:22:04 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ int			ft_isascii(int c);
 int			ft_isprint(int c);
 int			ft_isdigit_str(char *str, size_t sign_allowable);
 int			ft_isdouble(char *str);
+int			ft_isspace(int c);
 
 size_t		ft_strlen(const char *str);
 void		*ft_memset(void *buf, int ch, size_t n);
