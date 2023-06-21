@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_line.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kakiba <kotto555555@gmail.com>             +#+  +:+       +#+        */
+/*   By: kakiba <kakiba@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 07:50:29 by kakiba            #+#    #+#             */
-/*   Updated: 2023/06/01 14:51:43 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/06/21 16:03:08 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,4 +94,21 @@ int	parse_line(char *line, t_env *env)
 	}
 	set_instance(env, index, ret);
 	return (SUCCESS);
+}
+
+// create main function for unittest for parse_line.c
+
+int	main(void)
+{
+	t_env	*env;
+
+	env = malloc(sizeof(t_env));
+	if (env == NULL)
+		return (1);
+	if (parse_line("A 0.2 255,255,255", env))
+		return (1);
+	if (parse_line("A 0.2 255,255,", env))
+		return (1);
+	
+	return (0);
 }

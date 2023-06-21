@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shtanemu <shtanemu@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: kakiba <kakiba@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 11:07:28 by kakiba            #+#    #+#             */
-/*   Updated: 2023/06/06 21:10:42 by shtanemu         ###   ########.fr       */
+/*   Updated: 2023/06/21 16:01:47 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,25 +34,25 @@ int	initialize_env(t_env *env)
 	return (SUCCESS);
 }
 
-int	main(int argc, char **argv)
-{
-	t_env	env;
+// int	main(int argc, char **argv)
+// {
+// 	t_env	env;
 
-	if (argc != 2)
-		exit_error(1);
-	printf("EPS %f\n", EPS);
-	ft_memset(&env, 0, sizeof(t_env));
-	if (parse_file(&env, argv[1]) == ERROR)
-		exit_error(1);
-	if (initialize_env(&env) == ERROR)
-		exit_error(2);
-	if (color_img(&env) == ERROR)
-		exit_error(3);
-	mlx_put_image_to_window(env.mlx, env.win, env.img.img, 0, 0);
-	printf("PUT IMAGE TO WINDOW\n");
-	mlx_loop(env.mlx);
-	return (0);
-}
+// 	if (argc != 2)
+// 		exit_error(1);
+// 	printf("EPS %f\n", EPS);
+// 	ft_memset(&env, 0, sizeof(t_env));
+// 	if (parse_file(&env, argv[1]) == ERROR)
+// 		exit_error(1);
+// 	if (initialize_env(&env) == ERROR)
+// 		exit_error(2);
+// 	if (color_img(&env) == ERROR)
+// 		exit_error(3);
+// 	mlx_put_image_to_window(env.mlx, env.win, env.img.img, 0, 0);
+// 	printf("PUT IMAGE TO WINDOW\n");
+// 	mlx_loop(env.mlx);
+// 	return (0);
+// }
 
 // #include <libc.h>
 
