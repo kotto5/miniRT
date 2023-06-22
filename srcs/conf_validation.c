@@ -6,7 +6,7 @@
 /*   By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 21:14:07 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/06/22 16:40:20 by shtanemu         ###   ########.fr       */
+/*   Updated: 2023/06/22 17:13:03 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,12 +83,56 @@ static bool	has_valid_identifers(char *filepath)
 		{
 			if (is_valid_identifer(line) == false)
 			{
+				free(line);
 				close(fd);
 				return (false);
 			}
 		}
+		free(line);
 	}
 	close(fd);
+	return (true);
+}
+
+static void	set_essentials_boolean(const char *line, \
+									bool *has_ambient_light, \
+									bool *has_camera)
+{
+	char	*identifer;
+
+	identifer = get_identifier(line);
+	if (ft_strcmp_s(identifer, "A") == 0)
+		has_ambient_light = true;
+	if (ft_strcmp_s(identifer, "C") == 0)
+		has_camera = true;
+	free(identifer);
+}
+
+static bool	has_essental_identifers(const char *filepath)
+{
+	const int	fd = open(filepath, O_RDONLY);
+	char		*line;
+	char		*identifer;
+	bool		has_ambient_light;
+	bool		has_camera;
+
+	has_ambient_light = false;
+	has_camera = false;
+	while (1)
+	{
+		line = get_next_line(fd);
+		if (line == NULL)
+			break ;
+		if (ft_strcmp_s(line, "\n") != 0)
+			set_essentials_boolean(line, has_ambient_light, has_camera);
+		free(line);
+	}
+	close(fd);
+	if (has_ambient_light == false || has_camera == false)
+	{
+		put_error(ERROR_ESSENTTIAL_IDENTIFIER);
+		return (false);
+	}	
 	return (true);
 }
 
@@ -98,8 +142,8 @@ bool	is_valid(char *filepath)
 		return (false);
 	if (has_valid_identifers(filepath) == false)
 		return (false);
-	// if (has_essental_identifers(filepath) == false)
-	// 	return (false);
+	if (has_essental_identifers(filepath) == false)
+		return (false);
 	// if (has_valid_format(filepath) == false)
 	// 	return (false);
 	return (true);
