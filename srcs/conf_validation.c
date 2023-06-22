@@ -6,30 +6,31 @@
 /*   By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 21:14:07 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/06/22 17:13:03 by shtanemu         ###   ########.fr       */
+/*   Updated: 2023/06/22 22:15:36 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdbool.h>
 #include <fcntl.h>
+#include <errno.h>
 #include "conf_validation.h"
 #include "libft.h"
 #include "get_next_line_bonus.h"
 
-static bool	is_valid_file(const char *filepath)
+static int	open_valid_file(const char *filepath)
 {
 	const int	fd = open(filepath, O_RDONLY);
 
 	if (fd < 0)
 	{
-		put_system_error();
-		return (false);
+		put_error(strerror(errno));
+		exit (EXIT_FAILURE);
 	}
 	close(fd);
 	return (true);
 }
-#include <stdio.h>
-static char	*get_identifier(char *line)
+
+static char	*get_identifier(const char *line)
 {
 	size_t	i_line;
 	char	*identifer;
@@ -47,7 +48,7 @@ static char	*get_identifier(char *line)
 	return (identifer);
 }
 
-static bool	is_valid_identifer(char *line)
+static bool	is_valid_identifer(const char *line)
 {
 	char		*identifer;
 	size_t		i_identifiers;
@@ -71,7 +72,7 @@ static bool	is_valid_identifer(char *line)
 
 static bool	has_valid_identifers(char *filepath)
 {
-	const int	fd = open(filepath, O_RDONLY);
+	const int	fd = open_valid_file(filepath);
 	char		*line;
 
 	while (1)
@@ -110,7 +111,7 @@ static void	set_essentials_boolean(const char *line, \
 
 static bool	has_essental_identifers(const char *filepath)
 {
-	const int	fd = open(filepath, O_RDONLY);
+	const int	fd = open_valid_file(filepath);
 	char		*line;
 	char		*identifer;
 	bool		has_ambient_light;
@@ -138,8 +139,6 @@ static bool	has_essental_identifers(const char *filepath)
 
 bool	is_valid(char *filepath)
 {
-	if (is_valid_file(filepath) == false)
-		return (false);
 	if (has_valid_identifers(filepath) == false)
 		return (false);
 	if (has_essental_identifers(filepath) == false)
