@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kakiba <kotto555555@gmail.com>             +#+  +:+       +#+        */
+/*   By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 00:11:27 by kakiba            #+#    #+#             */
-/*   Updated: 2022/07/22 06:33:30 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/06/22 14:39:03 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,13 @@ size_t	ft_strlen(const char *str)
 	while (str[i] != '\0')
 		i++;
 	return (i);
+}
+
+size_t	ft_strlen_s(const char *str)
+{
+	if (str == NULL)
+		return (0);
+	return (ft_strlen(str));
 }
 
 // size_t	ft_s_strlen(const char *str)

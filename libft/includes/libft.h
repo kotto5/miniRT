@@ -6,7 +6,7 @@
 /*   By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/18 10:04:29 by kakiba            #+#    #+#             */
-/*   Updated: 2023/06/21 21:22:04 by shtanemu         ###   ########.fr       */
+/*   Updated: 2023/06/22 16:25:10 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,10 @@ int			ft_isprint(int c);
 int			ft_isdigit_str(char *str, size_t sign_allowable);
 int			ft_isdouble(char *str);
 int			ft_isspace(int c);
+char		*get_addrr_before_space(char *line);
 
 size_t		ft_strlen(const char *str);
+size_t		ft_strlen_s(const char *str);
 void		*ft_memset(void *buf, int ch, size_t n);
 void		ft_bzero(void *s, size_t n);
 void		*ft_memcpy(void *dest, const void *src, size_t n);
@@ -74,8 +76,10 @@ size_t		ft_strlcat(char *dst, const char *src, size_t dstsize);
 int			ft_toupper(int c);
 int			ft_tolower(int c);
 char		*ft_strchr(const char *s, int c);
+char		*ft_strchr_s(const char *s, int c);
 char		*ft_strrchr(const char *s, int c);
 int			ft_strncmp(const char *s1, const char *s2, size_t n);
+int			ft_strcmp_s(const char *s1, const char *s2);
 void		*ft_memchr(const void *s, int c, size_t n);
 int			ft_memcmp(const void *s1, const void *s2, size_t n);
 char		*ft_strnstr(const char *haystack, \
@@ -86,6 +90,8 @@ void		*ft_calloc(size_t count, size_t size);
 void		*ft_galloc(size_t size, t_dlist **alloc_list);
 
 char		*ft_strdup(const char *s1);
+char		*ft_strdup_s(const char *s1);
+char		*ft_strndup_s(const char *str, size_t len);
 char		*ft_substr(char const *s, unsigned int start, size_t len);
 char		*ft_strjoin(char const *s1, char const *s2);
 char		*ft_strtrim(char const *s1, char const *set);
