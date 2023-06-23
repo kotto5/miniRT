@@ -6,7 +6,7 @@
 /*   By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 21:14:07 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/06/23 14:58:02 by shtanemu         ###   ########.fr       */
+/*   Updated: 2023/06/23 19:49:02 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,6 +141,11 @@ static bool	is_valid_ratio_in_range(const char *line, const double llim, const d
 	double	ratio;
 
 	contents = ft_split(line, ' ');
+	if (ft_isdouble(contents[COL_INDEX_AMBIENT_LIGHT_RATIO]) == 0)
+	{
+		free_char_matrix(contents);
+		return (false);
+	}
 	ratio = ft_atof(contents[COL_INDEX_AMBIENT_LIGHT_RATIO]);
 	free_char_matrix(contents);
 	return (ratio >= llim && ratio <= ulim);
@@ -172,7 +177,7 @@ static bool	is_valid_rgb_in_range(const char *line)
 			&& (b_value >= LLIMIT_RGB && b_value <= ULIMIT_RGB));
 }
 
-static bool	is_valid_n_contents(const char *line)
+static bool	is_valid_n_contents(const char *line, const size_t n_contents)
 {
 	char	**contents;
 	size_t	len_row;
@@ -181,7 +186,7 @@ static bool	is_valid_n_contents(const char *line)
 	if (contents == NULL)
 		return (false);
 	len_row = count_char_matrix_rows(contents);
-	if (len_row != 3)
+	if (len_row != n_contents)
 	{
 		free_char_matrix(contents);
 		return (false);
@@ -192,7 +197,7 @@ static bool	is_valid_n_contents(const char *line)
 
 static bool	fmt_checker_ambient(const char *line)
 {
-	if (is_valid_n_contents(line) == false)
+	if (is_valid_n_contents(line, N_CONTENTS_AMBIENT_LIGHT) == false)
 	{
 		put_error(ERROR_INVALID_N_CONTENTS_AMBIENT_LIGHT);
 		return (false);
@@ -204,15 +209,112 @@ static bool	fmt_checker_ambient(const char *line)
 	}
 	if (is_valid_rgb_in_range(line) == false)
 	{
-		put_error(ERROR_INVALID_RGB_COLOR_VALUE);
+		put_error(ERROR_INVALID_AMBIENT_LIGHT_RATIO);
 		return (false);
 	}
 	return (true);
 }
 
+static bool	is_valid_coordinates(const char *line)
+{
+	char	**contents;
+	char	**coordinates;
+
+	contents = ft_split(line, ' ');
+	coordinates = ft_split(contents[COL_INDEX_COORDINATES_CAMERA], ',');
+	if (count_char_matrix_rows(coordinates) != 3)
+	{
+		free_char_matrix(coordinates);
+		free_char_matrix(contents);
+		return (false);
+	}
+	if (ft_isdouble(coordinates[0]) == 0 || ft_isdouble(coordinates[1]) == 0 || ft_isdouble(coordinates[2]) == 0)
+	{
+		free_char_matrix(coordinates);
+		free_char_matrix(contents);
+		return (false);
+	}
+	free_char_matrix(coordinates);
+	free_char_matrix(contents);
+	return (true);
+}
+
+static bool	is_valid_orientation_vector(const char *line)
+{
+	char	**contents;
+	char	**orientation_vector;
+	size_t	i_orientation_vector;
+	double	value;
+
+	contents = ft_split(line, ' ');
+	orientation_vector = ft_split(contents[COL_INDEX_ORIENTATION_VECTOR_CAMERA], ',');
+	if (count_char_matrix_rows(orientation_vector) != 3)
+	{
+		free_char_matrix(orientation_vector);
+		free_char_matrix(contents);
+		return (false);
+	}
+	i_orientation_vector = 0;
+	while (orientation_vector[i_orientation_vector] != NULL)
+	{
+		if (ft_isdouble(orientation_vector[i_orientation_vector]) == 0)
+		{
+			free_char_matrix(orientation_vector);
+			free_char_matrix(contents);
+			return (false);
+		}
+		value = ft_atof(orientation_vector[i_orientation_vector]);
+		if (value < LLIMIT_ORIENTATION_VECTOR || value > ULIMIT_ORIENTATION_VECTOR)
+		{
+			free_char_matrix(orientation_vector);
+			free_char_matrix(contents);
+			return (false);
+		}
+		i_orientation_vector++;
+	}
+	free_char_matrix(orientation_vector);
+	free_char_matrix(contents);
+	return (true);
+}
+
+static bool	is_valid_fov(const char *line)
+{
+	char			**contents;
+	unsigned int	fov;
+
+	contents = ft_split(line, ' ');
+	fov = ft_atoi(contents[COL_INDEX_FOV_CAMERA]);
+	if (fov < LLIMIT_FOV || fov > ULIMIT_FOV)
+	{
+		free_char_matrix(contents);
+		return (false);
+	}
+	free_char_matrix(contents);
+	return (true);
+}
+
 static bool	fmt_checker_camera(const char *line)
 {
-	printf("%s\n", line);
+	if (is_valid_n_contents(line, N_CONTENTS_CAMERA) == false)
+	{
+		put_error(ERROR_INVALID_N_CONTENTS_CAMERA);
+		return (false);
+	}
+	if (is_valid_coordinates(line) == false)
+	{
+		put_error(ERROR_INVALID_COODINATES_CAMERA);
+		return (false);
+	}
+	if (is_valid_orientation_vector(line) == false)
+	{
+		put_error(ERROR_INVALID_ORIENTATION_VECTOR_CAMERA);
+		return (false);
+	}
+	if (is_valid_fov(line) == false)
+	{
+		put_error(ERROR_INVALID_FOV_CAMERA);
+		return (false);
+	}
 	return (true);
 }
 
