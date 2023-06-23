@@ -6,7 +6,7 @@
 /*   By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 17:41:45 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/06/23 22:53:08 by shtanemu         ###   ########.fr       */
+/*   Updated: 2023/06/23 23:04:00 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,9 @@
 # define ULIMIT_ORIENTATION_VECTOR 1
 # define LLIMIT_FOV 0
 # define ULIMIT_FOV 180
+
+# define RT_DESCRIPTOR ".rt"
+# define ERROR_INVALID_FILE_DESCRIPTOR "A given file's descriptor is invalid."
 
 #include <stdbool.h>
 
