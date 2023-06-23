@@ -6,7 +6,7 @@
 /*   By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 21:14:07 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/06/23 23:36:02 by shtanemu         ###   ########.fr       */
+/*   Updated: 2023/06/23 23:40:45 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -204,7 +204,7 @@ static bool	fmt_checker_ambient(const char *line)
 	if (is_valid_rgb_in_range(contents[COL_INDEX_AMBIENT_RGB_COLOR]) == false)
 	{
 		free_char_matrix(contents);
-		put_error(ERROR_INVALID_AMBIENT_LIGHT_RATIO);
+		put_error(ERROR_INVALID_RGB_COLOR_VALUE);
 		return (false);
 	}
 	free_char_matrix(contents);
