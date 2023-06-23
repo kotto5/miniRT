@@ -6,7 +6,7 @@
 /*   By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 21:14:07 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/06/23 23:04:11 by shtanemu         ###   ########.fr       */
+/*   Updated: 2023/06/23 23:36:02 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -498,6 +498,11 @@ static bool	is_valid_descriptor(const char *filepath)
 	size_t	len_filepath;
 
 	len_filepath = ft_strlen_s(filepath);
+	if (len_filepath < 3)
+	{
+		put_error(ERROR_INVALID_FILE_DESCRIPTOR);
+		return (false);
+	}
 	if (ft_strcmp_s(&filepath[len_filepath - 3], RT_DESCRIPTOR) != 0)
 	{
 		put_error(ERROR_INVALID_FILE_DESCRIPTOR);
