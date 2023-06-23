@@ -6,7 +6,7 @@
 /*   By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 17:41:45 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/06/23 19:48:05 by shtanemu         ###   ########.fr       */
+/*   Updated: 2023/06/23 21:52:08 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,6 @@
 
 # define COL_INDEX_AMBIENT_LIGHT_RATIO 1
 # define COL_INDEX_AMBIENT_RGB_COLOR 2
-# define COL_RGB_INDEX_RED 0
-# define COL_RGB_INDEX_GREEN 1
-# define COL_RGB_INDEX_BLUE 2
-# define LLIMIT_AMBIENT_LIGHT 0.0
-# define ULIMIT_AMBIENT_LIGHT 1.0
 # define N_CONTENTS_AMBIENT_LIGHT 3
 
 # define ERROR_INVALID_N_CONTENTS_CAMERA "A given camera's configuration does'nt have enough contents."
@@ -43,6 +38,23 @@
 # define COL_INDEX_FOV_CAMERA 3
 # define N_CONTENTS_CAMERA 4
 
+# define ERROR_INVALID_N_CONTENTS_LIGHT "A given light's configuration does'nt have enough contents."
+# define ERROR_INVALID_COODINATES_LIGHT "A given light's coordinates is invalid."
+# define ERROR_INVALID_LIGHT_RATIO "A given light's ratio is invalid."
+
+# define COL_INDEX_COORDINATES_LIGHT 1
+# define COL_INDEX_LIGHT_RATIO 2
+# define COL_INDEX_RGB_COLOR_LIGHT 3
+# define N_CONTENTS_LIGHT 4
+
+# define COL_RGB_INDEX_RED 0
+# define COL_RGB_INDEX_GREEN 1
+# define COL_RGB_INDEX_BLUE 2
+
+# define LLIMIT_AMBIENT_LIGHT 0.0
+# define ULIMIT_AMBIENT_LIGHT 1.0
+# define LLIMIT_LIGHT 0.0
+# define ULIMIT_LIGHT 1.0
 # define LLIMIT_RGB 0
 # define ULIMIT_RGB 255
 # define LLIMIT_ORIENTATION_VECTOR -1
