@@ -6,7 +6,7 @@
 /*   By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 17:41:45 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/06/23 22:10:42 by shtanemu         ###   ########.fr       */
+/*   Updated: 2023/06/23 22:36:40 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,15 @@
 # define COL_INDEX_DIAMETER_SPHERE 2
 # define COL_INDEX_RGB_COLOR_SPHERE 3
 # define N_CONTENTS_SPHERE 4
+
+# define ERROR_INVALID_N_CONTENTS_PLANE "A given plane's configuration does'nt have enough contents."
+# define ERROR_INVALID_COODINATES_PLANE "A given plane's coordinates is invalid."
+# define ERROR_INVALID_ORIENTATION_VECTOR_PLANE "A given plane's orientaion is invalid."
+
+# define COL_INDEX_COORDINATES_PLANE 1
+# define COL_INDEX_ORIENTATION_VECTOR_PLANE 2
+# define COL_INDEX_RGB_COLOR_PLANE 3
+# define N_CONTENTS_PLANE 4
 
 # define ERROR_INVALID_RGB_COLOR_VALUE "A given rgb value of ambient lighting is invalid."
 

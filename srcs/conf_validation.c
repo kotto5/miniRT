@@ -6,7 +6,7 @@
 /*   By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 21:14:07 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/06/23 22:11:53 by shtanemu         ###   ########.fr       */
+/*   Updated: 2023/06/23 22:37:06 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -372,7 +372,33 @@ static bool	fmt_checker_sphere(const char *line)
 
 static bool	fmt_checker_plane(const char *line)
 {
-	printf("%s\n", line);
+	char	**contents;
+
+	if (is_valid_n_contents(line, N_CONTENTS_PLANE) == false)
+	{
+		put_error(ERROR_INVALID_N_CONTENTS_PLANE);
+		return (false);
+	}
+	contents = ft_split(line, ' ');
+	if (is_valid_coordinates(contents[COL_INDEX_COORDINATES_PLANE]) == false)
+	{
+		free_char_matrix(contents);
+		put_error(ERROR_INVALID_COODINATES_PLANE);
+		return (false);
+	}
+	if (is_valid_orientation_vector(contents[COL_INDEX_ORIENTATION_VECTOR_PLANE]) == false)
+	{
+		free_char_matrix(contents);
+		put_error(ERROR_INVALID_ORIENTATION_VECTOR_PLANE);
+		return (false);
+	}
+	if (is_valid_rgb_in_range(contents[COL_INDEX_RGB_COLOR_PLANE]) == false)
+	{
+		free_char_matrix(contents);
+		put_error(ERROR_INVALID_RGB_COLOR_VALUE);
+		return (false);
+	}
+	free_char_matrix(contents);
 	return (true);
 }
 
