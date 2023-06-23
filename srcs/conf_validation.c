@@ -6,7 +6,7 @@
 /*   By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 21:14:07 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/06/23 21:52:20 by shtanemu         ###   ########.fr       */
+/*   Updated: 2023/06/23 22:11:53 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -316,7 +316,7 @@ static bool	fmt_checker_light(const char *line)
 		return (false);
 	}
 	contents = ft_split(line, ' ');
-	if (is_valid_coordinates(contents[COL_INDEX_RGB_COLOR_LIGHT]) == false)
+	if (is_valid_coordinates(contents[COL_INDEX_COORDINATES_LIGHT]) == false)
 	{
 		free_char_matrix(contents);
 		put_error(ERROR_INVALID_COODINATES_LIGHT);
@@ -328,7 +328,39 @@ static bool	fmt_checker_light(const char *line)
 		put_error(ERROR_INVALID_LIGHT_RATIO);
 		return (false);
 	}
-	if (is_valid_rgb_in_range(contents[COL_INDEX_AMBIENT_RGB_COLOR]) == false)
+	if (is_valid_rgb_in_range(contents[COL_INDEX_RGB_COLOR_LIGHT]) == false)
+	{
+		free_char_matrix(contents);
+		put_error(ERROR_INVALID_RGB_COLOR_VALUE);
+		return (false);
+	}
+	free_char_matrix(contents);
+	return (true);
+}
+
+static bool	fmt_checker_sphere(const char *line)
+{
+	char	**contents;
+	
+	if (is_valid_n_contents(line, N_CONTENTS_SPHERE) == false)
+	{
+		put_error(ERROR_INVALID_N_CONTENTS_SPHERE);
+		return (false);
+	}
+	contents = ft_split(line, ' ');
+	if (is_valid_coordinates(contents[COL_INDEX_COORDINATES_SPHERE]) == false)
+	{
+		free_char_matrix(contents);
+		put_error(ERROR_INVALID_COODINATES_SPHERE);
+		return (false);
+	}
+	if (ft_isdouble(contents[COL_INDEX_DIAMETER_SPHERE]) == 0)
+	{
+		free_char_matrix(contents);
+		put_error(ERROR_INVALID_DIAMETER_SPHERE);
+		return (false);
+	}
+	if (is_valid_rgb_in_range(contents[COL_INDEX_RGB_COLOR_SPHERE]) == false)
 	{
 		free_char_matrix(contents);
 		put_error(ERROR_INVALID_RGB_COLOR_VALUE);
@@ -339,12 +371,6 @@ static bool	fmt_checker_light(const char *line)
 }
 
 static bool	fmt_checker_plane(const char *line)
-{
-	printf("%s\n", line);
-	return (true);
-}
-
-static bool	fmt_checker_sphere(const char *line)
 {
 	printf("%s\n", line);
 	return (true);

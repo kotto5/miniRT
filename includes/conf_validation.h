@@ -6,7 +6,7 @@
 /*   By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 17:41:45 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/06/23 21:52:08 by shtanemu         ###   ########.fr       */
+/*   Updated: 2023/06/23 22:10:42 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@
 # define ERROR_INVALID_IDENTIFIER "A given identifier is invalid."
 # define ERROR_INVALID_AMBIENT_LIGHT_RATIO "A given ambient lighting's ratio is invalid."
 # define ERROR_INVALID_N_CONTENTS_AMBIENT_LIGHT "A given ambient lighting's configuration does'nt have enough contents."
-# define ERROR_INVALID_RGB_COLOR_VALUE "A given rgb value of ambient lighting is invalid."
 
 # define COL_INDEX_AMBIENT_LIGHT_RATIO 1
 # define COL_INDEX_AMBIENT_RGB_COLOR 2
@@ -46,6 +45,17 @@
 # define COL_INDEX_LIGHT_RATIO 2
 # define COL_INDEX_RGB_COLOR_LIGHT 3
 # define N_CONTENTS_LIGHT 4
+
+# define ERROR_INVALID_N_CONTENTS_SPHERE "A given sphere's configuration does'nt have enough contents."
+# define ERROR_INVALID_COODINATES_SPHERE "A given sphere's coordinates is invalid."
+# define ERROR_INVALID_DIAMETER_SPHERE "A given sphere's diameter is invalid."
+
+# define COL_INDEX_COORDINATES_SPHERE 1
+# define COL_INDEX_DIAMETER_SPHERE 2
+# define COL_INDEX_RGB_COLOR_SPHERE 3
+# define N_CONTENTS_SPHERE 4
+
+# define ERROR_INVALID_RGB_COLOR_VALUE "A given rgb value of ambient lighting is invalid."
 
 # define COL_RGB_INDEX_RED 0
 # define COL_RGB_INDEX_GREEN 1
