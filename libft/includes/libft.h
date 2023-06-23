@@ -6,7 +6,7 @@
 /*   By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/18 10:04:29 by kakiba            #+#    #+#             */
-/*   Updated: 2023/06/22 16:25:10 by shtanemu         ###   ########.fr       */
+/*   Updated: 2023/06/23 14:30:11 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,5 +153,8 @@ bool		gc_add(void *ptr);
 
 void		free_double_ptr(char **ptr);
 size_t		get_size_double_ptr(char **ptr);
+
+size_t		count_char_matrix_rows(char **matrix);
+void		free_char_matrix(char **matrix);
 
 #endif

@@ -72,6 +72,8 @@ $(SRCDIR)/get_next_line_utils_bonus.c\
 $(SRCDIR)/gc_malloc.c\
 $(SRCDIR)/ft_free_double_ptr.c\
 $(SRCDIR)/ft_get_size_double_ptr.c\
+$(SRCDIR)/count_matrix_rows.c\
+$(SRCDIR)/free_matrix.c\
 
 INCLUDES = -Iincludes
 OBJDIR = obj

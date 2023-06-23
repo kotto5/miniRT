@@ -6,7 +6,7 @@
 /*   By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 21:14:07 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/06/22 23:49:22 by shtanemu         ###   ########.fr       */
+/*   Updated: 2023/06/23 14:58:02 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,9 +135,78 @@ static bool	has_essental_identifers(const char *filepath)
 	return (true);
 }
 
+static bool	is_valid_ratio_in_range(const char *line, const double llim, const double ulim)
+{
+	char	**contents;
+	double	ratio;
+
+	contents = ft_split(line, ' ');
+	ratio = ft_atof(contents[COL_INDEX_AMBIENT_LIGHT_RATIO]);
+	free_char_matrix(contents);
+	return (ratio >= llim && ratio <= ulim);
+}
+
+static bool	is_valid_rgb_in_range(const char *line)
+{
+	char	**contents;
+	char	**rgb;
+	double	r_value;
+	double	g_value;
+	double	b_value;
+
+	contents = ft_split(line, ' ');
+	rgb = ft_split(contents[COL_INDEX_AMBIENT_RGB_COLOR], ',');
+	if (count_char_matrix_rows(rgb) != 3)
+	{
+		free_char_matrix(rgb);
+		free_char_matrix(contents);
+		return (false);
+	}
+	r_value = ft_atof(rgb[COL_RGB_INDEX_RED]);	
+	g_value = ft_atof(rgb[COL_RGB_INDEX_GREEN]);	
+	b_value = ft_atof(rgb[COL_RGB_INDEX_BLUE]);	
+	free_char_matrix(rgb);
+	free_char_matrix(contents);
+	return ((r_value >= LLIMIT_RGB && r_value <= ULIMIT_RGB) \
+			&& (g_value >= LLIMIT_RGB && g_value <= ULIMIT_RGB) \
+			&& (b_value >= LLIMIT_RGB && b_value <= ULIMIT_RGB));
+}
+
+static bool	is_valid_n_contents(const char *line)
+{
+	char	**contents;
+	size_t	len_row;
+
+	contents = ft_split(line, ' ');
+	if (contents == NULL)
+		return (false);
+	len_row = count_char_matrix_rows(contents);
+	if (len_row != 3)
+	{
+		free_char_matrix(contents);
+		return (false);
+	}
+	free_char_matrix(contents);
+	return (true);
+}
+
 static bool	fmt_checker_ambient(const char *line)
 {
-	printf("%s\n", line);
+	if (is_valid_n_contents(line) == false)
+	{
+		put_error(ERROR_INVALID_N_CONTENTS_AMBIENT_LIGHT);
+		return (false);
+	}
+	if (is_valid_ratio_in_range(line, LLIMIT_AMBIENT_LIGHT, ULIMIT_AMBIENT_LIGHT) == false)
+	{
+		put_error(ERROR_INVALID_AMBIENT_LIGHT_RATIO);
+		return (false);
+	}
+	if (is_valid_rgb_in_range(line) == false)
+	{
+		put_error(ERROR_INVALID_RGB_COLOR_VALUE);
+		return (false);
+	}
 	return (true);
 }
 

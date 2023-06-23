@@ -6,7 +6,7 @@
 /*   By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 17:41:45 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/06/22 23:01:40 by shtanemu         ###   ########.fr       */
+/*   Updated: 2023/06/23 14:26:51 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,17 @@
 
 # define ERROR_ESSENTTIAL_IDENTIFIER "Identifiers A and C are essential."
 # define ERROR_INVALID_IDENTIFIER "A given identifier is invalid."
+# define ERROR_INVALID_AMBIENT_LIGHT_RATIO "A given ambient lighting ratio is invalid."
+# define ERROR_INVALID_N_CONTENTS_AMBIENT_LIGHT "A given ambient lighting configuration does'nt have enough contents."
+# define COL_INDEX_AMBIENT_LIGHT_RATIO 1
+
+
+# define LLIMIT_RGB 0
+# define ULIMIT_RGB 255
+
+# define LLIMIT_AMBIENT_LIGHT 0.0
+# define ULIMIT_AMBIENT_LIGHT 1.0
+# define N_CONTENTS_AMBIENT_LIGHT 3
 
 #include <stdbool.h>
 
