@@ -6,7 +6,7 @@
 /*   By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 17:41:45 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/06/23 22:36:40 by shtanemu         ###   ########.fr       */
+/*   Updated: 2023/06/23 22:53:08 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,19 @@
 # define COL_INDEX_ORIENTATION_VECTOR_PLANE 2
 # define COL_INDEX_RGB_COLOR_PLANE 3
 # define N_CONTENTS_PLANE 4
+
+# define ERROR_INVALID_N_CONTENTS_CYLINDER "A given cylinder's configuration does'nt have enough contents."
+# define ERROR_INVALID_COODINATES_CYLINDER "A given cylinder's coordinates is invalid."
+# define ERROR_INVALID_ORIENTATION_VECTOR_CYLINDER "A given cylinder's orientaion is invalid."
+# define ERROR_INVALID_DIAMETER_CYLINDER "A given cylinder's diameter is invalid."
+# define ERROR_INVALID_HEIGHT_CYLINDER "A given cylinder's height is invalid."
+
+# define COL_INDEX_COORDINATES_CYLINDER 1
+# define COL_INDEX_ORIENTATION_VECTOR_CYLINDER 2
+# define COL_INDEX_DIAMETER_CYLINDER 3
+# define COL_INDEX_HEIGHT_CYLINDER 4
+# define COL_INDEX_RGB_COLOR_CYLINDER 5
+# define N_CONTENTS_CYLINDER 6
 
 # define ERROR_INVALID_RGB_COLOR_VALUE "A given rgb value of ambient lighting is invalid."
 

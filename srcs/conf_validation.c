@@ -6,7 +6,7 @@
 /*   By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 21:14:07 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/06/23 22:37:06 by shtanemu         ###   ########.fr       */
+/*   Updated: 2023/06/23 22:54:49 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -404,7 +404,45 @@ static bool	fmt_checker_plane(const char *line)
 
 static bool	fmt_checker_cylinder(const char *line)
 {
-	printf("%s\n", line);
+	char	**contents;
+
+	if (is_valid_n_contents(line, N_CONTENTS_CYLINDER) == false)
+	{
+		put_error(ERROR_INVALID_N_CONTENTS_CYLINDER);
+		return (false);
+	}
+	contents = ft_split(line, ' ');
+	if (is_valid_coordinates(contents[COL_INDEX_COORDINATES_CYLINDER]) == false)
+	{
+		free_char_matrix(contents);
+		put_error(ERROR_INVALID_COODINATES_CYLINDER);
+		return (false);
+	}
+	if (is_valid_orientation_vector(contents[COL_INDEX_ORIENTATION_VECTOR_CYLINDER]) == false)
+	{
+		free_char_matrix(contents);
+		put_error(ERROR_INVALID_ORIENTATION_VECTOR_CYLINDER);
+		return (false);
+	}
+	if (ft_isdouble(contents[COL_INDEX_DIAMETER_CYLINDER]) == 0)
+	{
+		free_char_matrix(contents);
+		put_error(ERROR_INVALID_DIAMETER_CYLINDER);
+		return (false);
+	}
+	if (ft_isdouble(contents[COL_INDEX_HEIGHT_CYLINDER]) == 0)
+	{
+		free_char_matrix(contents);
+		put_error(ERROR_INVALID_HEIGHT_CYLINDER);
+		return (false);
+	}
+	if (is_valid_rgb_in_range(contents[COL_INDEX_RGB_COLOR_CYLINDER]) == false)
+	{
+		free_char_matrix(contents);
+		put_error(ERROR_INVALID_RGB_COLOR_VALUE);
+		return (false);
+	}
+	free_char_matrix(contents);
 	return (true);
 }
 
