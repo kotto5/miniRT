@@ -6,7 +6,7 @@
 /*   By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 21:14:07 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/06/25 16:41:10 by shtanemu         ###   ########.fr       */
+/*   Updated: 2023/06/25 17:20:15 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,19 +60,20 @@ static char	*get_identifier(char *line)
 
 static bool	is_valid_identifer(char *line)
 {
-	char		*identifer;
-	size_t		i_identifiers;
+	char				*identifer;
+	size_t				i_identifiers;
+	const static char	*identifiers[] = {"A", "C", "L", "pl", "sp", "cy", NULL};
 
 	identifer = get_identifier(line);
 	i_identifiers = 0;
-	while (IDENTIFIERS[i_identifiers] != NULL)
+	while (identifiers[i_identifiers] != NULL)
 	{
-		if (ft_strcmp_s(identifer, IDENTIFIERS[i_identifiers]) == 0)
+		if (ft_strcmp_s(identifer, identifiers[i_identifiers]) == 0)
 			break ;
 		i_identifiers++;
 	}
 	free(identifer);
-	if (IDENTIFIERS[i_identifiers] == NULL)
+	if (identifiers[i_identifiers] == NULL)
 	{
 		put_error(ERROR_INVALID_IDENTIFIER);
 		return (false);
@@ -528,18 +529,20 @@ static bool	fmt_checker_cylinder(const char *line)
 
 static bool	proceed_fmt_check(char *line)
 {
-	char		*identifier;
-	size_t		i_identifiers;
-	static bool	(*fmt_checker[])(const char *line) = {fmt_checker_ambient, \
+	char				*identifier;
+	size_t				i_identifiers;
+	static bool			(*fmt_checker[])(const char *line) = {\
+														fmt_checker_ambient, \
 														fmt_checker_camera, \
 														fmt_checker_light, \
 														fmt_checker_plane, \
 														fmt_checker_sphere, \
 														fmt_checker_cylinder};
+	const static char	*identifiers[] = {"A", "C", "L", "pl", "sp", "cy", NULL};
 
 	identifier = get_identifier(line);
 	i_identifiers = 0;
-	while (ft_strcmp_s(identifier, IDENTIFIERS[i_identifiers]))
+	while (ft_strcmp_s(identifier, identifiers[i_identifiers]))
 		i_identifiers++;
 	if (fmt_checker[i_identifiers](line) == false)
 	{
