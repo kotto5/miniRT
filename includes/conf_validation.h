@@ -6,7 +6,7 @@
 /*   By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 17:41:45 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/06/23 23:04:00 by shtanemu         ###   ########.fr       */
+/*   Updated: 2023/06/25 16:20:40 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,9 @@
 # define COL_INDEX_COORDINATES_SPHERE 1
 # define COL_INDEX_DIAMETER_SPHERE 2
 # define COL_INDEX_RGB_COLOR_SPHERE 3
+# define COL_INDEX_SPECULAR_REFLECTION_SPHERE 4
 # define N_CONTENTS_SPHERE 4
+# define N_CONTENTS_SPHERE_PLUS 5
 
 # define ERROR_INVALID_N_CONTENTS_PLANE "A given plane's configuration does'nt have enough contents."
 # define ERROR_INVALID_COODINATES_PLANE "A given plane's coordinates is invalid."
@@ -62,7 +64,9 @@
 # define COL_INDEX_COORDINATES_PLANE 1
 # define COL_INDEX_ORIENTATION_VECTOR_PLANE 2
 # define COL_INDEX_RGB_COLOR_PLANE 3
+# define COL_INDEX_SPECULAR_REFLECTION_PLANE 4
 # define N_CONTENTS_PLANE 4
+# define N_CONTENTS_PLANE_PLUS 5
 
 # define ERROR_INVALID_N_CONTENTS_CYLINDER "A given cylinder's configuration does'nt have enough contents."
 # define ERROR_INVALID_COODINATES_CYLINDER "A given cylinder's coordinates is invalid."
@@ -75,9 +79,12 @@
 # define COL_INDEX_DIAMETER_CYLINDER 3
 # define COL_INDEX_HEIGHT_CYLINDER 4
 # define COL_INDEX_RGB_COLOR_CYLINDER 5
+# define COL_INDEX_SPECULAR_REFLECTION_CYLINDER 6
 # define N_CONTENTS_CYLINDER 6
+# define N_CONTENTS_CYLINDER_PLUS 7
 
-# define ERROR_INVALID_RGB_COLOR_VALUE "A given rgb value of ambient lighting is invalid."
+# define ERROR_INVALID_RGB_COLOR_VALUE "A given rgb value is invalid."
+# define ERROR_INVALID_SPECULAR_REFLECTION "A given specular reflection value is invalid."
 
 # define COL_RGB_INDEX_RED 0
 # define COL_RGB_INDEX_GREEN 1
@@ -93,6 +100,8 @@
 # define ULIMIT_ORIENTATION_VECTOR 1
 # define LLIMIT_FOV 0
 # define ULIMIT_FOV 180
+# define LLIMIT_SPECULAR_REFLECTION 0.0
+# define ULIMIT_SPECULAR_REFLECTION 1.0
 
 # define RT_DESCRIPTOR ".rt"
 # define ERROR_INVALID_FILE_DESCRIPTOR "A given file's descriptor is invalid."

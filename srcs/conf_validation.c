@@ -6,7 +6,7 @@
 /*   By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 21:14:07 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/06/25 15:41:41 by shtanemu         ###   ########.fr       */
+/*   Updated: 2023/06/25 16:41:10 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,17 @@
 #include "conf_validation.h"
 #include "libft.h"
 #include "get_next_line_bonus.h"
+
+static bool	is_valid_specular_reflection(char *specular_reflection_str)
+{
+	double	specular_reflection;
+
+	if (ft_isdouble(specular_reflection_str) == 0)
+		return (false);
+	specular_reflection = ft_atof(specular_reflection_str);
+	return (specular_reflection >= LLIMIT_SPECULAR_REFLECTION \
+			&& specular_reflection <= ULIMIT_SPECULAR_REFLECTION);
+}
 
 static int	open_valid_file(const char *filepath)
 {
@@ -371,13 +382,16 @@ static bool	fmt_checker_light(const char *line)
 static bool	fmt_checker_sphere(const char *line)
 {
 	char	**contents;
+	size_t	n_contents;
 	
-	if (is_valid_n_contents(line, N_CONTENTS_SPHERE) == false)
+	contents = ft_split(line, ' ');
+	n_contents = count_char_matrix_rows(contents);
+	if (n_contents != N_CONTENTS_SPHERE && n_contents != N_CONTENTS_SPHERE_PLUS)
 	{
+		free_char_matrix(contents);
 		put_error(ERROR_INVALID_N_CONTENTS_SPHERE);
 		return (false);
 	}
-	contents = ft_split(line, ' ');
 	if (is_valid_coordinates(contents[COL_INDEX_COORDINATES_SPHERE]) == false)
 	{
 		free_char_matrix(contents);
@@ -396,6 +410,16 @@ static bool	fmt_checker_sphere(const char *line)
 		put_error(ERROR_INVALID_RGB_COLOR_VALUE);
 		return (false);
 	}
+	if (n_contents == N_CONTENTS_SPHERE_PLUS)
+	{
+		contents[COL_INDEX_SPECULAR_REFLECTION_SPHERE] = ft_strtrim_free_s1(contents[COL_INDEX_SPECULAR_REFLECTION_SPHERE], "\n");
+		if (is_valid_specular_reflection(contents[COL_INDEX_SPECULAR_REFLECTION_SPHERE]) == false)
+		{
+			free_char_matrix(contents);
+			put_error(ERROR_INVALID_SPECULAR_REFLECTION);
+			return (false);
+		}
+	}
 	free_char_matrix(contents);
 	return (true);
 }
@@ -403,13 +427,16 @@ static bool	fmt_checker_sphere(const char *line)
 static bool	fmt_checker_plane(const char *line)
 {
 	char	**contents;
+	size_t	n_contents;
 
-	if (is_valid_n_contents(line, N_CONTENTS_PLANE) == false)
+	contents = ft_split(line, ' ');
+	n_contents = count_char_matrix_rows(contents);
+	if (n_contents != N_CONTENTS_PLANE && n_contents != N_CONTENTS_PLANE_PLUS)
 	{
+		free_char_matrix(contents);
 		put_error(ERROR_INVALID_N_CONTENTS_PLANE);
 		return (false);
 	}
-	contents = ft_split(line, ' ');
 	if (is_valid_coordinates(contents[COL_INDEX_COORDINATES_PLANE]) == false)
 	{
 		free_char_matrix(contents);
@@ -428,6 +455,16 @@ static bool	fmt_checker_plane(const char *line)
 		put_error(ERROR_INVALID_RGB_COLOR_VALUE);
 		return (false);
 	}
+	if (n_contents == N_CONTENTS_PLANE_PLUS)
+	{
+		contents[COL_INDEX_SPECULAR_REFLECTION_PLANE] = ft_strtrim_free_s1(contents[COL_INDEX_SPECULAR_REFLECTION_PLANE], "\n");
+		if (is_valid_specular_reflection(contents[COL_INDEX_SPECULAR_REFLECTION_PLANE]) == false)
+		{
+			free_char_matrix(contents);
+			put_error(ERROR_INVALID_SPECULAR_REFLECTION);
+			return (false);
+		}
+	}
 	free_char_matrix(contents);
 	return (true);
 }
@@ -435,13 +472,16 @@ static bool	fmt_checker_plane(const char *line)
 static bool	fmt_checker_cylinder(const char *line)
 {
 	char	**contents;
+	size_t	n_contents;
 
-	if (is_valid_n_contents(line, N_CONTENTS_CYLINDER) == false)
+	contents = ft_split(line, ' ');
+	n_contents = count_char_matrix_rows(contents);
+	if (n_contents != N_CONTENTS_CYLINDER && n_contents != N_CONTENTS_CYLINDER_PLUS)
 	{
+		free_char_matrix(contents);
 		put_error(ERROR_INVALID_N_CONTENTS_CYLINDER);
 		return (false);
 	}
-	contents = ft_split(line, ' ');
 	if (is_valid_coordinates(contents[COL_INDEX_COORDINATES_CYLINDER]) == false)
 	{
 		free_char_matrix(contents);
@@ -471,6 +511,16 @@ static bool	fmt_checker_cylinder(const char *line)
 		free_char_matrix(contents);
 		put_error(ERROR_INVALID_RGB_COLOR_VALUE);
 		return (false);
+	}
+	if (n_contents == N_CONTENTS_CYLINDER_PLUS)
+	{
+		contents[COL_INDEX_SPECULAR_REFLECTION_CYLINDER] = ft_strtrim_free_s1(contents[COL_INDEX_SPECULAR_REFLECTION_CYLINDER], "\n");
+		if (is_valid_specular_reflection(contents[COL_INDEX_SPECULAR_REFLECTION_CYLINDER]) == false)
+		{
+			free_char_matrix(contents);
+			put_error(ERROR_INVALID_SPECULAR_REFLECTION);
+			return (false);
+		}
 	}
 	free_char_matrix(contents);
 	return (true);
