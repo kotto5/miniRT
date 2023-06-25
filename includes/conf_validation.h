@@ -6,7 +6,7 @@
 /*   By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 17:41:45 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/06/25 17:19:08 by shtanemu         ###   ########.fr       */
+/*   Updated: 2023/06/25 18:59:04 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,13 @@
 	configuration does'nt have enough contents."
 # define ERROR_INVALID_COODINATES_CAMERA "A given camera's \
 	coordinates is invalid."
-# define ERROR_INVALID_ORIENTATION_VECTOR_CAMERA "A given camera's \
+# define ERROR_INVALID_OV_CAMERA "A given camera's \
 	orientaion vector is invalid."
 # define ERROR_INVALID_FOV_CAMERA "A given camera's \
 	fov is invalid."
 
 # define COL_INDEX_COORDINATES_CAMERA 1
-# define COL_INDEX_ORIENTATION_VECTOR_CAMERA 2
+# define COL_INDEX_OV_CAMERA 2
 # define COL_INDEX_FOV_CAMERA 3
 # define N_CONTENTS_CAMERA 4
 
@@ -64,7 +64,7 @@
 # define COL_INDEX_COORDINATES_SPHERE 1
 # define COL_INDEX_DIAMETER_SPHERE 2
 # define COL_INDEX_RGB_COLOR_SPHERE 3
-# define COL_INDEX_SPECULAR_REFLECTION_SPHERE 4
+# define COL_INDEX_SR_SPHERE 4
 # define N_CONTENTS_SPHERE 4
 # define N_CONTENTS_SPHERE_PLUS 5
 
@@ -72,13 +72,13 @@
 	configuration does'nt have enough contents."
 # define ERROR_INVALID_COODINATES_PLANE "A given plane's \
 	coordinates is invalid."
-# define ERROR_INVALID_ORIENTATION_VECTOR_PLANE "A given plane's \
+# define ERROR_INVALID_OV_PLANE "A given plane's \
 	orientaion is invalid."
 
 # define COL_INDEX_COORDINATES_PLANE 1
-# define COL_INDEX_ORIENTATION_VECTOR_PLANE 2
+# define COL_INDEX_OV_PLANE 2
 # define COL_INDEX_RGB_COLOR_PLANE 3
-# define COL_INDEX_SPECULAR_REFLECTION_PLANE 4
+# define COL_INDEX_SR_PLANE 4
 # define N_CONTENTS_PLANE 4
 # define N_CONTENTS_PLANE_PLUS 5
 
@@ -86,7 +86,7 @@
 	configuration does'nt have enough contents."
 # define ERROR_INVALID_COODINATES_CYLINDER "A given cylinder's \
 	coordinates is invalid."
-# define ERROR_INVALID_ORIENTATION_VECTOR_CYLINDER "A given cylinder's \
+# define ERROR_INVALID_OV_CYLINDER "A given cylinder's \
 	orientaion is invalid."
 # define ERROR_INVALID_DIAMETER_CYLINDER "A given cylinder's \
 	diameter is invalid."
@@ -94,16 +94,16 @@
 	height is invalid."
 
 # define COL_INDEX_COORDINATES_CYLINDER 1
-# define COL_INDEX_ORIENTATION_VECTOR_CYLINDER 2
+# define COL_INDEX_OV_CYLINDER 2
 # define COL_INDEX_DIAMETER_CYLINDER 3
 # define COL_INDEX_HEIGHT_CYLINDER 4
 # define COL_INDEX_RGB_COLOR_CYLINDER 5
-# define COL_INDEX_SPECULAR_REFLECTION_CYLINDER 6
+# define COL_INDEX_SR_CYLINDER 6
 # define N_CONTENTS_CYLINDER 6
 # define N_CONTENTS_CYLINDER_PLUS 7
 
 # define ERROR_INVALID_RGB_COLOR_VALUE "A given rgb value is invalid."
-# define ERROR_INVALID_SPECULAR_REFLECTION "A given specular reflection value \
+# define ERROR_INVALID_SR "A given specular reflection value \
 	is invalid."
 
 # define COL_RGB_INDEX_RED 0
@@ -116,19 +116,39 @@
 # define ULIMIT_LIGHT 1.0
 # define LLIMIT_RGB 0
 # define ULIMIT_RGB 255
-# define LLIMIT_ORIENTATION_VECTOR -1
-# define ULIMIT_ORIENTATION_VECTOR 1
+# define LLIMIT_OV -1
+# define ULIMIT_OV 1
 # define LLIMIT_FOV 0
 # define ULIMIT_FOV 180
-# define LLIMIT_SPECULAR_REFLECTION 0.0
-# define ULIMIT_SPECULAR_REFLECTION 1.0
+# define LLIMIT_SR 0.0
+# define ULIMIT_SR 1.0
 
 # define RT_DESCRIPTOR ".rt"
 # define ERROR_INVALID_FILE_DESCRIPTOR "A given file's descriptor is invalid."
 
+# include <stdlib.h>
 # include <stdbool.h>
 
-bool	is_valid(char *filepath);
-void	put_error(const char *message);
+bool		is_valid(char *filepath);
+void		put_error(const char *message);
+bool		has_valid_format(const char *filepath);
+int			open_valid_file(const char *filepath);
+char		*get_identifier(char *line);
+bool		has_essental_identifers(const char *filepath);
+bool		has_valid_identifers(char *filepath);
+bool		is_valid_rgb_in_range(char *rgb_str);
+bool		is_valid_specular_reflection(char *specular_reflection_str);
+bool		is_valid_ratio_in_range(\
+	char *ratio_str, const double llim, const double ulim\
+);
+bool		is_valid_n_contents(const char *line, const size_t n_contents);
+bool		is_valid_coordinates(const char *coordinates_str);
+bool		is_valid_fov(char *fov_str);
+bool		is_valid_orientation_vector(const char *orientation_vector_str);
+bool		fmt_checker_light(const char *line);
+bool		fmt_checker_camera(const char *line);
+bool		fmt_checker_sphere(const char *line);
+bool		fmt_checker_plane(const char *line);
+bool		fmt_checker_cylinder(const char *line);
 
 #endif
