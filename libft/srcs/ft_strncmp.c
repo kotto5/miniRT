@@ -6,7 +6,7 @@
 /*   By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 00:11:43 by kakiba            #+#    #+#             */
-/*   Updated: 2023/06/22 15:24:06 by shtanemu         ###   ########.fr       */
+/*   Updated: 2023/06/25 19:07:57 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	return (0);
 }
 
-int ft_strcmp_s(const char *s1, const char *s2)
+int	ft_strcmp_s(const char *s1, const char *s2)
 {
 	size_t	i;
 
