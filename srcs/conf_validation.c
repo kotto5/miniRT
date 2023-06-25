@@ -6,7 +6,7 @@
 /*   By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 21:14:07 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/06/23 23:40:45 by shtanemu         ###   ########.fr       */
+/*   Updated: 2023/06/25 15:41:41 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,12 +151,24 @@ static bool	is_valid_rgb_in_range(char *rgb_str)
 	double	g_value;
 	double	b_value;
 	char	**rgb_array;
+	size_t	i_rgb;
 
 	rgb_array = ft_split(rgb_str, ',');
 	if (count_char_matrix_rows(rgb_array) != 3)
 	{
 		free_char_matrix(rgb_array);
 		return (false);
+	}
+	i_rgb = 0;
+	while (rgb_array[i_rgb] != NULL)
+	{
+		rgb_array[i_rgb] = ft_strtrim_free_s1(rgb_array[i_rgb], "\n");
+		if (ft_strlen_s(rgb_array[i_rgb]) == 0)
+		{
+			free_char_matrix(rgb_array);
+			return (false);
+		}
+		i_rgb++;
 	}
 	r_value = ft_atof(rgb_array[COL_RGB_INDEX_RED]);	
 	g_value = ft_atof(rgb_array[COL_RGB_INDEX_GREEN]);	
@@ -214,6 +226,7 @@ static bool	fmt_checker_ambient(const char *line)
 static bool	is_valid_coordinates(const char *coordinates_str)
 {
 	char	**coordinates;
+	size_t	i_coordinates;
 
 	coordinates = ft_split(coordinates_str, ',');
 	if (count_char_matrix_rows(coordinates) != 3)
@@ -221,10 +234,21 @@ static bool	is_valid_coordinates(const char *coordinates_str)
 		free_char_matrix(coordinates);
 		return (false);
 	}
-	if (ft_isdouble(coordinates[0]) == 0 || ft_isdouble(coordinates[1]) == 0 || ft_isdouble(coordinates[2]) == 0)
+	i_coordinates = 0;
+	while (coordinates[i_coordinates] != NULL)
 	{
-		free_char_matrix(coordinates);
-		return (false);
+		coordinates[i_coordinates] = ft_strtrim_free_s1(coordinates[i_coordinates], "\n");
+		if (ft_strlen_s(coordinates[i_coordinates]) == 0)
+		{
+			free_char_matrix(coordinates);
+			return (false);
+		}
+		if (ft_isdouble(coordinates[i_coordinates]) == 0)
+		{
+			free_char_matrix(coordinates);
+			return (false);
+		}
+		i_coordinates++;
 	}
 	free_char_matrix(coordinates);
 	return (true);
@@ -245,6 +269,12 @@ static bool	is_valid_orientation_vector(const char *orientation_vector_str)
 	i_orientation_vector = 0;
 	while (orientation_vector[i_orientation_vector] != NULL)
 	{
+		orientation_vector[i_orientation_vector] = ft_strtrim_free_s1(orientation_vector[i_orientation_vector], "\n");
+		if (ft_strlen_s(orientation_vector[i_orientation_vector]) == 0)
+		{
+			free_char_matrix(orientation_vector);
+			return (false);
+		}
 		if (ft_isdouble(orientation_vector[i_orientation_vector]) == 0)
 		{
 			free_char_matrix(orientation_vector);

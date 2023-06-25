@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kakiba <kakiba@student.42.fr>              +#+  +:+       +#+        */
+/*   By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 11:07:28 by kakiba            #+#    #+#             */
-/*   Updated: 2023/06/21 16:12:22 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/06/25 15:45:25 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 		exit_error(1);
+	if (is_valid())
 	printf("EPS %f\n", EPS);
 	ft_memset(&env, 0, sizeof(t_env));
 	if (parse_file(&env, argv[1]) == ERROR)
