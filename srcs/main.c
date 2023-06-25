@@ -6,11 +6,12 @@
 /*   By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 11:07:28 by kakiba            #+#    #+#             */
-/*   Updated: 2023/06/25 15:45:25 by shtanemu         ###   ########.fr       */
+/*   Updated: 2023/06/25 15:48:04 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "all.h"
+#include "conf_validation.h"
 
 int	initialize_env(t_env *env)
 {
@@ -40,7 +41,8 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 		exit_error(1);
-	if (is_valid())
+	if (is_valid(argv[1]) == false)
+		exit_error(1);
 	printf("EPS %f\n", EPS);
 	ft_memset(&env, 0, sizeof(t_env));
 	if (parse_file(&env, argv[1]) == ERROR)
@@ -55,9 +57,9 @@ int	main(int argc, char **argv)
 	return (0);
 }
 
-// #include <libc.h>
+#include <libc.h>
 
-// __attribute__((destructor))
-// static void destructor() {
-//     system("leaks -q miniRT");
-// }
+__attribute__((destructor))
+static void destructor() {
+    system("leaks -q miniRT");
+}
