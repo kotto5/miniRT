@@ -5,7 +5,46 @@ CFLAGS = -Wall -Wextra -Werror -g
 DFLAGS = -MMD -MP
 
 SRCDIR = srcs
-SRCS = $(wildcard $(SRCDIR)/*.c)
+SRCS =		$(SRCDIR)/affine_rotation.c \
+			$(SRCDIR)/bright_color_clc1.c \
+			$(SRCDIR)/color_img.c \
+			$(SRCDIR)/conf_validation.c \
+			$(SRCDIR)/fmt_checker_camera.c \
+			$(SRCDIR)/fmt_checker_cylinder.c \
+			$(SRCDIR)/fmt_checker_light.c \
+			$(SRCDIR)/fmt_checker_plane.c \
+			$(SRCDIR)/fmt_checker_sphere.c \
+			$(SRCDIR)/get_color_with_at.c \
+			$(SRCDIR)/get_from_split.c \
+			$(SRCDIR)/get_lights.c \
+			$(SRCDIR)/get_objects.c \
+			$(SRCDIR)/get_ref.c \
+			$(SRCDIR)/has_valid_format.c \
+			$(SRCDIR)/identifers.c \
+			$(SRCDIR)/img_color_clc1.c \
+			$(SRCDIR)/is_valid_contens.c \
+			$(SRCDIR)/is_valid_orientation_vector.c \
+			$(SRCDIR)/is_valid_rgb_in_range.c \
+			$(SRCDIR)/lightsource.c \
+			$(SRCDIR)/main.c \
+			$(SRCDIR)/make_instance.c \
+			$(SRCDIR)/new_obj.c \
+			$(SRCDIR)/obj_cylinder.c \
+			$(SRCDIR)/obj_plane.c \
+			$(SRCDIR)/obj_rect.c \
+			$(SRCDIR)/obj_sphere.c \
+			$(SRCDIR)/parse_file.c \
+			$(SRCDIR)/parse_line.c \
+			$(SRCDIR)/put_error.c \
+			$(SRCDIR)/set_event.c \
+			$(SRCDIR)/set_rotation_matrix.c \
+			$(SRCDIR)/utils.c \
+			$(SRCDIR)/utils2.c \
+			$(SRCDIR)/vec_clc1.c \
+			$(SRCDIR)/vec_clc2.c \
+			$(SRCDIR)/vec_clc3.c \
+			$(SRCDIR)/vec_clc4.c
+
 OBJDIR = ./objs
 LIBFTDIR = ./libft
 LIBFT = $(LIBFTDIR)/libft.a

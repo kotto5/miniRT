@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   all.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shtanemu <shtanemu@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: kakiba <kakiba@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 21:31:14 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/06/06 21:16:50 by shtanemu         ###   ########.fr       */
+/*   Updated: 2023/06/26 23:05:42 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,5 +190,12 @@ void			*get_plane_node(char **split);
 void			*get_sphere_node(char **split);
 int				get_ref_from_split(char *str, t_reflect *ref);
 int				get_vec_from_split(char *str, t_vec3 *vec);
+
+void			add_sum_to_b_color(t_bright_color *b_color, \
+	t_bright_color sum, t_rt rt_info);
+void			clc_light_effect(t_intersection_info *info, \
+	t_scene *scene, t_ray *ray, t_bright_color *sum);
+void			print_time(int a);
+int				init_scene(t_scene *scene, t_env *env);
 
 #endif
