@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color_img.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kakiba <kakiba@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 18:23:01 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/06/26 21:12:40 by shtanemu         ###   ########.fr       */
+/*   Updated: 2023/06/26 21:19:05 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,30 +63,38 @@ t_ray	*make_reray(t_ray *ray, t_intersection_info info)
 t_bright_color	*ray_trace_pr(t_bright_color *b_color, \
 							t_scene *scene, \
 							t_ray *ray, \
-							int depth)
+							t_rt rt_info)
 {
 	t_intersection_info	info;
 	t_dlist				*node;
 	t_ray				*reray;
+	t_bright_color		sum;
 
-	if (depth > 5)
+	if (rt_info.depth > 5)
 		return (b_color);
+	// ft_bzero(&sum, sizeof(t_bright_color));
 	get_nearest_intersection(&info, scene, ray);
 	if (info.intersection.does_intersect)
 	{
 		node = scene->light_list;
 		while (node)
 		{
-			*b_color = b_color_add(*b_color, get_color_with_at(scene, \
-				&info, node->content, ray));
+			sum = b_color_add(sum, get_color_with_at(scene, &info, node->content, ray));
+			// *b_color = b_color_add(*b_color, get_color_with_at(scene,
+			// 	&info, node->content, ray));
 			node = node->next;
 		}
 		if (info.obj->ref.use_perfect_reflectance)
 		{
+			rt_info.perfect_reflectance = b_color_mult(rt_info.perfect_reflectance, info.obj->ref.perfect_reflectance);
+			rt_info.depth++;
+			// free (rt_info.ray);
+			// rt_info.ray = make_reray(ray, info);
 			reray = make_reray(ray, info);
 			if (reray)
 			{
-				ray_trace_pr(b_color, scene, reray, depth + 1);
+				ray_trace_pr(&sum, scene, reray, rt_info);
+				// ray_trace_pr(b_color, scene, reray, depth + 1);
 				// ret = ray_trace_pr(&ret, scene, reray, depth + 1);
 				// *b_color = b_color_add(*b_color, b_color_mult(*ret, \
 				// 	info.obj->ref.perfect_reflectance));
@@ -94,6 +102,11 @@ t_bright_color	*ray_trace_pr(t_bright_color *b_color, \
 			}
 		}
 	}
+	if (rt_info.depth == 1)
+		*b_color = sum;
+	else
+		*b_color = b_color_add(*b_color, b_color_mult(sum, rt_info.perfect_reflectance));
+	// *b_color = b_color_add(*b_color, b_color_mult(sum, rt_info.perfect_reflectance));
 	return (b_color);
 }
 
@@ -125,7 +138,7 @@ t_bright_color	*ray_trace(t_bright_color *b_color, \
 			reray = make_reray(ray, info);
 			if (reray)
 			{
-				ray_trace_pr(b_color, scene, reray, 1);
+				ray_trace_pr(b_color, scene, reray, (t_rt){info.obj->ref.perfect_reflectance, 1});
 				free (reray);
 			}
 			// *b_color = b_color_add(*b_color, b_color_mult(*ret, \

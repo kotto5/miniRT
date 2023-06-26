@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shtanemu <shtanemu@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: kakiba <kakiba@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 22:24:49 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/06/06 21:22:01 by shtanemu         ###   ########.fr       */
+/*   Updated: 2023/06/26 20:36:03 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -221,5 +221,12 @@ typedef struct s_intersion_info
 	t_obj			*obj;
 	t_intersection	intersection;
 }				t_intersection_info;
+
+typedef struct s_rt
+{
+	t_bright_color	perfect_reflectance;
+	int				depth;
+	// t_ray			*ray;
+}				t_rt;
 
 #endif
