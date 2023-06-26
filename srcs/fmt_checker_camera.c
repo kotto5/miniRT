@@ -46,5 +46,5 @@ bool	fmt_checker_camera(const char *line)
 	contents = ft_split(line, ' ');
 	is_valid = core_fmt_checker_camera(contents);
 	free_char_matrix(contents);
-	return (true);
+	return (is_valid);
 }

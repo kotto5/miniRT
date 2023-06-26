@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_valid_contens.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kakiba <kakiba@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 17:56:09 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/06/25 18:36:43 by shtanemu         ###   ########.fr       */
+/*   Updated: 2023/06/26 13:49:22 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,10 +86,21 @@ bool	is_valid_fov(char *fov_str)
 {
 	unsigned int	fov;
 
+	fov_str = ft_strtrim(fov_str, "\n");
 	if (ft_isdigit_str(fov_str, 0) == 0)
+	{
+		free (fov_str);
 		return (false);
+	}
 	fov = ft_atoi(fov_str);
+	free (fov_str);
 	if (fov < LLIMIT_FOV || fov > ULIMIT_FOV)
 		return (false);
 	return (true);
 }
+
+// int	main(){
+// 	printf("%d\n", is_valid_fov("10"));
+// 	printf("%d\n", is_valid_fov("-1"));
+// 	printf("%d\n", is_valid_fov("180"));
+// }
