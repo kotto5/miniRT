@@ -6,7 +6,7 @@
 /*   By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 17:36:28 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/06/25 17:42:10 by shtanemu         ###   ########.fr       */
+/*   Updated: 2023/06/26 21:08:54 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,17 @@
 #include "libft.h"
 #include "conf_validation.h"
 
-static void	set_essentials_boolean(char *line, \
-									bool *has_ambient_light, \
-									bool *has_camera)
+static void	set_number_essentials(char *line, \
+									size_t *n_ambient_light, \
+									size_t *n_camera)
 {
 	char	*identifer;
 
 	identifer = get_identifier(line);
 	if (ft_strcmp_s(identifer, "A") == 0)
-		*has_ambient_light = true;
+		(*n_ambient_light)++;
 	if (ft_strcmp_s(identifer, "C") == 0)
-		*has_camera = true;
+		(*n_camera)++;
 	free(identifer);
 }
 
@@ -33,22 +33,22 @@ bool	has_essental_identifers(const char *filepath)
 {
 	const int	fd = open_valid_file(filepath);
 	char		*line;
-	bool		has_ambient_light;
-	bool		has_camera;
+	size_t		n_ambient_light;
+	size_t		n_camera;
 
-	has_ambient_light = false;
-	has_camera = false;
+	n_ambient_light = 0;
+	n_camera = 0;
 	while (1)
 	{
 		line = get_next_line(fd);
 		if (line == NULL)
 			break ;
 		if (ft_strcmp_s(line, "\n") != 0)
-			set_essentials_boolean(line, &has_ambient_light, &has_camera);
+			set_number_essentials(line, &n_ambient_light, &n_camera);
 		free(line);
 	}
 	close(fd);
-	if (has_ambient_light == false || has_camera == false)
+	if (n_ambient_light != 1 || n_camera != 1)
 	{
 		put_error(ERROR_ESSENTTIAL_IDENTIFIER);
 		return (false);
