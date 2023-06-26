@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   all.h                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: shtanemu <shtanemu@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/05 21:31:14 by shtanemu          #+#    #+#             */
+/*   Updated: 2023/06/06 21:16:50 by shtanemu         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef ALL_H
 # define ALL_H
 
@@ -14,31 +26,32 @@
 # include "obj.h"
 # include "lightsource.h"
 
-// #define WIN_HEIGHT 900
-// #define ASPECT (double)(16.0 / 9.0)
-// #define WIN_WIDTH (int)((double)WIN_HEIGHT * ASPECT)
+# define WIN_WIDTH 1200
+# define ASPECT 0.75
 
-#define WIN_WIDTH 1200
-// #define ASPECT (double)(9.0 / 16.0)
-#define ASPECT (double)(12.0/16.0)
-// #define ASPECT (double)(1)
-
-#define WIN_HEIGHT (int)((double)WIN_WIDTH * ASPECT)
-#define EPS 1e-10
+// # define WIN_HEIGHT (int)((double)WIN_WIDTH * ASPECT)
+# define WIN_HEIGHT 900.00
+# define EPS 1e-10
 
 # define ERROR 1
 # define SUCCESS 0
-// # define BACK_COLOR 100*256*256+149*256+237
-// # define BACK_COLOR 0x00faa9fe
 # define BACK_COLOR 0x00000000
 # define OBJ_COLOR 0xa0af0f991
 
 # define BACK_COLOR_RED "\x1b[41m"
 # define BACK_COLOR_DEF "\x1b[49m"
-# define WIN_ORD 1
+
+# define PI 3.14159265358979323846
+# define EPSILON 0.001
+# define FOCAL_LENGTH 1.0
+
+# define SYNTAX 3
+# define OPEN_ERROR 2
+# define CLOSE_ERROR 4
+# define ARG_INSUFFICIENT 5
 
 // if uset os is mac, use this key code
-#ifdef __APPLE__
+# ifdef __APPLE__
 // mac
 enum{
 	ALLOW_LEFT = 123,
@@ -50,7 +63,7 @@ enum{
 	KEY_ESC = 53,
 };
 
-#elif __linux__
+# elif __linux__
 // linux
 enum{
 	ALLOW_LEFT = 65361,
@@ -60,10 +73,9 @@ enum{
 	KEY_Z = 122,
 	KEY_X = 120,
 	KEY_ESC = 65307,
-	
 };
 
-#endif
+# endif
 
 typedef enum e_event
 {
@@ -104,75 +116,79 @@ typedef enum e_event
 	E_LAST_EVENT = 36,
 }	t_event;
 
-void	set_vec3(t_vec3 *vec, double x, double y, double z);
-t_vec3	vec_add(t_vec3 va, t_vec3 vb);
-t_vec3	vec_sub(t_vec3 va, t_vec3 vb);
-t_vec3	vec_mult(t_vec3 va, double k);
-double	vec_dot(t_vec3 va, t_vec3 vb);
-t_vec3	vec_cross(t_vec3 va, t_vec3 vb);
-double	vec_mag_sq(t_vec3 va);
-double	vec_mag(t_vec3 va);
-t_vec3	vec_normalize(t_vec3 vec);
-void	print_vec(t_vec3 vec, char *str);
-t_vec3	get_vec(double x, double y, double z);
-double	constrain(double v, double vmin, double vmax);
-double	map(double v, double vmin, double vmax, double tmin, double tmax); // 値のマッピング
-t_dlist	*get_obj_list(void);
+void			set_vec3(t_vec3 *vec, double x, double y, double z);
+t_vec3			vec_add(t_vec3 va, t_vec3 vb);
+t_vec3			vec_sub(t_vec3 va, t_vec3 vb);
+t_vec3			vec_mult(t_vec3 va, double k);
+double			vec_dot(t_vec3 va, t_vec3 vb);
+t_vec3			vec_cross(t_vec3 va, t_vec3 vb);
+double			vec_mag_sq(t_vec3 va);
+double			vec_mag(t_vec3 va);
+t_vec3			vec_normalize(t_vec3 vec);
+void			print_vec(t_vec3 vec, char *str);
+t_vec3			get_vec(double x, double y, double z);
+double			constrain(double v, double vmin, double vmax);
+t_dlist			*get_obj_list(void);
 
-t_vec3 direction_to_euler(t_vec3 direction);
-t_mat3 rotation_matrix(t_vec3 vec);
-t_mat3 multiply_matrices(t_mat3 a, t_mat3 b);
-t_vec3	vec_rotate(t_vec3 v, t_mat3 m);
+t_vec3			direction_to_euler(t_vec3 direction);
+t_mat3			rotation_matrix(t_vec3 vec);
+t_mat3			multiply_matrices(t_mat3 a, t_mat3 b);
+t_vec3			vec_rotate(t_vec3 v, t_mat3 m);
 
-
-void	set_event(t_env *env);
-
-// t_img_color	get_img_color(double t, double r, double g, double b);
-// t_img_color	color_mult(t_img_color color, double k);
-// t_img_color	color_add(t_img_color color1, t_img_color color2);
-
+void			set_event(t_env *env);
 
 // utils.c
-void	mlx_put_to_img(t_img *data, int x, int y, int color);
-// t_vec3	get_screen_vec(int x, int y);
-t_vec3	get_screen_vec(int x, int y, t_vec3 eye_position);
-double	get_distance_to_window(int fov);
-t_bright_color	get_color_with_at(t_scene *scene, t_intersection_info *info, t_lightsource *light, t_ray *ray);
+void			mlx_put_to_img(t_img *data, int x, int y, int color);
+t_vec3			get_screen_vec(int x, int y, t_vec3 eye_position);
+double			get_distance_to_window(int fov);
+t_bright_color	get_color_with_at(t_scene *scene, \
+									t_intersection_info *info, \
+									t_lightsource *light, \
+									t_ray *ray);
 
-double	get_min_double(const double a, const double b);
-double	get_max_double(const double a, const double b);
+double			get_min_double(const double a, const double b);
+double			get_max_double(const double a, const double b);
 
+int				*test_rect(t_env *env);
+int				get_nearest_intersection(t_intersection_info *info, \
+											t_scene *scene, \
+											t_ray *ray);
+t_bright_color	get_ref6(t_intersection_info *info, \
+							t_lightsource *light, \
+							t_ray eye, \
+							t_scene *scene);
+t_dtree			*get_obj_tree(t_env *env);
 
-int	*test_rect(t_env *env);
-// t_intersection_info	*get_nearest_intersection(t_scene *scene, t_ray *ray);
-int	get_nearest_intersection(t_intersection_info *info, t_scene *scene, t_ray *ray);
-t_dlist	*get_light_list(t_dlist **gb_list);
-// t_bright_color	get_ref6(t_intersection intersection, t_reflect ref_info, t_lightsource *light, t_ray eye);
-t_bright_color	get_ref6(t_intersection_info *info, t_lightsource *light, t_ray eye, t_scene *scene);
-t_dtree *get_obj_tree(t_env *env);
-void	print_time(int a);
-double	abs_double(double d);
+void			set_ray(t_camera *camera, int x, int y, t_ray *ray);
+t_camera		*make_camera(double fov, t_vec3 pos, t_vec3 orientation);
 
-// t_ray	get_ray(t_camera *camera, int x, int y);
-t_ray	*get_ray(t_camera *camera, int x, int y);
-// t_ray	get_ray(t_camera *camera, double u, double v);
-t_camera	*make_camera(double fov, t_vec3 pos, t_vec3 orientation);
+int				color_img(t_env *env);
+int				parse_file(t_env *env, char *file);
+int				parse_line(char *line, t_env *env);
+void			exit_error(int ret);
+double			degree_to_radian(int degree);
 
-int	color_img(t_env *env);
-int	parse_file(t_env *env, char *file);
-void	exit_error(int ret);
-double	degree_to_radian(int degree);
+int				set_custom_rotated_vector(t_vec3 *vec, \
+											const t_vec3 center, \
+											const t_vec3 rdvec);
+double			constrain(double v, double vmin, double vmax);
+int				set_rxmat(double rmat[4][4], const double d);
+int				set_rymat(double rmat[4][4], const double d);
+int				set_rzmat(double rmat[4][4], const double d);
+int				main_affine_rotation(t_vec3 *vec, const t_vec3 input);
+t_vec3			rotate_vec(t_vec3 v, t_vec3 k, double theta);
 
-int	set_custom_rotated_vector(
-	t_vec3 *vec, const t_vec3 center, const t_vec3 rdvec);
-double	constrain(double v, double vmin, double vmax);
-int	set_rxmat(double rmat[4][4], const double d);
-int	set_rymat(double rmat[4][4], const double d);
-int	set_rzmat(double rmat[4][4], const double d);
-int	main_affine_rotation(t_vec3 *vec, const t_vec3 input);
-t_vec3 rotate_vec(t_vec3 v, t_vec3 k, double theta);
+bool			is_inside_sphere(const t_obj *obj, const t_vec3 point);
+bool			is_inside_cylinder(const t_obj *obj, const t_vec3 point);
 
-bool	is_inside_sphere(const t_obj *obj, const t_vec3 point);
-bool	is_inside_cylinder(const t_obj *obj, const t_vec3 point);
+void			*get_light_node(char **split);
+void			*get_ambient_lignt(char **split);
+
+void			*get_camera(char **split);
+void			*get_cylinder_node(char **split);
+void			*get_plane_node(char **split);
+void			*get_sphere_node(char **split);
+int				get_ref_from_split(char *str, t_reflect *ref);
+int				get_vec_from_split(char *str, t_vec3 *vec);
 
 #endif

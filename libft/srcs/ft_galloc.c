@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_galloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kakiba <kotto555555@gmail.com>             +#+  +:+       +#+        */
+/*   By: shtanemu <shtanemu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 10:38:44 by kakiba            #+#    #+#             */
-/*   Updated: 2023/04/28 16:22:10 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/06/05 20:30:37 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	*ft_galloc(size_t size, t_dlist **alloc_list)
 	void	*content;
 	t_dlist	*new;
 
-	// printf("SIZE = %ld\n", size);
 	content = ft_calloc(size, 1);
 	if (content == NULL)
 		return (NULL);

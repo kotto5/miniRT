@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   obj_plane.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kakiba <kotto555555@gmail.com>             +#+  +:+       +#+        */
+/*   By: shtanemu <shtanemu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 15:43:21 by kakiba            #+#    #+#             */
-/*   Updated: 2023/05/27 06:02:48 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/05/31 19:00:54 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,16 @@ static double	get_t_ray_plane(t_ray ray, t_plane *plane)
 	denom = vec_dot(ray.dir, plane->vertical);
 	if (denom == 0.00)
 		return (-1);
-	return (vec_dot(vec_sub(plane->position, ray.pos), plane->vertical) / denom);
+	return (vec_dot(vec_sub(plane->position, ray.pos), \
+							plane->vertical) / denom);
 }
 
 t_intersection	get_intersection_plane(const t_ray ray, const t_obj *obj)
 {
 	t_plane			*plane;
 	t_intersection	intersection;
-	double t;
-	t_vec3	td;
+	double			t;
+	t_vec3			td;
 
 	plane = obj->instance;
 	intersection.does_intersect = false;
@@ -41,7 +42,6 @@ t_intersection	get_intersection_plane(const t_ray ray, const t_obj *obj)
 	intersection.does_intersect = true;
 	td = vec_mult(ray.dir, t);
 	intersection.position = vec_add(ray.pos, td);
-	// intersection.distance = d;
 	intersection.distance = vec_mag(td);
 	intersection.vertical_dir = vec_normalize(plane->vertical);
 	if (vec_dot(intersection.vertical_dir, ray.dir) >= 0.0)

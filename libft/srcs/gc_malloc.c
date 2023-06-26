@@ -1,14 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   gc_malloc.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: shtanemu <shtanemu@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/05 20:41:05 by shtanemu          #+#    #+#             */
+/*   Updated: 2023/06/05 20:41:31 by shtanemu         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-// static t_dlist	**get_gc_list(void)
 t_dlist	**get_gc_list(void)
 {
-	static	t_dlist	*gc;
+	static t_dlist	*gc;
 
-	// if (!gc)
-		// printf("gc [%p]\n", gc);
-	// else
-		// printf("prev [%p] now [%p]  next [%p] \n", gc->prev, gc, gc->next);
 	return (&gc);
 }
 

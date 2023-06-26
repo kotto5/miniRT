@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kakiba <kotto555555@gmail.com>             +#+  +:+       +#+        */
+/*   By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 00:07:37 by kakiba            #+#    #+#             */
-/*   Updated: 2022/07/24 15:48:07 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/06/22 16:24:31 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,14 @@ char	*ft_strchr(const char *s, int c)
 		return ((char *)(s + i));
 	return (NULL);
 }
+
+char	*ft_strchr_s(const char *s, int c)
+{
+	if (s == NULL)
+		return (NULL);
+	return (ft_strchr(s, c));
+}
+
 /*
 int	main()
 {

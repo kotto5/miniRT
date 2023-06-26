@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kakiba <kotto555555@gmail.com>             +#+  +:+       +#+        */
+/*   By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 14:42:06 by kakiba            #+#    #+#             */
-/*   Updated: 2023/05/10 18:01:10 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/06/22 22:31:53 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <stdio.h>
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1000
+#  define BUFFER_SIZE 100
 # endif
 
 # ifndef OPEN_MAX

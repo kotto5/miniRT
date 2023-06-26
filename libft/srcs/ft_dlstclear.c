@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_dlstclear.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kakiba <kotto555555@gmail.com>             +#+  +:+       +#+        */
+/*   By: shtanemu <shtanemu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 15:20:14 by kakiba            #+#    #+#             */
-/*   Updated: 2023/05/12 16:33:26 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/06/05 20:20:24 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,3 @@ void	ft_dlstclear(t_dlist **lst, void (*del)(void*))
 }
 
 // lst = NULL;
-

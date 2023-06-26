@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_dlstdelete.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kakiba <kotto555555@gmail.com>             +#+  +:+       +#+        */
+/*   By: shtanemu <shtanemu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 12:08:26 by kakiba            #+#    #+#             */
-/*   Updated: 2023/05/12 17:35:01 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/06/05 20:21:07 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,55 +38,3 @@ bool	ft_dlstdelete(t_dlist **lst, void *target, void (*del)(void *))
 		next->prev = prev;
 	return (true);
 }
-
-// lstnode 自体はfree しない。
-// bool	ft_dlstdelete(t_dlist **lst, void *target, void (*del)(void *))
-// {
-// 	t_dlist	*node;
-
-// 	if (lst == NULL || target == NULL)
-// 		return (false);
-// 	node = ft_dlstsearch(*lst, target);
-// 	if (node == NULL || node->content == NULL)
-// 		return (false);
-// 	del(node->content);
-// 	node->content = NULL;
-// 	return (true);
-// }
-
-
-// void	func(void){
-	// char		*ptr;
-	// static char	*ptr;
-
-	// ptr = malloc(100);
-// }
-
-// int	main(void)
-// {
-// 	char		*ptr;
-// 	char		*ptr2;
-
-// 	ptr = malloc(100);
-// 	gc_add(ptr);
-
-
-// 	ptr2 = malloc(100);
-// 	gc_add(ptr2);
-
-// 	gc_clear();
-// 	// gc_free(ptr2);
-// 	// gc_free(ptr2);
-// 	// gc_free(ptr);
-
-// 	get_gc_list();
-// 	// ptr2 = malloc(100);
-// 	// gc_add(ptr2);
-
-// 	// gc_free(ptr2);
-
-
-// 	// gc_clear();
-// 	return (0);
-// }
-

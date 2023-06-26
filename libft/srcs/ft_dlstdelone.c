@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_dlstdelone.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kakiba <kotto555555@gmail.com>             +#+  +:+       +#+        */
+/*   By: shtanemu <shtanemu@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 15:18:43 by kakiba            #+#    #+#             */
-/*   Updated: 2023/05/28 18:38:00 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/06/05 20:21:16 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,3 @@ void	ft_dlstdelone(t_dlist *lst, void (*del)(void *))
 	}
 	del(lst);
 }
-
