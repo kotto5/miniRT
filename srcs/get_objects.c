@@ -3,14 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   get_objects.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shtanemu <shtanemu@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: kakiba <kakiba@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 07:50:29 by kakiba            #+#    #+#             */
-/*   Updated: 2023/06/05 17:50:59 by shtanemu         ###   ########.fr       */
+/*   Updated: 2023/06/26 15:44:54 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "all.h"
+
+void	give_perfect_reflection(t_obj *obj, char *reflectance)
+{
+	const double	ratio = ft_atof(reflectance);
+
+	obj->ref.use_perfect_reflectance = true;
+	obj->ref.perfect_reflectance.t = ratio;
+	obj->ref.perfect_reflectance.r = ratio;
+	obj->ref.perfect_reflectance.g = ratio;
+	obj->ref.perfect_reflectance.b = ratio;
+}
 
 void	*get_sphere_node(char **split)
 {
@@ -20,8 +31,6 @@ void	*get_sphere_node(char **split)
 	t_sphere				*sphere;
 	t_obj					*obj;
 
-	if (get_size_double_ptr(split) != 4)
-		return (NULL);
 	if (get_vec_from_split(split[1], &position) \
 		|| get_ref_from_split(split[3], &ref))
 		return (NULL);
@@ -34,6 +43,8 @@ void	*get_sphere_node(char **split)
 	obj = new_obj(O_SPHERE, ref, sphere);
 	if (obj == NULL)
 		return (NULL);
+	if (split[4])
+		give_perfect_reflection(obj, split[4]);
 	return (ft_dlstnew(obj));
 }
 

@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   obj_cylinder.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shtanemu <shtanemu@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: kakiba <kakiba@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 15:43:21 by kakiba            #+#    #+#             */
-/*   Updated: 2023/06/05 16:36:19 by shtanemu         ###   ########.fr       */
+/*   Updated: 2023/06/26 17:12:47 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "all.h"
+
+// direction
 
 static int	set_solutions(t_ray ray, t_cylinder *cylinder, double t[2])
 {
