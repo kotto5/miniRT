@@ -6,7 +6,7 @@
 /*   By: kakiba <kakiba@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 16:42:52 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/06/27 12:30:22 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/06/27 23:31:27 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,11 @@ static int	set_params(t_obj *obj, t_objtype type)
 	}
 	else if (type == O_RECT)
 		obj->get_intersection = get_intersection_rect;
+	else if (type == O_CONE)
+	{
+		obj->get_intersection = get_intersection_cone;
+		obj->is_closed = false;
+	}
 	else
 		obj->get_intersection = NULL;
 	return (0);

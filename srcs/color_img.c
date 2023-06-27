@@ -6,7 +6,7 @@
 /*   By: kakiba <kakiba@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 18:23:01 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/06/27 14:29:41 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/06/27 23:29:08 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,8 @@ int	color_img(t_env *env)
 		x = 0;
 		while (x < WIN_WIDTH)
 		{
+			// if (y == 118)
+			// 	printf("%d\n", x);
 			ft_bzero(&ref_color, sizeof(t_bright_color));
 			set_ray(env->camera, x, y, &env->eye);
 			ray_trace(&ref_color, &scene,

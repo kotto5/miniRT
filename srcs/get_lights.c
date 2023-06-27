@@ -6,7 +6,7 @@
 /*   By: kakiba <kakiba@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 07:50:29 by kakiba            #+#    #+#             */
-/*   Updated: 2023/06/21 15:55:24 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/06/27 21:58:49 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	*get_light_node(char **split)
 		return (NULL);
 	if (ft_isdouble(split[2]) == false || \
 		get_ref_from_split(split[3], &ref) || \
-		get_vec_from_split(split[1], &pos))
+		set_vec_from_split(split[1], &pos))
 		return (NULL);
 	raito = ft_atof(split[2]);
 	p_light = make_point_light_info(pos, \

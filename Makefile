@@ -33,6 +33,7 @@ SRCS =		$(SRCDIR)/affine_rotation.c \
 			$(SRCDIR)/obj_plane.c \
 			$(SRCDIR)/obj_rect.c \
 			$(SRCDIR)/obj_sphere.c \
+			$(SRCDIR)/obj_cone.c \
 			$(SRCDIR)/parse_file.c \
 			$(SRCDIR)/parse_line.c \
 			$(SRCDIR)/put_error.c \

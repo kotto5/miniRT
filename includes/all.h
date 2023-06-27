@@ -6,7 +6,7 @@
 /*   By: kakiba <kakiba@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 21:31:14 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/06/26 23:05:42 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/06/27 22:00:55 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -189,7 +189,8 @@ void			*get_cylinder_node(char **split);
 void			*get_plane_node(char **split);
 void			*get_sphere_node(char **split);
 int				get_ref_from_split(char *str, t_reflect *ref);
-int				get_vec_from_split(char *str, t_vec3 *vec);
+int				set_vec_from_split(char *str, t_vec3 *vec);
+t_vec3			get_vec_from_split(char *str);
 
 void			add_sum_to_b_color(t_bright_color *b_color, \
 	t_bright_color sum, t_rt rt_info);

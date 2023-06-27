@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_from_split.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shtanemu <shtanemu@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: kakiba <kakiba@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 07:50:29 by kakiba            #+#    #+#             */
-/*   Updated: 2023/06/05 18:02:49 by shtanemu         ###   ########.fr       */
+/*   Updated: 2023/06/27 22:00:40 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	get_ref_from_split(char *str, t_reflect *ref)
 	return (SUCCESS);
 }
 
-int	get_vec_from_split(char *str, t_vec3 *vec)
+int	set_vec_from_split(char *str, t_vec3 *vec)
 {
 	char	**split_tmp;
 
@@ -64,4 +64,17 @@ int	get_vec_from_split(char *str, t_vec3 *vec)
 	vec->z = ft_atof(split_tmp[2]);
 	free_double_ptr(split_tmp);
 	return (SUCCESS);
+}
+
+t_vec3	get_vec_from_split(char *str)
+{
+	char	**split_tmp;
+	t_vec3	vec;
+
+	split_tmp = ft_split(str, ',');
+	vec.x = ft_atof(split_tmp[0]);
+	vec.y = ft_atof(split_tmp[1]);
+	vec.z = ft_atof(split_tmp[2]);
+	free_double_ptr(split_tmp);
+	return (vec);
 }
