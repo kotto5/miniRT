@@ -7,17 +7,17 @@ echo '██║     ██║   ██║██║╚██╗██║██╔
 echo '╚██████╗╚██████╔╝██║ ╚████║██║         ██║     ██║███████╗███████╗       ██║   ███████╗███████║   ██║   '
 echo ' ╚═════╝ ╚═════╝ ╚═╝  ╚═══╝╚═╝         ╚═╝     ╚═╝╚══════╝╚══════╝       ╚═╝   ╚══════╝╚══════╝   ╚═╝   '
 
-if [ $? -ne 0 ]; then
-	echo "[Error]: Compile error."
-    exit 1
-fi
-
 if [ $# -ne 1 ]; then
-	echo "[Error]: An argument is null."
+	echo "[Error]: The number of arguments is invalid."
     exit 1
 fi
 
 make
+
+if [ $? -ne 0 ]; then
+	echo "[Error]: Compile error."
+    exit 1
+fi
 directory=$1
 
 
