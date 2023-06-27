@@ -21,7 +21,6 @@ make
 directory=$1
 
 
-
 for file in "$directory"*
 do
     echo "----------------------------------------------------"
