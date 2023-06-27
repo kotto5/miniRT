@@ -6,12 +6,24 @@
 /*   By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 17:27:05 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/06/25 18:58:28 by shtanemu         ###   ########.fr       */
+/*   Updated: 2023/06/27 15:36:54 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "conf_validation.h"
 #include "libft.h"
+
+static bool	is_valid_ratio_in_range_al(\
+	char *ratio_str, const double llim, const double ulim\
+)
+{
+	double	ratio;
+
+	if (ft_isdouble(ratio_str) == 0)
+		return (false);
+	ratio = ft_atof(ratio_str);
+	return (ratio > llim && ratio <= ulim);
+}
 
 static bool	fmt_checker_ambient(const char *line)
 {
@@ -23,7 +35,7 @@ static bool	fmt_checker_ambient(const char *line)
 		return (false);
 	}
 	contents = ft_split(line, ' ');
-	if (is_valid_ratio_in_range(contents[COL_INDEX_AMBIENT_LIGHT_RATIO], \
+	if (is_valid_ratio_in_range_al(contents[COL_INDEX_AMBIENT_LIGHT_RATIO], \
 								LLIMIT_AMBIENT_LIGHT, ULIMIT_AMBIENT_LIGHT) \
 								== false)
 	{
