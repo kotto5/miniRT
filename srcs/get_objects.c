@@ -6,7 +6,7 @@
 /*   By: kakiba <kakiba@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 07:50:29 by kakiba            #+#    #+#             */
-/*   Updated: 2023/06/27 11:44:53 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/06/27 13:44:03 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,6 @@ void	*get_cylinder_node(char **split)
 	t_cylinder	*cylinder;
 	t_obj		*obj;
 
-	if (get_size_double_ptr(split) != 6)
-		return (NULL);
 	if (get_vec_from_split(split[1], &position) || \
 		get_vec_from_split(split[2], &axis) || \
 		get_ref_from_split(split[5], &ref) || \
@@ -94,6 +92,8 @@ void	*get_cylinder_node(char **split)
 	obj = new_obj(O_CYLINDER, ref, cylinder);
 	if (obj == NULL)
 		return (NULL);
+	if (split[6])
+		give_perfect_reflection(obj, split[4]);
 	return (ft_dlstnew(obj));
 }
 

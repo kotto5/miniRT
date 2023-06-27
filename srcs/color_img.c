@@ -6,7 +6,7 @@
 /*   By: kakiba <kakiba@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 18:23:01 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/06/27 13:00:08 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/06/27 14:29:41 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,13 +61,7 @@ t_ray	*make_reray(t_ray *ray, t_intersection_info info)
 	return (re_ray);
 }
 
-	// if (rt_info.depth == 0)
-	// 	sum = b_color_mult(info.obj->ref.am, *scene->am_light);
-
-	// *sum = b_color_mult(info->obj->ref.am, *scene->am_light);
-
-	// 	*b_color = b_color_add(*b_color,
-	// 			b_color_mult(sum, rt_info.perfect_reflectance));
+#define MAX_LOOP 5
 
 void	ray_trace(t_bright_color *b_color, \
 							t_scene *scene, \
@@ -78,7 +72,7 @@ void	ray_trace(t_bright_color *b_color, \
 	t_ray				*reray;
 	t_bright_color		sum;
 
-	if (rt_info.depth > 5)
+	if (rt_info.depth > MAX_LOOP)
 		return ;
 	ft_bzero(&sum, sizeof(t_bright_color));
 	get_nearest_intersection(&info, scene, ray);

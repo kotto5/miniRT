@@ -6,7 +6,7 @@
 /*   By: kakiba <kakiba@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 23:03:52 by kakiba            #+#    #+#             */
-/*   Updated: 2023/06/27 12:35:32 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/06/27 13:16:32 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	clc_light_effect(t_intersection_info *info,
 {
 	t_dlist	*node;
 
+	*sum = b_color_mult(info->obj->ref.am, *scene->am_light);
 	node = scene->light_list;
 	while (node)
 	{

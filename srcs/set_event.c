@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   set_event.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shtanemu <shtanemu@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: kakiba <kakiba@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 22:54:52 by kakiba            #+#    #+#             */
-/*   Updated: 2023/06/06 21:23:40 by shtanemu         ###   ########.fr       */
+/*   Updated: 2023/06/27 14:57:04 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "all.h"
 
 int	key_event(int key, void *data);
-int	mouse_event(int button, int x, int y, void *data);
 
 int	exit_proc(void *data)
 {
@@ -39,62 +38,41 @@ int	exit_proc(void *data)
 	return (0);
 }
 
-int	mouse_event(int button, int x, int y, void *data)
+static t_camera	*remake_camera(t_camera *camera)
 {
-	t_env	*env;
+	t_camera	*new_camera;
 
-	(void)x;
-	(void)y;
-	env = (t_env *)data;
-	if (button == 1)
-		env->camera->origin.z += 0.1;
-	if (button == 2)
-		env->camera->origin.z -= 0.1;
-	if (button == 1 || button == 2)
-	{
-		env->camera->origin.z -= 0.1;
-		env->camera = make_camera(env->camera->fov, \
-			env->camera->origin, \
-			env->camera->orientation);
-	}
-	color_img(env);
-	mlx_put_image_to_window(env->mlx, env->win, env->img.img, 0, 0);
-	mlx_loop(env->mlx);
-	return (0);
+	new_camera = make_camera(camera->fov,
+			camera->origin,
+			camera->orientation);
+	if (new_camera == NULL)
+		return (camera);
+	new_camera->fov = camera->fov;
+	new_camera->origin = camera->origin;
+	new_camera->orientation = camera->orientation;
+	free (camera);
+	return (new_camera);
 }
-
-// the function that deals with mouse movement
-// if mouse move to right, then move the camera to right
-// int	mouse_move(int x, int y, void *data)
-// {
-// 	(void)x;
-// 	(void)y;
-// 	(void)data;
-// 	printf("mouse move x is %d\n", x);
-// 	printf("mouse move y is %d\n", y);
-// 	return (0);
-// }
 
 static int	set_env_eye(t_env *env, int key)
 {
 	if (key == ALLOW_DOWN)
-		env->eye.pos.y += 0.1;
+		env->camera->origin.y += 0.1;
 	else if (key == ALLOW_UP)
-		env->eye.pos.y -= 0.1;
+		env->camera->origin.y -= 0.1;
 	else if (key == ALLOW_LEFT)
-		env->eye.pos.x += 0.1;
+		env->camera->origin.x += 0.1;
 	else if (key == ALLOW_RIGHT)
-		env->eye.pos.x -= 0.1;
+		env->camera->origin.x -= 0.1;
 	else if (key == KEY_Z)
-		env->eye.pos.z += 0.1;
+		env->camera->origin.z += 0.1;
 	else if (key == KEY_X)
-		env->eye.pos.z -= 0.1;
+		env->camera->origin.z -= 0.1;
 	else if (key == KEY_ESC)
 		exit_proc(env);
 	else
-	{
-		printf("key is :%d\n", key);
-	}
+		return (1);
+	env->camera = remake_camera(env->camera);
 	return (0);
 }
 
@@ -114,14 +92,5 @@ int	key_event(int key, void *data)
 void	set_event(t_env *env)
 {
 	mlx_key_hook(env->win, key_event, env);
-	mlx_mouse_hook(env->win, mouse_event, env);
 	mlx_hook(env->win, 17, 0L, exit_proc, env);
 }
-
-// void	set_event(t_env *env)
-// {
-// 	mlx_key_hook(env->win, key_event, env);
-// 	mlx_mouse_hook(env->win, mouse_event, env);
-// 	mlx_hook(env->win, 17, 0L, exit_proc, &env);
-// 	mlx_hook(env->win, 6, 1L << 6, mouse_move, env);
-// }
