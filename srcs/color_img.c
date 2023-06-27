@@ -6,7 +6,7 @@
 /*   By: kakiba <kakiba@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 18:23:01 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/06/26 22:56:19 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/06/27 12:22:27 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,14 @@ t_ray	*make_reray(t_ray *ray, t_intersection_info info)
 		vec_mult(re_ray->dir, EPSILON));
 	return (re_ray);
 }
+
+	// if (rt_info.depth == 0)
+	// 	sum = b_color_mult(info.obj->ref.am, *scene->am_light);
+
+	// *sum = b_color_mult(info->obj->ref.am, *scene->am_light);
+
+	// 	*b_color = b_color_add(*b_color,
+	// 			b_color_mult(sum, rt_info.perfect_reflectance));
 
 void	ray_trace(t_bright_color *b_color, \
 							t_scene *scene, \

@@ -6,7 +6,7 @@
 /*   By: kakiba <kakiba@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 07:50:29 by kakiba            #+#    #+#             */
-/*   Updated: 2023/06/26 15:44:54 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/06/27 11:44:53 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,6 @@ void	*get_plane_node(char **split)
 	t_plane		*plane;
 	t_obj		*obj;
 
-	if (get_size_double_ptr(split) != 4)
-		return (NULL);
 	if (get_vec_from_split(split[1], &position) \
 		|| get_vec_from_split(split[2], &vertical) \
 		|| get_ref_from_split(split[3], &ref))
@@ -68,6 +66,8 @@ void	*get_plane_node(char **split)
 	obj = new_obj(O_PLANE, ref, plane);
 	if (obj == NULL)
 		return (NULL);
+	if (split[4])
+		give_perfect_reflection(obj, split[4]);
 	return (ft_dlstnew(obj));
 }
 

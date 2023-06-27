@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   new_obj.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shtanemu <shtanemu@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: kakiba <kakiba@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 16:42:52 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/06/05 16:48:46 by shtanemu         ###   ########.fr       */
+/*   Updated: 2023/06/27 12:30:22 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,11 @@ t_obj	*new_obj(t_objtype type, t_reflect ref, void *obj_info)
 	obj = gc_malloc(sizeof(t_obj));
 	if (obj == NULL)
 		return (NULL);
+	ft_memset(obj, 0, sizeof(t_obj));
 	obj->ref = ref;
 	obj->type = type;
 	obj->instance = obj_info;
+	obj->ref.use_perfect_reflectance = false;
 	set_params(obj, type);
 	return (obj);
 }
