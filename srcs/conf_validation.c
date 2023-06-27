@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   conf_validation.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kakiba <kakiba@student.42.fr>              +#+  +:+       +#+        */
+/*   By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 21:14:07 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/06/26 13:48:26 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/06/27 12:12:07 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,13 @@ static bool	is_valid_descriptor(const char *filepath)
 	return (true);
 }
 
-bool	is_valid(char *filepath)
+bool	is_valid(char *filepath, const int argc)
 {
+	if (argc != 2)
+	{
+		put_error(ERROR_INVALID_N_ARGUMENTS);
+		return (false);
+	}
 	if (is_valid_descriptor(filepath) == false)
 		return (false);
 	if (has_valid_identifers(filepath) == false)
