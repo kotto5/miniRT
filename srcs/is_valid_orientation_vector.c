@@ -18,8 +18,10 @@ static bool	core_is_valid_orientation_vector(char **orientation_vector)
 {
 	size_t	i_ov;
 	double	value;
+	bool	has_non_zero;
 
 	i_ov = 0;
+	has_non_zero = false;
 	while (orientation_vector[i_ov] != NULL)
 	{
 		orientation_vector[i_ov] \
@@ -30,8 +32,12 @@ static bool	core_is_valid_orientation_vector(char **orientation_vector)
 		value = ft_atof(orientation_vector[i_ov]);
 		if (value < LLIMIT_OV || value > ULIMIT_OV)
 			return (false);
+		if (value != 0.0)
+			has_non_zero = true;
 		i_ov++;
 	}
+	if (has_non_zero == false)
+		return (false);
 	return (true);
 }
 
