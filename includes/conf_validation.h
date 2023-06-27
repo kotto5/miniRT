@@ -6,7 +6,7 @@
 /*   By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 17:41:45 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/06/26 21:07:26 by shtanemu         ###   ########.fr       */
+/*   Updated: 2023/06/27 12:11:56 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,10 +127,13 @@ is invalid."
 # define RT_DESCRIPTOR ".rt"
 # define ERROR_INVALID_FILE_DESCRIPTOR "A given file's descriptor is invalid."
 
+# define ERROR_INVALID_N_ARGUMENTS "The number of \
+arguments passed is invalid."
+
 # include <stdlib.h>
 # include <stdbool.h>
 
-bool		is_valid(char *filepath);
+bool		is_valid(char *filepath, const int argc);
 void		put_error(const char *message);
 bool		has_valid_format(const char *filepath);
 int			open_valid_file(const char *filepath);
