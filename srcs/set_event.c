@@ -6,7 +6,7 @@
 /*   By: kakiba <kakiba@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 22:54:52 by kakiba            #+#    #+#             */
-/*   Updated: 2023/06/27 14:57:04 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/06/27 19:15:06 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,8 @@ static t_camera	*remake_camera(t_camera *camera)
 	new_camera->fov = camera->fov;
 	new_camera->origin = camera->origin;
 	new_camera->orientation = camera->orientation;
-	free (camera);
+	gc_free(camera);
+	gc_add(new_camera);
 	return (new_camera);
 }
 
