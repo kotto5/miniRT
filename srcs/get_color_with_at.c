@@ -6,7 +6,7 @@
 /*   By: kakiba <kakiba@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 18:04:07 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/06/27 23:31:51 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/06/28 21:08:49 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,6 @@ t_bright_color	get_color_with_at(t_scene *scene, \
 
 	p_light = light->instance;
 	ft_memset(&ref, 0, sizeof(t_bright_color));
-	if (info->obj->type == O_CONE)
-		// printf("CONE!\n");
 	if (info->intersection.does_intersect == true)
 	{
 		if (do_through_other_obj_by_light(scene->obj_list, \
