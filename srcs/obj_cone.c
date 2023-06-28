@@ -6,7 +6,7 @@
 /*   By: kakiba <kakiba@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 19:55:28 by kakiba            #+#    #+#             */
-/*   Updated: 2023/06/28 20:57:43 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/06/28 21:15:07 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ static int	get_t_ray_cone(t_ray ray, \
 // 	double	cos = vec_dot(v, c) / (v_mag * c_mag);
 	
 // 	t_vec3	v2 = vec_mult(v, (c_mag * cos / v_mag));
-// 	return (vec_sub(v2, p));
+// 	return (vec_normalize(vec_sub(v2, p)));
 // }
 
 t_vec3	get_vert_cone(t_cone *cone, t_vec3 I)
@@ -111,8 +111,7 @@ t_vec3	get_vert_cone(t_cone *cone, t_vec3 I)
 	double	D = Dis * sqrt(1.0 + k * k);
 	t_vec3	A = vec_mult(vec_add(P, orient), D);
 	t_vec3	Normal = vec_sub(I, A);
-	(void)Normal;
-	return (Normal);
+	return (vec_normalize(Normal));
 }
 
 t_intersection	get_intersection_cone(const t_ray ray, const t_obj *obj)

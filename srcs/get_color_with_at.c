@@ -6,7 +6,7 @@
 /*   By: kakiba <kakiba@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 18:04:07 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/06/28 21:08:49 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/06/28 21:26:13 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,10 @@ t_bright_color	get_color_with_at(t_scene *scene, \
 		if (do_through_other_obj_by_light(scene->obj_list, \
 											light, info))
 			return (ref);
-		else if (info->obj->is_closed \
-					&& info->intersection.is_inside \
-					!= info->obj->is_inside_point(info->obj, p_light->pos))
-			return (ref);
+		// else if (info->obj->is_closed \
+		// 			&& info->intersection.is_inside \
+		// 			!= info->obj->is_inside_point(info->obj, p_light->pos))
+		// 	return (ref);
 		else
 			ref = get_ref6(info, light, *ray, scene);
 		// printf("CONE2!\n");
