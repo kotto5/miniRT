@@ -6,7 +6,7 @@
 /*   By: kakiba <kakiba@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 07:50:29 by kakiba            #+#    #+#             */
-/*   Updated: 2023/06/27 22:04:22 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/06/28 14:17:17 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ void	*get_cone_node(char **split)
 
 	if (get_ref_from_split(split[5], &ref))
 		return (NULL);
-	cone = make_cone_instance(get_vec_from_split(split[1]), get_vec_from_split(split[2]), \
+	cone = make_cone_instance(get_vec_from_split(split[1]), \
 		ft_atof(split[3]), get_vec_from_split(split[4]));
 	if (cone == NULL)
 		return (NULL);

@@ -6,7 +6,7 @@
 /*   By: kakiba <kakiba@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 22:24:49 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/06/27 21:54:10 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/06/28 14:15:58 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -189,7 +189,6 @@ typedef struct s_cylinder
 typedef struct s_cone
 {
 	t_vec3		center;
-	t_vec3		dir;
 	double		r;
 	t_vec3		tip;
 }				t_cone;

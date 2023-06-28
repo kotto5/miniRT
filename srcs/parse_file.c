@@ -6,7 +6,7 @@
 /*   By: kakiba <kakiba@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 07:50:29 by kakiba            #+#    #+#             */
-/*   Updated: 2023/06/28 01:10:19 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/06/28 20:18:39 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	parse_file(t_env *env, char *file)
 	if (env->camera == NULL)
 		exit_error(ARG_INSUFFICIENT);
 
-	t_cone	*cone = make_cone_instance((t_vec3){0,0,10}, (t_vec3){0,1,0}, 2, (t_vec3){0,1.5,10});
+	t_cone	*cone = make_cone_instance((t_vec3){0,0,10}, 3, (t_vec3){0,10,10});
 	t_reflect	ref;
 	get_ref_from_split("200,100,100", &ref);
 	t_obj	*obj = new_obj(O_CONE, ref, cone);
