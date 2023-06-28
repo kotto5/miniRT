@@ -6,7 +6,7 @@
 /*   By: kakiba <kakiba@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 19:55:28 by kakiba            #+#    #+#             */
-/*   Updated: 2023/06/28 20:27:15 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/06/28 20:57:43 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,17 +88,31 @@ static int	get_t_ray_cone(t_ray ray, \
 	return (SUCCESS);
 }
 
-t_vec3	get_vert_cone(t_cone *cone, t_vec3 p)
-{
-	t_vec3	v = vec_sub(p, cone->tip);
-	t_vec3	c = vec_sub(p, cone->center);
+// t_vec3	get_vert_cone(t_cone *cone, t_vec3 p)
+// {
+// 	t_vec3	v = vec_sub(p, cone->tip);
+// 	t_vec3	c = vec_sub(p, cone->center);
 
-	double	v_mag = vec_mag(v);
-	double	c_mag = vec_mag(c);
-	double	cos = vec_dot(v, c) / (v_mag * c_mag);
+// 	double	v_mag = vec_mag(v);
+// 	double	c_mag = vec_mag(c);
+// 	double	cos = vec_dot(v, c) / (v_mag * c_mag);
 	
-	t_vec3	v2 = vec_mult(v, (c_mag * cos / v_mag));
-	return (vec_sub(v2, p));
+// 	t_vec3	v2 = vec_mult(v, (c_mag * cos / v_mag));
+// 	return (vec_sub(v2, p));
+// }
+
+t_vec3	get_vert_cone(t_cone *cone, t_vec3 I)
+{
+	t_vec3	P = cone->tip;
+	t_vec3	orient = vec_normalize(vec_sub(cone->center, cone->tip));
+	double	k = vec_mag(vec_sub(cone->center, cone->tip)) / cone->r;
+
+	double	Dis = vec_mag(vec_sub(cone->center, P));
+	double	D = Dis * sqrt(1.0 + k * k);
+	t_vec3	A = vec_mult(vec_add(P, orient), D);
+	t_vec3	Normal = vec_sub(I, A);
+	(void)Normal;
+	return (Normal);
 }
 
 t_intersection	get_intersection_cone(const t_ray ray, const t_obj *obj)
@@ -120,14 +134,15 @@ t_intersection	get_intersection_cone(const t_ray ray, const t_obj *obj)
 	intersection.position = vec_add(ray.pos, dt);
 	intersection.distance = vec_mag(dt);
 	to_center = vec_sub(intersection.position, cone->center);
-	
+
 	intersection.vertical_dir = get_vert_cone(cone, intersection.position);
 	// intersection.vertical_dir = vec_normalize(vec_sub(to_center, vec_mult(\
-	// 	cone->dir, vec_dot(to_center, cone->dir))));
-	if (vec_dot(intersection.vertical_dir, ray.dir) >= 0.0)
-	{
-		intersection.vertical_dir = vec_mult(intersection.vertical_dir, -1);
-		intersection.is_inside = true;
-	}
+	// 	intersection.vertical_dir, vec_dot(to_center, intersection.vertical_dir))));
+
+	// if (vec_dot(intersection.vertical_dir, ray.dir) >= 0.0)
+	// {
+	// 	intersection.vertical_dir = vec_mult(intersection.vertical_dir, -1);
+	// 	intersection.is_inside = true;
+	// }
 	return (intersection);
 }
