@@ -6,7 +6,7 @@
 /*   By: kakiba <kakiba@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 17:27:01 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/06/28 20:40:10 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/06/28 21:29:31 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ t_bright_color	get_ref6(t_intersection_info *info, \
 	ref = b_color_add(ref, \
 						get_deffsuse_ref6(info->intersection, \
 											info->obj->ref, lighting));
-	b_color_add(ref, \
+	ref = b_color_add(ref, \
 				get_specular_ref6(lighting, \
 									info->intersection, \
 									eye, \
