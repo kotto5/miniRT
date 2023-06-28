@@ -6,7 +6,7 @@
 /*   By: kakiba <kakiba@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 18:04:07 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/06/28 21:27:31 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/06/28 21:34:20 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ t_bright_color	get_color_with_at(t_scene *scene, \
 			return (ref);
 		else
 			ref = get_ref6(info, light, *ray, scene);
-		// printf("CONE2!\n");
 	}
 	return (ref);
 }

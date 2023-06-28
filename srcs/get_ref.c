@@ -6,7 +6,7 @@
 /*   By: kakiba <kakiba@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 17:27:01 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/06/28 21:29:31 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/06/28 21:38:05 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 // return の因数が、全て 0 <= x <= 1 なら、 di = 1 - am - sp;
 // だから、和が1 を超えることはない。
 
-static t_bright_color	get_deffsuse_ref6(t_intersection intersection, \
+t_bright_color	get_deffsuse_ref6(t_intersection intersection, \
 											t_reflect ref, \
 											t_lighting lighting)
 {
@@ -55,7 +55,7 @@ static t_bright_color	get_deffsuse_ref6(t_intersection intersection, \
 // 感覚 向けたい方向(BA なら A) の位置ベクトル(OA) に対して、
 // 始点にしたいベクトル(OB)を指定する。
 
-static t_bright_color	get_specular_ref6(t_lighting lighting, \
+t_bright_color	get_specular_ref6(t_lighting lighting, \
 											t_intersection intersection, \
 											t_ray eye, t_reflect ref_info)
 {

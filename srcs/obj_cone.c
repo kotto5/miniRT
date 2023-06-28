@@ -6,7 +6,7 @@
 /*   By: kakiba <kakiba@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/27 19:55:28 by kakiba            #+#    #+#             */
-/*   Updated: 2023/06/28 21:15:07 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/06/28 21:47:24 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,10 +138,11 @@ t_intersection	get_intersection_cone(const t_ray ray, const t_obj *obj)
 	// intersection.vertical_dir = vec_normalize(vec_sub(to_center, vec_mult(\
 	// 	intersection.vertical_dir, vec_dot(to_center, intersection.vertical_dir))));
 
-	// if (vec_dot(intersection.vertical_dir, ray.dir) >= 0.0)
-	// {
-	// 	intersection.vertical_dir = vec_mult(intersection.vertical_dir, -1);
-	// 	intersection.is_inside = true;
-	// }
+	// ある点での法線ベクトルは二つある(表裏). 目の方向に向いているものを採用する式 そこまでおかしくないはず
+	if (vec_dot(intersection.vertical_dir, ray.dir) >= 0.0)
+	{
+		intersection.vertical_dir = vec_mult(intersection.vertical_dir, -1);
+		intersection.is_inside = true;
+	}
 	return (intersection);
 }
