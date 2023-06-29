@@ -6,7 +6,7 @@
 /*   By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 07:50:29 by kakiba            #+#    #+#             */
-/*   Updated: 2023/06/29 18:54:16 by shtanemu         ###   ########.fr       */
+/*   Updated: 2023/06/29 19:03:46 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ static void	*get_identifer_info(char **split, size_t index)
 			get_light_node, \
 			get_sphere_node, \
 			get_plane_node, \
-			get_cylinder_node};
+			get_cylinder_node, \
+			get_cone_node};
 	if (index >= sizeof(get_func) / sizeof(void *))
 		return (NULL);
 	else

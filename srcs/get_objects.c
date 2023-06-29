@@ -6,7 +6,7 @@
 /*   By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 07:50:29 by kakiba            #+#    #+#             */
-/*   Updated: 2023/06/29 14:01:10 by shtanemu         ###   ########.fr       */
+/*   Updated: 2023/06/29 19:14:08 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,10 +97,6 @@ void	*get_cylinder_node(char **split)
 	return (ft_dlstnew(obj));
 }
 
-// 1      2      3   4
-// center r      tip trgb
-// vec    double vec color
-
 void	*get_cone_node(char **split)
 {
 	t_reflect	ref;
@@ -109,8 +105,8 @@ void	*get_cone_node(char **split)
 
 	if (get_ref_from_split(split[5], &ref))
 		return (NULL);
-	cone = make_cone_instance(get_vec_from_split(split[1]), \
-		ft_atof(split[3]), get_vec_from_split(split[4]));
+	cone = make_cone_instance(get_vec_from_split(split[1]), get_vec_from_split(split[2]),\
+		ft_atof(split[3]), ft_atof(split[4]));
 	if (cone == NULL)
 		return (NULL);
 	obj = new_obj(O_CONE, ref, cone);
