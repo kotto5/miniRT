@@ -36,7 +36,9 @@ static bool	fmt_checker_plane_main_contents(char **contents)
 static bool	fmt_checker_plane_extra_contents(char **contents)
 {
 	contents[COL_INDEX_SR_PLANE] \
-		= ft_strtrim_free_s1(contents[COL_INDEX_SR_PLANE], "\n");
+		= strremove_free(contents[COL_INDEX_SR_PLANE], "\n");
+	contents[COL_INDEX_SR_PLANE] \
+		= strremove_free(contents[COL_INDEX_SR_PLANE], "\r");
 	if (is_valid_specular_reflection(contents[COL_INDEX_SR_PLANE]) == false)
 	{
 		put_error(ERROR_INVALID_SR);

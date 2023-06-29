@@ -6,7 +6,7 @@
 /*   By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 17:41:45 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/06/27 12:11:56 by shtanemu         ###   ########.fr       */
+/*   Updated: 2023/06/29 20:54:33 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,17 @@ height is invalid."
 # define N_CONTENTS_CYLINDER 6
 # define N_CONTENTS_CYLINDER_PLUS 7
 
+# define ERROR_INVALID_N_CONTENTS_CONE "A given cone's \
+configuration does'nt have enough contents."
+# define ERROR_INVALID_COODINATES_CONE "A given cone's \
+coordinates is invalid."
+# define ERROR_INVALID_OV_CONE "A given cone's \
+orientaion is invalid."
+# define ERROR_INVALID_DIAMETER_CONE "A given cone's \
+diameter is invalid."
+# define ERROR_INVALID_HEIGHT_CONE "A given cone's \
+height is invalid."
+
 # define ERROR_INVALID_RGB_COLOR_VALUE "A given rgb value is invalid."
 # define ERROR_INVALID_SR "A given specular reflection value \
 is invalid."
@@ -154,5 +165,6 @@ bool		fmt_checker_camera(const char *line);
 bool		fmt_checker_sphere(const char *line);
 bool		fmt_checker_plane(const char *line);
 bool		fmt_checker_cylinder(const char *line);
+bool		fmt_checker_cone(const char *line);
 
 #endif

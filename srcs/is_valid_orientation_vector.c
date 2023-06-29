@@ -25,7 +25,9 @@ static bool	core_is_valid_orientation_vector(char **orientation_vector)
 	while (orientation_vector[i_ov] != NULL)
 	{
 		orientation_vector[i_ov] \
-			= ft_strtrim_free_s1(orientation_vector[i_ov], "\n");
+			= strremove_free(orientation_vector[i_ov], "\n");
+		orientation_vector[i_ov] \
+			= strremove_free(orientation_vector[i_ov], "\r");
 		if (ft_strlen_s(orientation_vector[i_ov]) == 0 \
 			|| ft_isdouble(orientation_vector[i_ov]) == 0)
 			return (false);

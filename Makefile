@@ -14,6 +14,7 @@ SRCS =		$(SRCDIR)/affine_rotation.c \
 			$(SRCDIR)/fmt_checker_light.c \
 			$(SRCDIR)/fmt_checker_plane.c \
 			$(SRCDIR)/fmt_checker_sphere.c \
+			$(SRCDIR)/fmt_checker_cone.c \
 			$(SRCDIR)/get_color_with_at.c \
 			$(SRCDIR)/get_from_split.c \
 			$(SRCDIR)/get_lights.c \

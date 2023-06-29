@@ -36,7 +36,9 @@ static bool	fmt_checker_sphere_main_contents(char **contents)
 static bool	fmt_checker_sphere_extra_contents(char **contents)
 {
 	contents[COL_INDEX_SR_SPHERE] \
-		= ft_strtrim_free_s1(contents[COL_INDEX_SR_SPHERE], "\n");
+		= strremove_free(contents[COL_INDEX_SR_SPHERE], "\n");
+	contents[COL_INDEX_SR_SPHERE] \
+		= strremove_free(contents[COL_INDEX_SR_SPHERE], "\r");
 	if (is_valid_specular_reflection(contents[COL_INDEX_SR_SPHERE]) \
 		== false)
 	{

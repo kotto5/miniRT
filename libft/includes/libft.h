@@ -6,7 +6,7 @@
 /*   By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/18 10:04:29 by kakiba            #+#    #+#             */
-/*   Updated: 2023/06/25 15:32:27 by shtanemu         ###   ########.fr       */
+/*   Updated: 2023/06/29 20:36:01 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ char		*ft_strndup_s(const char *str, size_t len);
 char		*ft_substr(char const *s, unsigned int start, size_t len);
 char		*ft_strjoin(char const *s1, char const *s2);
 char		*ft_strtrim(char const *s1, char const *set);
-char		*ft_strtrim_free_s1(char *s1, char const *set);
+char		*strremove_free(char *s1, char const *set);
 char		**ft_split(char const *s, char c);
 char		*ft_itoa(int n);
 char		*ft_strmapi(char const *s, char (*f)(unsigned int, char));
@@ -157,5 +157,8 @@ size_t		get_size_double_ptr(char **ptr);
 
 size_t		count_char_matrix_rows(char **matrix);
 void		free_char_matrix(char **matrix);
+
+char		*strremove(char *str, const char *substr);
+char		*strremove_free(char *str, const char *substr);
 
 #endif

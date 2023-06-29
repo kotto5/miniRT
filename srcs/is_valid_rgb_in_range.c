@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   is_valid_rgb_in_range.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kakiba <kakiba@student.42.fr>              +#+  +:+       +#+        */
+/*   By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 17:50:14 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/06/26 14:52:47 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/06/29 20:37:08 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ bool	is_valid_rgb_in_range(char *rgb_str)
 	i_rgb = 0;
 	while (rgb_array[i_rgb] != NULL)
 	{
-		rgb_array[i_rgb] = ft_strtrim_free_s1(rgb_array[i_rgb], "\n");
+		rgb_array[i_rgb] = strremove_free(rgb_array[i_rgb], "\n");
+		rgb_array[i_rgb] = strremove_free(rgb_array[i_rgb], "\r");
 		if (ft_strlen_s(rgb_array[i_rgb]) == 0 || \
 			ft_isdigit_str(rgb_array[i_rgb], 0) == false || \
 			is_valid_rgb(rgb_array[i_rgb]) == false)
