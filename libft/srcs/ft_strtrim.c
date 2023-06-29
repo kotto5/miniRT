@@ -6,7 +6,7 @@
 /*   By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 00:12:30 by kakiba            #+#    #+#             */
-/*   Updated: 2023/06/25 19:08:24 by shtanemu         ###   ########.fr       */
+/*   Updated: 2023/06/29 20:36:01 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 	return (s2);
 }
 
-char	*ft_strtrim_free_s1(char *s1, char const *set)
+char	*strremove_free(char *s1, char const *set)
 {
 	char	*trimed_str;
 

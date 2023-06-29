@@ -74,6 +74,7 @@ $(SRCDIR)/ft_free_double_ptr.c\
 $(SRCDIR)/ft_get_size_double_ptr.c\
 $(SRCDIR)/count_matrix_rows.c\
 $(SRCDIR)/free_matrix.c\
+$(SRCDIR)/strremove.c\
 
 INCLUDES = -Iincludes
 OBJDIR = obj
