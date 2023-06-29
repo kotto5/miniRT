@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   all.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kakiba <kakiba@student.42.fr>              +#+  +:+       +#+        */
+/*   By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 21:31:14 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/06/27 22:00:55 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/06/29 19:04:50 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,6 +188,7 @@ void			*get_camera(char **split);
 void			*get_cylinder_node(char **split);
 void			*get_plane_node(char **split);
 void			*get_sphere_node(char **split);
+void			*get_cone_node(char **split);
 int				get_ref_from_split(char *str, t_reflect *ref);
 int				set_vec_from_split(char *str, t_vec3 *vec);
 t_vec3			get_vec_from_split(char *str);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   make_instance.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kakiba <kakiba@student.42.fr>              +#+  +:+       +#+        */
+/*   By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 16:43:47 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/06/28 14:15:27 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/06/29 19:12:14 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,8 @@ t_cylinder	*make_cylinder_instance(t_vec3 vertical, \
 	return (instance);
 }
 
-t_cone	*make_cone_instance(t_vec3 center, double r, t_vec3 tip)
+// t_cone	*make_cone_instance(t_vec3 center, double r, t_vec3 tip)
+t_cone	*make_cone_instance(t_vec3 center, t_vec3 vertical, double r, double h)
 {
 	t_cone	*instance;
 
@@ -62,7 +63,7 @@ t_cone	*make_cone_instance(t_vec3 center, double r, t_vec3 tip)
 		return (NULL);
 	instance->r = r;
 	instance->center = center;
-	instance->tip = tip;
+	instance->tip = vec_add(center, vec_mult(vertical, h));
 	return (instance);
 }
 
