@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fmt_checker_cylinder.c                             :+:      :+:    :+:   */
+/*   fmt_checker_cone.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/25 18:57:34 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/06/25 18:57:34 by shtanemu         ###   ########.fr       */
+/*   Created: 2023/06/29 20:46:23 by shtanemu          #+#    #+#             */
+/*   Updated: 2023/06/29 20:46:23 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,27 +17,27 @@ static bool	fmt_checker_is_double(char **contents)
 {
 	if (ft_isdouble(contents[COL_INDEX_DIAMETER_CYLINDER]) == 0)
 	{
-		put_error(ERROR_INVALID_DIAMETER_CYLINDER);
+		put_error(ERROR_INVALID_DIAMETER_CONE);
 		return (false);
 	}
 	if (ft_isdouble(contents[COL_INDEX_HEIGHT_CYLINDER]) == 0)
 	{
-		put_error(ERROR_INVALID_HEIGHT_CYLINDER);
+		put_error(ERROR_INVALID_HEIGHT_CONE);
 		return (false);
 	}
 	return (true);
 }
 
-static bool	fmt_checker_cylinder_main_contents(char **contents)
+static bool	fmt_checker_cone_main_contents(char **contents)
 {
 	if (is_valid_coordinates(contents[COL_INDEX_COORDINATES_CYLINDER]) == false)
 	{
-		put_error(ERROR_INVALID_COODINATES_CYLINDER);
+		put_error(ERROR_INVALID_COODINATES_CONE);
 		return (false);
 	}
 	if (is_valid_orientation_vector(contents[COL_INDEX_OV_CYLINDER]) == false)
 	{
-		put_error(ERROR_INVALID_OV_CYLINDER);
+		put_error(ERROR_INVALID_OV_CONE);
 		return (false);
 	}
 	if (fmt_checker_is_double(contents) == false)
@@ -50,7 +50,7 @@ static bool	fmt_checker_cylinder_main_contents(char **contents)
 	return (true);
 }
 
-static bool	fmt_checker_cylinder_extra_contents(\
+static bool	fmt_checker_cone_extra_contents(\
 	char **contents, const size_t n_contents\
 )
 {
@@ -70,7 +70,7 @@ static bool	fmt_checker_cylinder_extra_contents(\
 	return (true);
 }
 
-bool	fmt_checker_cylinder(const char *line)
+bool	fmt_checker_cone(const char *line)
 {
 	char	**contents;
 	size_t	n_contents;
@@ -82,16 +82,15 @@ bool	fmt_checker_cylinder(const char *line)
 		&& n_contents != N_CONTENTS_CYLINDER_PLUS)
 	{
 		free_char_matrix(contents);
-		put_error(ERROR_INVALID_N_CONTENTS_CYLINDER);
+		put_error(ERROR_INVALID_N_CONTENTS_CONE);
 		return (false);
 	}
-	if (fmt_checker_cylinder_main_contents(contents) == false)
+	if (fmt_checker_cone_main_contents(contents) == false)
 	{
 		free_char_matrix(contents);
 		return (false);
 	}
-	is_valid = fmt_checker_cylinder_extra_contents(contents, n_contents);
+	is_valid = fmt_checker_cone_extra_contents(contents, n_contents);
 	free_char_matrix(contents);
 	return (is_valid);
 }
-
