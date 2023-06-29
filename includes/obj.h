@@ -6,7 +6,7 @@
 /*   By: kakiba <kakiba@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 21:52:35 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/06/27 22:17:17 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/06/28 14:15:43 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,7 @@ t_cylinder		*make_cylinder_instance(t_vec3 vertical, \
 										double r, \
 										double height);
 t_rect			*make_rect_instance(t_vec3 bound1, t_vec3 bound2);
-t_cone			*make_cone_instance(t_vec3 center, t_vec3 dir, \
-										double r, t_vec3 tip);
+t_cone			*make_cone_instance(t_vec3 center, double r, t_vec3 tip);
 
 // cir.c
 t_vec3			get_ray_intersect_vec(t_ray ray, double t);

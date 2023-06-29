@@ -6,7 +6,7 @@
 /*   By: kakiba <kakiba@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 16:43:47 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/06/27 21:57:25 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/06/28 14:15:27 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ t_cylinder	*make_cylinder_instance(t_vec3 vertical, \
 	return (instance);
 }
 
-t_cone	*make_cone_instance(t_vec3 center, t_vec3 dir, double r, t_vec3 tip)
+t_cone	*make_cone_instance(t_vec3 center, double r, t_vec3 tip)
 {
 	t_cone	*instance;
 
@@ -62,7 +62,6 @@ t_cone	*make_cone_instance(t_vec3 center, t_vec3 dir, double r, t_vec3 tip)
 		return (NULL);
 	instance->r = r;
 	instance->center = center;
-	instance->dir = dir;
 	instance->tip = tip;
 	return (instance);
 }
