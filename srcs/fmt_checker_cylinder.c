@@ -57,7 +57,9 @@ static bool	fmt_checker_cylinder_extra_contents(\
 	if (n_contents == N_CONTENTS_CYLINDER_PLUS)
 	{
 		contents[COL_INDEX_SR_CYLINDER] \
-			= ft_strtrim_free_s1(contents[COL_INDEX_SR_CYLINDER], "\n");
+			= strremove_free(contents[COL_INDEX_SR_CYLINDER], "\n");
+		contents[COL_INDEX_SR_CYLINDER] \
+			= strremove_free(contents[COL_INDEX_SR_CYLINDER], "\r");
 		if (is_valid_specular_reflection(contents[COL_INDEX_SR_CYLINDER]) \
 			== false)
 		{
