@@ -6,7 +6,7 @@
 /*   By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 17:36:28 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/06/26 21:08:54 by shtanemu         ###   ########.fr       */
+/*   Updated: 2023/06/29 18:42:23 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static bool	is_valid_identifer(char *line)
 	char				*identifer;
 	size_t				i_identifiers;
 	const static char	*identifiers[] = {\
-		"A", "C", "L", "pl", "sp", "cy", NULL\
+		"A", "C", "L", "pl", "sp", "cy", "cn", NULL\
 	};
 
 	identifer = get_identifier(line);

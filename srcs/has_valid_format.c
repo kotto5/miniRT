@@ -6,7 +6,7 @@
 /*   By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 17:27:05 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/06/27 15:36:54 by shtanemu         ###   ########.fr       */
+/*   Updated: 2023/06/29 18:48:54 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,9 +63,10 @@ static bool	proceed_fmt_check(char *line)
 														fmt_checker_light, \
 														fmt_checker_plane, \
 														fmt_checker_sphere, \
+														fmt_checker_cylinder, \
 														fmt_checker_cylinder};
 	const static char	*identifiers[] = {\
-		"A", "C", "L", "pl", "sp", "cy", NULL\
+		"A", "C", "L", "pl", "sp", "cy", "cn", NULL\
 	};
 
 	identifier = get_identifier(line);
