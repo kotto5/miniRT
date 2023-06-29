@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   new_obj.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kakiba <kakiba@student.42.fr>              +#+  +:+       +#+        */
+/*   By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 16:42:52 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/06/27 23:31:27 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/06/29 13:38:36 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int	set_params(t_obj *obj, t_objtype type)
 	else if (type == O_CYLINDER)
 	{
 		obj->get_intersection = get_intersection_cylinder;
-		obj->is_inside_point = is_inside_cylinder;
+		// obj->is_inside_point = is_inside_cylinder;
 		obj->is_closed = false;
 	}
 	else if (type == O_RECT)
