@@ -6,7 +6,7 @@
 /*   By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 17:41:45 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/06/30 17:23:21 by shtanemu         ###   ########.fr       */
+/*   Updated: 2023/06/30 18:08:52 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ ratio is invalid."
 # define COL_INDEX_COORDINATES_SPOT_LIGHT 1
 # define COL_INDEX_SPOT_LIGHT_RATIO 2
 # define COL_INDEX_RGB_COLOR_SPOT_LIGHT 3
-# define N_CONTENTS_SPOT_LIGHT 5
+# define N_CONTENTS_SPOT_LIGHT 6
 
 # define ERROR_INVALID_N_CONTENTS_SPHERE "A given sphere's \
 does'nt have the valid number of contents."
