@@ -6,7 +6,7 @@
 /*   By: kakiba <kakiba@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 22:24:49 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/06/28 21:51:57 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/06/30 08:48:45 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,6 +191,8 @@ typedef struct s_cone
 	t_vec3		center;
 	double		r;
 	t_vec3		tip;
+	t_vec3		center_to_tip;
+	t_vec3		dir;
 }				t_cone;
 
 typedef enum e_lighttype{
