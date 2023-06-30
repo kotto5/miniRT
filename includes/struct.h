@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kakiba <kakiba@student.42.fr>              +#+  +:+       +#+        */
+/*   By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 22:24:49 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/06/28 21:51:57 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/06/30 23:33:06 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -196,6 +196,7 @@ typedef struct s_cone
 typedef enum e_lighttype{
 	L_POINT,
 	L_PARALLEL,
+	L_SPOT,
 }				t_lighttype;
 
 typedef struct s_lighting
@@ -218,6 +219,14 @@ typedef struct s_point_light
 	t_vec3			pos;
 	t_bright_color	intensity;
 }				t_point_light;
+
+typedef struct s_spot_light
+{
+	t_vec3			pos;
+	t_vec3			orientation;
+	double			apex_angle;
+	t_bright_color	intensity;
+}				t_spot_light;
 
 typedef struct s_parallel_light
 {
