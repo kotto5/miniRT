@@ -42,6 +42,7 @@ SRCS =		$(SRCDIR)/affine_rotation.c \
 			$(SRCDIR)/set_rotation_matrix.c \
 			$(SRCDIR)/utils.c \
 			$(SRCDIR)/utils2.c \
+			$(SRCDIR)/utils3.c \
 			$(SRCDIR)/vec_clc1.c \
 			$(SRCDIR)/vec_clc2.c \
 			$(SRCDIR)/vec_clc3.c \

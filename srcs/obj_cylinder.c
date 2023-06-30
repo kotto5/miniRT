@@ -6,7 +6,7 @@
 /*   By: kakiba <kakiba@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 15:43:21 by kakiba            #+#    #+#             */
-/*   Updated: 2023/06/26 17:12:47 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/06/30 11:22:18 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,16 +106,6 @@ t_intersection	get_intersection_cylinder(const t_ray ray, const t_obj *obj)
 	intersection.vertical_dir = vec_normalize(vec_sub(to_center, vec_mult(\
 		cylinder->vertical, vec_dot(to_center, cylinder->vertical))));
 	if (vec_dot(intersection.vertical_dir, ray.dir) >= 0.0)
-	{
 		intersection.vertical_dir = vec_mult(intersection.vertical_dir, -1);
-		intersection.is_inside = true;
-	}
 	return (intersection);
-}
-
-bool	is_inside_cylinder(const t_obj *obj, const t_vec3 point)
-{
-	(void)obj;
-	(void)point;
-	return (false);
 }

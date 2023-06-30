@@ -6,7 +6,7 @@
 /*   By: kakiba <kakiba@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 22:24:49 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/06/30 08:48:45 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/06/30 11:09:53 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ typedef struct s_vec3
 typedef struct s_intersection
 {
 	bool	does_intersect;
-	bool	is_inside;
 	double	distance;
 	t_vec3	position;
 	t_vec3	vertical_dir;
@@ -82,8 +81,6 @@ typedef struct s_reflect
 struct					s_obj;
 typedef t_intersection	(*t_f_get_intersection)\
 							(const struct s_ray, const struct s_obj*);
-typedef bool			(*t_f_is_inside_point)(const struct s_obj *obj, \
-							const struct s_vec3 point);
 
 typedef struct s_obj
 {
@@ -91,7 +88,6 @@ typedef struct s_obj
 	void					*instance;
 	t_reflect				ref;
 	t_f_get_intersection	get_intersection;
-	t_f_is_inside_point		is_inside_point;
 	bool					is_closed;
 }				t_obj;
 

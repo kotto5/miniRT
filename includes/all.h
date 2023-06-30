@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   all.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kakiba <kakiba@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 21:31:14 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/06/29 19:04:50 by shtanemu         ###   ########.fr       */
+/*   Updated: 2023/06/30 11:25:38 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@
 # define BACK_COLOR_DEF "\x1b[49m"
 
 # define PI 3.14159265358979323846
-# define EPSILON 0.001
 # define FOCAL_LENGTH 1.0
 
 # define SYNTAX 3
@@ -178,9 +177,6 @@ int				set_rzmat(double rmat[4][4], const double d);
 int				main_affine_rotation(t_vec3 *vec, const t_vec3 input);
 t_vec3			rotate_vec(t_vec3 v, t_vec3 k, double theta);
 
-bool			is_inside_sphere(const t_obj *obj, const t_vec3 point);
-bool			is_inside_cylinder(const t_obj *obj, const t_vec3 point);
-
 void			*get_light_node(char **split);
 void			*get_ambient_lignt(char **split);
 
@@ -199,5 +195,9 @@ void			clc_light_effect(t_intersection_info *info, \
 	t_scene *scene, t_ray *ray, t_bright_color *sum);
 void			print_time(int a);
 int				init_scene(t_scene *scene, t_env *env);
+int				solve_quadratic_equation(double a, double b, \
+							double c, double solution[2]);
+
+void			give_perfect_reflection(t_obj *obj, char *reflectance);
 
 #endif

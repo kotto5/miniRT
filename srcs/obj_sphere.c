@@ -6,24 +6,11 @@
 /*   By: kakiba <kakiba@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 15:42:42 by kakiba            #+#    #+#             */
-/*   Updated: 2023/06/27 23:03:06 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/06/30 11:09:32 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "all.h"
-
-static int	solve_quadratic_equation(double a, double b, double c, double solution[2])
-{
-	double	root;
-
-	root = b * b - (4.0 * a * c);
-	if (a == 0.0 || root < 0.0)
-		return (ERROR);
-	root = sqrt(root);
-	solution[0] = (-1.0 * b + root) / (2.0 * a);
-	solution[1] = (-1.0 * b - root) / (2.0 * a);
-	return (SUCCESS);
-}
 
 static double	get_ray_t_to_sphere(t_ray ray, t_sphere *sphere)
 {
@@ -63,21 +50,6 @@ t_intersection	get_intersection_sphere(const t_ray ray, const t_obj *obj)
 	intersection.vertical_dir = vec_normalize(vec_sub(intersection.position, \
 														sphere->pos));
 	if (vec_dot(intersection.vertical_dir, ray.dir) >= 0.0)
-	{
 		intersection.vertical_dir = vec_mult(intersection.vertical_dir, -1);
-		intersection.is_inside = true;
-	}
 	return (intersection);
-}
-
-bool	is_inside_sphere(const t_obj *obj, const t_vec3 point)
-{
-	t_sphere	*sphere;
-	t_vec3		pos_to_point;
-
-	sphere = obj->instance;
-	pos_to_point = vec_sub(point, sphere->pos);
-	if (vec_mag_sq(pos_to_point) < sphere->r * sphere->r)
-		return (true);
-	return (false);
 }

@@ -6,7 +6,7 @@
 /*   By: kakiba <kakiba@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 23:03:52 by kakiba            #+#    #+#             */
-/*   Updated: 2023/06/27 13:16:32 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/06/30 10:54:03 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,18 @@ int	init_scene(t_scene *scene, t_env *env)
 	scene->light_list = env->light_list;
 	scene->am_light = env->am_light;
 	return (0);
+}
+
+int	solve_quadratic_equation(double a, double b, \
+							double c, double solution[2])
+{
+	double	root;
+
+	root = b * b - (4.0 * a * c);
+	if (a == 0.0 || root < 0.0)
+		return (ERROR);
+	root = sqrt(root);
+	solution[0] = (-1.0 * b + root) / (2.0 * a);
+	solution[1] = (-1.0 * b - root) / (2.0 * a);
+	return (SUCCESS);
 }

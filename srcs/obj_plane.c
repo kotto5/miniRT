@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   obj_plane.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shtanemu <shtanemu@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: kakiba <kakiba@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 15:43:21 by kakiba            #+#    #+#             */
-/*   Updated: 2023/05/31 19:00:54 by shtanemu         ###   ########.fr       */
+/*   Updated: 2023/06/30 11:09:39 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,6 @@ t_intersection	get_intersection_plane(const t_ray ray, const t_obj *obj)
 	intersection.distance = vec_mag(td);
 	intersection.vertical_dir = vec_normalize(plane->vertical);
 	if (vec_dot(intersection.vertical_dir, ray.dir) >= 0.0)
-	{
 		intersection.vertical_dir = vec_mult(intersection.vertical_dir, -1);
-		intersection.is_inside = true;
-	}
 	return (intersection);
 }

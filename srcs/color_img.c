@@ -6,7 +6,7 @@
 /*   By: kakiba <kakiba@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 18:23:01 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/06/28 21:52:14 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/06/30 11:16:13 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ t_ray	*make_reray(t_ray *ray, t_intersection_info info)
 		return (NULL);
 	re_ray->dir = vec_sub(vec_mult(v2, 2.0 * dot_product), v);
 	re_ray->pos = vec_add(info.intersection.position, \
-		vec_mult(re_ray->dir, EPSILON));
+		vec_mult(re_ray->dir, EPS));
 	return (re_ray);
 }
 
@@ -106,8 +106,6 @@ int	color_img(t_env *env)
 		x = 0;
 		while (x < WIN_WIDTH)
 		{
-			// if (y == 118)
-			// 	printf("%d\n", x);
 			ft_bzero(&ref_color, sizeof(t_bright_color));
 			set_ray(env->camera, x, y, &env->eye);
 			ray_trace(&ref_color, &scene,
