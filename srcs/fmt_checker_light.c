@@ -63,15 +63,14 @@ bool	core_fmt_spot_checker_light(char **contents)
 		return (false);
 	}
 	if (ft_isdouble(contents[COL_INDEX_SPOT_LIGHT_HEIGHT]) == 0 \
-		&& ft_atof((contents[COL_INDEX_SPOT_LIGHT_HEIGHT]) > 0)
+		|| ft_atof(contents[COL_INDEX_SPOT_LIGHT_HEIGHT]) <= 0.0)
 	{
 		put_error(ERROR_INVALID_HEIGHT_SPOT_LIGHT);
 		return (false);
 	}
-	if (ft_isdouble(contents[COL_INDEX_SPOT_LIGHT_DIAMETER]) == 0 \
-		&& ft_atof((contents[COL_INDEX_SPOT_LIGHT_DIAMETER]) > 0)
+	if (is_valid_fov(contents[COL_INDEX_SPOT_LIGHT_APEX_ANGLE]) == false)
 	{
-		put_error(ERROR_INVALID_DIAMETER_SPOT_LIGHT);
+		put_error(ERROR_INVALID_APEX_ANGLE_SPOT_LIGHT);
 		return (false);
 	}
 	if (is_valid_rgb_in_range(contents[COL_INDEX_RGB_COLOR_SPOT_LIGHT]) == false)
