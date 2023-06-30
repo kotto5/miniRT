@@ -57,17 +57,28 @@ bool	core_fmt_spot_checker_light(char **contents)
 		put_error(ERROR_INVALID_COODINATES_SPOT_LIGHT);
 		return (false);
 	}
-	// if (is_valid_ratio_in_range(\
-	// 	contents[COL_INDEX_LIGHT_RATIO], LLIMIT_LIGHT, ULIMIT_LIGHT) == false)
-	// {
-	// 	put_error(ERROR_INVALID_LIGHT_RATIO);
-	// 	return (false);
-	// }
-	// if (is_valid_rgb_in_range(contents[COL_INDEX_RGB_COLOR_LIGHT]) == false)
-	// {
-	// 	put_error(ERROR_INVALID_RGB_COLOR_VALUE);
-	// 	return (false);
-	// }
+	if (is_valid_orientation_vector(contents[COL_INDEX_SPOT_LIGHT_OV]) == false)
+	{
+		put_error(ERROR_INVALID_OV_SPOT_LIGHT);
+		return (false);
+	}
+	if (ft_isdouble(contents[COL_INDEX_SPOT_LIGHT_HEIGHT]) == 0 \
+		&& ft_atof((contents[COL_INDEX_SPOT_LIGHT_HEIGHT]) > 0)
+	{
+		put_error(ERROR_INVALID_HEIGHT_SPOT_LIGHT);
+		return (false);
+	}
+	if (ft_isdouble(contents[COL_INDEX_SPOT_LIGHT_DIAMETER]) == 0 \
+		&& ft_atof((contents[COL_INDEX_SPOT_LIGHT_DIAMETER]) > 0)
+	{
+		put_error(ERROR_INVALID_DIAMETER_SPOT_LIGHT);
+		return (false);
+	}
+	if (is_valid_rgb_in_range(contents[COL_INDEX_RGB_COLOR_SPOT_LIGHT]) == false)
+	{
+		put_error(ERROR_INVALID_RGB_COLOR_VALUE);
+		return (false);
+	}
 	return (true);
 }
 

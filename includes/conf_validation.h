@@ -6,7 +6,7 @@
 /*   By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 17:41:45 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/06/30 18:08:52 by shtanemu         ###   ########.fr       */
+/*   Updated: 2023/06/30 22:39:24 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,20 @@ ratio is invalid."
 does'nt have the valid number of contents."
 # define ERROR_INVALID_COODINATES_SPOT_LIGHT "A given spot light's \
 coordinates is invalid."
+# define ERROR_INVALID_OV_SPOT_LIGHT "A given spot light's \
+orientaion vector is invalid."
+# define ERROR_INVALID_HEIGHT_SPOT_LIGHT "A given sphere's \
+height is invalid."
+# define ERROR_INVALID_DIAMETER_SPOT_LIGHT "A given sphere's \
+diameter is invalid."
 # define ERROR_INVALID_SPOT_LIGHT_RATIO "A given spot light's \
 ratio is invalid."
 
 # define COL_INDEX_COORDINATES_SPOT_LIGHT 1
-# define COL_INDEX_SPOT_LIGHT_RATIO 2
-# define COL_INDEX_RGB_COLOR_SPOT_LIGHT 3
+# define COL_INDEX_SPOT_LIGHT_OV 2
+# define COL_INDEX_SPOT_LIGHT_HEIGHT 3
+# define COL_INDEX_SPOT_LIGHT_DIAMETER 4
+# define COL_INDEX_RGB_COLOR_SPOT_LIGHT 5
 # define N_CONTENTS_SPOT_LIGHT 6
 
 # define ERROR_INVALID_N_CONTENTS_SPHERE "A given sphere's \
