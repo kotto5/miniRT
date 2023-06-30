@@ -6,7 +6,7 @@
 /*   By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 17:41:45 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/06/29 20:54:33 by shtanemu         ###   ########.fr       */
+/*   Updated: 2023/06/30 17:23:21 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,14 @@ A and C is invalid."
 # define ERROR_INVALID_AMBIENT_LIGHT_RATIO "A given ambient lighting's \
 ratio is invalid."
 # define ERROR_INVALID_N_CONTENTS_AMBIENT_LIGHT "A given ambient lighting's \
-configuration does'nt have enough contents."
+does'nt have the valid number of contents."
 
 # define COL_INDEX_AMBIENT_LIGHT_RATIO 1
 # define COL_INDEX_AMBIENT_RGB_COLOR 2
 # define N_CONTENTS_AMBIENT_LIGHT 3
 
 # define ERROR_INVALID_N_CONTENTS_CAMERA "A given camera's \
-configuration does'nt have enough contents."
+does'nt have the valid number of contents."
 # define ERROR_INVALID_COODINATES_CAMERA "A given camera's \
 coordinates is invalid."
 # define ERROR_INVALID_OV_CAMERA "A given camera's \
@@ -44,7 +44,7 @@ fov is invalid."
 # define N_CONTENTS_CAMERA 4
 
 # define ERROR_INVALID_N_CONTENTS_LIGHT "A given light's \
-configuration does'nt have enough contents."
+does'nt have the valid number of contents."
 # define ERROR_INVALID_COODINATES_LIGHT "A given light's \
 coordinates is invalid."
 # define ERROR_INVALID_LIGHT_RATIO "A given light's \
@@ -55,8 +55,20 @@ ratio is invalid."
 # define COL_INDEX_RGB_COLOR_LIGHT 3
 # define N_CONTENTS_LIGHT 4
 
+# define ERROR_INVALID_N_CONTENTS_SPOT_LIGHT "A given spot light's \
+does'nt have the valid number of contents."
+# define ERROR_INVALID_COODINATES_SPOT_LIGHT "A given spot light's \
+coordinates is invalid."
+# define ERROR_INVALID_SPOT_LIGHT_RATIO "A given spot light's \
+ratio is invalid."
+
+# define COL_INDEX_COORDINATES_SPOT_LIGHT 1
+# define COL_INDEX_SPOT_LIGHT_RATIO 2
+# define COL_INDEX_RGB_COLOR_SPOT_LIGHT 3
+# define N_CONTENTS_SPOT_LIGHT 5
+
 # define ERROR_INVALID_N_CONTENTS_SPHERE "A given sphere's \
-configuration does'nt have enough contents."
+does'nt have the valid number of contents."
 # define ERROR_INVALID_COODINATES_SPHERE "A given sphere's \
 coordinates is invalid."
 # define ERROR_INVALID_DIAMETER_SPHERE "A given sphere's \
@@ -70,7 +82,7 @@ diameter is invalid."
 # define N_CONTENTS_SPHERE_PLUS 5
 
 # define ERROR_INVALID_N_CONTENTS_PLANE "A given plane's \
-configuration does'nt have enough contents."
+does'nt have the valid number of contents."
 # define ERROR_INVALID_COODINATES_PLANE "A given plane's \
 coordinates is invalid."
 # define ERROR_INVALID_OV_PLANE "A given plane's \
@@ -84,7 +96,7 @@ orientaion is invalid."
 # define N_CONTENTS_PLANE_PLUS 5
 
 # define ERROR_INVALID_N_CONTENTS_CYLINDER "A given cylinder's \
-configuration does'nt have enough contents."
+does'nt have the valid number of contents."
 # define ERROR_INVALID_COODINATES_CYLINDER "A given cylinder's \
 coordinates is invalid."
 # define ERROR_INVALID_OV_CYLINDER "A given cylinder's \
@@ -104,7 +116,7 @@ height is invalid."
 # define N_CONTENTS_CYLINDER_PLUS 7
 
 # define ERROR_INVALID_N_CONTENTS_CONE "A given cone's \
-configuration does'nt have enough contents."
+does'nt have the valid number of contents."
 # define ERROR_INVALID_COODINATES_CONE "A given cone's \
 coordinates is invalid."
 # define ERROR_INVALID_OV_CONE "A given cone's \
@@ -161,6 +173,7 @@ bool		is_valid_coordinates(const char *coordinates_str);
 bool		is_valid_fov(char *fov_str);
 bool		is_valid_orientation_vector(const char *orientation_vector_str);
 bool		fmt_checker_light(const char *line);
+bool		fmt_checker_spot_light(const char *line);
 bool		fmt_checker_camera(const char *line);
 bool		fmt_checker_sphere(const char *line);
 bool		fmt_checker_plane(const char *line);
