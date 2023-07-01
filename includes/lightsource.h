@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lightsource.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shtanemu <shtanemu@student.42tokyo.jp>     +#+  +:+       +#+        */
+/*   By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 21:51:41 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/06/05 21:52:23 by shtanemu         ###   ########.fr       */
+/*   Updated: 2023/06/30 23:59:13 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,10 @@ t_vec3				get_incident_parallel_light(t_parallel_light light);
 t_lightsource		*new_light(t_lighttype type, void *light_info);
 t_point_light		*make_point_light_info(t_vec3 position, \
 											t_bright_color intensity);
+t_spot_light	*make_spot_light_info(t_vec3 position, \
+										t_vec3 orientation, \
+										double apex_angle, \
+										t_bright_color intensity);
 t_parallel_light	*make_parallel_light_info(t_vec3 dir, \
 												double intensity, \
 												t_dlist **gb_list);

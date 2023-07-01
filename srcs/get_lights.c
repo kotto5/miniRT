@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_lights.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kakiba <kakiba@student.42.fr>              +#+  +:+       +#+        */
+/*   By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 07:50:29 by kakiba            #+#    #+#             */
-/*   Updated: 2023/06/27 21:58:49 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/07/01 01:03:52 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,34 @@ void	*get_ambient_lignt(char **split)
 		return (NULL);
 	*am_light = b_color_mult_constant(ref.am, raito);
 	return (am_light);
+}
+
+void	*get_spot_light_node(char **split)
+{
+	t_lightsource	*light;
+	t_spot_light	*s_light;
+	t_reflect		ref;
+	t_vec3			pos;
+	t_vec3			orientation;
+	double			apex_angle;
+	double			raito;
+	
+	set_vec_from_split(split[1], &pos);
+	set_vec_from_split(split[2], &orientation);
+	apex_angle = ft_atof(split[3]);
+	raito = ft_atof(split[4]);
+	get_ref_from_split(split[5], &ref);
+	s_light = make_spot_light_info(pos, \
+									orientation, \
+									apex_angle, \
+									b_color_mult_constant(ref.am, \
+															raito));
+	if (s_light == NULL)
+		return (NULL);
+	light = new_light(L_SPOT, s_light);
+	if (light == NULL)
+		return (NULL);
+	return (ft_dlstnew(light));
 }
 
 void	*get_light_node(char **split)
