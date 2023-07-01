@@ -6,7 +6,7 @@
 /*   By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 17:13:02 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/07/01 17:31:55 by shtanemu         ###   ########.fr       */
+/*   Updated: 2023/07/01 18:02:40 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_spot_light	*make_spot_light_info(t_vec3 position, \
 	spot_light->intensity = intensity;
 	spot_light->pos = position;
 	spot_light->orientation = orientation;
-	spot_light->apex_angle = apex_angle / 2.0;
+	spot_light->apex_angle = apex_angle / 2.0 * PI / 180.0;
 	return (spot_light);
 }
 
@@ -80,8 +80,10 @@ static bool	is_inside_spotlight(\
 	// 	printf("r: %f\n", r);
 	// 	printf("dis: %f\n", dis);
 	// }
-	if (dis > r)
+	if (dis >= r)
 		return (false);
+	// printf("r: %f\n", r);
+	// printf("dis: %f\n", dis);
 	return (true);
 }
 
