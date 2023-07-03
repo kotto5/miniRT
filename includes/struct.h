@@ -6,7 +6,7 @@
 /*   By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 22:24:49 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/06/30 23:33:06 by shtanemu         ###   ########.fr       */
+/*   Updated: 2023/07/03 17:23:59 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,11 +186,21 @@ typedef struct s_cylinder
 	double		height;
 }				t_cylinder;
 
+typedef struct s_quandratic
+{
+	double	a;
+	double	b;
+	double	c;
+	double	root;
+}				t_quandratic;
+
 typedef struct s_cone
 {
 	t_vec3		center;
 	double		r;
 	t_vec3		tip;
+	t_vec3		axis;
+	t_vec3		height;
 }				t_cone;
 
 typedef enum e_lighttype{
