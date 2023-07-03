@@ -96,4 +96,3 @@ bool	fmt_checker_cylinder(const char *line)
 	free_char_matrix(contents);
 	return (is_valid);
 }
-

@@ -6,7 +6,7 @@
 /*   By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 18:04:07 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/07/01 15:17:40 by shtanemu         ###   ########.fr       */
+/*   Updated: 2023/07/03 14:00:23 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ bool	do_through_other_obj_by_light(t_dlist *obj_list, \
 
 	light_ray.dir = lighting.incident_to_light;
 	light_ray.pos = vec_add(info->intersection.position, \
-							vec_mult(info->intersection.vertical_dir , EPS));
+							vec_mult(info->intersection.vertical_dir, EPS));
 	node = obj_list;
 	while (node)
 	{
@@ -53,6 +53,7 @@ t_bright_color	get_color_with_at(t_scene *scene, \
 									t_lightsource *light, t_ray *ray)
 {
 	t_bright_color	ref;
+
 	ft_memset(&ref, 0, sizeof(t_bright_color));
 	if (info->intersection.does_intersect == true)
 	{

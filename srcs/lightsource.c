@@ -6,7 +6,7 @@
 /*   By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 17:13:02 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/07/01 18:02:40 by shtanemu         ###   ########.fr       */
+/*   Updated: 2023/07/03 14:28:33 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,58 +53,6 @@ t_lighting	lighting_at_point(t_vec3 position, t_lightsource *light)
 	vec = vec_sub(info->pos, position);
 	lighting.incident_to_light = vec_normalize(vec);
 	lighting.distance = vec_mag(vec);
-	lighting.intensity.t = info->intensity.t;
-	lighting.intensity.r = info->intensity.r;
-	lighting.intensity.g = info->intensity.g;
-	lighting.intensity.b = info->intensity.b;
-	return (lighting);
-}
-
-static bool	is_inside_spotlight(\
-	t_vec3 *intersection, t_vec3 *spotlight, t_vec3 *ov, double apex_angle\
-)
-{
-	const double	height = vec_mag(vec_sub(*spotlight, *intersection));
-	// const t_vec3	center = vec_mult(*ov, height);
-	const t_vec3	add = vec_mult(*ov, height);
-	const t_vec3	center = vec_add(*spotlight, add);
-	const double	r = fabs(height * tan(apex_angle));
-	const double	dis = vec_mag(vec_sub(center, *intersection));
-	// if ((intersection.x > -0.99 && intersection.x < 1.00)
-	// 	&& (intersection.y > -0.99 && intersection.y < 1.00)
-	// 	&& (intersection.z > -0.99 && intersection.z < 1.00))
-	// if (center.y !=- 15.811388)
-	// {
-	// 	printf("height: %f\n", height);
-	// 	print_vec(center, "center: ");
-	// 	printf("r: %f\n", r);
-	// 	printf("dis: %f\n", dis);
-	// }
-	if (dis >= r)
-		return (false);
-	// printf("r: %f\n", r);
-	// printf("dis: %f\n", dis);
-	return (true);
-}
-
-t_lighting	spot_lighting_at_point(t_vec3 position, t_lightsource *light)
-{
-	t_lighting		lighting;
-	t_spot_light	*info;
-	t_vec3			vec;
-
-	info = light->instance;
-	vec = vec_sub(info->pos, position);
-	lighting.incident_to_light = vec_normalize(vec);
-	lighting.distance = vec_mag(vec);
-	if (is_inside_spotlight(&position, &(info->pos), &(info->orientation), info->apex_angle) == false)
-	{
-		lighting.intensity.t = 0.00;
-		lighting.intensity.r = 0.00;
-		lighting.intensity.g = 0.00;
-		lighting.intensity.b = 0.00;
-		return (lighting);
-	}
 	lighting.intensity.t = info->intensity.t;
 	lighting.intensity.r = info->intensity.r;
 	lighting.intensity.g = info->intensity.g;

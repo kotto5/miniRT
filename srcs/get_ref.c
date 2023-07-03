@@ -3,14 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   get_ref.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kakiba <kakiba@student.42.fr>              +#+  +:+       +#+        */
+/*   By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 17:27:01 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/06/28 21:38:05 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/07/03 14:04:19 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "all.h"
+
+void	give_perfect_reflection(t_obj *obj, char *reflectance)
+{
+	const double	ratio = ft_atof(reflectance);
+
+	obj->ref.use_perfect_reflectance = true;
+	obj->ref.perfect_reflectance.t = ratio;
+	obj->ref.perfect_reflectance.r = ratio;
+	obj->ref.perfect_reflectance.g = ratio;
+	obj->ref.perfect_reflectance.b = ratio;
+}
 
 // deffuse refrection ... 乱反射。光がランダムな方向に分散して反射する
 // 入射ベクトル incident は、計算の都合上、入射する方向の逆を取る。

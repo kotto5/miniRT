@@ -6,7 +6,7 @@
 /*   By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 17:56:09 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/06/29 20:40:10 by shtanemu         ###   ########.fr       */
+/*   Updated: 2023/07/03 14:02:55 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,6 @@ bool	is_valid_coordinates(const char *coordinates_str)
 	{
 		coordinates[i_coordinates] = \
 			strremove_free(coordinates[i_coordinates], "\n");
-		coordinates[i_coordinates] = \
-			strremove_free(coordinates[i_coordinates], "\r");
 		if (ft_strlen_s(coordinates[i_coordinates]) == 0 \
 			|| ft_isdouble(coordinates[i_coordinates]) == 0)
 		{

@@ -27,6 +27,7 @@ SRCS =		$(SRCDIR)/affine_rotation.c \
 			$(SRCDIR)/is_valid_orientation_vector.c \
 			$(SRCDIR)/is_valid_rgb_in_range.c \
 			$(SRCDIR)/lightsource.c \
+			$(SRCDIR)/lightsource_spotlight.c \
 			$(SRCDIR)/main.c \
 			$(SRCDIR)/make_instance.c \
 			$(SRCDIR)/new_obj.c \
