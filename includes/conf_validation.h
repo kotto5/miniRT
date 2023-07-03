@@ -6,7 +6,7 @@
 /*   By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 17:41:45 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/07/01 00:05:48 by shtanemu         ###   ########.fr       */
+/*   Updated: 2023/07/03 13:41:53 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,23 +55,23 @@ ratio is invalid."
 # define COL_INDEX_RGB_COLOR_LIGHT 3
 # define N_CONTENTS_LIGHT 4
 
-# define ERROR_INVALID_N_CONTENTS_SPOT_LIGHT "A given spot light's \
+# define ERROR_INVALID_N_CONTENTS_SL "A given spot light's \
 does'nt have the valid number of contents."
-# define ERROR_INVALID_COODINATES_SPOT_LIGHT "A given spot light's \
+# define ERROR_INVALID_COODINATES_SL "A given spot light's \
 coordinates is invalid."
-# define ERROR_INVALID_OV_SPOT_LIGHT "A given spot light's \
+# define ERROR_INVALID_OV_SL "A given spot light's \
 orientaion vector is invalid."
-# define ERROR_INVALID_APEX_ANGLE_SPOT_LIGHT "A given spot light's \
+# define ERROR_INVALID_APEX_ANGLE_SL "A given spot light's \
 apex angle is invalid."
-# define ERROR_INVALID_SPOT_LIGHT_RATIO "A given spot light's \
+# define ERROR_INVALID_SL_RATIO "A given spot light's \
 ratio is invalid."
 
-# define COL_INDEX_COORDINATES_SPOT_LIGHT 1
-# define COL_INDEX_SPOT_LIGHT_OV 2
-# define COL_INDEX_SPOT_LIGHT_APEX_ANGLE 3
-# define COL_INDEX_SPOT_LIGHT_RATIO 4
-# define COL_INDEX_RGB_COLOR_SPOT_LIGHT 5
-# define N_CONTENTS_SPOT_LIGHT 6
+# define COL_INDEX_COORDINATES_SL 1
+# define COL_INDEX_SL_OV 2
+# define COL_INDEX_SL_APEX_ANGLE 3
+# define COL_INDEX_SL_RATIO 4
+# define COL_INDEX_RGB_COLOR_SL 5
+# define N_CONTENTS_SL 6
 
 # define ERROR_INVALID_N_CONTENTS_SPHERE "A given sphere's \
 does'nt have the valid number of contents."

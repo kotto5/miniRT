@@ -6,7 +6,7 @@
 /*   By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 07:50:29 by kakiba            #+#    #+#             */
-/*   Updated: 2023/07/01 15:09:20 by shtanemu         ###   ########.fr       */
+/*   Updated: 2023/07/03 13:43:55 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void	*get_identifer_info(char **split, size_t index)
 static bool	is_valid_identifer(char *input, size_t *index)
 {
 	static const char	*identifers[] = {\
-		"A", "C", "L", "SP", "sp", "pl", "cy", "cn"\
+		"A", "C", "L", "SL", "sp", "pl", "cy", "cn"\
 	};
 	size_t				i;
 
