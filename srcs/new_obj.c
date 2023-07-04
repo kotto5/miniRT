@@ -6,7 +6,7 @@
 /*   By: kakiba <kakiba@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 16:42:52 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/07/04 13:34:32 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/07/04 14:49:57 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,33 +16,17 @@ static int	set_params(t_obj *obj, t_objtype type)
 {
 	obj->get_intersection = NULL;
 	if (type == O_SPHERE)
-	{
 		obj->get_intersection = get_intersection_sphere;
-		obj->is_inside_point = is_inside_sphere;
-		obj->is_closed = true;
-	}
 	else if (type == O_PLANE)
-	{
 		obj->get_intersection = get_intersection_plane;
-		obj->is_closed = false;
-	}
 	else if (type == O_CYLINDER)
-	{
 		obj->get_intersection = get_intersection_cylinder;
-		obj->is_closed = false;
-	}
 	else if (type == O_RECT)
 		obj->get_intersection = get_intersection_rect;
 	else if (type == O_CONE)
-	{
 		obj->get_intersection = get_intersection_cone;
-		obj->is_closed = false;
-	}
 	else if (type == O_TRIANGLE)
-	{
 		obj->get_intersection = get_intersection_triangle;
-		obj->is_closed = true;
-	}
 	return (0);
 }
 

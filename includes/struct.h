@@ -6,7 +6,7 @@
 /*   By: kakiba <kakiba@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 22:24:49 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/07/04 13:34:59 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/07/04 14:49:37 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,6 @@ typedef struct s_reflect
 struct					s_obj;
 typedef t_intersection	(*t_f_get_intersection)\
 							(const struct s_ray, const struct s_obj*);
-typedef bool			(*t_f_is_inside_point)(const struct s_obj *obj, \
-							const struct s_vec3 point);
 
 typedef struct s_obj
 {
@@ -92,8 +90,6 @@ typedef struct s_obj
 	void					*instance;
 	t_reflect				ref;
 	t_f_get_intersection	get_intersection;
-	t_f_is_inside_point		is_inside_point;
-	bool					is_closed;
 }				t_obj;
 
 // little endian
