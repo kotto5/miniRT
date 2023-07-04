@@ -6,7 +6,7 @@
 /*   By: kakiba <kakiba@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 07:50:29 by kakiba            #+#    #+#             */
-/*   Updated: 2023/07/04 13:31:12 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/07/04 14:52:37 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,9 +119,9 @@ void	*get_triangle_node(char **split)
 	if (get_ref_from_split(split[4], &ref))
 		return (NULL);
 	triangle = make_triangle_instance(
-		get_vec_from_split(split[1]),
-		get_vec_from_split(split[2]),
-		get_vec_from_split(split[3]));
+			get_vec_from_split(split[1]),
+			get_vec_from_split(split[2]),
+			get_vec_from_split(split[3]));
 	if (triangle == NULL)
 		return (NULL);
 	obj = new_obj(O_TRIANGLE, ref, triangle);
@@ -130,20 +130,4 @@ void	*get_triangle_node(char **split)
 	if (split[5])
 		give_perfect_reflection(obj, split[5]);
 	return (ft_dlstnew(obj));
-}
-
-void	*get_camera(char **split)
-{
-	t_camera	*camera;
-	t_vec3		position;
-	t_vec3		orientation;
-
-	if (get_size_double_ptr(split) != 4)
-		return (NULL);
-	if (ft_isdigit_str(split[3], 0) == false || \
-		set_vec_from_split(split[1], &position) || \
-		set_vec_from_split(split[2], &orientation))
-		return (NULL);
-	camera = make_camera(ft_atof(split[3]), position, orientation);
-	return (camera);
 }

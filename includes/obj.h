@@ -6,7 +6,7 @@
 /*   By: kakiba <kakiba@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 21:52:35 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/07/04 13:36:30 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/07/04 15:39:50 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,6 @@ t_intersection	get_intersection_plane(const t_ray ray, const t_obj *obj);
 t_intersection	get_intersection_cylinder(const t_ray ray, const t_obj *obj);
 t_intersection	get_intersection_rect(const t_ray ray, const t_obj *obj);
 t_intersection	get_intersection_cone(const t_ray ray, const t_obj *obj);
-t_intersection 	get_intersection_triangle(const t_ray ray, const t_obj *obj);
+t_intersection	get_intersection_triangle(const t_ray ray, const t_obj *obj);
 
 #endif

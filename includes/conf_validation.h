@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   conf_validation.h                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kakiba <kakiba@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/21 17:41:45 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/07/03 13:41:53 by shtanemu         ###   ########.fr       */
+/*   Updated: 2023/07/04 15:37:08 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,6 +136,14 @@ height is invalid."
 # define ERROR_INVALID_SR "A given specular reflection value \
 is invalid."
 
+# define N_CONTENTS_TRIANGLE 5
+# define SPEC_REF_INFO 1
+
+# define ERROR_INVALID_N_CONTENTS_TRIANGLE "A given triangle's \
+does'nt have the valid number of contents."
+# define ERROR_INVALID_COODINATES_TRIANGLE "A given triangle's \
+coordinates is invalid."
+
 # define COL_RGB_INDEX_RED 0
 # define COL_RGB_INDEX_GREEN 1
 # define COL_RGB_INDEX_BLUE 2
@@ -185,5 +193,6 @@ bool		fmt_checker_sphere(const char *line);
 bool		fmt_checker_plane(const char *line);
 bool		fmt_checker_cylinder(const char *line);
 bool		fmt_checker_cone(const char *line);
+bool		fmt_checker_triangle(const char *line);
 
 #endif

@@ -1,7 +1,7 @@
 NAME = miniRT
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g
-# CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g
+# CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g
 DFLAGS = -MMD -MP
 
 SRCDIR = srcs
@@ -15,10 +15,12 @@ SRCS =		$(SRCDIR)/affine_rotation.c \
 			$(SRCDIR)/fmt_checker_plane.c \
 			$(SRCDIR)/fmt_checker_sphere.c \
 			$(SRCDIR)/fmt_checker_cone.c \
+			$(SRCDIR)/fmt_checker_triangle.c \
 			$(SRCDIR)/get_color_with_at.c \
 			$(SRCDIR)/get_from_split.c \
 			$(SRCDIR)/get_lights.c \
 			$(SRCDIR)/get_objects.c \
+			$(SRCDIR)/get_objects2.c \
 			$(SRCDIR)/get_ref.c \
 			$(SRCDIR)/has_valid_format.c \
 			$(SRCDIR)/identifers.c \
@@ -30,6 +32,7 @@ SRCS =		$(SRCDIR)/affine_rotation.c \
 			$(SRCDIR)/lightsource_spotlight.c \
 			$(SRCDIR)/main.c \
 			$(SRCDIR)/make_instance.c \
+			$(SRCDIR)/make_instance2.c \
 			$(SRCDIR)/new_obj.c \
 			$(SRCDIR)/obj_cylinder.c \
 			$(SRCDIR)/obj_plane.c \

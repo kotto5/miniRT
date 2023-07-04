@@ -6,7 +6,7 @@
 /*   By: kakiba <kakiba@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 22:24:49 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/07/04 14:49:37 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/07/04 15:40:40 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,11 +200,12 @@ typedef struct s_cone
 	t_vec3		height;
 }				t_cone;
 
-typedef struct  O_TRIANGLE {
-    t_vec3		normal;
-    t_vec3		p1;
-    t_vec3		p2;
-    t_vec3		p3;
+typedef struct O_TRIANGLE
+{
+	t_vec3		normal;
+	t_vec3		p1;
+	t_vec3		p2;
+	t_vec3		p3;
 }				t_triangle;
 
 typedef enum e_lighttype{

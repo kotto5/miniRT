@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   has_valid_format.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kakiba <kakiba@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 17:27:05 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/07/03 13:43:55 by shtanemu         ###   ########.fr       */
+/*   Updated: 2023/07/04 15:38:39 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,16 +58,11 @@ static bool	proceed_fmt_check(char *line)
 	char				*identifier;
 	size_t				i_identifiers;
 	static bool			(*fmt_checker[])(const char *line) = {\
-														fmt_checker_ambient, \
-														fmt_checker_camera, \
-														fmt_checker_light, \
-														fmt_checker_spot_light, \
-														fmt_checker_plane, \
-														fmt_checker_sphere, \
-														fmt_checker_cylinder, \
-														fmt_checker_cone};
+		fmt_checker_ambient, fmt_checker_camera, fmt_checker_light, \
+		fmt_checker_spot_light, fmt_checker_plane, fmt_checker_sphere, \
+		fmt_checker_cylinder, fmt_checker_cone, fmt_checker_triangle};
 	const static char	*identifiers[] = {\
-		"A", "C", "L", "SL", "pl", "sp", "cy", "cn", NULL\
+		"A", "C", "L", "SL", "pl", "sp", "cy", "cn", "tr", NULL\
 	};
 
 	identifier = get_identifier(line);

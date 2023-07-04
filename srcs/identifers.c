@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   identifers.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kakiba <kakiba@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 17:36:28 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/07/03 13:43:55 by shtanemu         ###   ########.fr       */
+/*   Updated: 2023/07/04 15:00:43 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static bool	is_valid_identifer(char *line)
 	char				*identifer;
 	size_t				i_identifiers;
 	const static char	*identifiers[] = {\
-		"A", "C", "L", "SL", "pl", "sp", "cy", "cn", NULL\
+		"A", "C", "L", "SL", "pl", "sp", "cy", "cn", "tr", NULL\
 	};
 
 	identifer = get_identifier(line);

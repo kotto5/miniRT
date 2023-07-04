@@ -6,7 +6,7 @@
 /*   By: kakiba <kakiba@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/15 11:07:28 by kakiba            #+#    #+#             */
-/*   Updated: 2023/07/04 13:11:37 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/07/04 15:33:25 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,7 @@ int	main(int argc, char **argv)
 {
 	t_env	env;
 
-	// if (is_valid(argv[1], argc) == false)
-	// 	exit_error(1);
-	if (argc != 2)
+	if (is_valid(argv[1], argc) == false)
 		exit_error(1);
 	printf("EPS %f\n", EPS);
 	ft_memset(&env, 0, sizeof(t_env));
