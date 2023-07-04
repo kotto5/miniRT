@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_line.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kakiba <kakiba@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 07:50:29 by kakiba            #+#    #+#             */
-/*   Updated: 2023/07/03 13:43:55 by shtanemu         ###   ########.fr       */
+/*   Updated: 2023/07/04 13:32:44 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ static void	*get_identifer_info(char **split, size_t index)
 			get_sphere_node, \
 			get_plane_node, \
 			get_cylinder_node, \
-			get_cone_node};
+			get_cone_node, \
+			get_triangle_node};
 	if (index >= sizeof(get_func) / sizeof(void *))
 		return (NULL);
 	else
@@ -32,7 +33,7 @@ static void	*get_identifer_info(char **split, size_t index)
 static bool	is_valid_identifer(char *input, size_t *index)
 {
 	static const char	*identifers[] = {\
-		"A", "C", "L", "SL", "sp", "pl", "cy", "cn"\
+		"A", "C", "L", "SL", "sp", "pl", "cy", "cn", "tr"\
 	};
 	size_t				i;
 

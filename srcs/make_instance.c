@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   make_instance.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kakiba <kakiba@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 16:43:47 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/06/29 19:12:14 by shtanemu         ###   ########.fr       */
+/*   Updated: 2023/07/04 13:04:18 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,5 +80,20 @@ t_rect	*make_rect_instance(t_vec3 bound1, t_vec3 bound2)
 	instance->bound2.y = get_max_double(bound1.y, bound2.y);
 	instance->bound1.z = get_min_double(bound1.z, bound2.z);
 	instance->bound2.z = get_max_double(bound1.z, bound2.z);
+	return (instance);
+}
+
+t_triangle	*make_triangle_instance(t_vec3 p1, t_vec3 p2, t_vec3 p3)
+{
+	t_triangle	*instance;
+
+	instance = gc_malloc(sizeof(t_triangle));
+	if (instance == NULL)
+		return (NULL);
+	instance->p1 = p1;
+	instance->p2 = p2;
+	instance->p3 = p3;
+	instance->normal = vec_normalize(vec_cross(\
+		vec_sub(p2, p1), vec_sub(p3, p1)));
 	return (instance);
 }

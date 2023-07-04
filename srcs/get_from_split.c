@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_from_split.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kakiba <kakiba@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 07:50:29 by kakiba            #+#    #+#             */
-/*   Updated: 2023/07/03 13:57:53 by shtanemu         ###   ########.fr       */
+/*   Updated: 2023/07/04 14:24:41 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,14 @@ int	set_vec_from_split(char *str, t_vec3 *vec)
 	char	**split_tmp;
 
 	split_tmp = ft_split(str, ',');
-	if (get_size_double_ptr(split_tmp) != 3 \
-		|| ft_isdouble(split_tmp[0]) == false \
-		|| ft_isdouble(split_tmp[1]) == false \
-		|| ft_isdouble(split_tmp[2]) == false)
-	{
-		free_double_ptr(split_tmp);
-		return (ERROR);
-	}
+	// if (get_size_double_ptr(split_tmp) != 3 \
+	// 	|| ft_isdouble(split_tmp[0]) == false \
+	// 	|| ft_isdouble(split_tmp[1]) == false \
+	// 	|| ft_isdouble(split_tmp[2]) == false)
+	// {
+	// 	free_double_ptr(split_tmp);
+	// 	return (ERROR);
+	// }
 	vec->x = ft_atof(split_tmp[0]);
 	vec->y = ft_atof(split_tmp[1]);
 	vec->z = ft_atof(split_tmp[2]);

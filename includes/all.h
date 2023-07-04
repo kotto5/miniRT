@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   all.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kakiba <kakiba@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 21:31:14 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/07/03 14:04:45 by shtanemu         ###   ########.fr       */
+/*   Updated: 2023/07/04 13:31:52 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,6 +190,7 @@ void			*get_cylinder_node(char **split);
 void			*get_plane_node(char **split);
 void			*get_sphere_node(char **split);
 void			*get_cone_node(char **split);
+void			*get_triangle_node(char **split);
 void			give_perfect_reflection(t_obj *obj, char *reflectance);
 int				get_ref_from_split(char *str, t_reflect *ref);
 int				set_vec_from_split(char *str, t_vec3 *vec);

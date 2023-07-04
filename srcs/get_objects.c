@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_objects.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: kakiba <kakiba@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 07:50:29 by kakiba            #+#    #+#             */
-/*   Updated: 2023/07/03 14:04:14 by shtanemu         ###   ########.fr       */
+/*   Updated: 2023/07/04 13:31:12 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,29 @@ void	*get_cone_node(char **split)
 		return (NULL);
 	if (split[6])
 		give_perfect_reflection(obj, split[4]);
+	return (ft_dlstnew(obj));
+}
+
+// TR P P P trgb
+void	*get_triangle_node(char **split)
+{
+	t_reflect	ref;
+	t_triangle	*triangle;
+	t_obj		*obj;
+
+	if (get_ref_from_split(split[4], &ref))
+		return (NULL);
+	triangle = make_triangle_instance(
+		get_vec_from_split(split[1]),
+		get_vec_from_split(split[2]),
+		get_vec_from_split(split[3]));
+	if (triangle == NULL)
+		return (NULL);
+	obj = new_obj(O_TRIANGLE, ref, triangle);
+	if (obj == NULL)
+		return (NULL);
+	if (split[5])
+		give_perfect_reflection(obj, split[5]);
 	return (ft_dlstnew(obj));
 }
 
