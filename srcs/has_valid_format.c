@@ -6,7 +6,7 @@
 /*   By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/25 17:27:05 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/06/29 20:54:21 by shtanemu         ###   ########.fr       */
+/*   Updated: 2023/07/03 13:43:55 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,12 +61,13 @@ static bool	proceed_fmt_check(char *line)
 														fmt_checker_ambient, \
 														fmt_checker_camera, \
 														fmt_checker_light, \
+														fmt_checker_spot_light, \
 														fmt_checker_plane, \
 														fmt_checker_sphere, \
 														fmt_checker_cylinder, \
 														fmt_checker_cone};
 	const static char	*identifiers[] = {\
-		"A", "C", "L", "pl", "sp", "cy", "cn", NULL\
+		"A", "C", "L", "SL", "pl", "sp", "cy", "cn", NULL\
 	};
 
 	identifier = get_identifier(line);
@@ -92,7 +93,7 @@ bool	has_valid_format(const char *filepath)
 		line = get_next_line(fd);
 		if (line == NULL)
 			break ;
-		if (ft_strcmp_s(line, "\n") != 0)
+		if (ft_strcmp_s(line, "\n") != 0 && ft_strcmp_s(line, "\r\n") != 0)
 		{
 			if (proceed_fmt_check(line) == false)
 			{

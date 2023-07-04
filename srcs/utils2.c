@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kakiba <kakiba@student.42.fr>              +#+  +:+       +#+        */
+/*   By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/26 23:03:52 by kakiba            #+#    #+#             */
-/*   Updated: 2023/06/27 13:16:32 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/07/01 14:55:19 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	add_sum_to_b_color(t_bright_color *b_color,
 void	clc_light_effect(t_intersection_info *info,
 	t_scene *scene, t_ray *ray, t_bright_color *sum)
 {
-	t_dlist	*node;
+	t_dlist			*node;
 
 	*sum = b_color_mult(info->obj->ref.am, *scene->am_light);
 	node = scene->light_list;

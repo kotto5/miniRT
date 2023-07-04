@@ -68,7 +68,6 @@ char	*strremove(char *str, const char *substr)
 	return (get_copied_removed_str(str, substr, len_substr, cnt_substr));
 }
 
-
 char	*strremove_free(char *str, const char *substr)
 {
 	char	*removed_str;

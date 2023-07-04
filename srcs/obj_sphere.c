@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   obj_sphere.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kakiba <kakiba@student.42.fr>              +#+  +:+       +#+        */
+/*   By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/26 15:42:42 by kakiba            #+#    #+#             */
-/*   Updated: 2023/06/27 23:03:06 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/07/03 17:50:44 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "all.h"
 
-static int	solve_quadratic_equation(double a, double b, double c, double solution[2])
+static int	solve_quadratic_equation(\
+	double a, double b, double c, double solution[2])
 {
 	double	root;
 

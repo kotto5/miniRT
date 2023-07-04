@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color_img.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kakiba <kakiba@student.42.fr>              +#+  +:+       +#+        */
+/*   By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 18:23:01 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/06/28 21:52:14 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/07/03 13:39:39 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,8 +106,6 @@ int	color_img(t_env *env)
 		x = 0;
 		while (x < WIN_WIDTH)
 		{
-			// if (y == 118)
-			// 	printf("%d\n", x);
 			ft_bzero(&ref_color, sizeof(t_bright_color));
 			set_ray(env->camera, x, y, &env->eye);
 			ray_trace(&ref_color, &scene,

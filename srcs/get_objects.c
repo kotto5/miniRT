@@ -6,22 +6,11 @@
 /*   By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 07:50:29 by kakiba            #+#    #+#             */
-/*   Updated: 2023/06/29 19:14:08 by shtanemu         ###   ########.fr       */
+/*   Updated: 2023/07/03 14:04:14 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "all.h"
-
-void	give_perfect_reflection(t_obj *obj, char *reflectance)
-{
-	const double	ratio = ft_atof(reflectance);
-
-	obj->ref.use_perfect_reflectance = true;
-	obj->ref.perfect_reflectance.t = ratio;
-	obj->ref.perfect_reflectance.r = ratio;
-	obj->ref.perfect_reflectance.g = ratio;
-	obj->ref.perfect_reflectance.b = ratio;
-}
 
 void	*get_sphere_node(char **split)
 {
@@ -105,8 +94,11 @@ void	*get_cone_node(char **split)
 
 	if (get_ref_from_split(split[5], &ref))
 		return (NULL);
-	cone = make_cone_instance(get_vec_from_split(split[1]), get_vec_from_split(split[2]),\
-		ft_atof(split[3]), ft_atof(split[4]));
+	cone = make_cone_instance(\
+		get_vec_from_split(split[1]), \
+		get_vec_from_split(split[2]), \
+		ft_atof(split[3]), \
+		ft_atof(split[4]));
 	if (cone == NULL)
 		return (NULL);
 	obj = new_obj(O_CONE, ref, cone);

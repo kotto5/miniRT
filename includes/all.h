@@ -6,7 +6,7 @@
 /*   By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 21:31:14 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/06/29 19:04:50 by shtanemu         ###   ########.fr       */
+/*   Updated: 2023/07/03 14:04:45 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,6 +182,7 @@ bool			is_inside_sphere(const t_obj *obj, const t_vec3 point);
 bool			is_inside_cylinder(const t_obj *obj, const t_vec3 point);
 
 void			*get_light_node(char **split);
+void			*get_spot_light_node(char **split);
 void			*get_ambient_lignt(char **split);
 
 void			*get_camera(char **split);
@@ -189,6 +190,7 @@ void			*get_cylinder_node(char **split);
 void			*get_plane_node(char **split);
 void			*get_sphere_node(char **split);
 void			*get_cone_node(char **split);
+void			give_perfect_reflection(t_obj *obj, char *reflectance);
 int				get_ref_from_split(char *str, t_reflect *ref);
 int				set_vec_from_split(char *str, t_vec3 *vec);
 t_vec3			get_vec_from_split(char *str);

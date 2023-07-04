@@ -6,7 +6,7 @@
 /*   By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 07:50:29 by kakiba            #+#    #+#             */
-/*   Updated: 2023/06/29 19:03:46 by shtanemu         ###   ########.fr       */
+/*   Updated: 2023/07/03 13:43:55 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ static void	*get_identifer_info(char **split, size_t index)
 		= {get_ambient_lignt, \
 			get_camera, \
 			get_light_node, \
+			get_spot_light_node, \
 			get_sphere_node, \
 			get_plane_node, \
 			get_cylinder_node, \
@@ -31,7 +32,7 @@ static void	*get_identifer_info(char **split, size_t index)
 static bool	is_valid_identifer(char *input, size_t *index)
 {
 	static const char	*identifers[] = {\
-		"A", "C", "L", "sp", "pl", "cy", "cn"\
+		"A", "C", "L", "SL", "sp", "pl", "cy", "cn"\
 	};
 	size_t				i;
 
@@ -55,7 +56,7 @@ static int	set_instance(t_env *env, size_t index, void *ret)
 		env->am_light = ret;
 	else if (index == 1)
 		env->camera = ret;
-	else if (index < 3)
+	else if (index < 4)
 		ft_dlstadd_back(&env->light_list, ret);
 	else
 		ft_dlstadd_back(&env->obj_list, ret);

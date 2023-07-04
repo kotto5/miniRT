@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kakiba <kakiba@student.42.fr>              +#+  +:+       +#+        */
+/*   By: shtanemu <shtanemu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 22:24:49 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/06/28 21:51:57 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/07/03 17:23:59 by shtanemu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,16 +186,27 @@ typedef struct s_cylinder
 	double		height;
 }				t_cylinder;
 
+typedef struct s_quandratic
+{
+	double	a;
+	double	b;
+	double	c;
+	double	root;
+}				t_quandratic;
+
 typedef struct s_cone
 {
 	t_vec3		center;
 	double		r;
 	t_vec3		tip;
+	t_vec3		axis;
+	t_vec3		height;
 }				t_cone;
 
 typedef enum e_lighttype{
 	L_POINT,
 	L_PARALLEL,
+	L_SPOT,
 }				t_lighttype;
 
 typedef struct s_lighting
@@ -218,6 +229,14 @@ typedef struct s_point_light
 	t_vec3			pos;
 	t_bright_color	intensity;
 }				t_point_light;
+
+typedef struct s_spot_light
+{
+	t_vec3			pos;
+	t_vec3			orientation;
+	double			apex_angle;
+	t_bright_color	intensity;
+}				t_spot_light;
 
 typedef struct s_parallel_light
 {

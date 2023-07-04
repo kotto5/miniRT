@@ -15,12 +15,14 @@
 
 static bool	fmt_checker_is_double(char **contents)
 {
-	if (ft_isdouble(contents[COL_INDEX_DIAMETER_CYLINDER]) == 0)
+	if (ft_isdouble(contents[COL_INDEX_DIAMETER_CYLINDER]) == 0 \
+		|| ft_atof(contents[COL_INDEX_DIAMETER_CYLINDER]) <= 0.0)
 	{
 		put_error(ERROR_INVALID_DIAMETER_CYLINDER);
 		return (false);
 	}
-	if (ft_isdouble(contents[COL_INDEX_HEIGHT_CYLINDER]) == 0)
+	if (ft_isdouble(contents[COL_INDEX_HEIGHT_CYLINDER]) == 0 \
+		|| ft_atof(contents[COL_INDEX_HEIGHT_CYLINDER]) <= 0.0)
 	{
 		put_error(ERROR_INVALID_HEIGHT_CYLINDER);
 		return (false);
@@ -94,4 +96,3 @@ bool	fmt_checker_cylinder(const char *line)
 	free_char_matrix(contents);
 	return (is_valid);
 }
-
