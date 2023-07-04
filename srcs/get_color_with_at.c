@@ -6,7 +6,7 @@
 /*   By: kakiba <kakiba@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 18:04:07 by shtanemu          #+#    #+#             */
-/*   Updated: 2023/06/30 11:18:43 by kakiba           ###   ########.fr       */
+/*   Updated: 2023/06/30 12:00:53 by kakiba           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ bool	do_through_other_obj_by_light(t_dlist *obj_list, \
 
 	light_ray.dir = lighting.incident_to_light;
 	light_ray.pos = vec_add(info->intersection.position, \
-							vec_mult(info->intersection.vertical_dir , EPS));
+							vec_mult(info->intersection.vertical_dir, EPS));
 	node = obj_list;
 	while (node)
 	{
